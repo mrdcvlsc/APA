@@ -50,6 +50,7 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
     
    operators :
    
+    = operator for initializing variables
     / operator
     > operator
     == operator
@@ -58,6 +59,13 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
     ++ operator
     -- operator
 --------------------------------------------------------------------------------------
+PLANNED IMPROVEMENTS
+    
+    REDUCE CODE CLUTTER
+    IMPLEMENT FASTER APPROACHES
+    
+--------------------------------------------------------------------------------------
+
 WHY I CREATED THIS?
     
     If you're asking...
