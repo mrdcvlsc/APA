@@ -34,9 +34,11 @@ CURRENTLY SUPPORTED OPERATIONS
     //multiplication
     ans = var2 * BIGINT("-6722") * var1; // multiple operations is also allowed
 --------------------------------------------------------------------------------------
-CURRENTLY SUPPORTED COMPARISON OPERATORS
+CURRENTLY SUPPORTED OPERATORS
 
-    // THE < (lessthan operator) is still the currently supported comparison operator as of now for sorting 
+    << operator for cout output is supported
+    >> operator for cin input is supported
+    < operator(lessthan operator) is currently the only supported comparison operator as of now for sorting 
 --------------------------------------------------------------------------------------
 PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
