@@ -4,6 +4,7 @@ A c++ .h,.cpp files for computing big integer values
 
 TO USE : just include the .h and the .cpp files to your c++ projects, or you can put everything in just one .h file
 
+--------------------------------------------------------------------------------------
 VARIABLE DECLARATION
   supported:
   
@@ -12,13 +13,13 @@ VARIABLE DECLARATION
   not supported yet:
   
     BIGINT var2 = "78273872832";
-    
-ASSIGNING VALUE
+--------------------------------------------------------------------------------------
+ASSIGNING VALUE (supported)
 
     BIGINT newVariable("7627386276"), newVar2;
     newVariable = "2732984754";
     newVar2 = "87845485";
-    
+--------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATIONS
 
     BIGINT var1("6526323"),var2("7623"), ans;
@@ -32,11 +33,11 @@ CURRENTLY SUPPORTED OPERATIONS
     
     //multiplication
     ans = var2 * BIGINT("-6722") * var1; // multiple operations is also allowed
-    
+--------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED COMPARISON OPERATORS
 
-    // THE < (lessthan operator) is still the currently supported operator as of now for sorting 
-   
+    // THE < (lessthan operator) is still the currently supported comparison operator as of now for sorting 
+--------------------------------------------------------------------------------------
 PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
    operations :
@@ -56,7 +57,7 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
     <= operator
     ++ operator
     -- operator
-    
+--------------------------------------------------------------------------------------
 WHY I CREATED THIS?
     
     If you're asking...
