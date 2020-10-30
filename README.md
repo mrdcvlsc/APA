@@ -16,6 +16,7 @@ VARIABLE DECLARATION
 ASSIGNING VALUE (supported)
 
     BIGINT newVariable("7627386276"), newVar2;
+    BIGINT thisIsPossibleNow = "782837232";
     newVariable = "2732984754";
     newVar2 = "87845485";
     BIGINT newNum = newVar2;
