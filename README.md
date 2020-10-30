@@ -46,7 +46,7 @@ CURRENTLY SUPPORTED OPERATORS
     ++ the increment operator, supports both postfix and prefix use
     -- the decrement operator, supports both postfix and prefix use
     
---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 
 PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
