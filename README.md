@@ -36,15 +36,24 @@ CURRENTLY SUPPORTED OPERATIONS
     //multiplication
     ans = var2 * BIGINT("-6722") * var1; // multiple operations is also allowed
 --------------------------------------------------------------------------------------
-CURRENTLY SUPPORTED OPERATORS
+CURRENTLY SUPPORTED OPERATORS (big integer overloaded operators)
 
     << operator for cout output is supported
+        cout<<abigintvariable<<endl; 
+        
     >> operator for cin input is supported
-    <  operator(lessthan operator) is currently the only supported comparison operator as of now for sorting
+        cin>>abigintvar;
+        
+    <  operator(lessthan operator)
     >  greaterthan operator
     <=, >=, ==, !=  are also available
+        ex: (bigIntVar1 > bigIntVar2), (bigIntVar1 != bigIntVar2), etc.
+        
     ++ the increment operator, supports both postfix and prefix use
+        yourBigIntVar++, ++yourBigIntVar; // allowed
+        
     -- the decrement operator, supports both postfix and prefix use
+        yourBigIntVar--, --yourBigIntVar; // allowed
     
 ---------------------------------------------------------------------------------------
 
@@ -52,15 +61,15 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
    operations :
    
-    DIVISION OPERATION and the / operator
-    POWER FUNCTION
-    FACTORIAL FUNCTION
-    cNr FUNCTION
+    DIVISION OPERATION
+    POWER FUNCTION FOR TWO BIG INT VARIABLES
+    FACTORIAL FUNCTION FOR TWO BIG INT VARIABLES
+    cNr FUNCTION 
     pNr FUNTION
     
    operators :
    
-    / operator
+    / operator (overload division operator)
     
 --------------------------------------------------------------------------------------
 PLANNED IMPROVEMENTS
