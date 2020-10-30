@@ -8,21 +8,22 @@ TO USE : just include the .h and the .cpp files to your c++ projects, or you can
 VARIABLE DECLARATION
   supported:
   
-    BIGINT variableName("6716212121");   // this use a string to store large int values
-    BIGINT var2;
-  not supported yet:
-  
-    BIGINT var2 = "78273872832";
+    BIGINT variableName("6716212121");
+    BIGINT var2;  
+    var2 = "78273872832";
+    BIGINT var3 = "7232832323283";
 --------------------------------------------------------------------------------------
 ASSIGNING VALUE (supported)
 
     BIGINT newVariable("7627386276"), newVar2;
     newVariable = "2732984754";
     newVar2 = "87845485";
+    BIGINT newNum = newVar2;
+    BIGINT newNum2 = newVar2*newNum+newVariable;
 --------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATIONS
 
-    BIGINT var1("6526323"),var2("7623"), ans;
+    BIGINT var1("6526323"),var2="7623", ans;
     
     //addition
     ans = var1 + var2;
@@ -38,8 +39,14 @@ CURRENTLY SUPPORTED OPERATORS
 
     << operator for cout output is supported
     >> operator for cin input is supported
-    < operator(lessthan operator) is currently the only supported comparison operator as of now for sorting 
+    <  operator(lessthan operator) is currently the only supported comparison operator as of now for sorting
+    >  greaterthan operator
+    <=, >=, ==, !=  are also available
+    ++ the increment operator, supports both postfix and prefix use
+    -- the decrement operator, supports both postfix and prefix use
+    
 --------------------------------------------------------------------------------------
+
 PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
    operations :
@@ -52,14 +59,8 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
     
    operators :
    
-    = operator for initializing variables
     / operator
-    > operator
-    == operator
-    >= operator
-    <= operator
-    ++ operator
-    -- operator
+    
 --------------------------------------------------------------------------------------
 PLANNED IMPROVEMENTS
     
