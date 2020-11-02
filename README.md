@@ -43,14 +43,20 @@ CURRENTLY SUPPORTED OPERATORS (big integer overloaded operators)
 
     cout<<abigintvariable<<endl; 
         
+        
 >> operator for cin input is supported
 
     cin>>abigintvar;
         
+        
 <  operator(lessthan operator)
+
 >  greaterthan operator
+
 <=, >=, ==, !=  are also available
+
 note: always enclose two bignum values when you are using comparison operators
+
 ex:
 
     bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
