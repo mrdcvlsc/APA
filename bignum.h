@@ -21,7 +21,7 @@ public:
 		string temp(value);
 		check(temp);
 		this->data = temp;
-		is_float = true; // this is temporary, should be change when operation with floating point is added
+		is_float = false; // this is temporary, should be change when operation with floating point is added
 	}
 	bignum(string value){ check(value); data=value; is_float=false; }
 
@@ -39,9 +39,9 @@ public:
 	bignum operator--();
 	//post-fix
 	bignum operator++(int);
-    bignum operator--(int);
+   	bignum operator--(int);
 
-    //arithmetich operators
+   	 //arithmetich operators
 	bignum operator+(const bignum& bigNum2);
 	bignum operator-(const bignum& bigNum2);
 	bignum operator*(const bignum& bigNum2);
@@ -68,7 +68,7 @@ public:
 	bool operator!=(const char* dQuoteStrValue) const;
 	bool operator==(const char* dQuoteStrValue) const;
 
-	// const char* left, bignum left
+	// const char* left, bignum right
 	friend bool operator <  (const char* dQuoteStrValue, const bignum& left);
 	friend bool operator >  (const char* dQuoteStrValue, const bignum& left);
 	friend bool operator <=  (const char* dQuoteStrValue, const bignum& left);
@@ -88,17 +88,5 @@ public:
 
 #endif
 
-////////////////////////////////////////////////////////////////////////
-///		RECENT UPDATES :											 ///
-///			- the prefix and post-fix version of increment			 ///
-///		      and decrement operators and it's functionality		 ///
-///			  is added.												 ///
-///			- the >, >=, ==, != and <= operators are added			 ///
-///			- use of = for declaration/initiation of bigint value 	 ///
-///			  is added also											 ///
-////////////////////////////////////////////////////////////////////////
-
 // next goals:
 //		-> add division operation with overloaded /(division) operator
-//		-> add a direct const char* operator functionality to comparison operator
-//		   to enable aBigIntVariable != "43434", bintvar > "323" (direct comparison) 
