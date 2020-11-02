@@ -39,38 +39,29 @@ CURRENTLY SUPPORTED OPERATIONS
 --------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATORS (big integer overloaded operators)
 
-<< operator for cout output is supported
+<<, >> operator for "cout" output and "cin" input is supported
 
     cout<<abigintvariable<<endl; 
-        
-        
->> operator for cin input is supported
-
     cin>>abigintvar;
         
-        
-<  operator(lessthan operator)
-
->  greaterthan operator
-
-<=, >=, ==, !=  are also available
-
+   
+<, >, <=, >=, ==, != (these comparison operators are also available)
 note: always enclose two bignum values when you are using comparison operators
-
 ex:
 
     bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
     (bigIntVar1 != bigIntVar2); //allowed
 
-comparison between a bignum variable and a string value or const char* is possible
+Comparison between a bignum variable and a string value or const char* is possible
 
     bignum variable1 = "72736273";
     (variable1 <= "81283798237"); // allowed 
     ("82738271344" > variable1);  // allowed
 
-Do not expect to const char* to behave like two bignum values
+WARNING: Do not expect when comparing two "const char*" to behave like two bignum values
 
     ("76327323" < "2837283"); // this is not allowed
+
 
 The increment and decrement operators, postfix and pre-fix form is available
 
