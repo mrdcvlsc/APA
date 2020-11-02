@@ -8,51 +8,64 @@ TO USE : just include the .h and the .cpp files to your c++ projects, or you can
 VARIABLE DECLARATION
   supported:
   
-    BIGINT variableName("6716212121");
-    BIGINT var2;  
+    bignum var1("6716212121");
+    bignum var2;  
     var2 = "78273872832";
-    BIGINT var3 = "7232832323283";
+    bignum var3 = var1
+    bignum var4 = "787283287";
 --------------------------------------------------------------------------------------
 ASSIGNING VALUE (supported)
 
-    BIGINT newVariable("7627386276"), newVar2;
-    BIGINT thisIsPossibleNow = "782837232";
+    bignum newVariable("7627386276"), newVar2;
+    bignum thisIsPossibleNow = "782837232";
     newVariable = "2732984754";
     newVar2 = "87845485";
-    BIGINT newNum = newVar2;
-    BIGINT newNum2 = newVar2*newNum+newVariable;
+    bignum newNum = newVar2;
+    bignum newNum2 = newVar2*newNum+newVariable;
 --------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATIONS
 
-    BIGINT var1("6526323"),var2="7623", ans;
+    bignum var1("6526323"),var2="7623", ans;
     
     //addition
     ans = var1 + var2;
-    ans = var2 + BIGINT("7823");  // this is also allowed
+    ans = var2 + bignum("7823");  // this is also allowed
     
     //subtraction
     ans = var2 - var2
     
     //multiplication
-    ans = var2 * BIGINT("-6722") * var1; // multiple operations is also allowed
+    ans = var2 * bignum("-6722") * var1; // multiple operations is also allowed
 --------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATORS (big integer overloaded operators)
 
-    << operator for cout output is supported
-        cout<<abigintvariable<<endl; 
+<<, >> operator for "cout" output and "cin" input is supported
+
+    cout<<abigintvariable<<endl; 
+    cin>>abigintvar;
         
-    >> operator for cin input is supported
-        cin>>abigintvar;
-        
-    <  operator(lessthan operator)
-    >  greaterthan operator
-    <=, >=, ==, !=  are also available
-        ex: (bigIntVar1 > bigIntVar2), (bigIntVar1 != bigIntVar2), etc.
-        
-    ++ the increment operator, supports both postfix and prefix use
+   
+<, >, <=, >=, ==, != (these comparison operators are also available)
+note: always enclose two bignum values when you are using comparison operators
+ex:
+
+    bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
+    (bigIntVar1 != bigIntVar2); //allowed
+
+Comparison between a bignum variable and a string value or const char* is possible
+
+    bignum variable1 = "72736273";
+    (variable1 <= "81283798237"); // allowed 
+    ("82738271344" > variable1);  // allowed
+
+WARNING: Do not expect when comparing two "const char*" to behave like two bignum values
+
+    ("76327323" < "2837283"); // this is not allowed
+
+
+The increment and decrement operators, postfix and pre-fix form is available
+
         yourBigIntVar++, ++yourBigIntVar; // allowed
-        
-    -- the decrement operator, supports both postfix and prefix use
         yourBigIntVar--, --yourBigIntVar; // allowed
     
 ---------------------------------------------------------------------------------------

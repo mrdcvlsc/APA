@@ -1,9 +1,9 @@
-#include "bigint.h"
+#include "bignum.h"
 
 // performs a scan if the string is a valid number
-void BIGINT::check(string &value){
+void bignum::check(string &value){
 	if(value.size()<=0){
-		cout<<"\nBIGINT ERROR : NUMBER HAS NO VALUE"<<endl;
+		cout<<"\nbignum ERROR : NUMBER HAS NO VALUE"<<endl;
 		exit(1);
 	}
 
@@ -36,7 +36,7 @@ void BIGINT::check(string &value){
 			break;
 		else{
 			valid = false;
-			cout<<"\nBIGINT ERROR : INVALID NUMBER DETECTED ("<<value<<")"<<endl;
+			cout<<"\nbignum ERROR : ASSIGNED INVALID NUMBER DETECTED ("<<value<<")"<<endl;
 			exit(1);
 		}	
 	}
