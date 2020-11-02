@@ -1,17 +1,16 @@
-#include "bigint.h"
+#include "bignum.h"
 
-int BIGINT::ones(int number, int tens){
-	int ones = number-(tens*10);
-	return ones;
+int bignum::ones(int number, int tens){
+	return number-(tens*10);
 }
 
-int BIGINT::tens(int number){
-	int tens = (int)floor((double)number/10);
-	return tens;
+int bignum::tens(int number){
+	return (int)floor((double)number/10);
 }
 
-string BIGINT::removeFrontZeros(string input){
+string bignum::removeFrontZeros(string input){
 	bool stillzero = true;
+	
 	for(int i=0;i<input.size() and stillzero;++i){
 		if(input[i]=='0' and input.size()!=1){
 			input.erase(i,1);
