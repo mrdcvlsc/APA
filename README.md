@@ -84,6 +84,10 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
    
     / operator (overload division operator)
     
+   others :
+     
+    implement support for floating point numbers
+    
 --------------------------------------------------------------------------------------
 PLANNED IMPROVEMENTS
     
