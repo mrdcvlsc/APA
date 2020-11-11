@@ -94,25 +94,6 @@ bool bignum::operator>=(const bignum& bintright) const{
 
 // ----- COMPARISON OPERATOR: for "const char*" (direct coded value) ex: (abignum == "723823") value not stored in bignum variable -----
 
-//right bignum left const char *
-bool bignum::operator < (const char* str_coded_value) const{
-	return bignum(this->data) < bignum(string(str_coded_value));	}
-
-bool bignum::operator > (const char* str_coded_value) const{
-	return bignum(this->data) > bignum(string(str_coded_value));	}
-
-bool bignum::operator <= (const char* str_coded_value) const{
-	return bignum(this->data) <= bignum(string(str_coded_value));	}
-
-bool bignum::operator >= (const char* str_coded_value) const{
-	return bignum(this->data) >= bignum(string(str_coded_value));	}
-
-bool bignum::operator ==(const char* str_coded_value) const{
-	return bignum(this->data) == bignum(string(str_coded_value));	}
-
-bool bignum::operator !=(const char* str_coded_value) const{
-	return bignum(this->data) != bignum(string(str_coded_value));	}
-
 // right const char * left bignum
 bool operator < (const char* dQuoteStrValue, const bignum& left){
 	return left<bignum(string(dQuoteStrValue));		}
