@@ -1,6 +1,6 @@
 #include "bignum.h"
 
-string bignum::addstrn(string a, string b){
+string bignum::internal_addition(string a, string b){
 
 	bool upperAddenIsPositive = true, lowerAddenIsPositive = true;
 	if(a[0]=='-') { upperAddenIsPositive = false; a[0]='0'; }
@@ -72,7 +72,7 @@ string bignum::addstrn(string a, string b){
 	return shiftedStringAnswer;
 }
 
-string bignum::substrn(string a, string b){
+string bignum::internal_subtraction(string a, string b){
 
 	bool minuendIsPositive = true, subtrahendIsPositive = true;
 	if(a[0]=='-') { minuendIsPositive = false; a[0]='0'; }
@@ -108,6 +108,7 @@ string bignum::substrn(string a, string b){
 	reverse(placeValueDifference,placeValueDifference+n);
 
 	// shift the index values from left to right
+	// 
 	for(int i=0;i<n-1;++i)
 		if(placeValueDifference[i]>9){
 			placeValueDifference[i]=placeValueDifference[i]-10;
@@ -142,8 +143,7 @@ string bignum::substrn(string a, string b){
 	return shiftedStringAnswer;
 }
 
-
-string bignum::mltpstrn(string upperNumber, string bottomNumber){
+string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	bool upperNumberIsPosivite = true, bottomNumberIsPositive = true;
 	if(upperNumber[0] == '-') { upperNumberIsPosivite = false; upperNumber[0]='0'; }
 	if(bottomNumber[0] == '-') { bottomNumberIsPositive = false; bottomNumber[0]='0'; }
@@ -188,4 +188,49 @@ string bignum::mltpstrn(string upperNumber, string bottomNumber){
 		finalAnswer='-'+finalAnswer;
 
 	return finalAnswer;
+}
+
+bignum bignum::internal_division(bignum& dividen, bignum& divisor){
+
+	internal_division_check(dividen,divisor); // error checker
+
+	if(dividen==divisor) return bignum("1");
+	if(dividen=="0")	 return bignum("0");
+	if(divisor=="1") 	 return dividen;
+
+	string    answer = "", partialDividen = "",
+		  strDividen = dividen.data,
+		  strDivisor = divisor.data;
+
+    	int partialCnt = 0;
+    	bignum multiplier = "1",
+               current;
+
+	for(int i=0; i<strDividen.size();++i){
+		partialDividen = partialDividen + strDividen[i];
+		current = partialDividen;
+
+		if(divisor<=current){
+			while((divisor*multiplier)<=current){
+				++multiplier;
+				++partialCnt;	
+			}
+
+			--multiplier;
+			bignum longDivDividen = (divisor*multiplier);
+			longDivDividen = current - longDivDividen;
+
+			partialDividen = longDivDividen.data;
+
+			if(partialDividen=="0") partialDividen="";
+		}
+
+		answer = answer + to_string(partialCnt);
+
+		// back to default values
+		partialCnt = 0;
+		multiplier = "1";
+	}
+
+	return bignum(answer);
 }
