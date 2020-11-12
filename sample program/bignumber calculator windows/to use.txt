@@ -1,0 +1,13 @@
+using command line change directory to this folder:
+	
+	cd "this/folder/path"
+
+
+compile using g++ to generate the .exe file:
+	
+	g++ -o calculator.exe test_calculator.cpp bignum_lib_windows.lib
+
+
+run the sample program in command line or manually run it by click-enter the calculator.exe:
+	
+	calculator
