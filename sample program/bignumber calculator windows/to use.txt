@@ -1,3 +1,5 @@
+download the folder or the file individually then put them on one folder named "bignum calculator windows"
+
 using command line change directory to this folder:
 	
 	cd "this/folder/path/bignumber calculator windows"
