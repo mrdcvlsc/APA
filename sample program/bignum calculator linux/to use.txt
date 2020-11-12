@@ -1,6 +1,6 @@
 using command line change directory to this folder:
 	
-	cd "this/folder/path"
+	cd "this/folder/path/bignumber calculator linux"
 
 
 compile using g++:
