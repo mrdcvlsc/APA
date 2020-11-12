@@ -2,7 +2,7 @@
 
 // ----------------- INCREMENT/DECREMENT OPERATORS ---------------------------
 
- //pre-fix increment/decrementa
+//pre-fix increment/decrementa
 bignum bignum::operator++(){
 	this->data = (bignum(this->data)+bignum("1")).data;
 	return bignum(data);
@@ -14,14 +14,14 @@ bignum bignum::operator--(){
 }
 
 //post-fix increment/decrementa
-bignum bignum::operator++(int){
-    this->data = (bignum(this->data)+bignum("1")).data;
-    return bignum(this->data)-bignum("1"); 
+bignum::operator++(int){
+        this->data = (bignum(this->data)+bignum("1")).data;
+        return bignum(this->data)-bignum("1"); 
 }
 
 bignum bignum::operator--(int){
-    this->data = (bignum(this->data)-bignum("1")).data;
-    return bignum(this->data)+bignum("1"); 
+        this->data = (bignum(this->data)-bignum("1")).data;
+        return bignum(this->data)+bignum("1");
 } 
 
 // --------------------------------------------------------------------------
@@ -31,13 +31,15 @@ bignum bignum::operator--(int){
 // -------------------- Arithmetic Operators --------------------
 
 bignum bignum::operator+(const bignum& bigintNumber){
+	
 	bignum result;
+	
 	size_t length1 = data.length();
 	size_t length2 = bigintNumber.data.length();
 
-	string addenA = data,
-		   addenB = bigintNumber.data,
-		   answerWidth;
+	string	addenA = data,
+		addenB = bigintNumber.data,
+		answerWidth;
 
 	if(length1>length2){
 		if(addenB[0]=='-'){
@@ -69,18 +71,20 @@ bignum bignum::operator+(const bignum& bigintNumber){
 	}
 
 	string answer = internal_addition(addenA,addenB);
-	result.data = answer;
+	result.data   = answer;
+	
 	return result;
 }
 
 bignum bignum::operator-(const bignum& bigintNumber){
+	
 	bignum result;
 	size_t length1 = data.length();
 	size_t length2 = bigintNumber.data.length();
 
 	string addenA = data,
-		   addenB = bigintNumber.data,
-		   answerWidth;
+	       addenB = bigintNumber.data,
+	       answerWidth;
 
 	if(length1>length2){
 		if(addenB[0]=='-'){
@@ -112,18 +116,20 @@ bignum bignum::operator-(const bignum& bigintNumber){
 	}
 
 	string answer = internal_subtraction(addenA,addenB);
-	result.data = answer;
+	result.data   = answer;
+	
 	return result;
 }
 
 bignum bignum::operator*(const bignum& bigintNumber){
+	
 	bignum result;
 	size_t length1 = data.length();
 	size_t length2 = bigintNumber.data.length();
 
-	string upperNumber = data,
-		   bottomNumber = bigintNumber.data,
-		   answerWidth;
+	string upperNumber  = data,
+	       bottomNumber = bigintNumber.data,
+	       answerWidth;
 
 	if(length1>length2){
 		if(bottomNumber[0]=='-'){
@@ -155,7 +161,8 @@ bignum bignum::operator*(const bignum& bigintNumber){
 	}
 
 	string answer = internal_multiplication(upperNumber,bottomNumber);
-	result.data = answer;
+	result.data   = answer;
+	
 	return result;
 }
 
@@ -174,8 +181,7 @@ bignum bignum::operator/(const bignum& input_divisor){
 	tempDivisor = absolute(tempDivisor);
 
 	// if decimal exist make it whole number
-	pair<string,int> dividenPair,
-					 divisorPair;
+	pair<string,int> dividenPair, divisorPair;
 
 	dividenPair = removeDecimal(tempDividen.data);
 	divisorPair = removeDecimal(tempDivisor.data);
@@ -185,11 +191,6 @@ bignum bignum::operator/(const bignum& input_divisor){
 
 	tempDividen = dividenPair.first;
 	tempDivisor = divisorPair.first;
-
-	cout<<"removed dn : "<<tempDividen<<endl;
-	cout<<"removed dr : "<<tempDivisor<<endl;
-	cout<<"dn : "<<ddenDecPlace<<endl;
-	cout<<"dr : "<<dsorDecPlace<<endl;
 
 	// check if dividen is less than divisor, add zero place to make it greater than divisor
 	int additionalLen = 0;
@@ -202,8 +203,7 @@ bignum bignum::operator/(const bignum& input_divisor){
 	// create a temporary bignumber value where we will modify its decimal if it has
 	bignum dividen = (tempDividen.data + addAccuracy);
 	bignum divisor = tempDivisor;
-
-	bignum temp = internal_division(dividen,divisor);
+	bignum temp    = internal_division(dividen,divisor);
 	
 	// bring back the decimal to its proper place
 	string answerValue = temp.data;
@@ -213,17 +213,14 @@ bignum bignum::operator/(const bignum& input_divisor){
 		answerValue = putDecimal(answerValue,(25+additionalLen+(ddenDecPlace-1)));
 	else if(dsorDecPlace>0 and ddenDecPlace==0)
 		answerValue = putDecimal(answerValue,(25+additionalLen-(dsorDecPlace-1)));
-
 	
 	answerValue = removeFrontZeros(answerValue);
 	answerValue = removeRearZeros(answerValue);
 	
 	bignum answer = answerValue;
 	
-	if(!differentSign)
-		return answer;
-	else
-		return bignum("-"+answer.data);
+	if(!differentSign) return answer;
+	else               return bignum("-"+answer.data);
 }
 
 // --------------------------------------------------------------
@@ -231,7 +228,7 @@ bignum bignum::operator/(const bignum& input_divisor){
 
 // ------------------- SPECIAL OPERATORS -------------------------
 
-	bignum bignum::operator%(bignum& divisor){
+bignum bignum::operator%(bignum& divisor){
 
 	bignum dividen(this->data);
 
@@ -245,11 +242,12 @@ bignum bignum::operator/(const bignum& input_divisor){
 	
 
 	string answer = "", partialDividen = "",
-		   strDividen = dividen.data,
-		   strDivisor = divisor.data;
+	       strDividen = dividen.data,
+	       strDivisor = divisor.data;
 
-    	int partialCnt = 0;
-    	bignum multiplier = "1", current;
+    	int    partialCnt = 0;
+   	bignum multiplier = "1",
+               current;
 
 	for(int i=0; i<strDividen.size();++i){
 		partialDividen = partialDividen + strDividen[i];
