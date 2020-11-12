@@ -12,6 +12,7 @@ CURRENTLY DIVISION IS THE ONLY ONE THAT SUPPORTS OPERATION ON FLOATING POINT VAL
 
 --------------------------------------------------------------------------------------
 ### VARIABLE DECLARATION
+
   supported:
   
     bignum var1("6716212121");
@@ -96,6 +97,7 @@ CURRENTLY DIVISION IS THE ONLY ONE THAT SUPPORTS OPERATION ON FLOATING POINT VAL
     implement support for floating point numbers for the three arithmetic operations + - *
     
 --------------------------------------------------------------------------------------
+
 ### PLANNED IMPROVEMENTS
     
     REDUCE CODE CLUTTER
@@ -110,5 +112,5 @@ CURRENTLY DIVISION IS THE ONLY ONE THAT SUPPORTS OPERATION ON FLOATING POINT VAL
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
-# A C++ Class Library use for compute large numbers, add very large numbers, subtract, multiply, divide large numbers.
+# A C++ Class Library use for computing large numbers, add, subtract, multiply, divide very large numbers.
 ## 
