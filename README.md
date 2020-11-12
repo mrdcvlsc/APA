@@ -7,8 +7,13 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
 
 -------------------------------------------------------------------
 
+###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
 
-###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers. This implementation uses string data type to store large numbers/big numbers. The four basic arithmetic operations are implemented using plain old elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept. For addition, subtraction, and multiplication, each digit in the string value of the bignumber is then converted into and array of integers, then arithmetic operations are applied to each index of that array, the result is then converted back into a string and this is how this library manily works
+###### This implementation uses string data type to store large numbers/big numbers.
+
+###### The four basic arithmetic operations are implemented using plain old elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
+
+###### For addition, subtraction, and multiplication, each digit in the string value of the bignumber is then converted into and array of integers, then arithmetic operations are applied to each index of that array, the result is then converted back into a string and this is how this library mainly works
 
 
 ***The "bignum" user made data type provided by the library enables you to:***
@@ -49,7 +54,7 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
-  **- you can also use the already compiled library in the sample program (instructions are in folder).**
+  **- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
 
 -------------------------------------------------------------------
 
@@ -114,6 +119,7 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
 
    **IO : <<, >> operator for "cout" output and "cin" input is supported.**
    
+   
    ```c++     
    cout<<abigintvariable<<endl; 
    cin>>abigintvar;
@@ -128,6 +134,7 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
    
    *Comparison between a bignum variable and a string value or const char* is possible*
    
+   
       ```c++
       bignum variable1 = "72736273";
       cout<<(variable1 <= "81283798237")<<endl; // allowed 
@@ -136,11 +143,13 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
       
    *WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
    
+   
       ```c++
       ("76327323" < "2837283"); // this is not allowed
       ```
       
 **The increment and decrement operators, postfix and pre-fix form is available.**
+
 
    ```c++
    yourBigIntVar++, ++yourBigIntVar; // allowed
@@ -148,6 +157,7 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
    ```     
         
 **The modulo operator is also supported.**
+
 
    ```c++    
    bignum var1 = "232", var2 = "23";
@@ -160,13 +170,13 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
 
    **operations :**
    
-   _-POWER FUNCTION FOR TWO BIG INT VARIABLES
+   -POWER FUNCTION FOR TWO BIG INT VARIABLES
    
    -FACTORIAL FUNCTION FOR TWO BIG INT VARIABLES
    
    -cNr FUNCTION 
    
-   -pNr FUNTION_
+   -pNr FUNTION
     
    **others :**
    
@@ -192,6 +202,6 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
-# A C++ Class Library use for computing large numbers, add very large numbers, subtract, multiply, divide large numbers.
+# A C++ Class Library that you can use for computing big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
 ## LICENCE - MIT
 
