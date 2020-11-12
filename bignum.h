@@ -55,7 +55,7 @@ public:
 
 	// OPERATORS
 
-  	//arithmetich operators
+    //arithmetich operators
 	bignum operator+(const bignum& bigNum2);
 	bignum operator-(const bignum& bigNum2);
 	bignum operator*(const bignum& bigNum2);
@@ -70,7 +70,7 @@ public:
 
 	//post-fix increment/decrement
 	bignum operator++(int);
-   	bignum operator--(int);
+    bignum operator--(int);
 
 	//input and output stream operators
 	friend ostream& operator<<(ostream &out, const bignum &value);
