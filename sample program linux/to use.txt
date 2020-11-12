@@ -1,0 +1,13 @@
+using command line change directory to this folder:
+	
+	cd "this/folder/path"
+
+
+compile using g++:
+	
+	g++ -o calculator test_calculator.cpp bignum_lib_linux.a
+
+
+run the sample program an test it:
+	
+	./calculator
