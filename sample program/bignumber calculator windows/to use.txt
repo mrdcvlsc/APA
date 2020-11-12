@@ -1,6 +1,6 @@
 using command line change directory to this folder:
 	
-	cd "this/folder/path"
+	cd "this/folder/path/bignumber calculator windows"
 
 
 compile using g++ to generate the .exe file:
