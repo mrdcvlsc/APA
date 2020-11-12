@@ -8,6 +8,6 @@ compile using g++:
 	g++ -o calculator test_calculator.cpp bignum_lib_linux.a
 
 
-run the sample program an test it:
+run the sample program and test it:
 	
 	./calculator
