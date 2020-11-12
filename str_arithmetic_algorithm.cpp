@@ -69,6 +69,7 @@ string bignum::internal_addition(string a, string b){
 		shiftedStringAnswer="-"+shiftedStringAnswer;
 
 	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
+	
 	return shiftedStringAnswer;
 }
 
@@ -86,11 +87,11 @@ string bignum::internal_subtraction(string a, string b){
 	placeValueDifference[0]=0;
 
 	for(unsigned int i=0;i<a.size();++i){
-		if(minuendIsPositive) minuend[i]= charToInt(a[i]);
-		else     				 minuend[i]=-charToInt(a[i]);
+		if(minuendIsPositive) minuend[i] = charToInt(a[i]);
+		else     	      minuend[i] =-charToInt(a[i]);
 
-		if(subtrahendIsPositive) subtrahend[i]= charToInt(b[i]);
-		else    				 subtrahend[i]=-charToInt(b[i]);
+		if(subtrahendIsPositive) subtrahend[i] = charToInt(b[i]);
+		else    		 subtrahend[i] =-charToInt(b[i]);
 	}
 
 	for(unsigned int i=0;i<a.size();++i)
@@ -108,7 +109,6 @@ string bignum::internal_subtraction(string a, string b){
 	reverse(placeValueDifference,placeValueDifference+n);
 
 	// shift the index values from left to right
-	// 
 	for(int i=0;i<n-1;++i)
 		if(placeValueDifference[i]>9){
 			placeValueDifference[i]=placeValueDifference[i]-10;
@@ -140,20 +140,22 @@ string bignum::internal_subtraction(string a, string b){
 		shiftedStringAnswer="-"+shiftedStringAnswer;
 
 	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
+	
 	return shiftedStringAnswer;
 }
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber){
+	
 	bool upperNumberIsPosivite = true, bottomNumberIsPositive = true;
-	if(upperNumber[0] == '-') { upperNumberIsPosivite = false; upperNumber[0]='0'; }
+	
+	if(upperNumber[0] == '-')  { upperNumberIsPosivite  = false; upperNumber[0] ='0'; }
 	if(bottomNumber[0] == '-') { bottomNumberIsPositive = false; bottomNumber[0]='0'; }
 
 	int upperNumberArray[upperNumber.size()],
 	    bottomNumberArray[bottomNumber.size()],
-		answerMaxLen = upperNumber.size()+bottomNumber.size();
+	    answerMaxLen = upperNumber.size()+bottomNumber.size();
 
 	int productValues[answerMaxLen]; for(auto& e: productValues) e=0;
-	    
 
 	for(unsigned int i=0;i<upperNumber.size();++i){
 		upperNumberArray[i] = charToInt(upperNumber[i]);
@@ -163,9 +165,9 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	
 	for(int i=0;i<bottomNumber.size();++i){
 		for(int j=0;j<upperNumber.size();++j){
-			productValues[answerMaxLen-1-i-j]=productValues[answerMaxLen-1-i-j]+
-				(upperNumberArray[upperNumber.size()-1-j]*
-				 bottomNumberArray[bottomNumber.size()-1-i]);
+			productValues[answerMaxLen-1-i-j] = productValues[answerMaxLen-1-i-j]+
+							   (upperNumberArray[upperNumber.size()-1-j]*
+				 			    bottomNumberArray[bottomNumber.size()-1-i]);
 		}
 	}
 
@@ -179,9 +181,8 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	}
 
 	string finalAnswer;
-	for(int i=0;i<answerMaxLen;++i){
+	for(int i=0;i<answerMaxLen;++i)
 		finalAnswer=intToChar(productValues[answerMaxLen-1-i])+finalAnswer;
-	}
 
 	finalAnswer = removeFrontZeros(finalAnswer);
 	if(upperNumberIsPosivite!=bottomNumberIsPositive)
@@ -195,16 +196,16 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor){
 	internal_division_check(dividen,divisor); // error checker
 
 	if(dividen==divisor) return bignum("1");
-	if(dividen=="0")	 return bignum("0");
-	if(divisor=="1") 	 return dividen;
+	if(dividen=="0")     return bignum("0");
+	if(divisor=="1")     return dividen;
 
-	string    answer = "", partialDividen = "",
-		  strDividen = dividen.data,
-		  strDivisor = divisor.data;
+	string 	answer	   = "", partialDividen = "",
+		strDividen = dividen.data,
+		strDivisor = divisor.data;
 
-    	int partialCnt = 0;
-    	bignum multiplier = "1",
-               current;
+    	int 	partialCnt = 0;
+  	bignum 	multiplier = "1",
+           	current;
 
 	for(int i=0; i<strDividen.size();++i){
 		partialDividen = partialDividen + strDividen[i];
