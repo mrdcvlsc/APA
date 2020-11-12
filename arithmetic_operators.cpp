@@ -14,7 +14,7 @@ bignum bignum::operator--(){
 }
 
 //post-fix increment/decrementa
-bignum::operator++(int){
+bignum bignum::operator++(int){
         this->data = (bignum(this->data)+bignum("1")).data;
         return bignum(this->data)-bignum("1"); 
 }
@@ -275,5 +275,6 @@ bignum bignum::operator%(bignum& divisor){
 		multiplier = "1";
 	}
 	bignum wholeAnswer = answer;
+	
 	return dividen-divisor*wholeAnswer;
 }
