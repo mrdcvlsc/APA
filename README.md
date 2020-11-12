@@ -81,14 +81,14 @@ The modulo operator is also supported
 
 PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
-   operations :
+   - operations :
    
     POWER FUNCTION FOR TWO BIG INT VARIABLES
     FACTORIAL FUNCTION FOR TWO BIG INT VARIABLES
     cNr FUNCTION 
     pNr FUNTION
     
-   others :
+   - others :
      
     implement support for floating point numbers for the three arithmetic operations + - *
     
