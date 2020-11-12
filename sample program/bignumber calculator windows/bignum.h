@@ -1,11 +1,3 @@
-////////////////////////////////////////////////////////////////////////////
-///		RECENT UPDATES :					 ///
-///			- overloaded division operator			 ///
-///			  division supports floating point I.O. values	 ///
-///			- implemented internal_divison method		 ///
-///			- along with modulo operator			 ///
-////////////////////////////////////////////////////////////////////////////
-
 #ifndef BIGNUM_H
 #define BIGNUM_H
 
@@ -109,3 +101,14 @@ public:
 };
 
 #endif
+
+////////////////////////////////////////////////////////////////////////
+///		RECENT UPDATES :											 ///
+///			- implemented internal_divison method					 ///
+///			- along with modulo operator							 ///
+////////////////////////////////////////////////////////////////////////
+
+// next goals:
+//		-> add division operation with overloaded /(division) operator
+//		-> add a direct const char* operator functionality to comparison operator
+//		   to enable aBigIntVariable != "43434", bintvar > "323" (direct comparison) 

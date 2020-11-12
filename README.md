@@ -1,8 +1,14 @@
 # bignum
 
-A c++ .h,.cpp files for computing big integer values
+A C++ library for computing big number values.
 
-TO USE : just include the .h and the .cpp files to your c++ projects, or you can put everything in just one .h file
+NOW, ALL FOUR ARITHMETIC OPERATIONS CAN HANDEL INTEGER VALUE.
+CURRENTLY DIVISION IS THE ONLY ONE THAT SUPPORTS OPERATION ON FLOATING POINT VALUE.
+
+TO USE :
+
+    -you can include all the files(.h .cpp) manually in your project then compile it yourself.
+    -you can also use the already compiled library in the sample program (instructions are in folder).
 
 --------------------------------------------------------------------------------------
 VARIABLE DECLARATION
@@ -10,34 +16,32 @@ VARIABLE DECLARATION
   
     bignum var1("6716212121");
     bignum var2;  
-    var2 = "78273872832";
     bignum var3 = var1
     bignum var4 = "787283287";
---------------------------------------------------------------------------------------
-ASSIGNING VALUE (supported)
-
-    bignum newVariable("7627386276"), newVar2;
-    bignum thisIsPossibleNow = "782837232";
-    newVariable = "2732984754";
-    newVar2 = "87845485";
-    bignum newNum = newVar2;
-    bignum newNum2 = newVar2*newNum+newVariable;
+    var2 = "78273872832";
+    var3 = var4;
 --------------------------------------------------------------------------------------
 CURRENTLY SUPPORTED OPERATIONS
 
     bignum var1("6526323"),var2="7623", ans;
     
-    //addition
+    //addition (operation on floating point - not supported yet)
     ans = var1 + var2;
     ans = var2 + bignum("7823");  // this is also allowed
     
-    //subtraction
+    //subtraction (operation on floating point - not supported yet)
     ans = var2 - var2
     
-    //multiplication
+    //multiplication (operation on floating point - not supported yet)
     ans = var2 * bignum("-6722") * var1; // multiple operations is also allowed
+    
+    //division (operation on floating point - ALREADY SUPPORTED)
+    ans = var2 / var1;
+    
+    //modulo
+    ans = var2 % var1;
 --------------------------------------------------------------------------------------
-CURRENTLY SUPPORTED OPERATORS (big integer overloaded operators)
+CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
 
 <<, >> operator for "cout" output and "cin" input is supported
 
@@ -50,13 +54,13 @@ note: always enclose two bignum values when you are using comparison operators
 ex:
 
     bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
-    (bigIntVar1 != bigIntVar2); //allowed
+    cout<<(bigIntVar1 != bigIntVar2); //allowed
 
 Comparison between a bignum variable and a string value or const char* is possible
 
     bignum variable1 = "72736273";
-    (variable1 <= "81283798237"); // allowed 
-    ("82738271344" > variable1);  // allowed
+    cout<<(variable1 <= "81283798237")<<endl; // allowed 
+    cout<<("82738271344" > variable1)<<endl;  // allowed
 
 WARNING: Do not expect when comparing two "const char*" to behave like two bignum values
 
@@ -67,6 +71,11 @@ The increment and decrement operators, postfix and pre-fix form is available
 
         yourBigIntVar++, ++yourBigIntVar; // allowed
         yourBigIntVar--, --yourBigIntVar; // allowed
+        
+The modulo operator is also supported
+        
+        bignum var1 = "232", var2 = "23";
+        cout<<(var1%var2)<<endl;
     
 ---------------------------------------------------------------------------------------
 
@@ -74,19 +83,14 @@ PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
 
    operations :
    
-    DIVISION OPERATION
     POWER FUNCTION FOR TWO BIG INT VARIABLES
     FACTORIAL FUNCTION FOR TWO BIG INT VARIABLES
     cNr FUNCTION 
     pNr FUNTION
     
-   operators :
-   
-    / operator (overload division operator)
-    
    others :
      
-    implement support for floating point numbers
+    implement support for floating point numbers for the three arithmetic operations + - *
     
 --------------------------------------------------------------------------------------
 PLANNED IMPROVEMENTS

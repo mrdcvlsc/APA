@@ -9,10 +9,10 @@ bool bignum::operator==(const bignum& bintright) const{
 
 // the < operator is another base operator method used to create other comparison operators
 bool bignum::operator<(const bignum& bintright) const{
-	bignum left  = this->data,
-	 	   right = bintright;
+	bignum	left  = this->data,
+		right = bintright;
 
-	bool leftIsPositive = left.data[0] != '-' ? true : false;
+	bool leftIsPositive  = left.data[0]  != '-' ? true : false;
 	bool rightIsPositive = right.data[0] != '-' ? true : false;
 
 	int leftLength  =  left.data.size();	
@@ -28,10 +28,8 @@ bool bignum::operator<(const bignum& bintright) const{
 		rightLength--;
 	}
 
-	if(!leftIsPositive and rightIsPositive) 
-		return true;
-	else if(leftIsPositive and !rightIsPositive)
-		return false;
+	if     (!leftIsPositive and rightIsPositive)  return true;
+	else if(leftIsPositive and !rightIsPositive)  return false;
 	else if(leftIsPositive and rightIsPositive){	
 		if(leftLength<rightLength)
 			return true;
@@ -66,68 +64,65 @@ bool bignum::operator<(const bignum& bintright) const{
 }
 
 bool bignum::operator!=(const bignum& bintright) const{
+	
 	bignum currentObjTmpCpy = this->data;
 	return !(currentObjTmpCpy==bintright);
 }
 
 bool bignum::operator>(const bignum& bintright) const{
+	
 	bignum currentObjTmpCpy = this->data;
+	
 	if(currentObjTmpCpy==bintright)
 		return false;
+	
 	return !(currentObjTmpCpy<bintright);
 }
 
 bool bignum::operator<=(const bignum& bintright) const{
+	
 	bignum currentObjTmpCpy = this->data;
+	
 	if(this->data==bintright.data)
 		return true;
+	
 	return currentObjTmpCpy<bintright;
 }
 
 bool bignum::operator>=(const bignum& bintright) const{
+	
 	bignum currentObjTmpCpy = this->data;
+	
 	if(this->data==bintright.data)
 		return true;
+	
 	return currentObjTmpCpy>bintright;
 }
 
 
 // ----- COMPARISON OPERATOR: for "const char*" (direct coded value) ex: (abignum == "723823") value not stored in bignum variable -----
 
-//right bignum left const char *
-bool bignum::operator < (const char* str_coded_value) const{
-	return bignum(this->data) < bignum(string(str_coded_value));	}
-
-bool bignum::operator > (const char* str_coded_value) const{
-	return bignum(this->data) > bignum(string(str_coded_value));	}
-
-bool bignum::operator <= (const char* str_coded_value) const{
-	return bignum(this->data) <= bignum(string(str_coded_value));	}
-
-bool bignum::operator >= (const char* str_coded_value) const{
-	return bignum(this->data) >= bignum(string(str_coded_value));	}
-
-bool bignum::operator ==(const char* str_coded_value) const{
-	return bignum(this->data) == bignum(string(str_coded_value));	}
-
-bool bignum::operator !=(const char* str_coded_value) const{
-	return bignum(this->data) != bignum(string(str_coded_value));	}
-
 // right const char * left bignum
 bool operator < (const char* dQuoteStrValue, const bignum& left){
-	return left<bignum(string(dQuoteStrValue));		}
+	return left<bignum(string(dQuoteStrValue));
+}
 
 bool operator > (const char* dQuoteStrValue, const bignum& left){
-	return left>bignum(string(dQuoteStrValue));		}
+	return left>bignum(string(dQuoteStrValue));
+}
 
 bool operator <= (const char* dQuoteStrValue, const bignum& left){
-	return left<=bignum(string(dQuoteStrValue));		}
+	return left<=bignum(string(dQuoteStrValue));
+}
 
 bool operator >= (const char* dQuoteStrValue, const bignum& left){
-	return left>=bignum(string(dQuoteStrValue));		}
+	return left>=bignum(string(dQuoteStrValue));
+}
 
 bool operator ==(const char* dQuoteStrValue, const bignum& left){
-	return left==bignum(string(dQuoteStrValue));	}
+	return left==bignum(string(dQuoteStrValue));
+}
 
 bool operator !=(const char* dQuoteStrValue, const bignum& left){
-	return left!=bignum(string(dQuoteStrValue));	}
+	return left!=bignum(string(dQuoteStrValue));
+}
