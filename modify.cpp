@@ -9,9 +9,11 @@ int bignum::tens(int number){
 }
 
 pair<string,int> bignum::removeDecimal(const string& input){
+	
 	string bignumber = input;
-	int place = 0;
-	bool got = false;
+	int    place     = 0;
+	bool   got       = false;
+	
 	for(int i=0; i<bignumber.size(); ++i)
 		if(bignumber[i]=='.'){
 			bignumber.erase(i,1);
@@ -19,26 +21,33 @@ pair<string,int> bignum::removeDecimal(const string& input){
 			place = i;
 			break;
 		}
+	
 	place = bignumber.size()+1-place;
 	if(!got) place = 0;
+	
 	return make_pair(bignumber,place);
 }
 
 string bignum::putDecimal(const string& bignumber, int index){
+	
 	string tempFrontZero(index,'0');
 	string answer = tempFrontZero+bignumber;
 	answer.insert((answer.size()-index),".");
+	
 	return answer;
 }
 
 int bignum::getDecimalPlaces(string input){
+	
 	int i = input.size()-1;
 	while(input[i]!='.')
 		--i;
+	
 	return input.size()-i-1;
 }
 
 string bignum::removeFrontZeros(string input){
+	
 	bool stillzero = true;
 	
 	for(int i=0;i<input.size() and stillzero;++i){
@@ -53,10 +62,12 @@ string bignum::removeFrontZeros(string input){
 		if(input[i]>='1' and input[i]<='9')
 			stillzero = false;
 	}
+	
 	return input;
 }
 
 string bignum::removeRearZeros(string input){
+	
 	bool stillzero = true;
 	
 	while(input[input.size()-1]=='0' or input[input.size()-1]=='.')
@@ -66,7 +77,9 @@ string bignum::removeRearZeros(string input){
 }
 
 bignum bignum::absolute(const bignum input){
+	
 	if(input<"0")
 		return bignum(input.data.substr(1,input.data.size()-1));
+	
 	return input;
 }
