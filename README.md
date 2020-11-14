@@ -5,6 +5,7 @@ https://mrdcvlsc.github.io/bignum/
 NOW, **ALL FOUR ARITHMETIC OPERATIONS CAN HANDEL INTEGER VALUE**.
 CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POINT VALUES**.
 
+*MAIN GOAL : BY JANUARY 2021 - FULLY SUPPORT ALL FOUR BASIC ARITHMETIC OPERATIONS FOR INTEGERS AND FLOATING POINT NUMBERS.*
 -------------------------------------------------------------------
 
 ###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
