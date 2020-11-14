@@ -187,10 +187,11 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
 
 ### PLANNED IMPROVEMENTS
     
-   ***REDUCE CODE CLUTTER***
+   [ ] ***REDUCE CODE CLUTTER***
    
-   ***IMPLEMENT FASTER APPROACHES***
+   [ ] ***IMPLEMENT FASTER APPROACHES***
     
+   [ ] maximize int array values when performing arithmetic operations for internal methods of addition, subtraction, multiplication, from one digit to possibly 4-8?
     
 ---------------------------------------------------------
 
