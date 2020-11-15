@@ -3,7 +3,7 @@ https://mrdcvlsc.github.io/bignum/
 ## A C++ library for computing big number.
 
 -------------------------------------------------------------------
-#BACK TO VERSION 1 branch - DUE TO BUGS IN THE LATEST VERSIONS
+# BACK TO VERSION 1 branch - DUE TO BUGS IN THE LATEST VERSIONS
 
 ### ~~**(nov. 15, 2020) NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)**~~ ###
 
