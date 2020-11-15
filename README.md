@@ -2,8 +2,26 @@
 https://mrdcvlsc.github.io/bignum/
 ## A C++ library for computing big number.
 
-NOW, **ALL FOUR ARITHMETIC OPERATIONS CAN HANDEL INTEGER VALUE**.
-CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POINT VALUES**.
+-------------------------------------------------------------------
+
+### **INTEGER SUPPORT - can operate on integers**
+
+1.) addition
+
+2.) subtraction
+
+5.) multiplication
+
+4.) division
+
+### **FLOAT SUPPORT - can operate on rational numbers in decimal form**
+
+1.) addition
+
+2.) subtraction
+
+3.) division
+
 
 *MAIN GOAL : BY JANUARY 2021 - FULLY SUPPORT ALL FOUR BASIC ARITHMETIC OPERATIONS FOR INTEGERS AND FLOATING POINT NUMBERS.*
 -------------------------------------------------------------------
@@ -12,9 +30,9 @@ CURRENTLY **DIVISION** IS THE ONLY ONE THAT SUPPORTS **OPERATION ON FLOATING POI
 
 ###### This implementation uses string data type to store large numbers/big numbers.
 
-###### The four basic arithmetic operations are implemented using plain old elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
+###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
 
-###### For addition, subtraction, and multiplication, each digit in the string value of the bignumber is then converted into and array of integers, then arithmetic operations are applied to each index of that array, the result is then converted back into a string and this is how this library mainly works
+###### For addition, subtraction, every 9 digits in the string value of the bignumber is then converted into and array of integers, then arithmetic operations are applied on each index of array, the result is then converted back into a string... this is how this library mainly works
 
 
 ***The "bignum" user made data type provided by the library enables you to:***
