@@ -106,6 +106,9 @@ bignum bignum::operator-(const bignum& bigintNumber){
 	bignum t_minuend    = bignum(this->data),
 	       t_subtrahend = bigintNumber;
 
+	if(t_minuend == t_subtrahend)
+		return bignum("0");
+
 	// if there is a float value
 	if(t_minuend.isFloat() || t_subtrahend.isFloat()){
 
@@ -198,6 +201,9 @@ bignum bignum::operator*(const bignum& bigintNumber){
 	bignum t_multiplicand = bignum(this->data),
 	       t_multiplier   = bigintNumber;
 
+	if(t_multiplicand == "0" || t_multiplier == "0")
+		return bignum("0");
+
 	// if there is a float value
 	if(t_multiplicand.isFloat() || t_multiplier.isFloat()){
 		
@@ -261,6 +267,9 @@ bignum bignum::operator/(const bignum& input_divisor){
 	bignum tempDividen = bignum(this->data),
 	       tempDivisor = input_divisor.data;
 
+	if(tempDividen == "0")
+		return bignum("0");
+	
 	// check if they have different sign +-
 	bool differentSign = false;
 	if((tempDividen<"0" && tempDivisor>"0") || (tempDividen>"0" && tempDivisor<"0"))
