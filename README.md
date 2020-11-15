@@ -190,7 +190,7 @@ https://mrdcvlsc.github.io/bignum/
    
    [ ] ***IMPLEMENT FASTER APPROACHES***
     
-   ~~[+] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?
+   ~~[+] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?~~
     
 ---------------------------------------------------------
 
