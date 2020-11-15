@@ -31,138 +31,186 @@ bignum bignum::operator--(int){
 // -------------------- Arithmetic Operators --------------------
 
 bignum bignum::operator+(const bignum& bigintNumber){
-	
-	bignum result;
-	
-	size_t length1 = data.length();
-	size_t length2 = bigintNumber.data.length();
 
-	string	addenA = data,
-		addenB = bigintNumber.data,
-		answerWidth;
+	// temporary values	
+	bignum t_adden1 = this->data,
+	       t_adden2 = bigintNumber;
+	
+	// if there is a float value
+	if(t_adden1.is_float or t_adden2.is_float){
 
-	if(length1>length2){
-		if(addenB[0]=='-'){
-			addenB[0]='0';
-			string pad(length1-length2,'0');
-			addenB=pad+addenB;
-			addenB[0]='-';
-			answerWidth=addenA.size();
-		}
-		else{
-			string pad(length1-length2,'0');
-			addenB=pad+addenB;
-			answerWidth=addenA.size();
-		}
-	}
-	else if(length2>length1){
-		if(addenA[0]=='-'){
-			addenA[0]='0';
-			string pad(length2-length1,'0');
-			addenA=pad+addenA;
-			addenA[0]='-';
-			answerWidth=addenB.size();
-		}
-		else{
-			string pad(length2-length1,'0');
-			addenA=pad+addenA;
-			answerWidth=addenB.size();
-		}
+		pair<string,string> adden1_slices = dec_slice(t_adden1.data),
+						    adden2_slices = dec_slice(t_adden2.data);
+	    
+	    // whole values
+		string adden1w = adden1_slices.first,
+		       adden2w = adden2_slices.first;
+
+		// point values       
+		string adden1d = adden1_slices.second,
+		       adden2d = adden2_slices.second;
+
+		pair<string,string> newWhl = strfront_fill0(adden1w,adden2w);
+		pair<string,string> newDec = strback_fill0(adden1d,adden2d);
+
+		string makeWholeAdden1 = newWhl.first + newDec.first;
+		string makeWholeAdden2 = newWhl.second + newDec.second;
+
+		bignum answerWhole = bignum(makeWholeAdden1) + bignum(makeWholeAdden2);
+
+		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-newDec.first.size(),".");
+
+		return bignum(finalAnswer);
 	}
 
-	string answer = internal_addition(addenA,addenB);
-	result.data   = answer;
+
+	/////////// apply rules of addition ///////////
+	bool same_sign   = sameSign(t_adden1,t_adden2);
+	bool pos_adden1  = t_adden1.isPositive();
+	bool pos_adden2  = t_adden2.isPositive();
+
+	t_adden1 = absolute(t_adden1);
+	t_adden2 = absolute(t_adden2);
+
+	bool adden1isMax = t_adden1>t_adden2; 
+
+	// add zeros to front to match the length of each other
+	pair<string,string> add_num = strfront_fill0(t_adden1.data,t_adden2.data);
+	string adden1 = add_num.first,
+		   adden2 = add_num.second;
 	
-	return result;
+	// different sign
+	if(!same_sign and adden1isMax){
+		if(pos_adden1)
+			return bignum(internal_subtraction(adden1,adden2));
+		return bignum(("-"+internal_subtraction(adden1,adden2)));
+	}
+	else if(!same_sign and !adden1isMax){
+		if(pos_adden2)
+			return bignum(internal_subtraction(adden2,adden1));
+		return bignum(("-"+internal_subtraction(adden2,adden1)));
+	}
+
+	// perform internal addition
+	string answer = internal_addition(adden1,adden2);
+
+	// same sign both negative
+	if(same_sign and !pos_adden1 and !pos_adden2)
+		return bignum(("-"+answer));
+
+	// same sign bot positive
+	return bignum(answer);
 }
 
 bignum bignum::operator-(const bignum& bigintNumber){
 	
-	bignum result;
-	size_t length1 = data.length();
-	size_t length2 = bigintNumber.data.length();
+	// temporary values	
+	bignum t_minuend    = this->data,
+	       t_subtrahend = bigintNumber;
 
-	string addenA = data,
-	       addenB = bigintNumber.data,
-	       answerWidth;
+	// if there is a float value
+	if(t_minuend.is_float or t_subtrahend.is_float){
 
-	if(length1>length2){
-		if(addenB[0]=='-'){
-			addenB[0]='0';
-			string pad(length1-length2,'0');
-			addenB=pad+addenB;
-			addenB[0]='-';
-			answerWidth=addenA.size();
+		pair<string,string> minuend_slices    = dec_slice(t_minuend.data),
+						    subtrahend_slices = dec_slice(t_subtrahend.data);
+	    
+	    // whole values
+		string minuend_w = minuend_slices.first,
+		       subtrahend_w = subtrahend_slices.first;
+
+		// point values       
+		string minuend_d    = minuend_slices.second,
+		       subtrahend_d = subtrahend_slices.second;
+
+		pair<string,string> newWhl = strfront_fill0(minuend_w,subtrahend_w);
+		pair<string,string> newDec = strback_fill0(minuend_d,subtrahend_d);
+
+		string makeWholeMinuend    = newWhl.first + newDec.first;
+		string makeWholeSubtrahend = newWhl.second + newDec.second;
+
+		bignum answerWhole = bignum(makeWholeMinuend) - bignum(makeWholeSubtrahend);
+
+		string padzero(newDec.first.size(),'0');
+
+		bool isNegative = false;
+		if(answerWhole<"0"){
+			answerWhole = absolute(answerWhole);
+			isNegative = true;
 		}
-		else{
-			string pad(length1-length2,'0');
-			addenB=pad+addenB;
-			answerWidth=addenA.size();
-		}
+
+		string tempWhole = padzero+answerWhole.data;
+
+		string finalAnswer = tempWhole.insert(tempWhole.size()-newDec.first.size(),".");
+
+		if(isNegative) finalAnswer = "-" + finalAnswer;
+		finalAnswer = removeRearZeros(removeFrontZeros(finalAnswer));
+		
+		return bignum(finalAnswer);
 	}
-	else if(length2>length1){
-		if(addenA[0]=='-'){
-			addenA[0]='0';
-			string pad(length2-length1,'0');
-			addenA=pad+addenA;
-			addenA[0]='-';
-			answerWidth=addenB.size();
-		}
-		else{
-			string pad(length2-length1,'0');
-			addenA=pad+addenA;
-			answerWidth=addenB.size();
-		}
-	}
-
-	string answer = internal_subtraction(addenA,addenB);
-	result.data   = answer;
 	
-	return result;
+	// apply rules of subtraction
+	bool same_sign       = sameSign(t_minuend,t_subtrahend);
+	bool pos_minuend     = t_minuend.isPositive();
+	bool pos_subtrahend  = t_subtrahend.isPositive();
+
+	t_minuend = absolute(t_minuend);
+	t_subtrahend = absolute(t_subtrahend);
+
+	bool minuendIsMax = t_minuend>t_subtrahend; 
+
+	// add zeros to front to match the length of each other
+	pair<string,string> sub_num = strfront_fill0(t_minuend.data,t_subtrahend.data);
+	string    minuend = sub_num.first,
+		   subtrahend = sub_num.second;
+
+
+	//same sign
+	if(minuendIsMax){
+		if(same_sign && pos_minuend)	   
+			return bignum(internal_subtraction(minuend,subtrahend));
+		else if(same_sign && !pos_minuend)
+			return bignum("-"+internal_subtraction(minuend,subtrahend));
+	}
+	else{
+		if(same_sign && !pos_minuend)
+			return bignum(internal_subtraction(subtrahend,minuend));
+		else if(same_sign && pos_minuend)
+			return bignum("-"+internal_subtraction(subtrahend,minuend));
+	}
+
+	//different sign
+	if(minuendIsMax){
+		if(pos_minuend)
+			return bignum(internal_addition(minuend,subtrahend));
+		else if(!pos_minuend)
+			return bignum("-"+internal_addition(minuend,subtrahend));
+	}
+	else{
+		if(pos_minuend)
+			return bignum(internal_addition(minuend,subtrahend));
+		else if(!pos_minuend)
+			return bignum("-"+internal_addition(minuend,subtrahend));
+	}
+	return bignum(internal_subtraction(minuend,subtrahend));
 }
 
 bignum bignum::operator*(const bignum& bigintNumber){
 	
-	bignum result;
-	size_t length1 = data.length();
-	size_t length2 = bigintNumber.data.length();
+	// temporary values	
+	bignum t_multiplicand = this->data,
+	       t_multiplier   = bigintNumber;
 
-	string upperNumber  = data,
-	       bottomNumber = bigintNumber.data,
-	       answerWidth;
+	// apply rules of multiplication
 
-	if(length1>length2){
-		if(bottomNumber[0]=='-'){
-			bottomNumber[0]='0';
-			string pad(length1-length2,'0');
-			bottomNumber=pad+bottomNumber;
-			bottomNumber[0]='-';
-			answerWidth=upperNumber.size();
-		}
-		else{
-			string pad(length1-length2,'0');
-			bottomNumber=pad+bottomNumber;
-			answerWidth=upperNumber.size();
-		}
-	}
-	else if(length2>length1){
-		if(upperNumber[0]=='-'){
-			upperNumber[0]='0';
-			string pad(length2-length1,'0');
-			upperNumber=pad+upperNumber;
-			upperNumber[0]='-';
-			answerWidth=bottomNumber.size();
-		}
-		else{
-			string pad(length2-length1,'0');
-			upperNumber=pad+upperNumber;
-			answerWidth=bottomNumber.size();
-		}
-	}
+	// add zeros to front to match the length of each other
+	pair<string,string> mul_num = strfront_fill0(t_multiplicand.data,t_multiplier.data);
+	string multiplicand = mul_num.first,
+		     multiplier = mul_num.second;
 
-	string answer = internal_multiplication(upperNumber,bottomNumber);
-	result.data   = answer;
-	
+	// perform internal multiplication
+	string answer = internal_multiplication(multiplicand,multiplier);
+
+	bignum result = answer;
 	return result;
 }
 
