@@ -6,10 +6,9 @@ string bignum::internal_addition(string a, string b){
 	vector<long> lowerAdden = str_partby9to_long(b);
 
 	long placeValueSums[upperAdden.size()+1];
-	size_t n = sizeof(placeValueSums)/sizeof(placeValueSums[0]); // store the max length of the answer
+	size_t n = sizeof(placeValueSums)/sizeof(placeValueSums[0]);
 	placeValueSums[0] = 0;									  // set the value of the first digit of the answer to zero
 
-	// perform arithmetic addition on each of the matching digit in the integer addens array then store it to your integer answer array
 	for(unsigned int i=0;i<upperAdden.size();++i)
 		placeValueSums[i+1]=upperAdden[i]+lowerAdden[i];
 
@@ -25,8 +24,6 @@ string bignum::internal_addition(string a, string b){
 
 	reverse(placeValueSums,placeValueSums+n);
 
-	// run absolute() value for all numbers (turn all to positives)
-	// convert it back to string
 	string shiftedStringAnswer="", temp;
 	for(int i=0;i<n;++i){		
 		placeValueSums[i] = abs(placeValueSums[i]);
@@ -80,47 +77,40 @@ string bignum::internal_subtraction(string a, string b){
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	
-	bool upperNumberIsPosivite = true, bottomNumberIsPositive = true;
-	
-	if(upperNumber[0] == '-')  { upperNumberIsPosivite  = false; upperNumber[0] ='0'; }
-	if(bottomNumber[0] == '-') { bottomNumberIsPositive = false; bottomNumber[0]='0'; }
+	vector<long> multiplicand = str_partby9to_long(upperNumber);
+	vector<long> multiplier   = str_partby9to_long(bottomNumber);
 
-	int upperNumberArray[upperNumber.size()],
-	    bottomNumberArray[bottomNumber.size()],
-	    answerMaxLen = upperNumber.size()+bottomNumber.size();
+	// set all values of product to zero
+	size_t answerMaxLen = multiplicand.size()+multiplier.size(); 
+	long productValues[answerMaxLen];
+	for(auto& e: productValues) e=0l;
 
-	int productValues[answerMaxLen]; for(auto& e: productValues) e=0;
-
-	for(unsigned int i=0;i<upperNumber.size();++i){
-		upperNumberArray[i] = charToInt(upperNumber[i]);
-		bottomNumberArray[i]= charToInt(bottomNumber[i]);
-	}
-
-	
-	for(int i=0;i<bottomNumber.size();++i){
-		for(int j=0;j<upperNumber.size();++j){
+	// add the answer of the multiplicand and multiplier to the answer array
+	for(size_t i=0;i<multiplier.size();++i){
+		for(size_t j=0;j<multiplicand.size();++j){
 			productValues[answerMaxLen-1-i-j] = productValues[answerMaxLen-1-i-j]+
-							   (upperNumberArray[upperNumber.size()-1-j]*
-				 			    bottomNumberArray[bottomNumber.size()-1-i]);
+							   (multiplicand[multiplicand.size()-1-j]*
+				 			    multiplier[multiplier.size()-1-i]);
 		}
 	}
 
-	for(int i=0;i<answerMaxLen;++i){
-		if(productValues[answerMaxLen-1-i]>=10){
-			int ten = tens(productValues[answerMaxLen-1-i]);
-			int one = ones(productValues[answerMaxLen-1-i],ten);
+	for(size_t i=0;i<answerMaxLen;++i){
+		if(productValues[answerMaxLen-1-i]>=1000000000l){
+			long ten = tens(productValues[answerMaxLen-1-i]);
+			long one = ones(productValues[answerMaxLen-1-i],ten);
 			productValues[answerMaxLen-1-i]=one;
 			productValues[answerMaxLen-1-i-1]=productValues[answerMaxLen-1-i-1]+ten;
 		}
 	}
 
-	string finalAnswer;
-	for(int i=0;i<answerMaxLen;++i)
-		finalAnswer=intToChar(productValues[answerMaxLen-1-i])+finalAnswer;
+	string finalAnswer, temp;
+	for(size_t i=0;i<answerMaxLen;++i){
+		temp = to_string(productValues[answerMaxLen-1-i]);
+		string front_zeros(9-temp.size(),'0');
+		finalAnswer= front_zeros+temp+finalAnswer;
+	}
 
 	finalAnswer = removeFrontZeros(finalAnswer);
-	if(upperNumberIsPosivite!=bottomNumberIsPositive)
-		finalAnswer='-'+finalAnswer;
 
 	return finalAnswer;
 }

@@ -26,18 +26,16 @@ bignum bignum::operator--(int){
 
 // --------------------------------------------------------------------------
 
-
-
 // -------------------- Arithmetic Operators --------------------
 
 bignum bignum::operator+(const bignum& bigintNumber){
 
 	// temporary values	
-	bignum t_adden1 = this->data,
+	bignum t_adden1 = bignum(this->data),
 	       t_adden2 = bigintNumber;
 	
 	// if there is a float value
-	if(t_adden1.is_float or t_adden2.is_float){
+	if(t_adden1.isFloat() or t_adden2.isFloat()){
 
 		pair<string,string> adden1_slices = dec_slice(t_adden1.data),
 						    adden2_slices = dec_slice(t_adden2.data);
@@ -105,11 +103,11 @@ bignum bignum::operator+(const bignum& bigintNumber){
 bignum bignum::operator-(const bignum& bigintNumber){
 	
 	// temporary values	
-	bignum t_minuend    = this->data,
+	bignum t_minuend    = bignum(this->data),
 	       t_subtrahend = bigintNumber;
 
 	// if there is a float value
-	if(t_minuend.is_float or t_subtrahend.is_float){
+	if(t_minuend.isFloat() || t_subtrahend.isFloat()){
 
 		pair<string,string> minuend_slices    = dec_slice(t_minuend.data),
 						    subtrahend_slices = dec_slice(t_subtrahend.data);
@@ -197,26 +195,70 @@ bignum bignum::operator-(const bignum& bigintNumber){
 bignum bignum::operator*(const bignum& bigintNumber){
 	
 	// temporary values	
-	bignum t_multiplicand = this->data,
+	bignum t_multiplicand = bignum(this->data),
 	       t_multiplier   = bigintNumber;
 
+	// if there is a float value
+	if(t_multiplicand.isFloat() || t_multiplier.isFloat()){
+		
+		bool same_sign_float = sameSign(t_multiplicand,t_multiplier);
+		
+		t_multiplicand = absolute(t_multiplicand);
+		t_multiplier   = absolute(t_multiplier);
+
+		pair<string,string> multiplicand_slices = dec_slice(t_multiplicand.data),
+						    multiplier_slices   = dec_slice(t_multiplier.data);
+	    
+	    // whole values
+		string multiplicand_w = multiplicand_slices.first,
+		       multiplier_w   = multiplier_slices.first;
+
+		// point values       
+		string multiplicand_d = multiplicand_slices.second,
+		       multiplier_d   = multiplier_slices.second;
+
+		pair<string,string> newWhl = make_pair(multiplicand_w,multiplier_w);
+		pair<string,string> newDec = make_pair(multiplicand_d,multiplier_d);
+
+		string makeWholeAdden1 = newWhl.first + newDec.first;
+		string makeWholeAdden2 = newWhl.second + newDec.second;
+
+		bignum answerWhole = bignum(makeWholeAdden1) * bignum(makeWholeAdden2);
+		
+		size_t mulcand  = multiplicand_d.size(),
+		       mulplier = multiplier_d.size();
+
+		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-(mulcand+mulplier),".");
+
+		if(same_sign_float)
+			return bignum(finalAnswer);
+		
+		return bignum("-"+finalAnswer);
+	}
+
 	// apply rules of multiplication
+	bool same_sign = sameSign(t_multiplicand,t_multiplier);
+
+	t_multiplicand = absolute(t_multiplicand);
+	t_multiplier   = absolute(t_multiplier);
 
 	// add zeros to front to match the length of each other
 	pair<string,string> mul_num = strfront_fill0(t_multiplicand.data,t_multiplier.data);
 	string multiplicand = mul_num.first,
 		     multiplier = mul_num.second;
-
+	
 	// perform internal multiplication
 	string answer = internal_multiplication(multiplicand,multiplier);
 
-	bignum result = answer;
-	return result;
+	if(!same_sign)
+		return bignum("-"+answer);
+
+	return bignum(answer);
 }
 
 bignum bignum::operator/(const bignum& input_divisor){
 
-	bignum tempDividen = this->data,
+	bignum tempDividen = bignum(this->data),
 	       tempDivisor = input_divisor.data;
 
 	// check if they have different sign +-
