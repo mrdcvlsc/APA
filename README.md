@@ -57,13 +57,9 @@ https://mrdcvlsc.github.io/bignum/
 -------------------------------------------------------------------
 
 
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program/bignum%20calculator%20linux)
+**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
 
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program/bignum%20calculator%20linux/bignum_lib_linux.a)
-
-**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program/bignumber%20calculator%20windows)
-
-**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program/bignumber%20calculator%20windows/bignum_lib_windows.lib)
+**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
 
 
 -------------------------------------------------------------------
@@ -74,6 +70,7 @@ https://mrdcvlsc.github.io/bignum/
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
   **- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
+  
 
 -------------------------------------------------------------------
 
@@ -109,25 +106,33 @@ https://mrdcvlsc.github.io/bignum/
    **-Subtraction (-)** (operation on floating point - not supported yet)
    
    ```c++
+   
    ans = var2 - var2
+   
    ```
    
    **-Multiplication (x)** (operation on floating point - not supported yet)
    
    ```c++
+   
    ans = var2 * bignum("-6722") * var1; // multiple operations is also allowed
+   
    ```
    
    **-Division (/)** (operation on floating point - ALREADY SUPPORTED)
    
    ```c++
+   
    ans = var2 / var1;
+   
    ```
    
    **-Modulo (%)**
    
    ```c++
+   
    ans = var2 % var1;
+   
    ```
 
 --------------------------------------------------------------------------------------
@@ -139,48 +144,62 @@ https://mrdcvlsc.github.io/bignum/
    **IO : <<, >> operator for "cout" output and "cin" input is supported.**
    
    
-   ```c++     
+   ```c++
+   
    cout<<abigintvariable<<endl; 
    cin>>abigintvar;
+   
    ```
    
    **COMPARISON : <, >, <=, >=, ==, != (these comparison operators are also available) note: always enclose two bignum values when you are using comparison operators ex:**
    
    ```c++
+   
    bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
    cout<<(bigIntVar1 != bigIntVar2); //allowed
+   
    ```
    
    *Comparison between a bignum variable and a string value or const char* is possible*
    
    
       ```c++
+      
       bignum variable1 = "72736273";
       cout<<(variable1 <= "81283798237")<<endl; // allowed 
       cout<<("82738271344" > variable1)<<endl;  // allowed
+      
       ```
       
    *WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
    
    
       ```c++
-      ("76327323" < "2837283"); // this is not allowed
+      
+      cout<<("76327323" < "2837283"); // this is not allowed
+      
       ```
       
 **The increment and decrement operators, postfix and pre-fix form is available.**
 
 
    ```c++
-   yourBigIntVar++, ++yourBigIntVar; // allowed
-   yourBigIntVar--, --yourBigIntVar; // allowed
+   
+   yourBigIntVar++;
+   ++yourBigIntVar;
+   yourBigIntVar--,
+   --yourBigIntVar;
+   
    ```     
         
 **The modulo operator is also supported.**
 
 
-   ```c++    
+   ```c++
+   
    bignum var1 = "232", var2 = "23";
    cout<<(var1%var2)<<endl;
+   
    ```     
    
 ---------------------------------------------------------
@@ -210,7 +229,7 @@ https://mrdcvlsc.github.io/bignum/
    
    [ ] ***IMPLEMENT FASTER APPROACHES***
     
-   [ ] maximize int array values when performing arithmetic operations for internal methods of addition, subtraction, multiplication, from one digit to possibly 4-8?
+   [ ] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?
     
 ---------------------------------------------------------
 
@@ -222,6 +241,9 @@ https://mrdcvlsc.github.io/bignum/
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
+   *my 2nd year CS personal project*
+   
 # A C++ Class Library that you can use for computing big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
+ 
 ## LICENCE - MIT
 
