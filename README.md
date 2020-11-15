@@ -32,7 +32,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
 
-###### For addition, subtraction, every 9 digits in the string value of the bignumber is then converted into and array of integers, then arithmetic operations are applied on each index of array, the result is then converted back into a string... this is how this library mainly works
+###### For addition, subtraction, every 9 digits in the string value of the bignumber is then converted into an array of integers, then arithmetic operations are applied on each index of array, the results are then processed, after that result is then converted back into a string... this is how this library mainly works
 
 
 ***The "bignum" user made data type provided by the library enables you to:***
