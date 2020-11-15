@@ -4,9 +4,10 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### **(nov. 15, 2020)NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+### **(nov. 15, 2020) NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
 ~~MAIN GOAL : BY JANUARY 2021 - FULLY SUPPORT ALL FOUR BASIC ARITHMETIC OPERATIONS FOR INTEGERS AND FLOATING POINT NUMBERS.~~
+
 -------------------------------------------------------------------
 
 ###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
