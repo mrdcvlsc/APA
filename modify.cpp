@@ -1,12 +1,13 @@
 #include "bignum.h"
 
-int bignum::ones(int number, int tens){
-	return number-(tens*10);
+long bignum::ones(long number, long tens){
+	return number-(tens*1000000000l);
 }
 
-int bignum::tens(int number){
-	return (int)floor((double)number/10);
+long bignum::tens(long number){
+	return (long)floor((double)number/1000000000.0);
 }
+
 
 pair<string,int> bignum::removeDecimal(const string& input){
 	
@@ -20,7 +21,7 @@ pair<string,int> bignum::removeDecimal(const string& input){
 			got = true;
 			place = i;
 			break;
-		}
+		} 
 	
 	place = bignumber.size()+1-place;
 	if(!got) place = 0;
@@ -70,8 +71,14 @@ string bignum::removeRearZeros(string input){
 	
 	bool stillzero = true;
 	
-	while(input[input.size()-1]=='0' or input[input.size()-1]=='.')
+	while(input[input.size()-1]=='0' or input[input.size()-1]=='.'){
+		if(input[input.size()-1]=='.'){
+			input.erase(input.size()-1);
+			break;
+		}
+
 		input.erase(input.size()-1);
+	}
 
 	return input;
 }
@@ -198,10 +205,42 @@ pair<string,string> bignum::dec_slice(string float_number){
 	}
 
 	if(!point)
-		return make_pair(float_number,"0");
+		return make_pair(float_number,"");
 
 	string part1 = float_number.substr(0,point);
 	string part2 = float_number.substr(point+1);
 
 	return make_pair(part1,part2);
+}
+
+bool bignum::isPositive(){
+	if(bignum(this->data)<"0")
+		return false;
+	return true;
+}
+
+bignum bignum::in_max(const bignum a, const bignum b){
+	if(a>b)
+		return a;
+	return b;
+}
+
+bignum bignum::in_min(const bignum a, const bignum b){
+	if(a<b)
+		return a;
+	return b;	
+}
+
+bool bignum::sameSign(const bignum& a, const bignum& b){
+	if((a>"0" && b>"0") or (a<"0" && b<"0"))
+		return true;
+	return false;
+}
+
+bool bignum::isFloat(){
+	string temp = this->data;
+	for(size_t i=0; i<temp.size(); ++i)
+		if(temp[i] == '.')
+			return true;
+	return false;
 }

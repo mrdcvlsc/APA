@@ -26,7 +26,10 @@ public:
 	bool valid;
 	bool is_float;
 
-	// constructors
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	/**********************************      CONSTRUCTORS      **********************************/
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
 	bignum():data("0"), valid(true), is_float(false), precision(0) {}
 	bignum(const char* value){
 		string temp(value);
@@ -41,43 +44,50 @@ public:
 			value = removeFrontZeros(value);
 		this->data=value; }
 
-	// necessary functions
-	int    charToInt(const char& c) const { return (int)c - (int)'0';}
-	char   intToChar(const int& n)  const { return (char)'0'+ (char)n;}
-	int    ones(int number, int tens);
-	int    tens(int number);
-	pair<string,int> removeDecimal(const string& bignumber);
-	string putDecimal(const string& bignumber, int index);
-	int	   getDecimalPlaces(string input);
-	bignum absolute(const bignum& input);
-	string removeFrontZeros(string input);
-	string removeRearZeros(string input);
-	vector<long> str_partby9to_long(string number);
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	/****************************** BELOW ARE THE INSIDE FUNCTIONS ******************************/
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+		// this functions are only used inside the class
+
+	// partition/slice function
+	vector<long>		str_partby9to_long(string number);
+	pair<string,string> dec_slice(string float_number);
+
+	// fill zeros function
 	pair<string,string> strfront_fill0(string a, string b);
 	pair<string,string> strback_fill0(string a, string b);
-	pair<string,string> dec_slice(string float_number);
-	bool   isPositive(){
-		if(bignum(this->data)<"0")
-			return false;
-		return true;
-	}
-	bignum in_max(const bignum a, const bignum b){
-		if(a>b)
-			return a;
-		return b;
-	}
-	bignum in_min(const bignum a, const bignum b){
-		if(a<b)
-			return a;
-		return b;	
-	}
-	bool    sameSign(const bignum& a, const bignum& b){
-		if((a>"0" && b>"0") or (a<"0" && b<"0"))
-			return true;
-		return false;
-	}
+	
+	// remove functions
+	pair<string,int> 	removeDecimal(const string& bignumber);
+	string				removeFrontZeros(string input);
+	string				removeRearZeros(string input);
+	
+	// get and put decimal funtions
+	string 				putDecimal(const string& bignumber, int index);
+	int	   				getDecimalPlaces(string input);
+	
+	// convertion functions
+	char   				intToChar(const int& n)  const { return (char)'0'+ (char)n;}
+	int    				charToInt(const char& c) const { return (int)c - (int)'0';}
+	
+	// multiplication shifting functions
+	long   				ones(long number, long tens);
+	long   				tens(long number);
+	
+	// check functions
+	bool   				isPositive();
+	bool				isFloat();
+	bool    			sameSign(const bignum& a, const bignum& b);
+	
+	// bignum functions
+	bignum 				absolute(const bignum& input);
+	bignum 				in_max(const bignum a, const bignum b);
+	bignum 				in_min(const bignum a, const bignum b);
 
-	// OPERATORS
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	/***********************************      OPERATORS      ***********************************/
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
     //arithmetich operators
 	bignum operator+(const bignum& bigNum2);
@@ -116,13 +126,16 @@ public:
 	friend bool operator == (const char* dQuoteStrValue, const bignum& left);
 	friend bool operator != (const char* dQuoteStrValue, const bignum& left);
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	/*********************************   ERROR HANDLING FUNCTIONS   *********************************/
+	//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-	// error handling methods
 	void check(string &value);
 	void internal_division_check(const bignum& value_1, const bignum& value_2);
 
-	/* ########################## INTERNAL METHODS ########################## */
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	/**************************************  INTERNAL METHODS  **************************************/
+	//////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// internal operation for arithmetic operators
 	string internal_addition(string a, string b);
@@ -132,17 +145,4 @@ public:
 								
 };
 
-/*
-bignum bn_min(const bignum &a, const bignum& b){
-	if(a<b)
-		return a;
-	return b;
-}
-
-bignum bn_max(const bignum &a, const bignum& b){
-	if(a>b)
-		return a;
-	return b;
-}
-*/
 #endif
