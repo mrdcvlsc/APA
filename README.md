@@ -14,7 +14,7 @@ https://mrdcvlsc.github.io/bignum/
 
 4.) division
 
-### **FLOAT SUPPORT - for now those who only supports operation on rational numbers in decimal form**
+### **FLOAT SUPPORT - for now those who only supports operation on rational numbers in decimal form are**
 
 1.) addition
 
