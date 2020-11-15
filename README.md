@@ -39,9 +39,9 @@ https://mrdcvlsc.github.io/bignum/
 -------------------------------------------------------------------
 
 
-~~sample program - linux [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
+~~sample program - linux [Folder] ~~ (https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
 
-~~bignum library - linux [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
+~~bignum library - linux [Download] ~~ (https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
 
 
 -------------------------------------------------------------------
@@ -51,7 +51,7 @@ https://mrdcvlsc.github.io/bignum/
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
-  ~~**- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
+  ~~you can also use the already compiled library in the sample program (less work - instructions are in folder).
   
 
 -------------------------------------------------------------------
@@ -188,7 +188,7 @@ https://mrdcvlsc.github.io/bignum/
     
    **others :**
    
-   ~~_implement support for floating point numbers for the three arithmetic operations + - *_
+   ~~implement support for floating point numbers for the three arithmetic operations + - *
     
 ---------------------------------------------------------
 
