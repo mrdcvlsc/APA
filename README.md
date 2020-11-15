@@ -35,15 +35,6 @@ https://mrdcvlsc.github.io/bignum/
 [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 
-
--------------------------------------------------------------------
-
-
-~~sample program - linux [Folder]
-
-~~bignum library - linux [Download]
-
-
 -------------------------------------------------------------------
 
 
@@ -51,7 +42,7 @@ https://mrdcvlsc.github.io/bignum/
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
-  ~~you can also use the already compiled library in the sample program (less work - instructions are in folder).
+  ~~you can also use the already compiled library in the sample program (less work - instructions are in folder).~~
   
 
 -------------------------------------------------------------------
