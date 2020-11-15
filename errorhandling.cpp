@@ -7,8 +7,12 @@ void bignum::check(string &value){
 		exit(1);
 	}
 
-	if(value[value.size()-1]=='.')	value = value+'0';
-	if(value[0]=='.')		value = '0'+value;
+	if(value[value.size()-1]=='.')
+		value=value+'0';
+
+	if(value[0]=='.')
+		value='0'+value;
+
 	if(value[0]=='-' and value[1]=='.'){
 		value[0]='0';
 		value='-'+value;
@@ -70,7 +74,7 @@ void bignum::internal_division_check(const bignum& dividen, const bignum& diviso
 
 	if(dividen<"0"){
 		cout<<"\nERROR - bignum [internal division]:"<<endl; 
-	    	cout<<"\t internal_division() do not support division to a negative value"<<endl;
+	    cout<<"\t internal_division() do not support division to a negative value"<<endl;
 		cout<<"\t the 'DIVIDEN' is ("<<dividen<<") lessthan zero(0). "<<endl;
 		exit(1);
 	}

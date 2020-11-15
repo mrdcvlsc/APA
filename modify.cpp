@@ -76,10 +76,132 @@ string bignum::removeRearZeros(string input){
 	return input;
 }
 
-bignum bignum::absolute(const bignum input){
+bignum bignum::absolute(const bignum& input){
 	
 	if(input<"0")
 		return bignum(input.data.substr(1,input.data.size()-1));
 	
-	return input;
+	return bignum(input);
+}
+
+vector<long> bignum::str_partby9to_long(string number){
+	
+	reverse(number.begin(),number.end());
+
+	vector<string> str_partition;
+	vector<long>   long_partition;
+
+	for(size_t i=0; i<number.size();++i){
+		if(i==0 or i%9==0)
+			str_partition.push_back("");
+		str_partition.back() = number[i] + str_partition.back();
+	}
+
+	for(size_t i=0; i<str_partition.size(); ++i)	
+		long_partition.push_back(stol(str_partition[i]));
+
+	reverse(long_partition.begin(),long_partition.end());
+	
+	return long_partition;
+}
+
+pair<string,string> bignum::strfront_fill0(string a, string b){
+
+	size_t length1 = a.length();
+	size_t length2 = b.length();
+
+	string num1 = a,
+	       num2 = b,
+	       answerWidth;
+
+	if(length1>length2){
+		if(num2[0]=='-'){
+			num2[0]='0';
+			string pad(length1-length2,'0');
+			num2=pad+num2;
+			num2[0]='-';
+			answerWidth=num1.size();
+		}
+		else{
+			string pad(length1-length2,'0');
+			num2=pad+num2;
+			answerWidth=num1.size();
+		}
+	}
+	else if(length2>length1){
+		if(num1[0]=='-'){
+			num1[0]='0';
+			string pad(length2-length1,'0');
+			num1=pad+num1;
+			num1[0]='-';
+			answerWidth=num2.size();
+		}
+		else{
+			string pad(length2-length1,'0');
+			num1=pad+num1;
+			answerWidth=num2.size();
+		}
+	}
+
+	return make_pair(num1,num2);
+}
+
+pair<string,string> bignum::strback_fill0(string a, string b){
+
+	size_t length1 = a.length();
+	size_t length2 = b.length();
+
+	string num1 = a,
+	       num2 = b,
+	       answerWidth;
+
+	if(length1>length2){
+		if(num2[0]=='-'){
+			num2[0]='0';
+			string pad(length1-length2,'0');
+			num2=num2+pad;
+			num2[0]='-';
+			answerWidth=num1.size();
+		}
+		else{
+			string pad(length1-length2,'0');
+			num2=num2+pad;
+			answerWidth=num1.size();
+		}
+	}
+	else if(length2>length1){
+		if(num1[0]=='-'){
+			num1[0]='0';
+			string pad(length2-length1,'0');
+			num1=num1+pad;
+			num1[0]='-';
+			answerWidth=num2.size();
+		}
+		else{
+			string pad(length2-length1,'0');
+			num1=num1+pad;
+			answerWidth=num2.size();
+		}
+	}
+
+	return make_pair(num1,num2);
+}
+
+pair<string,string> bignum::dec_slice(string float_number){
+	
+	size_t point = 0;
+	for(int i=0;i<float_number.size();++i){
+		if(float_number[i]=='.'){
+			point = i;
+			break;
+		}
+	}
+
+	if(!point)
+		return make_pair(float_number,"0");
+
+	string part1 = float_number.substr(0,point);
+	string part2 = float_number.substr(point+1);
+
+	return make_pair(part1,part2);
 }

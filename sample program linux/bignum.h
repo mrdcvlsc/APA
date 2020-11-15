@@ -1,16 +1,7 @@
-////////////////////////////////////////////////////////////////////////////
-///		RECENT UPDATES :					 ///
-///			- overloaded division operator			 ///
-///			  division supports floating point I.O. values	 ///
-///			- implemented internal_divison method		 ///
-///			- along with modulo operator			 ///
-////////////////////////////////////////////////////////////////////////////
-
 #ifndef BIGNUM_H
 #define BIGNUM_H
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
 #include <utility>
 #include <string>
@@ -49,33 +40,10 @@ public:
 	pair<string,int> removeDecimal(const string& bignumber);
 	string putDecimal(const string& bignumber, int index);
 	int	   getDecimalPlaces(string input);
-	bignum absolute(const bignum& input);
+	bignum absolute(const bignum input);
 	string removeFrontZeros(string input);
 	string removeRearZeros(string input);
-	vector<long> str_partby9to_long(string number);
-	pair<string,string> strfront_fill0(string a, string b);
-	pair<string,string> strback_fill0(string a, string b);
-	pair<string,string> dec_slice(string float_number);
-	bool   isPositive(){
-		if(bignum(this->data)<"0")
-			return false;
-		return true;
-	}
-	bignum in_max(const bignum a, const bignum b){
-		if(a>b)
-			return a;
-		return b;
-	}
-	bignum in_min(const bignum a, const bignum b){
-		if(a<b)
-			return a;
-		return b;	
-	}
-	bool    sameSign(const bignum& a, const bignum& b){
-		if((a>"0" && b>"0") or (a<"0" && b<"0"))
-			return true;
-		return false;
-	}
+
 
 	// OPERATORS
 
@@ -132,17 +100,15 @@ public:
 								
 };
 
-/*
-bignum bn_min(const bignum &a, const bignum& b){
-	if(a<b)
-		return a;
-	return b;
-}
-
-bignum bn_max(const bignum &a, const bignum& b){
-	if(a>b)
-		return a;
-	return b;
-}
-*/
 #endif
+
+////////////////////////////////////////////////////////////////////////
+///		RECENT UPDATES :											 ///
+///			- implemented internal_divison method					 ///
+///			- along with modulo operator							 ///
+////////////////////////////////////////////////////////////////////////
+
+// next goals:
+//		-> add division operation with overloaded /(division) operator
+//		-> add a direct const char* operator functionality to comparison operator
+//		   to enable aBigIntVariable != "43434", bintvar > "323" (direct comparison) 

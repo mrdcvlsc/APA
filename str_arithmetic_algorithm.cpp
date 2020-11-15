@@ -1,72 +1,39 @@
 #include "bignum.h"
 
 string bignum::internal_addition(string a, string b){
+	
+	vector<long> upperAdden = str_partby9to_long(a);
+	vector<long> lowerAdden = str_partby9to_long(b);
 
-	bool upperAddenIsPositive = true, lowerAddenIsPositive = true;
-	if(a[0]=='-') { upperAddenIsPositive = false; a[0]='0'; }
-	if(b[0]=='-') { lowerAddenIsPositive = false; b[0]='0'; }
+	long placeValueSums[upperAdden.size()+1];
+	size_t n = sizeof(placeValueSums)/sizeof(placeValueSums[0]); // store the max length of the answer
+	placeValueSums[0] = 0;									  // set the value of the first digit of the answer to zero
 
-	int upperAdden[a.size()],
-	    lowerAdden[b.size()],
-	    placeValueSums[a.size()+1];
-	int n = sizeof(placeValueSums)/sizeof(placeValueSums[0]);
-
-	placeValueSums[0]=0;
-
-	for(unsigned int i=0;i<a.size();++i){
-		if(upperAddenIsPositive) upperAdden[i]= charToInt(a[i]);
-		else     				 upperAdden[i]=-charToInt(a[i]);
-
-		if(lowerAddenIsPositive) lowerAdden[i]= charToInt(b[i]);
-		else    				 lowerAdden[i]=-charToInt(b[i]);
-	}
-
-	for(unsigned int i=0;i<a.size();++i)
+	// perform arithmetic addition on each of the matching digit in the integer addens array then store it to your integer answer array
+	for(unsigned int i=0;i<upperAdden.size();++i)
 		placeValueSums[i+1]=upperAdden[i]+lowerAdden[i];
-
-	bool answerIsPositive = true;
-	for(int i=0;i<n;++i)	
-		if(placeValueSums[i]!=0)
-			if(placeValueSums[i]<0){
-				answerIsPositive = false;
-				break;
-			}
-			else break;
 
 	reverse(placeValueSums,placeValueSums+n);
 
 	// shift the index values from left to right that is greater the 9
 	// shifting is subtracting the current index form 10, and adding 1 to the next index
 	for(int i=0;i<n-1;++i)
-		if(placeValueSums[i]>9){
-			placeValueSums[i]=placeValueSums[i]-10;
+		if(placeValueSums[i]>999999999l){
+			placeValueSums[i]=placeValueSums[i]-1000000000l;
 			++placeValueSums[i+1];
-		}
-		else if(placeValueSums[i]<-9){
-			placeValueSums[i]=placeValueSums[i]+10;
-			--placeValueSums[i+1];
-		}
-		else if(placeValueSums[i]>0 and !answerIsPositive){
-			placeValueSums[i]=placeValueSums[i]-10;
-			++placeValueSums[i+1];
-		}
-		else if(placeValueSums[i]<0 and answerIsPositive){
-			placeValueSums[i]=placeValueSums[i]+10;
-			--placeValueSums[i+1];
 		}
 
 	reverse(placeValueSums,placeValueSums+n);
 
 	// run absolute() value for all numbers (turn all to positives)
 	// convert it back to string
-	string shiftedStringAnswer;
-	for(int i=0;i<n;++i){
+	string shiftedStringAnswer="", temp;
+	for(int i=0;i<n;++i){		
 		placeValueSums[i] = abs(placeValueSums[i]);
-		shiftedStringAnswer.push_back(intToChar(placeValueSums[i]));
+		temp = to_string(placeValueSums[i]);
+		string front_zeros(9-temp.size(),'0');
+		shiftedStringAnswer+=(front_zeros+temp);
 	}	
-
-	if(!answerIsPositive)
-		shiftedStringAnswer="-"+shiftedStringAnswer;
 
 	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
 	
@@ -75,69 +42,36 @@ string bignum::internal_addition(string a, string b){
 
 string bignum::internal_subtraction(string a, string b){
 
-	bool minuendIsPositive = true, subtrahendIsPositive = true;
-	if(a[0]=='-') { minuendIsPositive = false; a[0]='0'; }
-	if(b[0]=='-') { subtrahendIsPositive = false; b[0]='0'; }
+	vector<long>    minuend = str_partby9to_long(a);
+	vector<long> subtrahend = str_partby9to_long(b);
 
-	int minuend[a.size()],
-	    subtrahend[b.size()],
-	    placeValueDifference[a.size()+1];
-	int n = sizeof(placeValueDifference)/sizeof(placeValueDifference[0]);
+	long placeValueDifference[minuend.size()+1];
+	size_t n = sizeof(placeValueDifference)/sizeof(placeValueDifference[0]);
+	placeValueDifference[0] = 0; 
 
-	placeValueDifference[0]=0;
 
-	for(unsigned int i=0;i<a.size();++i){
-		if(minuendIsPositive) minuend[i] = charToInt(a[i]);
-		else     	      minuend[i] =-charToInt(a[i]);
-
-		if(subtrahendIsPositive) subtrahend[i] = charToInt(b[i]);
-		else    		 subtrahend[i] =-charToInt(b[i]);
-	}
-
-	for(unsigned int i=0;i<a.size();++i)
+	for(unsigned int i=0;i<minuend.size();++i)
 		placeValueDifference[i+1]=minuend[i]-subtrahend[i];
-
-	bool answerIsPositive = true;
-	for(int i=0;i<n;++i)	
-		if(placeValueDifference[i]!=0)
-			if(placeValueDifference[i]<0){
-				answerIsPositive = false;
-				break;
-			}
-			else break;
 
 	reverse(placeValueDifference,placeValueDifference+n);
 
 	// shift the index values from left to right
 	for(int i=0;i<n-1;++i)
-		if(placeValueDifference[i]>9){
-			placeValueDifference[i]=placeValueDifference[i]-10;
-			++placeValueDifference[i+1];
-		}
-		else if(placeValueDifference[i]<-9){
-			placeValueDifference[i]=placeValueDifference[i]+10;
-			--placeValueDifference[i+1];
-		}
-		else if(placeValueDifference[i]>0 and !answerIsPositive){
-			placeValueDifference[i]=placeValueDifference[i]-10;
-			++placeValueDifference[i+1];
-		}
-		else if(placeValueDifference[i]<0 and answerIsPositive){
-			placeValueDifference[i]=placeValueDifference[i]+10;
+		if(placeValueDifference[i]<0l){
+			placeValueDifference[i]=placeValueDifference[i]+1000000000l;
 			--placeValueDifference[i+1];
 		}
 
 	reverse(placeValueDifference,placeValueDifference+n);
 
 	// run absolute() value for all numbers (turn all to positives) then convert it back to string
-	string shiftedStringAnswer;
+	string shiftedStringAnswer="", temp;
 	for(int i=0;i<n;++i){
 		placeValueDifference[i] = abs(placeValueDifference[i]);
-		shiftedStringAnswer.push_back(intToChar(placeValueDifference[i]));
+		temp = to_string(placeValueDifference[i]);
+		string front_zeros(9-temp.size(),'0');
+		shiftedStringAnswer+=(front_zeros+temp);
 	}
-
-	if(!answerIsPositive)
-		shiftedStringAnswer="-"+shiftedStringAnswer;
 
 	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
 	
