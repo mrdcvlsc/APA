@@ -4,26 +4,8 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### **INTEGER SUPPORT - supports operation on integers**
+### **ADDITION, SUBTRACTION, MULTIPLICATION, and DIVISION CAN NOW OPERATE ON INTEGERS and RATIONAL NUMBERS(DECIMAL FORM) - Nov. 15, 2020**
 
-1.) addition
-
-2.) subtraction
-
-5.) multiplication
-
-4.) division
-
-### **FLOAT SUPPORT - for now those who only supports operation on rational numbers in decimal form are**
-
-1.) addition
-
-2.) subtraction
-
-3.) division
-
-
-*MAIN GOAL : BY JANUARY 2021 - FULLY SUPPORT ALL FOUR BASIC ARITHMETIC OPERATIONS FOR INTEGERS AND FLOATING POINT NUMBERS.*
 -------------------------------------------------------------------
 
 ###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
@@ -32,7 +14,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
 
-###### For addition, subtraction, every 9 digits in the string value of the bignumber is then converted into an array of integers, then arithmetic operations are applied on each index of array, the results are then processed, after that result is then converted back into a string... this is how this library mainly works
+###### For addition, subtraction, and multiplication every 9 digits in the string value of the bignumber is then converted into an array of integers, then arithmetic operations are applied on each index of the array, the results are then processed, after that the array is then converted back into a string... this is how this library mainly works
 
 
 ***The "bignum" user made data type provided by the library enables you to:***
@@ -57,9 +39,9 @@ https://mrdcvlsc.github.io/bignum/
 -------------------------------------------------------------------
 
 
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
+~~sample program - linux [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
 
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
+~~bignum library - linux [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
 
 
 -------------------------------------------------------------------
@@ -69,7 +51,7 @@ https://mrdcvlsc.github.io/bignum/
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
-  **- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
+  ~~**- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
   
 
 -------------------------------------------------------------------
@@ -115,7 +97,7 @@ https://mrdcvlsc.github.io/bignum/
    
    ```c++
    
-   ans = var2 * bignum("-6722") * var1; // multiple operations is also allowed
+   ans = var2 * bignum("-6722") * var1;
    
    ```
    
@@ -182,25 +164,13 @@ https://mrdcvlsc.github.io/bignum/
       
 **The increment and decrement operators, postfix and pre-fix form is available.**
 
-
    ```c++
-   
    yourBigIntVar++;
    ++yourBigIntVar;
    yourBigIntVar--,
    --yourBigIntVar;
    
-   ```     
-        
-**The modulo operator is also supported.**
-
-
-   ```c++
-   
-   bignum var1 = "232", var2 = "23";
-   cout<<(var1%var2)<<endl;
-   
-   ```     
+   ```
    
 ---------------------------------------------------------
 
@@ -218,7 +188,7 @@ https://mrdcvlsc.github.io/bignum/
     
    **others :**
    
-   _implement support for floating point numbers for the three arithmetic operations + - *_
+   ~~_implement support for floating point numbers for the three arithmetic operations + - *_
     
 ---------------------------------------------------------
 
@@ -229,7 +199,7 @@ https://mrdcvlsc.github.io/bignum/
    
    [ ] ***IMPLEMENT FASTER APPROACHES***
     
-   [ ] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?
+   ~~[+] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?
     
 ---------------------------------------------------------
 
