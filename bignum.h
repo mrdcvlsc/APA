@@ -1,9 +1,4 @@
-////////////////////////////////////////////////////////////////////////////
-///		RECENT UPDATES :					 ///
-///			- overloaded division operator			 ///
-///			  division supports floating point I.O. values	 ///
-///			- implemented internal_divison method		 ///
-///			- along with modulo operator			 ///
+//BACK TO VERSION 1 DUE TO BUS IN THE LATEST VERSIONS
 ////////////////////////////////////////////////////////////////////////////
 
 #ifndef BIGNUM_H
