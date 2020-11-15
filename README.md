@@ -39,9 +39,9 @@ https://mrdcvlsc.github.io/bignum/
 -------------------------------------------------------------------
 
 
-~~sample program - linux [Folder] ~~ (https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
+~~sample program - linux [Folder]
 
-~~bignum library - linux [Download] ~~ (https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignum.a)
+~~bignum library - linux [Download]
 
 
 -------------------------------------------------------------------
