@@ -4,7 +4,7 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### **INTEGER SUPPORT - can operate on integers**
+### **INTEGER SUPPORT - supports operation on integers**
 
 1.) addition
 
@@ -14,7 +14,7 @@ https://mrdcvlsc.github.io/bignum/
 
 4.) division
 
-### **FLOAT SUPPORT - can operate on rational numbers in decimal form**
+### **FLOAT SUPPORT - for now those who only supports operation on rational numbers in decimal form**
 
 1.) addition
 
