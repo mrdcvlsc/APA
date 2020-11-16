@@ -7,6 +7,7 @@ https://mrdcvlsc.github.io/bignum/
 ### **Nov. 16, 2020 : NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
 -------------------------------------------------------------------
+bignum v2.0 - fixed bugs from v1.3-v1.7
 
 ###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
 
@@ -37,10 +38,13 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
+**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/bignum-v2.0---bug-fixes/sample%20program%20windows)
 
-~~**-sample program - linux** [Folder]~~
+**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/bignum-v2.0---bug-fixes/sample%20program%20windows/bignumlib_win.lib)
 
-~~**-bignum library - linux** [Download]~~
+**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/bignum-v2.0---bug-fixes/sample%20program%20linux)
+
+**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/bignum-v2.0---bug-fixes/sample%20program%20linux/bignumlib_linux.a)
 
 
 -------------------------------------------------------------------
