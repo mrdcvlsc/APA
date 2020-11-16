@@ -3,7 +3,7 @@
 
 2.) open the command line, set the directory to this folder [ENTER COMMAND]:
 	
-	cd "this/folders/path/sample program windows"
+	cd "this/folders/path/sample program linux"
 		
 
 3.) compile using g++ [ENTER COMMAND]:
