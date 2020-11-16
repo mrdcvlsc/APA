@@ -1,0 +1,19 @@
+1.) download this folder, or if you cannot just download each file then put it to a folder named "sample program windows"
+
+
+2.) open the command line, set the directory to this folder [ENTER COMMAND]:
+	
+	cd "this/folders/path/sample program windows"
+		
+
+3.) compile using g++ [ENTER COMMAND]:
+	
+	g++ -o calculator.exe sample_program_calculator.cpp bignumlib_linux.a
+
+
+4.) run the sample program in command line, or click-enter the exe file generated [ENTER COMMAND]:
+	
+	calculator
+
+
+// if you are using an IDE you should set the path of the static library first in the compilation settings
