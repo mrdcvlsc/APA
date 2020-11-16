@@ -6,17 +6,26 @@ https://mrdcvlsc.github.io/bignum/
 
 ### **Nov. 16, 2020 : NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
+## FIXED : bignum v2.0 - fixed bugs from v1.3-v1.7 ##
 -------------------------------------------------------------------
-bignum v2.0 - fixed bugs from v1.3-v1.7
+
+### HOW?
 
 ###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
 
+## JUST STRINGS
+
 ###### This implementation uses string data type to store large numbers/big numbers.
+
+## ELEMENTRAY TECHNIQUES
 
 ###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
 
+## IMPLEMENTATION
+
 ###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
 
+## IM HUNGRY
 
 ***The "bignum" user made data type provided by the library enables you to:***
 
