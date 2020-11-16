@@ -2,11 +2,12 @@
 https://mrdcvlsc.github.io/bignum/
 ## A C++ library for computing big number.
 
+## FIXED : bignum v2.0 - fixed bugs from v1.3-v1.7 (Nov. 16, 2020) ##
+
 -------------------------------------------------------------------
 
-### **Nov. 16, 2020 : NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+### **NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
-## FIXED : bignum v2.0 - fixed bugs from v1.3-v1.7 ##
 -------------------------------------------------------------------
 
 ### HOW?
