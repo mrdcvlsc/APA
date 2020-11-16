@@ -38,13 +38,13 @@ bignum v2.0 - fixed bugs from v1.3-v1.7
 
 -------------------------------------------------------------------
 
-**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/bignum-v2.0---bug-fixes/sample%20program%20windows)
+**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
 
-**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/bignum-v2.0---bug-fixes/sample%20program%20windows/bignumlib_win.lib)
+**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
 
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/bignum-v2.0---bug-fixes/sample%20program%20linux)
+**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
 
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/bignum-v2.0---bug-fixes/sample%20program%20linux/bignumlib_linux.a)
+**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
 
 
 -------------------------------------------------------------------
