@@ -20,16 +20,16 @@ https://mrdcvlsc.github.io/bignum/
     
    ```c++
    // use string or const char* for big values
-   bignum var1("67162512121");
-   bignum var2 = "67864254234324234";
+   bignum var1("671625.12121");
+   bignum var2 = "-67864254234324234";
    
    // you can also use constant integers up to 18.4e+18
-   bignum var3  = 57232;
+   bignum var3  = -57232;
    bignum var3l = 96725372372ll;
    
    // or float and doubles
    bignum var4 = 7676434.2323234L; // long doubles
-   bignum var5 = 76734.57623f;
+   bignum var5 = -76734.57623f;
    
    // copy bignum
    bignum var6 = var1;
@@ -41,7 +41,7 @@ https://mrdcvlsc.github.io/bignum/
 ### CURRENTLY SUPPORTED OPERATIONS
    
    ```c++  
-   bignum var1("6526323"),
+   bignum var1("-6526323"),
           var2="7623",
           ans;
    ``` 
@@ -77,7 +77,7 @@ https://mrdcvlsc.github.io/bignum/
    
    // bignum to constant integer/number direct operation is allowed
    ans  = var2 / var1;
-   ans  = 649481.6464 / ans;
+   ans  = -649481.6464 / ans;
    var2 = var1 / 64984644;
    ```
    
