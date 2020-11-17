@@ -2,6 +2,9 @@
 https://mrdcvlsc.github.io/bignum/
 ## A C++ library for computing big number
 
+### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+
+
 -------------------------------------------------------------------
 
 ### TO USE :
@@ -43,14 +46,14 @@ https://mrdcvlsc.github.io/bignum/
           ans;
    ``` 
    
-   **-Addition (+)** (operation on floating point - not supported yet)
+   **-Addition (+)**
    
    ```c++ 
    ans = var1 + var2;
    ans = var2 + bignum("7823");  // this is also allowed
    ```
    
-   **-Subtraction (-)** (operation on floating point - not supported yet)
+   **-Subtraction (-)**
    
    ```c++
    
@@ -58,7 +61,7 @@ https://mrdcvlsc.github.io/bignum/
    
    ```
    
-   **-Multiplication (x)** (operation on floating point - not supported yet)
+   **-Multiplication (x)** 
    
    ```c++
 
@@ -68,7 +71,7 @@ https://mrdcvlsc.github.io/bignum/
    
    ```
    
-   **-Division (/)** (operation on floating point - ALREADY SUPPORTED)
+   **-Division (/)** 
    
    ```c++
    
