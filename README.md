@@ -1,61 +1,6 @@
 # bignum
 https://mrdcvlsc.github.io/bignum/
-## A C++ library for computing big number.
-
-## FIXED : bignum v2.0 - fixed bugs from v1.3-v1.7 (Nov. 16, 2020) ##
-
--------------------------------------------------------------------
-
-### **NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
-
--------------------------------------------------------------------
-
-### HOW?
-
-###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
-
-## JUST STRINGS
-
-###### This implementation uses string data type to store large numbers/big numbers.
-
-## ELEMENTRAY TECHNIQUES
-
-###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
-
-## IMPLEMENTATION
-
-###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
-
-## IM HUNGRY
-
-***The "bignum" user made data type provided by the library enables you to:***
-
-
-   1.) store very large numbers in a variable.
-   
-   
-   2.) treat it like a normal/primitive data type.
-   
-   
-   3.) perform arithmetic and other operations with it.
-   
-   
-   4.) IDK... you can do anything with it.
-
-
-[Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
-
-
--------------------------------------------------------------------
-
-**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
-
-**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
-
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
-
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
-
+## A C++ library for computing big number
 
 -------------------------------------------------------------------
 
@@ -68,21 +13,29 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### VARIABLE DECLARATION
+### bignum initialization
     
    ```c++
-   bignum var1("6716212121");
-   bignum var2;  
-   bignum var3 = var1
-   bignum var4 = "787283287";
+   // use string or const char* for big values
+   bignum var1("67162512121");
+   bignum var2 = "67864254234324234";
+   
+   // you can also use constant integers up to 18.4e+18
+   bignum var3  = 57232;
+   bignum var3l = 96725372372ll;
+   
+   // or float and doubles
+   bignum var4 = 7676434.2323234L; // long doubles
+   bignum var5 = 76734.57623f;
+   
+   // copy bignum
+   bignum var6 = var1;
    var2 = "78273872832";
-   var3 = var4;
+   var3 = var4 = 65652.762;
    ```
 -------------------------------------------------------------------
 
 ### CURRENTLY SUPPORTED OPERATIONS
-
-   **Declared Variables:**
    
    ```c++  
    bignum var1("6526323"),
@@ -195,7 +148,58 @@ https://mrdcvlsc.github.io/bignum/
    cout<<(var1%var2)<<endl;
    
    ```     
+
+### **SUPPORTS INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+
+-------------------------------------------------------------------
+
+### HOW?
+
+###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
+
+## JUST STRINGS
+
+###### This implementation uses string data type to store large numbers/big numbers.
+
+## ELEMENTRAY TECHNIQUES
+
+###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
+
+## IMPLEMENTATION
+
+###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
+
+## IM HUNGRY
+
+***The "bignum" user made data type provided by the library enables you to:***
+
+
+   1.) store very large numbers in a variable.
    
+   
+   2.) treat it like a normal/primitive data type.
+   
+   
+   3.) perform arithmetic and other operations with it.
+   
+   
+   4.) IDK... you can do anything with it.
+
+
+[Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+
+
+-------------------------------------------------------------------
+
+**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
+
+**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
+
+**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
+
+**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
+
+
 ---------------------------------------------------------
 
 ### PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
