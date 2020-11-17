@@ -49,7 +49,7 @@ https://mrdcvlsc.github.io/bignum/
    **-Addition (+)**
    
    ```c++ 
-   ans = var1 + var2;
+   ans = var1 + var2 + 6451;
    ans = var2 + bignum("7823");  // this is also allowed
    ```
    
@@ -57,7 +57,7 @@ https://mrdcvlsc.github.io/bignum/
    
    ```c++
    
-   ans = var2 - var2;
+   ans = 3695.65 - var2 - var2;
    
    ```
    
