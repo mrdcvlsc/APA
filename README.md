@@ -25,7 +25,7 @@ https://mrdcvlsc.github.io/bignum/
    bignum var3l = 96725372372ll;
    
    // or float and doubles
-   bignum var4 = 767643434ll;
+   bignum var4 = 7676434.2323234L; // long doubles
    bignum var5 = 76734.57623f;
    
    // copy bignum
