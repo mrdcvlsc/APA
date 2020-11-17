@@ -4,59 +4,6 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### **NOW bignum's ADDITION, SUBTRACTION, MULTIPLICATION, AND DIVISION OPERATIONS CAN HANDEL INTEGERS AND RATIONAL NUMBERS(DECIMAL FORM)** ###
-
--------------------------------------------------------------------
-
-### HOW?
-
-###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
-
-## JUST STRINGS
-
-###### This implementation uses string data type to store large numbers/big numbers.
-
-## ELEMENTRAY TECHNIQUES
-
-###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
-
-## IMPLEMENTATION
-
-###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
-
-## IM HUNGRY
-
-***The "bignum" user made data type provided by the library enables you to:***
-
-
-   1.) store very large numbers in a variable.
-   
-   
-   2.) treat it like a normal/primitive data type.
-   
-   
-   3.) perform arithmetic and other operations with it.
-   
-   
-   4.) IDK... you can do anything with it.
-
-
-[Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
-
-
--------------------------------------------------------------------
-
-**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
-
-**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
-
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
-
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
-
-
--------------------------------------------------------------------
-
 ### TO USE :
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
@@ -201,7 +148,58 @@ https://mrdcvlsc.github.io/bignum/
    cout<<(var1%var2)<<endl;
    
    ```     
+
+### **SUPPORTS INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+
+-------------------------------------------------------------------
+
+### HOW?
+
+###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
+
+## JUST STRINGS
+
+###### This implementation uses string data type to store large numbers/big numbers.
+
+## ELEMENTRAY TECHNIQUES
+
+###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
+
+## IMPLEMENTATION
+
+###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
+
+## IM HUNGRY
+
+***The "bignum" user made data type provided by the library enables you to:***
+
+
+   1.) store very large numbers in a variable.
    
+   
+   2.) treat it like a normal/primitive data type.
+   
+   
+   3.) perform arithmetic and other operations with it.
+   
+   
+   4.) IDK... you can do anything with it.
+
+
+[Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+
+
+-------------------------------------------------------------------
+
+**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
+
+**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
+
+**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
+
+**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
+
+
 ---------------------------------------------------------
 
 ### PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
