@@ -1,8 +1,6 @@
 # bignum
 https://mrdcvlsc.github.io/bignum/
-## A C++ library for computing big number.
-
-## FIXED : bignum v2.0 - fixed bugs from v1.3-v1.7 (Nov. 16, 2020) ##
+## A C++ library for computing big number
 
 -------------------------------------------------------------------
 
