@@ -68,21 +68,29 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-### VARIABLE DECLARATION
+### bignum initialization
     
    ```c++
-   bignum var1("6716212121");
-   bignum var2;  
-   bignum var3 = var1
-   bignum var4 = "787283287";
+   // use string or const char* for big values
+   bignum var1("67162512121");
+   bignum var2 = "67864254234324234";
+   
+   // you can also use constant integers up to 18.4e+18
+   bignum var3  = 57232;
+   bignum var3l = 96725372372ll;
+   
+   // or float and doubles
+   bignum var4 = 767643434ll;
+   bignum var5 = 76734.57623f;
+   
+   // copy bignum
+   bignum var6 = var1;
    var2 = "78273872832";
-   var3 = var4;
+   var3 = var4 = 65652.762;
    ```
 -------------------------------------------------------------------
 
 ### CURRENTLY SUPPORTED OPERATIONS
-
-   **Declared Variables:**
    
    ```c++  
    bignum var1("6526323"),
