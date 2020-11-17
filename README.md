@@ -54,15 +54,17 @@ https://mrdcvlsc.github.io/bignum/
    
    ```c++
    
-   ans = var2 - var2
+   ans = var2 - var2;
    
    ```
    
    **-Multiplication (x)** (operation on floating point - not supported yet)
    
    ```c++
-   
-   ans = var2 * bignum("-6722") * var1; // multiple operations is also allowed
+
+   // bignum to const char* direct operation is allowed
+   ans = "-6764622" * var1;
+   ans = var1 * "46913764464";
    
    ```
    
@@ -70,8 +72,10 @@ https://mrdcvlsc.github.io/bignum/
    
    ```c++
    
-   ans = var2 / var1;
-   
+   // bignum to constant integer/number direct operation is allowed
+   ans  = var2 / var1;
+   ans  = 649481.6464 / ans;
+   var2 = var1 / 64984644;
    ```
    
    **-Modulo (%)**
@@ -107,7 +111,7 @@ https://mrdcvlsc.github.io/bignum/
    
    ```
    
-   *Comparison between a bignum variable and a string value or const char* is possible*
+   *Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
    
    
       ```c++
