@@ -1,43 +1,44 @@
 #include "bignum.h"
 
-long bignum::ones(long number, long tens){ // one_hundred_mil 
+long bignum::ones(long number, long tens) const{ // one_hundred_mil 
 	return number-(tens*1000000000l);
 }
 
-long bignum::tens(long number){				// o
+long bignum::tens(long number) const{				// o
 	return (long)floor((double)number/1000000000.0);
 }
 
-long bignum::one_thsd(long number, long tens){
+long bignum::one_thsd(long number, long tens) const{
 	return number-(tens*10000l);
 }
 
-long bignum::ten_thsd(long number){
+long bignum::ten_thsd(long number) const{
 	return (long)floor((double)number/10000.0);
 }
 
 
-pair<string,int> bignum::removeDecimal(const string& input){
+pair<string,long long> bignum::removeDecimal(string bignumber) const{
 	
-	string bignumber = input;
-	int    place     = 0;
-	bool   got       = false;
+	long long  place = 0;
+	bool got   = false;
 	
-	for(int i=0; i<bignumber.size(); ++i)
+	size_t bn_size = bignumber.size(); 
+	for(size_t i=0; i<bn_size; ++i)
 		if(bignumber[i]=='.'){
 			bignumber.erase(i,1);
+			--bn_size;
 			got = true;
 			place = i;
 			break;
 		} 
 	
-	place = bignumber.size()+1-place;
+	place = bn_size+1-place;
 	if(!got) place = 0;
 	
 	return make_pair(bignumber,place);
 }
 
-string bignum::putDecimal(const string& bignumber, int index){
+string bignum::putDecimal(const string& bignumber, int index) const{
 	
 	string tempFrontZero(index,'0');
 	string answer = tempFrontZero+bignumber;
@@ -46,105 +47,99 @@ string bignum::putDecimal(const string& bignumber, int index){
 	return answer;
 }
 
-int bignum::getDecimalPlaces(string input){
+int bignum::getDecimalPlaces(string input) const{
 	
-	int i = input.size()-1;
+	size_t in_size = input.size();
+	size_t i = in_size-1;
 	while(input[i]!='.')
 		--i;
 	
-	return input.size()-i-1;
+	return in_size-i-1;
 }
 
-string bignum::removeFrontZeros(string numbers){
+string bignum::removeFrontZeros(string input) const{
 	
 	bool stillzero = true;
-	string input = numbers;
 	
-	for(int i=0;i<input.size() && stillzero;++i){
-		if(input.size()>=2){
+	long long in_size = input.size();
+	for(long long i=0;i<in_size && stillzero;++i){
+		if(in_size>=2){
 			if(input[i]=='0' && input[i+1]=='.')
 				break;
 		}
-		if(input[i]=='0' && input.size()!=1){
+		if(input[i]=='0' && in_size!=1){
 			input.erase(i,1);
+			--in_size;
 			i=-1;
 			continue;
 		}
 		if(input[i]>='1' && input[i]<='9')
 			stillzero = false;
 	}
-
 	return input;
 }
 
-string bignum::removeRearZeros(string input){
+string bignum::removeRearZeros(string input) const{
 	
-	bool stillzero = true;
-	
-	while(input[input.size()-1]=='0' or input[input.size()-1]=='.'){
-		if(input[input.size()-1]=='.'){
-			input.erase(input.size()-1);
+	size_t in_size = input.size();
+	while(input[in_size-1]=='0' or input[in_size-1]=='.'){
+		if(input[in_size-1]=='.'){
+			input.erase(in_size-1);
+			--in_size;
 			break;
 		}
-
-		input.erase(input.size()-1);
+		input.erase(in_size-1);
+		--in_size;
 	}
-
 	return input;
 }
 
-bignum bignum::absolute(const bignum& input){
-	
+bignum bignum::absolute(const bignum& input) const{
 	if(input<"0")
-		return bignum(input.data.substr(1,input.data.size()-1));
-	
-	return bignum(input);
+		return input.data.substr(1,input.data.size()-1);
+	return input;
 }
 
-vector<long> bignum::str_partby9to_long(string number){
+vector<long> bignum::str_partby9to_long(string number) const{
 	
-	reverse(number.begin(),number.end());
-
 	vector<string> str_partition;
 	vector<long>   long_partition;
 
-	for(size_t i=0; i<number.size();++i){
+	size_t num_size = number.size();
+	for(size_t i=0; i<num_size;++i){
 		if(i==0 or i%9==0)
 			str_partition.push_back("");
-		str_partition.back() = number[i] + str_partition.back();
+		str_partition.back() = number[num_size-1-i] + str_partition.back();
 	}
 
-	for(size_t i=0; i<str_partition.size(); ++i)	
-		long_partition.push_back(stol(str_partition[i]));
+	size_t str_size = str_partition.size();
+	for(size_t i=0; i<str_size; ++i)	
+		long_partition.push_back(stol(str_partition[str_size-1-i]));
 
-	reverse(long_partition.begin(),long_partition.end());
-	
 	return long_partition;
 }
 
 
-vector<long> bignum::str_partby4to_long(string number){
+vector<long> bignum::str_partby4to_long(string number) const{
 	
-	reverse(number.begin(),number.end());
-
 	vector<string> str_partition;
 	vector<long>   long_partition;
 
-	for(size_t i=0; i<number.size();++i){
+	size_t num_size = number.size();
+	for(size_t i=0; i<num_size;++i){
 		if(i==0 or i%4==0)
 			str_partition.push_back("");
-		str_partition.back() = number[i] + str_partition.back();
+		str_partition.back() = number[num_size-1-i] + str_partition.back();
 	}
 
-	for(size_t i=0; i<str_partition.size(); ++i)	
-		long_partition.push_back(stol(str_partition[i]));
-
-	reverse(long_partition.begin(),long_partition.end());
+	size_t str_size = str_partition.size();
+	for(size_t i=0; i<str_size; ++i)	
+		long_partition.push_back(stol(str_partition[str_size-1-i]));
 	
 	return long_partition;
 }
 
-pair<string,string> bignum::strfront_fill0(string a, string b){
+pair<string,string> bignum::strfront_fill0(string a, string b) const{
 
 	size_t length1 = a.length();
 	size_t length2 = b.length();
@@ -181,11 +176,10 @@ pair<string,string> bignum::strfront_fill0(string a, string b){
 			answerWidth=num2.size();
 		}
 	}
-
 	return make_pair(num1,num2);
 }
 
-pair<string,string> bignum::strback_fill0(string a, string b){
+pair<string,string> bignum::strback_fill0(string a, string b) const{
 
 	size_t length1 = a.length();
 	size_t length2 = b.length();
@@ -222,57 +216,52 @@ pair<string,string> bignum::strback_fill0(string a, string b){
 			answerWidth=num2.size();
 		}
 	}
-
 	return make_pair(num1,num2);
 }
 
-pair<string,string> bignum::dec_slice(string float_number){
+pair<string,string> bignum::dec_slice(string float_number) const{
 	
 	size_t point = 0;
-	for(int i=0;i<float_number.size();++i){
+	for(size_t i=0;i<float_number.size();++i){
 		if(float_number[i]=='.'){
 			point = i;
 			break;
 		}
 	}
-
 	if(!point)
 		return make_pair(float_number,"");
-
-	string part1 = float_number.substr(0,point);
-	string part2 = float_number.substr(point+1);
-
-	return make_pair(part1,part2);
+	return make_pair(float_number.substr(0,point),float_number.substr(point+1));
 }
 
-bool bignum::isPositive(){
-	if(bignum(this->data)<"0")
+bool bignum::isPositive() const{
+	if(*this<"0")
 		return false;
 	return true;
 }
 
-bignum bignum::in_max(const bignum a, const bignum b){
+bignum bignum::in_max(const bignum a, const bignum b) const{
 	if(a>b)
 		return a;
 	return b;
 }
 
-bignum bignum::in_min(const bignum a, const bignum b){
+bignum bignum::in_min(const bignum a, const bignum b) const{
 	if(a<b)
 		return a;
 	return b;	
 }
 
-bool bignum::sameSign(const bignum& a, const bignum& b){
+bool bignum::sameSign(const bignum& a, const bignum& b) const{
 	if((a>"0" && b>"0") or (a<"0" && b<"0"))
 		return true;
 	return false;
 }
 
-bool bignum::isFloat(){
+bool bignum::isFloat()const{
 	string temp = this->data;
-	for(size_t i=0; i<temp.size(); ++i)
-		if(temp[i] == '.')
+	size_t tmp_size = temp.size();
+	for(size_t i=0; i<(tmp_size/2)+1; ++i)
+		if(temp[i] == '.' || temp[tmp_size-1-i] == '.')
 			return true;
 	return false;
 }

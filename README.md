@@ -121,7 +121,7 @@ https://mrdcvlsc.github.io/bignum/
       
       bignum variable1 = "72736273";
       cout<<(variable1 <= "81283798237")<<endl; // allowed 
-      cout<<("82738271344" > variable1)<<endl;  // allowed
+      cout<<(-76323.6763f > variable1)<<endl;  // allowed
       
       ```
       

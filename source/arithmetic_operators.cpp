@@ -15,27 +15,26 @@ bignum bignum::operator--(){
 
 //post-fix increment/decrementa
 bignum bignum::operator++(int){
-        this->data = (bignum(this->data)+bignum("1")).data;
-        return bignum(this->data)-bignum("1"); 
+    this->data = (bignum(this->data)+bignum("1")).data;
+    return bignum(this->data)-bignum("1"); 
 }
 
 bignum bignum::operator--(int){
-        this->data = (bignum(this->data)-bignum("1")).data;
-        return bignum(this->data)+bignum("1");
+    this->data = (bignum(this->data)-bignum("1")).data;
+    return bignum(this->data)+bignum("1");
 } 
 
 // --------------------------------------------------------------------------
 
 // -------------------- Arithmetic Operators --------------------
 
-bignum bignum::operator+(const bignum& bigintNumber){
+bignum bignum::operator+(const bignum& right_bn) const{
 
-	// temporary values	
-	bignum t_adden1 = bignum(this->data),
-	       t_adden2 = bigintNumber;
-	
+	bignum t_adden1 = *this;
+	bignum t_adden2 = right_bn;
+
 	// if there is a float value
-	if(t_adden1.isFloat() or t_adden2.isFloat()){
+	if(t_adden1.isFloat() || t_adden2.isFloat()){
 
 		pair<string,string> adden1_slices = dec_slice(t_adden1.data),
 						    adden2_slices = dec_slice(t_adden2.data);
@@ -51,16 +50,9 @@ bignum bignum::operator+(const bignum& bigintNumber){
 		pair<string,string> newWhl = strfront_fill0(adden1w,adden2w);
 		pair<string,string> newDec = strback_fill0(adden1d,adden2d);
 
-		string makeWholeAdden1 = newWhl.first + newDec.first;
-		string makeWholeAdden2 = newWhl.second + newDec.second;
-
-		bignum answerWhole = bignum(makeWholeAdden1) + bignum(makeWholeAdden2);
-
-		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-newDec.first.size(),".");
-
-		return bignum(finalAnswer);
+		bignum answerWhole = bignum(newWhl.first + newDec.first) + bignum(newWhl.second + newDec.second);
+		return answerWhole.data.insert(answerWhole.data.size()-newDec.first.size(),".");
 	}
-
 
 	/////////// apply rules of addition ///////////
 	bool same_sign   = sameSign(t_adden1,t_adden2);
@@ -80,34 +72,27 @@ bignum bignum::operator+(const bignum& bigintNumber){
 	// different sign
 	if(!same_sign and adden1isMax){
 		if(pos_adden1)
-			return bignum(internal_subtraction(adden1,adden2));
-		return bignum(("-"+internal_subtraction(adden1,adden2)));
+			return internal_subtraction(add_num.first,add_num.second);
+		return "-"+internal_subtraction(add_num.first,add_num.second);
 	}
 	else if(!same_sign and !adden1isMax){
 		if(pos_adden2)
-			return bignum(internal_subtraction(adden2,adden1));
-		return bignum(("-"+internal_subtraction(adden2,adden1)));
+			return internal_subtraction(add_num.second,add_num.first);
+		return "-"+internal_subtraction(add_num.second,add_num.first);
 	}
-
-	// perform internal addition
-	string answer = internal_addition(adden1,adden2);
 
 	// same sign both negative
 	if(same_sign and !pos_adden1 and !pos_adden2)
-		return bignum(("-"+answer));
+		return "-"+internal_addition(add_num.first,add_num.second);
 
 	// same sign bot positive
-	return bignum(answer);
+	return internal_addition(add_num.first,add_num.second);
 }
 
-bignum bignum::operator-(const bignum& bigintNumber){
+bignum bignum::operator-(const bignum& right_bn) const{
 	
-	// temporary values	
-	bignum t_minuend    = bignum(this->data),
-	       t_subtrahend = bigintNumber;
-
-	if(t_minuend == t_subtrahend)
-		return bignum("0");
+	bignum t_minuend    = *this,
+	       t_subtrahend = right_bn;
 
 	// if there is a float value
 	if(t_minuend.isFloat() || t_subtrahend.isFloat()){
@@ -126,10 +111,7 @@ bignum bignum::operator-(const bignum& bigintNumber){
 		pair<string,string> newWhl = strfront_fill0(minuend_w,subtrahend_w);
 		pair<string,string> newDec = strback_fill0(minuend_d,subtrahend_d);
 
-		string makeWholeMinuend    = newWhl.first + newDec.first;
-		string makeWholeSubtrahend = newWhl.second + newDec.second;
-
-		bignum answerWhole = bignum(makeWholeMinuend) - bignum(makeWholeSubtrahend);
+		bignum answerWhole = bignum(newWhl.first+newDec.first)-bignum(newWhl.second+newDec.second);
 
 		string padzero(newDec.first.size(),'0');
 
@@ -139,67 +121,61 @@ bignum bignum::operator-(const bignum& bigintNumber){
 			isNegative = true;
 		}
 
-		string tempWhole = padzero+answerWhole.data;
+		string answer = padzero+answerWhole.data;
+		answer = answer.insert(answer.size()-newDec.first.size(),".");
 
-		string finalAnswer = tempWhole.insert(tempWhole.size()-newDec.first.size(),".");
-
-		if(isNegative) finalAnswer = "-" + finalAnswer;
-		finalAnswer = removeRearZeros(removeFrontZeros(finalAnswer));
-		
-		return bignum(finalAnswer);
+		if(isNegative) answer = "-" + answer;
+		return removeRearZeros(removeFrontZeros(answer));
 	}
 	
 	// apply rules of subtraction
 	bool same_sign       = sameSign(t_minuend,t_subtrahend);
 	bool pos_minuend     = t_minuend.isPositive();
-	bool pos_subtrahend  = t_subtrahend.isPositive();
+	//bool pos_subtrahend  = t_subtrahend.isPositive();
 
-	t_minuend = absolute(t_minuend);
-	t_subtrahend = absolute(t_subtrahend);
+	bool minuendIsMax = t_minuend>t_subtrahend;
 
-	bool minuendIsMax = t_minuend>t_subtrahend; 
-
+	bignum abs_t_minu = absolute(t_minuend),
+	       abs_t_subt = absolute(t_subtrahend);
+ 
 	// add zeros to front to match the length of each other
-	pair<string,string> sub_num = strfront_fill0(t_minuend.data,t_subtrahend.data);
-	string    minuend = sub_num.first,
-		   subtrahend = sub_num.second;
+	pair<string,string> sub_num = strfront_fill0(abs_t_minu.data,abs_t_subt.data);
 
+	string str_minu = sub_num.first;
+	string str_subt = sub_num.second;
 
-	//same sign
-	if(minuendIsMax){
-		if(same_sign && pos_minuend)	   
-			return bignum(internal_subtraction(minuend,subtrahend));
-		else if(same_sign && !pos_minuend)
-			return bignum("-"+internal_subtraction(minuend,subtrahend));
-	}
-	else{
-		if(same_sign && !pos_minuend)
-			return bignum(internal_subtraction(subtrahend,minuend));
-		else if(same_sign && pos_minuend)
-			return bignum("-"+internal_subtraction(subtrahend,minuend));
-	}
+	//apply rules of subtraction
+	if(same_sign)
+	{
+		if(t_minuend==t_subtrahend) return "0";
 
-	//different sign
-	if(minuendIsMax){
-		if(pos_minuend)
-			return bignum(internal_addition(minuend,subtrahend));
-		else if(!pos_minuend)
-			return bignum("-"+internal_addition(minuend,subtrahend));
+		else if(pos_minuend){
+
+			if(minuendIsMax)
+				 return     internal_subtraction(str_minu,str_subt);
+			else return "-"+internal_subtraction(str_subt,str_minu);
+		}
+		else if(!pos_minuend){
+
+			if(minuendIsMax)
+				 return     internal_subtraction(str_subt,str_minu);
+			else return "-"+internal_subtraction(str_minu,str_subt);
+		}
 	}
-	else{
-		if(pos_minuend)
-			return bignum(internal_addition(minuend,subtrahend));
-		else if(!pos_minuend)
-			return bignum("-"+internal_addition(minuend,subtrahend));
+	else
+	{
+		if(t_minuend<t_subtrahend)
+			 return "-"+internal_addition(str_minu,str_subt);
+		else return     internal_addition(str_minu,str_subt);
 	}
-	return bignum(internal_subtraction(minuend,subtrahend));
+	return "0";
 }
 
-bignum bignum::operator*(const bignum& bigintNumber){
+bignum bignum::operator*(const bignum& right_bn) const{
 	
 	// temporary values	
 	bignum t_multiplicand = bignum(this->data),
-	       t_multiplier   = bigintNumber;
+	       t_multiplier   = right_bn;
 
 	if(t_multiplicand == "0" || t_multiplier == "0")
 		return bignum("0");
@@ -265,7 +241,7 @@ bignum bignum::operator*(const bignum& bigintNumber){
 	return bignum(answer);
 }
 
-bignum bignum::operator/(const bignum& input_divisor){
+bignum bignum::operator/(const bignum& input_divisor) const{
 
 	bignum tempDividen = bignum(this->data),
 	       tempDivisor = input_divisor.data;
@@ -283,19 +259,19 @@ bignum bignum::operator/(const bignum& input_divisor){
 	tempDivisor = absolute(tempDivisor);
 
 	// if decimal exist make it whole number
-	pair<string,int> dividenPair, divisorPair;
+	pair<string,long long> dividenPair, divisorPair;
 
 	dividenPair = removeDecimal(tempDividen.data);
 	divisorPair = removeDecimal(tempDivisor.data);
 
-	int ddenDecPlace = dividenPair.second;
-	int dsorDecPlace = divisorPair.second;
+	long long ddenDecPlace = dividenPair.second;
+	long long dsorDecPlace = divisorPair.second;
 
 	tempDividen = dividenPair.first;
 	tempDivisor = divisorPair.first;
 
 	// check if dividen is less than divisor, add zero place to make it greater than divisor
-	int additionalLen = 0;
+	long long additionalLen = 0;
 	if(tempDividen<tempDivisor)
 		additionalLen = 1+tempDivisor.data.size()-tempDividen.data.size();
 
@@ -330,7 +306,7 @@ bignum bignum::operator/(const bignum& input_divisor){
 
 // ------------------- SPECIAL OPERATORS -------------------------
 
-bignum bignum::operator%(bignum& divisor){
+bignum bignum::operator%(const bignum& divisor) const{
 
 	bignum dividen(this->data);
 
@@ -342,16 +318,15 @@ bignum bignum::operator%(bignum& divisor){
 	if(dividen<divisor)  return dividen;
 	if(dividen==divisor) return bignum("0");
 	
-
 	string answer = "", partialDividen = "",
 	       strDividen = dividen.data,
 	       strDivisor = divisor.data;
 
-    	int    partialCnt = 0;
-   	bignum multiplier = "1",
-               current;
+    long long partialCnt = 0;
+   	bignum multiplier = "1", current;
 
-	for(int i=0; i<strDividen.size();++i){
+    size_t str_div_size = strDividen.size();
+	for(size_t i=0; i<str_div_size; ++i){
 		partialDividen = partialDividen + strDividen[i];
 		current = partialDividen;
 
