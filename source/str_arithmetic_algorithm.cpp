@@ -1,81 +1,74 @@
 #include "bignum.h"
 
-string bignum::internal_addition(string a, string b){
+string bignum::internal_addition(string a, string b) const{
 	
 	vector<long> upperAdden = str_partby9to_long(a);
 	vector<long> lowerAdden = str_partby9to_long(b);
 
-	long placeValueSums[upperAdden.size()+1];
-	size_t n = sizeof(placeValueSums)/sizeof(placeValueSums[0]);
-	placeValueSums[0] = 0;									  // set the value of the first digit of the answer to zero
+	size_t adden_size = upperAdden.size();
+	size_t n = adden_size+1ul;
+	long *placeValueSums = new long[n];
+	placeValueSums[0] = 0l;									  // set the value of the first digit of the answer to zero
 
-	for(unsigned int i=0;i<upperAdden.size();++i)
+	for(size_t i=0ul ;i<adden_size; ++i)
 		placeValueSums[i+1]=upperAdden[i]+lowerAdden[i];
-
-	reverse(placeValueSums,placeValueSums+n);
-
+	//reverse(placeValueSums,placeValueSums+n);
 	// shift the index values from left to right that is greater the 9
 	// shifting is subtracting the current index form 10, and adding 1 to the next index
-	for(int i=0;i<n-1;++i)
+	for(size_t i=n-1ul; i>0ul; --i)
 		if(placeValueSums[i]>999999999l){
 			placeValueSums[i]=placeValueSums[i]-1000000000l;
-			++placeValueSums[i+1];
+			++placeValueSums[i-1];
 		}
-
-	reverse(placeValueSums,placeValueSums+n);
-
+	//reverse(placeValueSums,placeValueSums+n);
 	string shiftedStringAnswer="", temp;
-	for(int i=0;i<n;++i){		
+	for(size_t i=0ul;i<n;++i){		
 		placeValueSums[i] = abs(placeValueSums[i]);
 		temp = to_string(placeValueSums[i]);
 		string front_zeros(9-temp.size(),'0');
 		shiftedStringAnswer+=(front_zeros+temp);
 	}	
-
-	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
-	
-	return shiftedStringAnswer;
+	delete [] placeValueSums;
+	return removeFrontZeros(shiftedStringAnswer);
 }
 
-string bignum::internal_subtraction(string a, string b){
+string bignum::internal_subtraction(string a, string b) const{
 
 	vector<long>    minuend = str_partby9to_long(a);
 	vector<long> subtrahend = str_partby9to_long(b);
 
-	long placeValueDifference[minuend.size()+1];
-	size_t n = sizeof(placeValueDifference)/sizeof(placeValueDifference[0]);
-	placeValueDifference[0] = 0; 
+	size_t minuend_size = minuend.size();
+	size_t n = minuend_size+1ul;
+	long *placeValueDifference = new long[n];
+	placeValueDifference[0] = 0l; 
 
-
-	for(unsigned int i=0;i<minuend.size();++i)
+	for(size_t i=0l; i<minuend_size; ++i)
 		placeValueDifference[i+1]=minuend[i]-subtrahend[i];
 
-	reverse(placeValueDifference,placeValueDifference+n);
+	//reverse(placeValueDifference,placeValueDifference+n);
 
 	// shift the index values from left to right
-	for(int i=0;i<n-1;++i)
+	for(size_t i=n-1l; i>0ul; --i)
 		if(placeValueDifference[i]<0l){
 			placeValueDifference[i]=placeValueDifference[i]+1000000000l;
-			--placeValueDifference[i+1];
+			--placeValueDifference[i-1];
 		}
 
-	reverse(placeValueDifference,placeValueDifference+n);
+	//reverse(placeValueDifference,placeValueDifference+n);
 
 	// run absolute() value for all numbers (turn all to positives) then convert it back to string
 	string shiftedStringAnswer="", temp;
-	for(int i=0;i<n;++i){
+	for(size_t i=0ul;i<n;++i){
 		placeValueDifference[i] = abs(placeValueDifference[i]);
 		temp = to_string(placeValueDifference[i]);
 		string front_zeros(9-temp.size(),'0');
 		shiftedStringAnswer+=(front_zeros+temp);
 	}
-
-	shiftedStringAnswer = removeFrontZeros(shiftedStringAnswer);
-	
-	return shiftedStringAnswer;
+	delete [] placeValueDifference;
+	return removeFrontZeros(shiftedStringAnswer);
 }
 
-string bignum::internal_multiplication(string upperNumber, string bottomNumber){
+string bignum::internal_multiplication(string upperNumber, string bottomNumber) const{
 	
 	vector<long> multiplicand = str_partby4to_long(upperNumber);
 	vector<long> multiplier   = str_partby4to_long(bottomNumber);
@@ -83,17 +76,18 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	// set all values of product to zero
 	size_t answerMaxLen = multiplicand.size()+multiplier.size(); 
 	long int *productValues = new long int[answerMaxLen];
-    for(long unsigned int i=0; i<answerMaxLen; ++i)
+    for(size_t i=0ul; i<answerMaxLen; ++i){
     	productValues[i] = 0l;
+    }
 
 	// add the answer of the multiplicand and multiplier to the answer array
-	for(size_t i=0;i<multiplier.size();++i){
-		for(size_t j=0;j<multiplicand.size();++j){
+	for(size_t i=0ul; i<multiplier.size(); ++i){
+		for(size_t j=0ul;j<multiplicand.size();++j){
 			productValues[answerMaxLen-1-i-j] = productValues[answerMaxLen-1-i-j]+(multiplicand[multiplicand.size()-1-j]*multiplier[multiplier.size()-1-i]);
 		}
 	}
 
-	for(size_t i=0;i<answerMaxLen;++i){
+	for(size_t i=0ul;i<answerMaxLen;++i){
 		if(productValues[answerMaxLen-1-i]>=10000l){
 			long ten = ten_thsd(productValues[answerMaxLen-1-i]);
 			long one = one_thsd(productValues[answerMaxLen-1-i],ten);
@@ -115,7 +109,7 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber){
 	return finalAnswer;
 }
 
-bignum bignum::internal_division(bignum& dividen, bignum& divisor){
+bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 
 	internal_division_check(dividen,divisor); // error checker
 
@@ -127,11 +121,10 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor){
 		strDividen = dividen.data,
 		strDivisor = divisor.data;
 
-    	int 	partialCnt = 0;
-  	bignum 	multiplier = "1",
-           	current;
+    long long partialCnt = 0;
+  	bignum 	multiplier = "1", current;
 
-	for(int i=0; i<strDividen.size();++i){
+	for(size_t i=0; i<strDividen.size();++i){
 		partialDividen = partialDividen + strDividen[i];
 		current = partialDividen;
 
