@@ -28,6 +28,7 @@ https://mrdcvlsc.github.io/bignum/
    bignum var3l = 96725372372ll;
    
    // or float and doubles
+   // for very long rational numbers use strings instead to avoid automatic rounding
    bignum var4 = 7676434.2323234L; // long doubles
    bignum var5 = -76734.57623f;
    
@@ -38,54 +39,47 @@ https://mrdcvlsc.github.io/bignum/
    ```
 -------------------------------------------------------------------
 
-### CURRENTLY SUPPORTED OPERATIONS
+### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM)
+   
+   **[+] Addition (+)**
+   
+   **[+] Subtraction (-)**
+   
+   **[+] Multiplication (x)**
+   
+   **[+] Division (/)**
+   
+   **[+] Modulo (%)**
    
    ```c++  
-   bignum var1("-6526323"),
-          var2="7623",
-          ans;
-   ``` 
+   // Intitialization
+   bignum var1 = "67576723489743243243";
+   bignum var2 = 73442423233ull;
+   bignum var3 = 6523.767;
+   bignum answer;
    
-   **-Addition (+)**
+   // addition
+   cout<<var1+var3<<endl;
+   cout<<var3+"56756.4645"<<endl;
+   cout<<7567634+var1<<endl;
    
-   ```c++ 
-   ans = var1 + var2 + 6451;
-   ans = var2 + bignum("7823");  // this is also allowed
-   ```
+   // subtraction
+   cout<<var2-var1<<endl;
+   cout<<var1-74672323232ull<<endl;
+   cout<<"656422"-var3<<endl;
    
-   **-Subtraction (-)**
+   // multiplication
+   cout<<var1*var3<<endl;
+   cout<<var2*2234544.65<<endl;
+   cout<<"64652823.42"*var3<<endl;
    
-   ```c++
+   // division
+   cout<<var2/var1<<endl;
+   cout<<var3/"521321"<<endl;
+   cout<<"652323"/var1<<endl;
    
-   ans = 3695.65 - var2 - var2;
-   
-   ```
-   
-   **-Multiplication (x)** 
-   
-   ```c++
-
-   // bignum to const char* direct operation is allowed
-   ans = "-6764622" * var1;
-   ans = var1 * "46913764464";
-   
-   ```
-   
-   **-Division (/)** 
-   
-   ```c++
-   
-   // bignum to constant integer/number direct operation is allowed
-   ans  = var2 / var1;
-   ans  = -649481.6464 / ans;
-   var2 = var1 / 64984644;
-   ```
-   
-   **-Modulo (%)**
-   
-   ```c++
-   
-   ans = var2 % var1;
+   // mod
+   cout<<var2 % var1<<endl;
    
    ```
 
@@ -143,16 +137,6 @@ https://mrdcvlsc.github.io/bignum/
    ++yourBigIntVar;
    yourBigIntVar--,
    --yourBigIntVar;
-   
-   ```     
-        
-**The modulo operator is also supported.**
-
-
-   ```c++
-   
-   bignum var1 = "232", var2 = "23";
-   cout<<(var1%var2)<<endl;
    
    ```     
 
