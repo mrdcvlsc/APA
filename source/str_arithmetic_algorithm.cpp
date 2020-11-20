@@ -117,6 +117,7 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 	if(dividen=="0")     return bignum("0");
 	if(divisor=="1")     return dividen;
 
+	
 	string 	answer	   = "", partialDividen = "",
 		strDividen = dividen.data,
 		strDivisor = divisor.data;
@@ -150,5 +151,5 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 		multiplier = "1";
 	}
 
-	return bignum(answer);
+	return answer;
 }

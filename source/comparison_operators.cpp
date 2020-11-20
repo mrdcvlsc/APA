@@ -7,6 +7,13 @@ bool bignum::operator==(const bignum& bnum_) const{
 	size_t l_size = this->data.size();
 	size_t r_size = bnum_.data.size();
 
+	pair<string,string> left  = dec_slice(this->data);
+	pair<string,string> right = dec_slice(bnum_.data);
+
+	// check whole number length
+	if(left.first.size()!=right.first.size())
+		return false; 
+
 	for(size_t i=0; i<l_size && i<r_size; ++i)
 		if(this->data[i]!=bnum_.data[i])
 			return false;
@@ -15,48 +22,54 @@ bool bignum::operator==(const bignum& bnum_) const{
 
 // the < operator is another base operator method used to create other comparison operators
 bool bignum::operator<(const bignum& bnum_) const{
-	// new state floating point support
-	bool l_IsPositive = this->data[0]!='-'?true:false;
-	bool r_IsPositive = bnum_.data[0]!='-'?true:false;
-	
-	size_t l_size = this->data.size();
-	size_t r_size = bnum_.data.size();
 
-	//sign check
-	     if( l_IsPositive && !r_IsPositive) return false;
-	else if(!l_IsPositive &&  r_IsPositive) return true;
-	else if( l_IsPositive ==  r_IsPositive){
-		//decimal check
-		for(size_t i=0; i<l_size || i<r_size; ++i){
-			     if(this->data[i]=='.' && bnum_.data[i]!='.' &&  l_IsPositive) return true;
-			else if(this->data[i]=='.' && bnum_.data[i]!='.' && !l_IsPositive) return false;
-			else if(this->data[i]!='.' && bnum_.data[i]=='.' &&  l_IsPositive) return false;
-			else if(this->data[i]!='.' && bnum_.data[i]=='.' && !l_IsPositive) return true;
-			else if(this->data[i]=='.' && bnum_.data[i]=='.'){
-				for(size_t j=0; j<l_size && j<r_size; ++j){
-						 if(this->data[j]<bnum_.data[i] &&  l_IsPositive) return true;
-					else if(this->data[j]<bnum_.data[i] && !l_IsPositive) return false;
-					else if(this->data[j]>bnum_.data[i] &&  l_IsPositive) return false;
-					else if(this->data[j]>bnum_.data[i] &&  l_IsPositive) return true;
-				}
-				return false;
-			}
-		}
-		//length check
-			 if(l_size<r_size &&  l_IsPositive) return true;
-		else if(l_size<r_size && !l_IsPositive) return false;
-		else if(l_size>r_size &&  l_IsPositive) return false;
-		else if(l_size>r_size && !l_IsPositive) return true;
+	// if different signs
+	if(this->data[0]=='-' && bnum_.data[0]!='-') return true;
+	if(this->data[0]!='-' && bnum_.data[0]=='-') return false;
+
+	// if same sign
+	pair<string,string> left  = dec_slice(this->data);
+	pair<string,string> right = dec_slice(bnum_.data);
+
+	size_t left_w_size = left.first.size();
+	size_t right_w_size = right.first.size();
+
+	size_t left_d_size = left.second.size();
+
+	if(this->data[0]!='-'){ // positive
+		     if(left_w_size<right_w_size) return true;
+		else if(left_w_size>right_w_size) return false;
 		else{
-			for(size_t i=0; i<l_size && i<r_size; ++i){
-				     if(this->data[i]<bnum_.data[i] and  l_IsPositive) return true;
-				else if(this->data[i]<bnum_.data[i] and !l_IsPositive) return false;
-				else if(this->data[i]>bnum_.data[i] and  l_IsPositive) return false;
-				else if(this->data[i]>bnum_.data[i] and !l_IsPositive) return true;
+			// check whole
+			for(size_t i=0; i<left_w_size; ++i){
+				if(left.first[i]<right.first[i]) return true;
+				if(left.first[i]>right.first[i]) return false;
 			}
+			// check decimal
+			for(size_t i=0; i<left_d_size; ++i){
+				if(left.second[i]<right.second[i]) return true;
+				if(left.second[i]>right.second[i]) return false;
+			}
+			return false;
 		}
 	}
-	return false;
+	else{	// negative
+			 if(left_w_size>right_w_size) return true;
+		else if(left_w_size<right_w_size) return false;
+		else{
+			// check whole
+			for(size_t i=0; i<left_w_size; ++i){
+				if(left.first[i]>right.first[i]) return true;
+				if(left.first[i]<right.first[i]) return false;
+			}
+			// check decimal
+			for(size_t i=0; i<left_d_size; ++i){
+				if(left.second[i]>right.second[i]) return true;
+				if(left.second[i]<right.second[i]) return false;
+			}
+			return false;
+		}
+	}
 }
 
 bool bignum::operator!=(const bignum& bnum_) const{

@@ -4,8 +4,7 @@
 
 //pre-fix increment/decrementa
 bignum bignum::operator++(){
-	this->data = (bignum(this->data)+bignum("1")).data;
-	return bignum(data);
+	return *this = *this+"1"; 
 }
 
 bignum bignum::operator--(){
@@ -174,19 +173,20 @@ bignum bignum::operator-(const bignum& right_bn) const{
 bignum bignum::operator*(const bignum& right_bn) const{
 	
 	// temporary values	
-	bignum t_multiplicand = bignum(this->data),
+	bignum t_multiplicand = *this,
 	       t_multiplier   = right_bn;
 
 	if(t_multiplicand == "0" || t_multiplier == "0")
-		return bignum("0");
+		return "0";
 
 	// if there is a float value
 	if(t_multiplicand.isFloat() || t_multiplier.isFloat()){
 		
 		bool same_sign_float = sameSign(t_multiplicand,t_multiplier);
-		
+
 		t_multiplicand = absolute(t_multiplicand);
 		t_multiplier   = absolute(t_multiplier);
+
 
 		pair<string,string> multiplicand_slices = dec_slice(t_multiplicand.data),
 						    multiplier_slices   = dec_slice(t_multiplier.data);
@@ -198,7 +198,6 @@ bignum bignum::operator*(const bignum& right_bn) const{
 		// point values       
 		string multiplicand_d = multiplicand_slices.second,
 		       multiplier_d   = multiplier_slices.second;
-
 
 		pair<string,string> newWhl = strfront_fill0(multiplicand_w,multiplier_w);
 		pair<string,string> newDec = make_pair(multiplicand_d,multiplier_d);
@@ -215,10 +214,8 @@ bignum bignum::operator*(const bignum& right_bn) const{
 
 		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-(mulcand+mulplier),".");
 
-		if(same_sign_float)
-			return bignum(finalAnswer);
-		
-		return bignum("-"+finalAnswer);
+		if(same_sign_float) return finalAnswer;
+		return "-"+finalAnswer;
 	}
 
 	// apply rules of multiplication
@@ -236,15 +233,15 @@ bignum bignum::operator*(const bignum& right_bn) const{
 	string answer = internal_multiplication(multiplicand,multiplier);
 
 	if(!same_sign)
-		return bignum("-"+answer);
+		return "-"+answer;
 
-	return bignum(answer);
+	return answer;
 }
 
-bignum bignum::operator/(const bignum& input_divisor) const{
+bignum bignum::operator/(const bignum& bnum_) const{
 
-	bignum tempDividen = bignum(this->data),
-	       tempDivisor = input_divisor.data;
+	bignum tempDividen = *this,
+	       tempDivisor = bnum_.data;
 
 	if(tempDividen == "0")
 		return bignum("0");
@@ -298,7 +295,7 @@ bignum bignum::operator/(const bignum& input_divisor) const{
 	bignum answer = answerValue;
 	
 	if(!differentSign) return answer;
-	else               return bignum("-"+answer.data);
+	else               return "-"+answer.data;
 }
 
 // --------------------------------------------------------------
@@ -308,7 +305,7 @@ bignum bignum::operator/(const bignum& input_divisor) const{
 
 bignum bignum::operator%(const bignum& divisor) const{
 
-	bignum dividen(this->data);
+	bignum dividen =  *this;
 
 	if(divisor=="0"){
 		cout<<"bignum ERROR [modulo] : ("<<dividen<<'%'<<divisor<<") dividing by zero is not possible"<<endl;

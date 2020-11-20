@@ -95,9 +95,12 @@ string bignum::removeRearZeros(string input) const{
 }
 
 bignum bignum::absolute(const bignum& input) const{
-	if(input<"0")
-		return input.data.substr(1,input.data.size()-1);
-	return input;
+	string number = input.data;
+	if(number[0] == '-'){
+		number[0] = '0';
+		number = removeFrontZeros(number);
+	}
+	return number;
 }
 
 vector<long> bignum::str_partby9to_long(string number) const{
@@ -145,8 +148,7 @@ pair<string,string> bignum::strfront_fill0(string a, string b) const{
 	size_t length2 = b.length();
 
 	string num1 = a,
-	       num2 = b,
-	       answerWidth;
+	       num2 = b;
 
 	if(length1>length2){
 		if(num2[0]=='-'){
@@ -154,12 +156,10 @@ pair<string,string> bignum::strfront_fill0(string a, string b) const{
 			string pad(length1-length2,'0');
 			num2=pad+num2;
 			num2[0]='-';
-			answerWidth=num1.size();
 		}
 		else{
 			string pad(length1-length2,'0');
 			num2=pad+num2;
-			answerWidth=num1.size();
 		}
 	}
 	else if(length2>length1){
@@ -168,12 +168,10 @@ pair<string,string> bignum::strfront_fill0(string a, string b) const{
 			string pad(length2-length1,'0');
 			num1=pad+num1;
 			num1[0]='-';
-			answerWidth=num2.size();
 		}
 		else{
 			string pad(length2-length1,'0');
 			num1=pad+num1;
-			answerWidth=num2.size();
 		}
 	}
 	return make_pair(num1,num2);
@@ -194,12 +192,10 @@ pair<string,string> bignum::strback_fill0(string a, string b) const{
 			string pad(length1-length2,'0');
 			num2=num2+pad;
 			num2[0]='-';
-			answerWidth=num1.size();
 		}
 		else{
 			string pad(length1-length2,'0');
 			num2=num2+pad;
-			answerWidth=num1.size();
 		}
 	}
 	else if(length2>length1){
@@ -208,12 +204,10 @@ pair<string,string> bignum::strback_fill0(string a, string b) const{
 			string pad(length2-length1,'0');
 			num1=num1+pad;
 			num1[0]='-';
-			answerWidth=num2.size();
 		}
 		else{
 			string pad(length2-length1,'0');
 			num1=num1+pad;
-			answerWidth=num2.size();
 		}
 	}
 	return make_pair(num1,num2);
@@ -234,7 +228,7 @@ pair<string,string> bignum::dec_slice(string float_number) const{
 }
 
 bool bignum::isPositive() const{
-	if(*this<"0")
+	if(this->data[0] == '-')
 		return false;
 	return true;
 }
@@ -252,9 +246,9 @@ bignum bignum::in_min(const bignum a, const bignum b) const{
 }
 
 bool bignum::sameSign(const bignum& a, const bignum& b) const{
-	if((a>"0" && b>"0") or (a<"0" && b<"0"))
-		return true;
-	return false;
+	if((a.data[0]=='-' && b.data[0]!='-') || (a.data[0]!='-' && b.data[0]=='-'))
+		return false;
+	return true;
 }
 
 bool bignum::isFloat()const{
