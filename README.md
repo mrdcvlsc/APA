@@ -8,12 +8,13 @@ https://mrdcvlsc.github.io/bignum/
 -------------------------------------------------------------------
 
 ### TO USE :
+
   
-  **-you can include all the files in the repo (.h .cpp) and include it manually in your project then compile it yourself**
+  **you can include all the files in the repo (.h .cpp) and include it manually in your project then compile it yourself**
   
-  **-You can also use the "make" command to generate the static library "bignum.lib"**
+  **You can also use the "make" command to generate the static library "bignum.lib" then include/link it to your project along the header file bignum.h**
   
-  **-use the "make test" after make to run the test program if you want**
+  **(optional) use the "make test" after make to run the test program if you want**
   
 
 -------------------------------------------------------------------
