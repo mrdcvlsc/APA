@@ -11,7 +11,7 @@ https://mrdcvlsc.github.io/bignum/
   
   **- you can include all the files in the repo (.h .cpp) manually in your project then compile it yourself.**
   
-  **- you can also use the already compiled library in the sample program (less work - instructions are in folder).**
+  **- If you are in linux you can use the "make" command to generate the "bignum.lib" and "make test" after to run the test program**
   
 
 -------------------------------------------------------------------
