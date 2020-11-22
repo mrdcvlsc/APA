@@ -15,72 +15,45 @@ class bignum{
 public:
 	string data;
 
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	/**********************************      CONSTRUCTORS      **********************************/
-	//////////////////////////////////////////////////////////////////////////////////////////////
-
+	//constructors
 	bignum():data("0"){}
-	bignum(short int value);
-	bignum(unsigned short int value);
-	bignum(int value);
-	bignum(unsigned int value);
-	bignum(long int value);
-	bignum(unsigned long int value);
-	bignum(long long int value);
-	bignum(unsigned long long int value);
-	bignum(float value);
-	bignum(double value);
-	bignum(long double value);
 	bignum(const char* value);
 	bignum(string value);
-
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	/****************************** BELOW ARE THE INSIDE FUNCTIONS ******************************/
-	//////////////////////////////////////////////////////////////////////////////////////////////
-
-	// this functions are only used inside the class
+	template<class N> bignum(N value){
+		string temp = to_string(value);
+		check(temp);
+		this->data = temp;
+	}
 
 	//partition/slice function
-	vector<long>		str_partby9to_long(string number) const;
-	vector<long>		str_partby4to_long(string number) const;
-	pair<string,string> dec_slice(string float_number) const;
+	vector<long>		  str_partby9to_long(string number)const;
+	vector<long>		  str_partby4to_long(string number)const;
+	pair<string,string>   dec_slice(string float_number)   const;
 
-	//fill zeros function
-	pair<string,string> strfront_fill0(string a, string b) const;
-	pair<string,string> strback_fill0(string a, string b) const;
+	pair<string,string>   strfront_fill0(string a, string b)const;
+	pair<string,string>   strback_fill0(string a, string b) const;
 	
-	//remove functions
-	pair<string,long long> 	removeDecimal(string bignumber) const;
-	string				removeFrontZeros(string input) const;
-	string				removeRearZeros(string input) const;
+	pair<string,long long> 	removeDecimal(string bignumber)const;
+	string				    removeFrontZeros(string input) const;
+	string				    removeRearZeros(string input)  const;
 	
-	//get and put decimal funtions
 	string 				putDecimal(const string& bignumber, int index) const;
 	int	   				getDecimalPlaces(string input) const;
 	
-	//convertion functions
-	char   				intToChar(const int& n)  const { return (char)'0'+ (char)n;}
-	int    				charToInt(const char& c) const { return (int)c - (int)'0';}
+	char   				intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
+	int    				charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
 	
-	//multiplication shifting functions
-	long   				ones(long number, long tens) const;
+	long   				ones(long number, long tens)const;
 	long   				tens(long number) const;
-	long   				one_thsd(long number, long tens) const;
+	long   				one_thsd(long number, long tens)const;
 	long   				ten_thsd(long number) const;
 	
-	//check functions
 	bool   				isPositive() const;
 	bool			    isFloat() const;
 	bool    			sameSign(const bignum& a, const bignum& b) const;
 	
 	//bignum functions
 	bignum 				absolute(const bignum& input) const;
-	bignum 				in_max(const bignum a, const bignum b) const;
-	bignum 				in_min(const bignum a, const bignum b) const;
-
-	/////////////////////////////////////////////////////////////////////////////////////////////
-	/***********************************      OPERATORS      ***********************************/
-	/////////////////////////////////////////////////////////////////////////////////////////////
 
     //arithmetich operators
 	bignum operator+(const bignum& bigNum2) const;
@@ -125,23 +98,16 @@ public:
 	template<class N>friend bool operator==(N cn, const bignum& bn){return bignum(cn)==bn;}
 	template<class N>friend bool operator!=(N cn, const bignum& bn){return bignum(cn)!=bn;}
 
-	//////////////////////////////////////////////////////////////////////////////////////////////////
 	/*********************************   ERROR HANDLING FUNCTIONS   *********************************/
-	//////////////////////////////////////////////////////////////////////////////////////////////////
-
 	void check(string &value);
-	void internal_division_check(const bignum& value_1, const bignum& value_2) const;
+	void internal_division_check(const bignum& value_1, const bignum& value_2) const; // for development only will remove in future
 
-	//////////////////////////////////////////////////////////////////////////////////////////////////
 	/**************************************  INTERNAL METHODS  **************************************/
-	//////////////////////////////////////////////////////////////////////////////////////////////////
-
 	//internal operation for arithmetic operators
 	string internal_addition(string a, string b) const;
 	string internal_subtraction(string a, string b) const;
 	string internal_multiplication(string upperNumber, string bottomNumber) const;
-	bignum internal_division(bignum& dividen, bignum& divisor) const;	// this method is dependent on the 3 basic arithmetic operators
-								
+	bignum internal_division(bignum& dividen, bignum& divisor) const;	// this method is dependent on the 3 basic arithmetic operators				
 };
 
 #endif

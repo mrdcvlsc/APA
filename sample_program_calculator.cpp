@@ -6,6 +6,14 @@ using namespace std;
 
 int main(){
 
+	cout<<"FACTORIAL OF A NUMBER : "<<endl;
+	bignum n = 1000, fac="1";
+	bignum limit = n;
+	for(bignum i=1; i<=limit; ++i)
+		fac = fac*i;
+	cout<<"Answer to factorial of 1000 is : "<<fac<<endl;
+	// pelase don't use this for loop for computing larger factorials just don't
+	// you can use more advance algorithm like prime swing factorization.
 	//*
 	string line(20,'=');
 	bignum val1, val2, answer;

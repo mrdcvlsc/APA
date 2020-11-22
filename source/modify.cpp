@@ -183,8 +183,7 @@ pair<string,string> bignum::strback_fill0(string a, string b) const{
 	size_t length2 = b.length();
 
 	string num1 = a,
-	       num2 = b,
-	       answerWidth;
+	       num2 = b;
 
 	if(length1>length2){
 		if(num2[0]=='-'){
@@ -215,8 +214,9 @@ pair<string,string> bignum::strback_fill0(string a, string b) const{
 
 pair<string,string> bignum::dec_slice(string float_number) const{
 	
-	size_t point = 0;
-	for(size_t i=0;i<float_number.size();++i){
+	size_t point = 0,
+	       float_size_num = float_number.size();
+	for(size_t i=0; i<float_size_num; ++i){
 		if(float_number[i]=='.'){
 			point = i;
 			break;
@@ -231,18 +231,6 @@ bool bignum::isPositive() const{
 	if(this->data[0] == '-')
 		return false;
 	return true;
-}
-
-bignum bignum::in_max(const bignum a, const bignum b) const{
-	if(a>b)
-		return a;
-	return b;
-}
-
-bignum bignum::in_min(const bignum a, const bignum b) const{
-	if(a<b)
-		return a;
-	return b;	
 }
 
 bool bignum::sameSign(const bignum& a, const bignum& b) const{
