@@ -26,34 +26,36 @@ public:
 	}
 
 	//partition/slice function
-	vector<long>		  str_partby9to_long(string number)const;
-	vector<long>		  str_partby4to_long(string number)const;
-	pair<string,string>   dec_slice(string float_number)   const;
+	vector<long> str_partby9to_long(string number)const;
+	vector<long> str_partby4to_long(string number)const;
+	
+	pair<string,string> dec_slice(string float_number)const;
 
-	pair<string,string>   strfront_fill0(string a, string b)const;
-	pair<string,string>   strback_fill0(string a, string b) const;
+	pair<string,string> strfront_fill0(string a, string b)const;
+	pair<string,string> strback_fill0(string a, string b) const;
 	
-	pair<string,long long> 	removeDecimal(string bignumber)const;
-	string				    removeFrontZeros(string input) const;
-	string				    removeRearZeros(string input)  const;
+	pair<string,long long> removeDecimal(string bignumber)const;
 	
-	string 				putDecimal(const string& bignumber, int index) const;
-	int	   				getDecimalPlaces(string input) const;
+	string removeFrontZeros(string input) const;
+	string removeRearZeros(string input)  const;
 	
-	char   				intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
-	int    				charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
+	string putDecimal(const string& bignumber, int index) const;
+	int    getDecimalPlaces(string input) const;
 	
-	long   				ones(long number, long tens)const;
-	long   				tens(long number) const;
-	long   				one_thsd(long number, long tens)const;
-	long   				ten_thsd(long number) const;
+	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
+	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
 	
-	bool   				isPositive() const;
-	bool			    isFloat() const;
-	bool    			sameSign(const bignum& a, const bignum& b) const;
+	long ones(long number, long tens)const;
+	long tens(long number) const;
+	long one_thsd(long number, long tens)const;
+	long ten_thsd(long number) const;
+	
+	bool isPositive() const;
+	bool isFloat() const;
+	bool sameSign(const bignum& a, const bignum& b) const;
 	
 	//bignum functions
-	bignum 				absolute(const bignum& input) const;
+	bignum absolute(const bignum& input) const;
 
     //arithmetich operators
 	bignum operator+(const bignum& bigNum2) const;
@@ -77,7 +79,7 @@ public:
 	bignum operator++(); //pre
 	bignum operator--();
 	bignum operator++(int); //post
-    bignum operator--(int);
+    	bignum operator--(int);
 
 	//input and output stream operators
 	friend ostream& operator<<(ostream &out, const bignum &value);
