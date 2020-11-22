@@ -8,19 +8,18 @@ bignum bignum::operator++(){
 }
 
 bignum bignum::operator--(){
-	this->data = (bignum(this->data)-bignum("1")).data;
-	return bignum(data);
+	return *this = *this-"1";
 }
 
 //post-fix increment/decrementa
 bignum bignum::operator++(int){
-    this->data = (bignum(this->data)+bignum("1")).data;
-    return bignum(this->data)-bignum("1"); 
+    ++*this;
+    return *this-"1"; 
 }
 
 bignum bignum::operator--(int){
-    this->data = (bignum(this->data)-bignum("1")).data;
-    return bignum(this->data)+bignum("1");
+    --*this;
+    return *this+"1";
 } 
 
 // --------------------------------------------------------------------------
@@ -37,17 +36,9 @@ bignum bignum::operator+(const bignum& right_bn) const{
 
 		pair<string,string> adden1_slices = dec_slice(t_adden1.data),
 						    adden2_slices = dec_slice(t_adden2.data);
-	    
-	    // whole values
-		string adden1w = adden1_slices.first,
-		       adden2w = adden2_slices.first;
 
-		// point values       
-		string adden1d = adden1_slices.second,
-		       adden2d = adden2_slices.second;
-
-		pair<string,string> newWhl = strfront_fill0(adden1w,adden2w);
-		pair<string,string> newDec = strback_fill0(adden1d,adden2d);
+		pair<string,string> newWhl = strfront_fill0(adden1_slices.first,adden2_slices.first);
+		pair<string,string> newDec = strback_fill0(adden1_slices.second,adden2_slices.second);
 
 		bignum answerWhole = bignum(newWhl.first + newDec.first) + bignum(newWhl.second + newDec.second);
 		return answerWhole.data.insert(answerWhole.data.size()-newDec.first.size(),".");
@@ -65,8 +56,6 @@ bignum bignum::operator+(const bignum& right_bn) const{
 
 	// add zeros to front to match the length of each other
 	pair<string,string> add_num = strfront_fill0(t_adden1.data,t_adden2.data);
-	string adden1 = add_num.first,
-		   adden2 = add_num.second;
 	
 	// different sign
 	if(!same_sign and adden1isMax){
@@ -98,17 +87,9 @@ bignum bignum::operator-(const bignum& right_bn) const{
 
 		pair<string,string> minuend_slices    = dec_slice(t_minuend.data),
 						    subtrahend_slices = dec_slice(t_subtrahend.data);
-	    
-	    // whole values
-		string minuend_w = minuend_slices.first,
-		       subtrahend_w = subtrahend_slices.first;
 
-		// point values       
-		string minuend_d    = minuend_slices.second,
-		       subtrahend_d = subtrahend_slices.second;
-
-		pair<string,string> newWhl = strfront_fill0(minuend_w,subtrahend_w);
-		pair<string,string> newDec = strback_fill0(minuend_d,subtrahend_d);
+		pair<string,string> newWhl = strfront_fill0(minuend_slices.first,subtrahend_slices.first);
+		pair<string,string> newDec = strback_fill0(minuend_slices.second,subtrahend_slices.second);
 
 		bignum answerWhole = bignum(newWhl.first+newDec.first)-bignum(newWhl.second+newDec.second);
 
@@ -134,14 +115,7 @@ bignum bignum::operator-(const bignum& right_bn) const{
 
 	bool minuendIsMax = t_minuend>t_subtrahend;
 
-	bignum abs_t_minu = absolute(t_minuend),
-	       abs_t_subt = absolute(t_subtrahend);
- 
-	// add zeros to front to match the length of each other
-	pair<string,string> sub_num = strfront_fill0(abs_t_minu.data,abs_t_subt.data);
-
-	string str_minu = sub_num.first;
-	string str_subt = sub_num.second;
+	pair<string,string> sub_num = strfront_fill0(absolute(t_minuend).data,absolute(t_subtrahend).data);
 
 	//apply rules of subtraction
 	if(same_sign)
@@ -151,21 +125,21 @@ bignum bignum::operator-(const bignum& right_bn) const{
 		else if(pos_minuend){
 
 			if(minuendIsMax)
-				 return     internal_subtraction(str_minu,str_subt);
-			else return "-"+internal_subtraction(str_subt,str_minu);
+				 return     internal_subtraction(sub_num.first,sub_num.second);
+			else return "-"+internal_subtraction(sub_num.second,sub_num.first);
 		}
 		else if(!pos_minuend){
 
 			if(minuendIsMax)
-				 return     internal_subtraction(str_subt,str_minu);
-			else return "-"+internal_subtraction(str_minu,str_subt);
+				 return     internal_subtraction(sub_num.second,sub_num.first);
+			else return "-"+internal_subtraction(sub_num.first,sub_num.second);
 		}
 	}
 	else
 	{
 		if(t_minuend<t_subtrahend)
-			 return "-"+internal_addition(str_minu,str_subt);
-		else return     internal_addition(str_minu,str_subt);
+			 return "-"+internal_addition(sub_num.first,sub_num.second);
+		else return     internal_addition(sub_num.first,sub_num.second);
 	}
 	return "0";
 }
@@ -191,28 +165,14 @@ bignum bignum::operator*(const bignum& right_bn) const{
 		pair<string,string> multiplicand_slices = dec_slice(t_multiplicand.data),
 						    multiplier_slices   = dec_slice(t_multiplier.data);
 	    
-	    // whole values
-		string multiplicand_w = multiplicand_slices.first,
-		       multiplier_w   = multiplier_slices.first;
+		pair<string,string> newWhl = strfront_fill0(multiplicand_slices.first,multiplier_slices.first);
+		pair<string,string> newDec = make_pair(multiplicand_slices.second,multiplier_slices.second);
 
-		// point values       
-		string multiplicand_d = multiplicand_slices.second,
-		       multiplier_d   = multiplier_slices.second;
-
-		pair<string,string> newWhl = strfront_fill0(multiplicand_w,multiplier_w);
-		pair<string,string> newDec = make_pair(multiplicand_d,multiplier_d);
-
-		string makeWholeAdden1 = newWhl.first + newDec.first;
-		string makeWholeAdden2 = newWhl.second + newDec.second;
-
-		bignum t1 = makeWholeAdden1;
-		bignum t2 = makeWholeAdden2;
+		bignum t1 = newWhl.first + newDec.first;
+		bignum t2 = newWhl.second + newDec.second;
 		bignum answerWhole = (t1*t2);
 		
-		size_t mulcand  = multiplicand_d.size(),
-		       mulplier = multiplier_d.size();
-
-		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-(mulcand+mulplier),".");
+		string finalAnswer = answerWhole.data.insert(answerWhole.data.size()-(multiplicand_slices.second.size()+multiplier_slices.second.size()),".");
 
 		if(same_sign_float) return finalAnswer;
 		return "-"+finalAnswer;
@@ -221,21 +181,13 @@ bignum bignum::operator*(const bignum& right_bn) const{
 	// apply rules of multiplication
 	bool same_sign = sameSign(t_multiplicand,t_multiplier);
 
-	t_multiplicand = absolute(t_multiplicand);
-	t_multiplier   = absolute(t_multiplier);
-
 	// add zeros to front to match the length of each other
-	pair<string,string> mul_num = strfront_fill0(t_multiplicand.data,t_multiplier.data);
-	string multiplicand = mul_num.first,
-		     multiplier = mul_num.second;
-	
+	pair<string,string> mul_num = strfront_fill0(absolute(t_multiplicand).data,absolute(t_multiplier).data);
+
 	// perform internal multiplication
-	string answer = internal_multiplication(multiplicand,multiplier);
-
 	if(!same_sign)
-		return "-"+answer;
-
-	return answer;
+		return "-"+internal_multiplication(mul_num.first,mul_num.second);
+	return internal_multiplication(mul_num.first,mul_num.second);
 }
 
 bignum bignum::operator/(const bignum& bnum_) const{

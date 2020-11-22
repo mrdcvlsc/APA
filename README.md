@@ -10,9 +10,17 @@ https://mrdcvlsc.github.io/bignum/
 ### TO USE :
 
   
-  **you can include all the files in the repo (.h .cpp) and include it manually in your project then compile it yourself**
+  **you can put all the files in the repo (.h .cpp) and include it manually in your project then compile it yourself**
+  	-put the bignum.h and all the .cpp files in your project
+  	-set #include "bignum.h" in your main file
+  	-then build and run
   
   **You can also use the "make" command to generate the static library "bignum.lib" then include/link it to your project along the header file bignum.h**
+  	-for complete beginners a "make" is a program in the MinGW folders
+  	-you can also install "make" yourself if you like its up to you
+  	-make sure that your "make" path is included in your environment variables path
+  	-the generated library "bignum.lib" when compiled will be the alternative for all the ".cpp" files
+  	 this is much faster to compile again with your main.cpp file
   
   **(optional) use the "make test" after make to run the test program if you want**
   
@@ -111,35 +119,34 @@ https://mrdcvlsc.github.io/bignum/
    
    ```
    
-   *Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
+*Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
    
    
-      ```c++
+   ```c++
+   
+   bignum variable1 = "72736273";
+   cout<<(variable1 <= "81283798237")<<endl; // allowed 
+   cout<<(-76323.6763f > variable1)<<endl;  // allowed
+
+   ```
       
-      bignum variable1 = "72736273";
-      cout<<(variable1 <= "81283798237")<<endl; // allowed 
-      cout<<(-76323.6763f > variable1)<<endl;  // allowed
-      
-      ```
-      
-   *WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
+*WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
    
    
-      ```c++
-      
-      cout<<("76327323" < "2837283"); // this is not allowed
-      
-      ```
+   ```c++
+   cout<<("76327323" < "2837283"); // this is not allowed
+   ```
       
 **The increment and decrement operators, postfix and pre-fix form is available.**
 
 
    ```c++
    
-   yourBigIntVar++;
-   ++yourBigIntVar;
-   yourBigIntVar--,
-   --yourBigIntVar;
+   bignum up=0, down="2";
+   up++;
+   ++up;
+   --down;
+   down--;
    
    ```     
 
@@ -183,15 +190,7 @@ https://mrdcvlsc.github.io/bignum/
 [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 
--------------------------------------------------------------------
-
-**-sample program - windows** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20windows)
-
-**-bignum library - windows** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20windows/bignumlib_win.lib)
-
-**-sample program - linux** [Folder](https://github.com/mrdcvlsc/bignum/tree/master/sample%20program%20linux)
-
-**-bignum library - linux** [Download](https://github.com/mrdcvlsc/bignum/blob/master/sample%20program%20linux/bignumlib_linux.a)
+---------------------------------------------------------
 
 
 ---------------------------------------------------------

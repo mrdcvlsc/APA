@@ -8,19 +8,17 @@ string bignum::internal_addition(string a, string b) const{
 	size_t adden_size = upperAdden.size();
 	size_t n = adden_size+1ul;
 	long *placeValueSums = new long[n];
-	placeValueSums[0] = 0l;									  // set the value of the first digit of the answer to zero
+	placeValueSums[0] = 0l;									
 
 	for(size_t i=0ul ;i<adden_size; ++i)
 		placeValueSums[i+1]=upperAdden[i]+lowerAdden[i];
-	//reverse(placeValueSums,placeValueSums+n);
-	// shift the index values from left to right that is greater the 9
-	// shifting is subtracting the current index form 10, and adding 1 to the next index
+
 	for(size_t i=n-1ul; i>0ul; --i)
 		if(placeValueSums[i]>999999999l){
 			placeValueSums[i]=placeValueSums[i]-1000000000l;
 			++placeValueSums[i-1];
 		}
-	//reverse(placeValueSums,placeValueSums+n);
+
 	string shiftedStringAnswer="", temp;
 	for(size_t i=0ul;i<n;++i){		
 		placeValueSums[i] = abs(placeValueSums[i]);
@@ -45,18 +43,12 @@ string bignum::internal_subtraction(string a, string b) const{
 	for(size_t i=0l; i<minuend_size; ++i)
 		placeValueDifference[i+1]=minuend[i]-subtrahend[i];
 
-	//reverse(placeValueDifference,placeValueDifference+n);
-
-	// shift the index values from left to right
 	for(size_t i=n-1l; i>0ul; --i)
 		if(placeValueDifference[i]<0l){
 			placeValueDifference[i]=placeValueDifference[i]+1000000000l;
 			--placeValueDifference[i-1];
 		}
 
-	//reverse(placeValueDifference,placeValueDifference+n);
-
-	// run absolute() value for all numbers (turn all to positives) then convert it back to string
 	string shiftedStringAnswer="", temp;
 	for(size_t i=0ul;i<n;++i){
 		placeValueDifference[i] = abs(placeValueDifference[i]);
@@ -103,10 +95,8 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 		finalAnswer= front_zeros+temp+finalAnswer;
 	}
 	
-	finalAnswer = removeFrontZeros(finalAnswer);
-
 	delete [] productValues;
-	return finalAnswer;
+	return removeFrontZeros(finalAnswer);
 }
 
 bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
@@ -125,7 +115,9 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
     long long partialCnt = 0;
   	bignum 	multiplier = "1", current;
 
-	for(size_t i=0; i<strDividen.size();++i){
+  	size_t str_dividen_size = strDividen.size();
+
+	for(size_t i=0; i<str_dividen_size; ++i){
 		partialDividen = partialDividen + strDividen[i];
 		current = partialDividen;
 
@@ -150,6 +142,5 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 		partialCnt = 0;
 		multiplier = "1";
 	}
-
 	return answer;
 }
