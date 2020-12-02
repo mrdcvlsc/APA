@@ -113,8 +113,8 @@ https://mrdcvlsc.github.io/bignum/
     cout<<"FACTORIAL OF A NUMBER : "<<endl;
 
     bignum limit = 1000;
-
-    bignum 	n = limit, fac = "1",
+    
+    bignum n = limit, fac = "1";
 
     for(bignum i=1; i<=limit; ++i)
     {
