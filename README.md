@@ -23,11 +23,11 @@ https://mrdcvlsc.github.io/bignum/
   
 **for those who know "make" / makefiles**
 
-  after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
+  1. after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
   
-  enter in the commad line "**make**" to generate "***bignum.lib***"
+  2. enter in the commad line "**make**" to generate "***bignum.lib***"
 
-  now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
+  3. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
   
 **(optional) test the generated library
 
