@@ -158,28 +158,17 @@ https://mrdcvlsc.github.io/bignum/
 
 ###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
 
-## IM HUNGRY
-
 ***The "bignum" user made data type provided by the library enables you to:***
 
-
-   1.) store very large numbers in a variable.
-   
+   1.) store very large numbers in a variable.   
    
    2.) treat it like a normal/primitive data type.
    
-   
    3.) perform arithmetic and other operations with it.
-   
    
    4.) IDK... you can do anything with it.
 
-
 [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
-
-
----------------------------------------------------------
-
 
 ---------------------------------------------------------
 
@@ -187,13 +176,13 @@ https://mrdcvlsc.github.io/bignum/
 
    **operations :**
    
-   [ ] POWER FUNCTION FOR TWO BIG INT VARIABLES
+   [ ] POWER FUNCTION
    
-   [ ] FACTORIAL FUNCTION FOR TWO BIG INT VARIABLES
+   [ ] FACTORIAL FUNCTION (I NEED A FAST ONE)
    
-   [ ] cNr FUNCTION 
+   [ ] cNr FUNCTION
    
-   [ ] pNr FUNTION 
+   [ ] pNr FUNTION
    
    [ ] XOR
    
@@ -220,7 +209,7 @@ https://mrdcvlsc.github.io/bignum/
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
-   *my 2nd year CS personal project*
+   *started in 2020, 2nd year CS personal project*
    
 # A C++ Class Library that you can use for computing big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
  
