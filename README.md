@@ -9,17 +9,17 @@ https://mrdcvlsc.github.io/bignum/
 
 ### TO USE :
 
-Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+**Download It Here** - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 **for beginners that uses IDE**
 
-  1.) put the bignum.h and all the .cpp files in your project folder
+  1.) put the ***bignum.h*** and all the ***.cpp*** files in your project folder
 
-  2.) set #include "bignum.h" in your main.cpp file
+  2.) set #include "***bignum.h***" in your ***main.cpp*** file 
   
   3.) add the files in your project
 
-  4.) then compile and run
+  4.) then compile and run 
   
 **for those who know "make" / makefiles**
 
@@ -33,7 +33,6 @@ Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bign
 
   use the "**make test**" command after **make** to run the test program if you want**
   
-
 -------------------------------------------------------------------
 
 ### bignum initialization (using double quote "" is more recommended)
