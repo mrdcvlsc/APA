@@ -4,14 +4,13 @@ https://mrdcvlsc.github.io/bignum/
 
 ### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 
-
--------------------------------------------------------------------
-
-### TO USE :
-
 -------------------------------------------------------------------
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+
+------------------------------------------------------------------
+
+### TO USE :
 
 -------------------------------------------------------------------
 
