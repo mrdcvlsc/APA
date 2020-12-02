@@ -59,7 +59,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM)
    
-   **[+] Addition (+)**
+   **[done] Addition (+)**
    
    ```c++   
    cout<< var1 + var3 <<endl;
@@ -67,7 +67,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< 7567634 + var1 <<endl;
    ```
    
-   **[+] Subtraction (-)**
+   **[done] Subtraction (-)**
    
    ```c++
    cout<< var2 - var1 <<endl;
@@ -75,7 +75,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< "656422" - var3 <<endl;
    ```
    
-   **[+] Multiplication (x)**
+   **[done] Multiplication (x)**
    
    ```c++
    cout<< var1 * var3 <<endl;
@@ -83,7 +83,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< "64652823.42" * var3 <<endl;
    ```
    
-   **[+] Division (/)**
+   **[optimize later] Division (/)**
    
    ```c++
    cout<< var2 / var6 <<endl;
@@ -91,7 +91,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< "652323" / var1 <<endl;
    ```
    
-   **[+] Modulo (%)**
+   **[optimize later] Modulo (%)**
    
    ```c++
    cout<< var2 % var1 <<endl
