@@ -34,13 +34,9 @@ https://mrdcvlsc.github.io/bignum/
   
   3. enter the commad "**make**" to generate "***bignum.lib***"
 
-  4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib
-    
-```shell
-g++ -o output.exe main.cpp -bignum.lib -O3
-```
+  4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib, see the **"FACTORIAL SAMPLE CODE** on this page below.
 
-   5. or put the bignum.lib and bignum.h in your project folder then add it to your project in IDE the build and run (for IDE users)
+  5. or put the bignum.lib and bignum.h in your project folder then add it to your project in IDE the build and run (for IDE users)
   
 **Test the generated library (optional)**
 
@@ -111,9 +107,11 @@ g++ -o output.exe main.cpp -bignum.lib -O3
    ```
 -------------------------------------------------------------------
 
-## HERE IS A SMALL EXAMPLE CODE THAT USES THE BIGNUM LIB
+## FACTORIAL SAMPLE CODE
 
   ```c++
+  // main.cpp
+  
   #include <iostream>
   #include "bignum.h"
 
@@ -139,6 +137,16 @@ g++ -o output.exe main.cpp -bignum.lib -O3
     return 0;
   }
   ```
+### FACTORIAL SAMPLE CODE: Folder Structure of the code above
+
+- Main_Folder
+  - main.cpp
+  - bignum.h
+  - bignum.lib
+
+### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bignum.lib -O3`
+
+-------------------------------------------------------------------
 
 ### CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
 
