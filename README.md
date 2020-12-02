@@ -29,9 +29,9 @@ https://mrdcvlsc.github.io/bignum/
 
   3. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
   
-**(optional) Test the generated library**
+**Test the generated library (optional)**
 
-  use the "**make test**" command after **make** to run the test program if you want**
+  -use the "**make test**" command after **make** to run the test program if you want**
   
 -------------------------------------------------------------------
 
