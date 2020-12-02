@@ -98,6 +98,35 @@ https://mrdcvlsc.github.io/bignum/
    ```
 --------------------------------------------------------------------------------------
 
+## HERE IS A SMALL EXAMPLE CODE THAT USES THE BIGNUM LIB
+
+  ```c++
+  #include <iostream>
+  #include "bignum.h"
+
+  using namespace std;
+
+  int main(){
+
+    // A very slow factorial
+
+    cout<<"FACTORIAL OF A NUMBER : "<<endl;
+
+    bignum limit = 1000;
+
+    bignum 	n = limit, fac = "1",
+
+    for(bignum i=1; i<=limit; ++i)
+    {
+      fac = fac*i;
+    }
+
+    cout<<"Answer to factorial of 1000 is : "<<fac<<endl;
+
+    return 0;
+  }
+  ```
+
 ### CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
 
    **IO : <<, >> operator for "cout" output and "cin" input is supported.**
