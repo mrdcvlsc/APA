@@ -36,10 +36,10 @@ https://mrdcvlsc.github.io/bignum/
 
   4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib
     
-    ```shell
-    //compilation in command line
-    g++ -o output.exe main.cpp -bignum.lib -O3
-    ```
+```shell
+g++ -o output.exe main.cpp -bignum.lib -O3
+```
+
    5. or put the bignum.lib and bignum.h in your project folder then add it to your project in IDE the build and run (for IDE users)
   
 **Test the generated library (optional)**
