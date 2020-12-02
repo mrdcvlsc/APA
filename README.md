@@ -202,7 +202,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ## ELEMENTRAY TECHNIQUES
 
-###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that long division and that addition, subtraction, multiplication where you put the numbers on top of each other, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations, and other advance concept.
+###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that division, addition, subtraction and multiplication where you put the numbers on top of each other to compute the answer, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations(idk), and other advance concept.
 
 ## IMPLEMENTATION
 
@@ -210,13 +210,13 @@ https://mrdcvlsc.github.io/bignum/
 
 ***The "bignum" user made data type provided by the library enables you to:***
 
-   1.) store very large numbers in a variable.   
+   1. store very large numbers in a variable.   
    
-   2.) treat it like a normal/primitive data type.
+   2. treat it like a normal/primitive data type.
    
-   3.) perform arithmetic and other operations with it.
+   3. perform arithmetic and other operations with it.
    
-   4.) IDK... you can do anything with it.
+   4. IDK... you can do anything with it.
 
 [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
