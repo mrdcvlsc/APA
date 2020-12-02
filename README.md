@@ -9,51 +9,51 @@ https://mrdcvlsc.github.io/bignum/
 
 ### TO USE :
 
+Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+
+**for beginners that uses IDE**
+
+  1.) put the bignum.h and all the .cpp files in your project folder
+
+  2.) set #include "bignum.h" in your main.cpp file
   
-  **you can put all the files in the repo (.h .cpp) and include it manually in your project then compile it yourself**
+  3.) add the files in your project
 
-  	-put the bignum.h and all the .cpp files in your project
-
-  	-set #include "bignum.h" in your main file
-
-  	-then build and run
+  4.) then compile and run
   
-  **You can also use the "make" command to generate the static library "bignum.lib" then include/link it to your project along the header file bignum.h**
+**for those who know "make" / makefiles**
 
-  	-for complete beginners a "make" is a program in the MinGW folders
-
-  	-you can also install "make" yourself if you like its up to you
-
-  	-make sure that your "make" path is included in your environment variables path
-
-  	-the generated library "bignum.lib" when compiled will be the alternative for all the ".cpp" files
-
-  	 this is much faster to compile again with your main.cpp file
+  after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
   
-  **(optional) use the "make test" after make to run the test program if you want**
+  enter in the commad line "**make**" to generate "***bignum.lib***"
+
+  now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
+  
+**(optional) test the generated library
+
+  use the "**make test**" command after **make** to run the test program if you want**
   
 
 -------------------------------------------------------------------
 
-### bignum initialization
+### bignum initialization (using double quote "" is more recommended)
     
    ```c++
    // use string or const char* for big values
-   bignum var1("671625.12121");
+   bignum var1 = "23234.78634";
    bignum var2 = "-67864254234324234";
    
    // you can also use constant integers up to 18.4e+18
    bignum var3  = -57232;
-   bignum var3l = 96725372372ll;
+   bignum var4 = 96725372372ll;
    
    // or float and doubles
    // for very long rational numbers use strings instead to avoid automatic rounding
-   bignum var4 = 7676434.2323234L; // long doubles
-   bignum var5 = -76734.57623f;
+   bignum var5 = 7676434.2323234L; // long doubles
+   bignum var6 = -76734.57623f;
    
    // copy bignum
-   bignum var6 = var1;
-   var2 = "78273872832";
+   bignum var7 = var1;
    var3 = var4 = 65652.762;
    ```
 -------------------------------------------------------------------
@@ -62,84 +62,68 @@ https://mrdcvlsc.github.io/bignum/
    
    **[+] Addition (+)**
    
+   ```c++   
+   cout<< var1 + var3 <<endl;
+   cout<< var3 + "56756.4645" <<endl;
+   cout<< 7567634 + var1 <<endl;
+   ```
+   
    **[+] Subtraction (-)**
+   
+   ```c++
+   cout<< var2 - var1 <<endl;
+   cout<< var4 - 74672323232ull <<endl;
+   cout<< "656422" - var3 <<endl;
+   ```
    
    **[+] Multiplication (x)**
    
+   ```c++
+   cout<< var1 * var3 <<endl;
+   cout<< var2 * 2234544.65 <<endl;
+   cout<< "64652823.42" * var3 <<endl;
+   ```
+   
    **[+] Division (/)**
+   
+   ```c++
+   cout<< var2 / var6 <<endl;
+   cout<< var3 / "521321" <<endl;
+   cout<< "652323" / var1 <<endl;
+   ```
    
    **[+] Modulo (%)**
    
-   ```c++  
-   // Intitialization
-   bignum var1 = "67576723489743243243";
-   bignum var2 = 73442423233ull;
-   bignum var3 = 6523.767;
-   bignum answer;
-   
-   // addition
-   cout<<var1+var3<<endl;
-   cout<<var3+"56756.4645"<<endl;
-   cout<<7567634+var1<<endl;
-   
-   // subtraction
-   cout<<var2-var1<<endl;
-   cout<<var1-74672323232ull<<endl;
-   cout<<"656422"-var3<<endl;
-   
-   // multiplication
-   cout<<var1*var3<<endl;
-   cout<<var2*2234544.65<<endl;
-   cout<<"64652823.42"*var3<<endl;
-   
-   // division
-   cout<<var2/var1<<endl;
-   cout<<var3/"521321"<<endl;
-   cout<<"652323"/var1<<endl;
-   
-   // mod
-   cout<<var2 % var1<<endl;
-   
+   ```c++
+   cout<< var2 % var1 <<endl
    ```
-
 --------------------------------------------------------------------------------------
-
-
 
 ### CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
 
    **IO : <<, >> operator for "cout" output and "cin" input is supported.**
    
-   
    ```c++
-   
-   cout<<abigintvariable<<endl; 
-   cin>>abigintvar;
-   
+   cout << abigintvariable << endl; 
+   cin >> abigintvar;
    ```
    
    **COMPARISON : <, >, <=, >=, ==, != (these comparison operators are also available) note: always enclose two bignum values when you are using comparison operators ex:**
    
    ```c++
-   
-   bignum bigIntVar1 = "2887382", bigIntVar2 = "2367232";
-   cout<<(bigIntVar1 != bigIntVar2); //allowed
-   
+   bignum large_number = "2887382", big_number = "2367232";
+   cout<< (large_number != bignum); //allowed
    ```
    
 *Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
    
-   
    ```c++
-   
    bignum variable1 = "72736273";
    cout<<(variable1 <= "81283798237")<<endl; // allowed 
    cout<<(-76323.6763f > variable1)<<endl;  // allowed
-
    ```
-      
-*WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
    
+*WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
    
    ```c++
    cout<<("76327323" < "2837283"); // this is not allowed
@@ -147,16 +131,13 @@ https://mrdcvlsc.github.io/bignum/
       
 **The increment and decrement operators, postfix and pre-fix form is available.**
 
-
-   ```c++
-   
-   bignum up=0, down="2";
-   up++;
-   ++up;
-   --down;
-   down--;
-   
-   ```     
+  ```c++
+  bignum up=0, down="2";
+  up++;
+  ++up;
+  --down;
+  down--;
+  ```     
 
 ### **SUPPORTS INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
