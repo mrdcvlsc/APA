@@ -16,23 +16,31 @@ https://mrdcvlsc.github.io/bignum/
 
 **For beginners that uses IDE**
 
-  1. put the ***bignum.h*** and all the ***.cpp*** files in your project folder
+  1. put the **bignum.h** and all the **.cpp** files that is inside the ***source*** folder to your project folder.
 
-  2. set #include "***bignum.h***" in your ***main.cpp*** file 
+  2. add **#include "bignum.h**" in your ***main.cpp*** file.
   
-  3. add the files in your project
+  3. select and add the files on your project in your IDE.
 
-  4. then compile and run 
+  4. then compile and run.
   
 -------------------------------------------------------------------
 
 **For those who know "make" / makefiles**
 
-  1. after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
+  1. open the **cmd** or ***command line terminal**.
   
-  2. enter in the commad line "**make**" to generate "***bignum.lib***"
+  2. change directory to this folder in the command line using "**cd your/directory/path/bignum**"
+  
+  3. enter the commad "**make**" to generate "***bignum.lib***"
 
-  3. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
+  4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib
+    
+    ```cmd
+    //compilation in command line
+    g++ -o output.exe main.cpp -bignum.lib -O3
+    ```
+   5. or put the bignum.lib and bignum.h in your project folder then add it to your project in IDE the build and run (for IDE users)
   
 **Test the generated library (optional)**
 
