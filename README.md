@@ -26,7 +26,7 @@ https://mrdcvlsc.github.io/bignum/
   
 -------------------------------------------------------------------
 
-**For those who know "make" / makefiles**
+**For those who know "make" / makefiles you can use the static library for faster compilation**
 
   1. open the **cmd** or ***command line terminal**.
   
