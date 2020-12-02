@@ -1,8 +1,8 @@
 # bignum
 https://mrdcvlsc.github.io/bignum/
-## A C++ library for computing big number
+## A C++ library that you can use for arbitrary-precision arithmetic, use to computing big number or very large numbers.
 
-### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 
 
 -------------------------------------------------------------------
