@@ -30,9 +30,9 @@ https://mrdcvlsc.github.io/bignum/
 
   1. open the **cmd** or ***command line terminal**.
   
-  2. change directory to this folder in the command line using "**cd your/directory/path/bignum**"
+  2. change directory to this folder in the command line using "```**cd your/directory/path/bignum**```"
   
-  3. enter the commad "**make**" to generate "***bignum.lib***"
+  3. enter the commad "```**make**```" to generate "***bignum.lib***"
 
   4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib, see the **"FACTORIAL SAMPLE CODE** on this page below.
 
@@ -40,7 +40,7 @@ https://mrdcvlsc.github.io/bignum/
   
 **Test the generated library (optional)**
 
-  -use the "**make test**" command after **make** to run the test program if you want**
+  -use the "```**make test**```" command after ```**make**``` to run the test program if you want**
   
 -------------------------------------------------------------------
 
