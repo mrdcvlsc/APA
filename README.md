@@ -11,7 +11,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
-**for beginners that uses IDE**
+**For beginners that uses IDE**
 
   1. put the ***bignum.h*** and all the ***.cpp*** files in your project folder
 
@@ -21,7 +21,7 @@ https://mrdcvlsc.github.io/bignum/
 
   4. then compile and run 
   
-**for those who know "make" / makefiles**
+**For those who know "make" / makefiles**
 
   1. after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
   
@@ -29,7 +29,7 @@ https://mrdcvlsc.github.io/bignum/
 
   3. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main file and link the static libray in bignum.lib
   
-**(optional) test the generated library
+**(optional) Test the generated library**
 
   use the "**make test**" command after **make** to run the test program if you want**
   
