@@ -18,7 +18,7 @@ https://mrdcvlsc.github.io/bignum/
 
   1. put the **bignum.h** and all the **.cpp** files that is inside the ***source*** folder to your project folder.
 
-  2. add **#include "bignum.h**" in your ***main.cpp*** file.
+  2. add ```**#include "bignum.h**"``` in your ***main.cpp*** file.
   
   3. select and add the files on your project in your IDE.
 
