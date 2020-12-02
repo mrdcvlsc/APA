@@ -9,7 +9,11 @@ https://mrdcvlsc.github.io/bignum/
 
 ### TO USE :
 
+-------------------------------------------------------------------
+
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+
+-------------------------------------------------------------------
 
 **For beginners that uses IDE**
 
@@ -21,6 +25,8 @@ https://mrdcvlsc.github.io/bignum/
 
   4. then compile and run 
   
+-------------------------------------------------------------------
+
 **For those who know "make" / makefiles**
 
   1. after you changed directory in this folder in the command line using "**cd directory/path/bignum**"
@@ -59,7 +65,6 @@ https://mrdcvlsc.github.io/bignum/
 
 ### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM)
 
--------------------------------------------------------------------
    **[done] Addition (+)**
    
    ```c++   
@@ -67,7 +72,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< var3 + "56756.4645" <<endl;
    cout<< 7567634 + var1 <<endl;
    ```
--------------------------------------------------------------------
+   
    **[done] Subtraction (-)**
    
    ```c++
@@ -75,7 +80,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< var4 - 74672323232ull <<endl;
    cout<< "656422" - var3 <<endl;
    ```
--------------------------------------------------------------------
+
    **[done] Multiplication (x)**
    
    ```c++
@@ -83,7 +88,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< var2 * 2234544.65 <<endl;
    cout<< "64652823.42" * var3 <<endl;
    ```
--------------------------------------------------------------------   
+   
    **[optimize later] Division (/)**
    
    ```c++
@@ -91,7 +96,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< var3 / "521321" <<endl;
    cout<< "652323" / var1 <<endl;
    ```
--------------------------------------------------------------------
+
    **[optimize later] Modulo (%)**
    
    ```c++
