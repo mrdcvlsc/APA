@@ -19,7 +19,7 @@ test: build_test
 	
 build_test:
 	@echo "compiling sample program"
-	@g++ -std=c++14 -o sample_calculator.exe -I ./include sample_program_calculator.cpp
+	@g++ -std=c++14 -o sample_calculator.exe -I ./include sample_program_calculator.cpp bignum.lib
 
 clean:
 	@echo "removing : bignum.lib and sample_calculator.exe"
