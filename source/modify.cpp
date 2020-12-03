@@ -1,10 +1,10 @@
 #include "bignum.h"
 
-long bignum::ones(long number, long tens) const{ // one_hundred_mil 
+long bignum::ones(long number, long tens) const{ 
 	return number-(tens*1000000000l);
 }
 
-long bignum::tens(long number) const{				// o
+long bignum::tens(long number) const{				
 	return (long)floor((double)number/1000000000.0);
 }
 
@@ -15,7 +15,6 @@ long bignum::one_thsd(long number, long tens) const{
 long bignum::ten_thsd(long number) const{
 	return (long)floor((double)number/10000.0);
 }
-
 
 pair<string,long long> bignum::removeDecimal(string bignumber) const{
 	
@@ -103,34 +102,14 @@ bignum bignum::absolute(const bignum& input) const{
 	return number;
 }
 
-vector<long> bignum::str_partby9to_long(string number) const{
+vector<long> bignum::str_part_by(int length, string number) const{
 	
 	vector<string> str_partition;
 	vector<long>   long_partition;
 
 	size_t num_size = number.size();
 	for(size_t i=0; i<num_size;++i){
-		if(i==0 or i%9==0)
-			str_partition.push_back("");
-		str_partition.back() = number[num_size-1-i] + str_partition.back();
-	}
-
-	size_t str_size = str_partition.size();
-	for(size_t i=0; i<str_size; ++i)	
-		long_partition.push_back(stol(str_partition[str_size-1-i]));
-
-	return long_partition;
-}
-
-
-vector<long> bignum::str_partby4to_long(string number) const{
-	
-	vector<string> str_partition;
-	vector<long>   long_partition;
-
-	size_t num_size = number.size();
-	for(size_t i=0; i<num_size;++i){
-		if(i==0 or i%4==0)
+		if(i==0 or i%length==0)
 			str_partition.push_back("");
 		str_partition.back() = number[num_size-1-i] + str_partition.back();
 	}
