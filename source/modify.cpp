@@ -56,12 +56,15 @@ string bignum::removeFrontZeros(string input) const {
 	bool stillzero = true;
 	
 	long long in_size = input.size();
-	for(long long i=0;i<in_size && stillzero;++i){
-		if(in_size>=2){
+	for(long long i=0;i<in_size && stillzero;++i) {
+		
+		if(in_size>=2) {
+			
 			if(input[i]=='0' && input[i+1]=='.')
 				break;
 		}
-		if(input[i]=='0' && in_size!=1){
+		if(input[i]=='0' && in_size!=1) {
+			
 			input.erase(i,1);
 			--in_size;
 			i=-1;
