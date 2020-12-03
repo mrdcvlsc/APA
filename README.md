@@ -4,6 +4,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 
+### SEE the branch "bignum-v2.2.1(stable)" if you are having problems/bugs with the latest version in master
 -------------------------------------------------------------------
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
