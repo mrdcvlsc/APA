@@ -43,23 +43,21 @@ public:
 	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
 	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
 	
-	long ones(long number, long tens)const;
-	long tens(long number) const;
-	long one_thsd(long number, long tens)const;
-	long ten_thsd(long number) const;
+	long one_thsd(long, long)const;
+	long ten_thsd(long) const;
 	
 	bool isPositive() const;
 	bool isFloat() const;
-	bool sameSign(const bignum& a, const bignum& b) const;
+	bool sameSign(const bignum&, const bignum&) const;
 	
 	//bignum functions
-	bignum absolute(const bignum& input) const;
+	bignum absolute(const bignum&) const;
 
     	//arithmetich operators
-	bignum operator+(const bignum& bigNum2) const;
-	bignum operator-(const bignum& bigNum2) const;
-	bignum operator*(const bignum& bigNum2) const;
-	bignum operator/(const bignum& bignum2) const;
+	bignum operator+(const bignum&) const;
+	bignum operator-(const bignum&) const;
+	bignum operator*(const bignum&) const;
+	bignum operator/(const bignum&) const;
 
 	template<class N>friend bignum operator+(N cn,const bignum& bn){bignum ra=ra.pa(cn,bn);return ra;}
 	template<class N>friend bignum operator-(N cn,const bignum& bn){bignum ra=ra.ps(cn,bn);return ra;}
@@ -77,19 +75,19 @@ public:
 	bignum operator++(); //pre
 	bignum operator--();
 	bignum operator++(int); //post
-    	bignum operator--(int);
+    bignum operator--(int);
 
 	//input and output stream operators
-	friend ostream& operator<<(ostream &out, const bignum &value);
-	friend istream& operator>>(istream &in, bignum &value);
+	friend ostream& operator<<(ostream&, const bignum&);
+	friend istream& operator>>(istream&, bignum&);
 
 	//comparison operators
-	bool operator< (const bignum& bintright) const;  // base method (use to create other comparison operators)
-	bool operator> (const bignum& bintright) const;
-	bool operator<=(const bignum& bintright) const;
-	bool operator>=(const bignum& bintright) const;
-	bool operator==(const bignum& bintright) const;  // base method (use to create other comparison operators)
-	bool operator!=(const bignum& bintright) const;
+	bool operator< (const bignum&) const;  // base method (use to create other comparison operators)
+	bool operator> (const bignum&) const;
+	bool operator<=(const bignum&) const;
+	bool operator>=(const bignum&) const;
+	bool operator==(const bignum&) const;  // base method (use to create other comparison operators)
+	bool operator!=(const bignum&) const;
 
 	template<class N>friend bool operator< (N cn, const bignum& bn){return bignum(cn)< bn;}
 	template<class N>friend bool operator> (N cn, const bignum& bn){return bignum(cn)> bn;}
@@ -99,15 +97,15 @@ public:
 	template<class N>friend bool operator!=(N cn, const bignum& bn){return bignum(cn)!=bn;}
 
 	/*********************************   ERROR HANDLING FUNCTIONS   *********************************/
-	void check(string &value);
-	void internal_division_check(const bignum& value_1, const bignum& value_2) const; // for development only will remove in future
+	void check(string&);
+	void internal_division_check(const bignum&, const bignum&) const; // for development only will remove in future
 
 	/**************************************  INTERNAL METHODS  **************************************/
 	//internal operation for arithmetic operators
-	string internal_addition(string a, string b) const;
-	string internal_subtraction(string a, string b) const;
-	string internal_multiplication(string upperNumber, string bottomNumber) const;
-	bignum internal_division(bignum& dividen, bignum& divisor) const;	// this method is dependent on the 3 basic arithmetic operators				
+	string internal_addition(string, string) const;
+	string internal_subtraction(string, string) const;
+	string internal_multiplication(string, string) const;
+	bignum internal_division(bignum&, bignum&) const;	// this method is dependent on the 3 basic arithmetic operators				
 };
 
 #endif
