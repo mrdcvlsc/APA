@@ -228,29 +228,26 @@ https://mrdcvlsc.github.io/bignum/
    
    [ ] POWER FUNCTION
    
-   [ ] FACTORIAL FUNCTION (I NEED A FAST ONE)
+   [ ] FACTORIAL FUNCTION (I NEED A FAST ONE - prime swing or multithreading)
    
    [ ] cNr FUNCTION
    
    [ ] pNr FUNTION
    
-   [ ] XOR
+   [ ] bitwise operators
    
-   [ ] cube root / square root / root
+   [ ] cube root / square root / root (fast one)
     
 ---------------------------------------------------------
 
 
 ### PLANNED IMPROVEMENTS
     
-   [ ] ***REDUCE CODE CLUTTER***
+   ***KEEP REDUCING CODE CLUTTER***
    
-   [ ] ***IMPLEMENT FASTER APPROACHES***
-    
-   [+] maximize int array values when performing arithmetic operations for internal methods of multiplication, from one digit to possibly 4-8?
+   ***IMPLEMENT FASTER APPROACHES***
     
 ---------------------------------------------------------
-
 
 ## WHY I CREATED THIS?
   
