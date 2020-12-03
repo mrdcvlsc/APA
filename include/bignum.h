@@ -26,21 +26,19 @@ public:
 	}
 
 	//partition/slice function
-	vector<long> str_partby9to_long(string number)const;
-	vector<long> str_partby4to_long(string number)const;
-	
-	pair<string,string> dec_slice(string float_number)const;
+	vector<long> str_part_by(int,string) const;
+	pair<string,string> dec_slice(string)const;
 
-	pair<string,string> strfront_fill0(string a, string b)const;
-	pair<string,string> strback_fill0(string a, string b) const;
+	pair<string,string> strfront_fill0(string,string)const;
+	pair<string,string> strback_fill0(string,string) const;
 	
-	pair<string,long long> removeDecimal(string bignumber)const;
+	pair<string,long long> removeDecimal(string)const;
 	
-	string removeFrontZeros(string input) const;
-	string removeRearZeros(string input)  const;
+	string removeFrontZeros(string) const;
+	string removeRearZeros(string)  const;
 	
-	string putDecimal(const string& bignumber, int index) const;
-	int    getDecimalPlaces(string input) const;
+	string putDecimal(const string&,int) const;
+	int    getDecimalPlaces(string) const;
 	
 	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
 	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
@@ -57,7 +55,7 @@ public:
 	//bignum functions
 	bignum absolute(const bignum& input) const;
 
-    //arithmetich operators
+    	//arithmetich operators
 	bignum operator+(const bignum& bigNum2) const;
 	bignum operator-(const bignum& bigNum2) const;
 	bignum operator*(const bignum& bigNum2) const;

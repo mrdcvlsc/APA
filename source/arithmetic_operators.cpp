@@ -22,8 +22,6 @@ bignum bignum::operator--(int){
     return *this+"1";
 } 
 
-// --------------------------------------------------------------------------
-
 // -------------------- Arithmetic Operators --------------------
 
 bignum bignum::operator+(const bignum& right_bn) const{
@@ -271,10 +269,10 @@ bignum bignum::operator%(const bignum& divisor) const{
 	       strDividen = dividen.data,
 	       strDivisor = divisor.data;
 
-    long long partialCnt = 0;
+    	long long partialCnt = 0;
    	bignum multiplier = "1", current;
 
-    size_t str_div_size = strDividen.size();
+    	size_t str_div_size = strDividen.size();
 	for(size_t i=0; i<str_div_size; ++i){
 		partialDividen = partialDividen + strDividen[i];
 		current = partialDividen;
