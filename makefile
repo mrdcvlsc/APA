@@ -22,5 +22,5 @@ build_test:
 	@g++ -std=c++14 -o sample_calculator.exe -I ./include sample_program_calculator.cpp bignum.lib
 
 clean:
-	@echo "removing : bignum.lib and sample_calculator.exe"
-	@rm *.o bignum.lib sample_calculator.exe
+	@echo "removed : bignum.lib and sample_calculator.exe"
+	@rm bignum.lib sample_calculator.exe
