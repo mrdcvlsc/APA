@@ -68,9 +68,10 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	// set all values of product to zero
 	size_t answerMaxLen = multiplicand.size()+multiplier.size(); 
 	long int *productValues = new long int[answerMaxLen];
-    for(size_t i=0ul; i<answerMaxLen; ++i){
-    	productValues[i] = 0l;
-    }
+	
+	for(size_t i=0ul; i<answerMaxLen; ++i){
+    		productValues[i] = 0l;
+    	}
 
 	// add the answer of the multiplicand and multiplier to the answer array
 	for(size_t i=0ul; i<multiplier.size(); ++i){
@@ -112,7 +113,7 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 		strDividen = dividen.data,
 		strDivisor = divisor.data;
 
-    long long partialCnt = 0;
+    	long long partialCnt = 0;
   	bignum 	multiplier = "1", current;
 
   	size_t str_dividen_size = strDividen.size();
