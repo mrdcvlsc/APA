@@ -2,32 +2,34 @@
 
 string bignum::internal_addition(string a, string b) const{
 	
-	vector<long> upperAdden = str_part_by(9,a);
-	vector<long> lowerAdden = str_part_by(9,b);
+	vector<long> upper_adden = str_part_by(9,a);
+	vector<long> lower_adden = str_part_by(9,b);
 
-	size_t adden_size = upperAdden.size();
+	size_t adden_size = upper_adden.size();
 	size_t n = adden_size+1ul;
-	long *placeValueSums = new long[n];
-	placeValueSums[0] = 0l;									
+	long *index_sums = new long[n];
+	index_sums[0] = 0l;									
 
 	for(size_t i=0ul ;i<adden_size; ++i)
-		placeValueSums[i+1]=upperAdden[i]+lowerAdden[i];
+		index_sums[i+1]=upper_adden[i]+lower_adden[i];
 
 	for(size_t i=n-1ul; i>0ul; --i)
-		if(placeValueSums[i]>999999999l){
-			placeValueSums[i]=placeValueSums[i]-1000000000l;
-			++placeValueSums[i-1];
+		if(index_sums[i]>999999999l){
+			index_sums[i]=index_sums[i]-1000000000l;
+			++index_sums[i-1];
 		}
 
-	string shiftedStringAnswer="", temp;
-	for(size_t i=0ul;i<n;++i){		
-		placeValueSums[i] = abs(placeValueSums[i]);
-		temp = to_string(placeValueSums[i]);
-		string front_zeros(9-temp.size(),'0');
-		shiftedStringAnswer+=(front_zeros+temp);
-	}	
-	delete [] placeValueSums;
-	return removeFrontZeros(shiftedStringAnswer);
+	string carried_answer="", current_index;
+	for(size_t i=0ul;i<n;++i) {
+
+		index_sums[i] = abs(index_sums[i]);
+		current_index = to_string(index_sums[i]);
+		string front_zeros(9-current_index.size(),'0');
+		carried_answer+=(front_zeros+current_index);
+	}
+	
+	delete [] index_sums;
+	return removeFrontZeros(carried_answer);
 }
 
 string bignum::internal_subtraction(string a, string b) const{
@@ -37,27 +39,29 @@ string bignum::internal_subtraction(string a, string b) const{
 
 	size_t minuend_size = minuend.size();
 	size_t n = minuend_size+1ul;
-	long *placeValueDifference = new long[n];
-	placeValueDifference[0] = 0l; 
+	long *index_diff = new long[n];
+	index_diff[0] = 0l; 
 
 	for(size_t i=0l; i<minuend_size; ++i)
-		placeValueDifference[i+1]=minuend[i]-subtrahend[i];
+		index_diff[i+1]=minuend[i]-subtrahend[i];
 
 	for(size_t i=n-1l; i>0ul; --i)
-		if(placeValueDifference[i]<0l){
-			placeValueDifference[i]=placeValueDifference[i]+1000000000l;
-			--placeValueDifference[i-1];
+		if(index_diff[i]<0l) {
+
+			index_diff[i]=index_diff[i]+1000000000l;
+			--index_diff[i-1];
 		}
 
-	string shiftedStringAnswer="", temp;
-	for(size_t i=0ul;i<n;++i){
-		placeValueDifference[i] = abs(placeValueDifference[i]);
-		temp = to_string(placeValueDifference[i]);
-		string front_zeros(9-temp.size(),'0');
-		shiftedStringAnswer+=(front_zeros+temp);
+	string carried_answer="", current_index;
+	for(size_t i=0ul;i<n;++i) {
+
+		index_diff[i] = abs(index_diff[i]);
+		current_index = to_string(index_diff[i]);
+		string front_zeros(9-current_index.size(),'0');
+		carried_answer+=(front_zeros+current_index);
 	}
-	delete [] placeValueDifference;
-	return removeFrontZeros(shiftedStringAnswer);
+	delete [] index_diff;
+	return removeFrontZeros(carried_answer);
 }
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber) const{
@@ -66,38 +70,43 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	vector<long> multiplier   = str_part_by(4,bottomNumber);
 
 	// set all values of product to zero
-	size_t answerMaxLen = multiplicand.size()+multiplier.size(); 
-	long int *productValues = new long int[answerMaxLen];
+	size_t product_length = multiplicand.size()+multiplier.size(); 
+	long int *index_product = new long int[product_length];
 	
-	for(size_t i=0ul; i<answerMaxLen; ++i){
-    		productValues[i] = 0l;
-    	}
+	for(size_t i=0ul; i<product_length; ++i) {
+
+    		index_product[i] = 0l;
+    }
 
 	// add the answer of the multiplicand and multiplier to the answer array
 	for(size_t i=0ul; i<multiplier.size(); ++i){
-		for(size_t j=0ul;j<multiplicand.size();++j){
-			productValues[answerMaxLen-1-i-j] = productValues[answerMaxLen-1-i-j]+(multiplicand[multiplicand.size()-1-j]*multiplier[multiplier.size()-1-i]);
+		for(size_t j=0ul;j<multiplicand.size();++j) {
+
+			index_product[product_length-1-i-j] = index_product[product_length-1-i-j]+(multiplicand[multiplicand.size()-1-j]*multiplier[multiplier.size()-1-i]);
 		}
 	}
 
-	for(size_t i=0ul;i<answerMaxLen;++i){
-		if(productValues[answerMaxLen-1-i]>=10000l){
-			long ten = ten_thsd(productValues[answerMaxLen-1-i]);
-			long one = one_thsd(productValues[answerMaxLen-1-i],ten);
-			productValues[answerMaxLen-1-i]=one;
-			productValues[answerMaxLen-1-i-1]=productValues[answerMaxLen-1-i-1]+ten;
+	for(size_t i=0ul;i<product_length;++i) {
+
+		if(index_product[product_length-1-i]>=10000l) {
+
+			long ten = ten_thsd(index_product[product_length-1-i]);
+			long one = one_thsd(index_product[product_length-1-i],ten);
+			index_product[product_length-1-i]=one;
+			index_product[product_length-1-i-1]=index_product[product_length-1-i-1]+ten;
 		}
 	}
 
-	string finalAnswer, temp;
-	for(size_t i=0;i<answerMaxLen;++i){
-		temp = to_string(productValues[answerMaxLen-1-i]);
-		string front_zeros(4-temp.size(),'0');
-		finalAnswer= front_zeros+temp+finalAnswer;
+	string carried_answer, current_index;
+	for(size_t i=0;i<product_length;++i) {
+
+		current_index = to_string(index_product[product_length-1-i]);
+		string front_zeros(4-current_index.size(),'0');
+		carried_answer= front_zeros+current_index+carried_answer;
 	}
 	
-	delete [] productValues;
-	return removeFrontZeros(finalAnswer);
+	delete [] index_product;
+	return removeFrontZeros(carried_answer);
 }
 
 bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
