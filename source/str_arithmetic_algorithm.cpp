@@ -2,8 +2,8 @@
 
 string bignum::internal_addition(string a, string b) const{
 	
-	vector<long> upperAdden = str_partby9to_long(a);
-	vector<long> lowerAdden = str_partby9to_long(b);
+	vector<long> upperAdden = str_part_by(9,a);
+	vector<long> lowerAdden = str_part_by(9,b);
 
 	size_t adden_size = upperAdden.size();
 	size_t n = adden_size+1ul;
@@ -32,8 +32,8 @@ string bignum::internal_addition(string a, string b) const{
 
 string bignum::internal_subtraction(string a, string b) const{
 
-	vector<long>    minuend = str_partby9to_long(a);
-	vector<long> subtrahend = str_partby9to_long(b);
+	vector<long>    minuend = str_part_by(9,a);
+	vector<long> subtrahend = str_part_by(9,b);
 
 	size_t minuend_size = minuend.size();
 	size_t n = minuend_size+1ul;
@@ -62,8 +62,8 @@ string bignum::internal_subtraction(string a, string b) const{
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber) const{
 	
-	vector<long> multiplicand = str_partby4to_long(upperNumber);
-	vector<long> multiplier   = str_partby4to_long(bottomNumber);
+	vector<long> multiplicand = str_part_by(4,upperNumber);
+	vector<long> multiplier   = str_part_by(4,bottomNumber);
 
 	// set all values of product to zero
 	size_t answerMaxLen = multiplicand.size()+multiplier.size(); 
