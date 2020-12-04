@@ -106,10 +106,8 @@ bignum bignum::operator-(const bignum& right_bn) const{
 		return removeRearZeros(removeFrontZeros(answer));
 	}
 	
-	// apply rules of subtraction
 	bool same_sign       = sameSign(t_minuend,t_subtrahend);
 	bool pos_minuend     = t_minuend.isPositive();
-	//bool pos_subtrahend  = t_subtrahend.isPositive();
 
 	bool minuendIsMax = t_minuend>t_subtrahend;
 
@@ -176,13 +174,9 @@ bignum bignum::operator*(const bignum& right_bn) const{
 		return "-"+finalAnswer;
 	}
 
-	// apply rules of multiplication
 	bool same_sign = sameSign(t_multiplicand,t_multiplier);
-
-	// add zeros to front to match the length of each other
 	pair<string,string> mul_num = strfront_fill0(absolute(t_multiplicand).data,absolute(t_multiplier).data);
 
-	// perform internal multiplication
 	if(!same_sign)
 		return "-"+internal_multiplication(mul_num.first,mul_num.second);
 	return internal_multiplication(mul_num.first,mul_num.second);
@@ -193,13 +187,9 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	bignum tempDividen = *this,
 	       tempDivisor = bnum_.data;
 
-	if(tempDividen == "0")
-		return bignum("0");
+	if(tempDividen == "0") return bignum("0");
 	
-	// check if they have different sign +-
-	bool differentSign = false;
-	if((tempDividen<"0" && tempDivisor>"0") || (tempDividen>"0" && tempDivisor<"0"))
-		differentSign = true;
+	bool differentSign = !sameSign(tempDividen,tempDivisor);
 
 	// make the negatives positive
 	tempDividen = absolute(tempDividen);
@@ -248,9 +238,6 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	else               return "-"+answer.data;
 }
 
-// --------------------------------------------------------------
-
-
 // ------------------- SPECIAL OPERATORS -------------------------
 
 bignum bignum::operator%(const bignum& divisor) const{
@@ -265,14 +252,14 @@ bignum bignum::operator%(const bignum& divisor) const{
 	if(dividen<divisor)  return dividen;
 	if(dividen==divisor) return bignum("0");
 	
-	string answer = "", partialDividen = "",
-	       strDividen = dividen.data,
-	       strDivisor = divisor.data;
-
-    	long long partialCnt = 0;
+	string answer = "", partialDividen = "";
+	string strDividen = dividen.data;
+	string strDivisor = divisor.data;
+	
+	long long partialCnt = 0;
    	bignum multiplier = "1", current;
-
-    	size_t str_div_size = strDividen.size();
+	
+	size_t str_div_size = strDividen.size();
 	for(size_t i=0; i<str_div_size; ++i){
 		partialDividen = partialDividen + strDividen[i];
 		current = partialDividen;
@@ -294,7 +281,6 @@ bignum bignum::operator%(const bignum& divisor) const{
 
 		answer = answer + to_string(partialCnt);
 
-		// back to default values
 		partialCnt = 0;
 		multiplier = "1";
 	}
