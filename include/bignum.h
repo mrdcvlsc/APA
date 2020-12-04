@@ -38,7 +38,6 @@ public:
 	string removeRearZeros(string)  const;
 	
 	string putDecimal(const string&,int) const;
-	int    getDecimalPlaces(string) const;
 	
 	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
 	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
@@ -75,7 +74,7 @@ public:
 	bignum operator++(); //pre
 	bignum operator--();
 	bignum operator++(int); //post
-    bignum operator--(int);
+	bignum operator--(int);
 
 	//input and output stream operators
 	friend ostream& operator<<(ostream&, const bignum&);
