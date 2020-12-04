@@ -36,19 +36,7 @@ string bignum::putDecimal(const string& bignumber, int index) const {
 
 	string tempFrontZero(index,'0');
 	string answer = tempFrontZero+bignumber;
-	answer.insert((answer.size()-index),".");
-	
-	return answer;
-}
-
-int bignum::getDecimalPlaces(string input) const {
-
-	size_t in_size = input.size();
-	size_t i = in_size-1;
-	while(input[i]!='.')
-		--i;
-	
-	return in_size-i-1;
+	return answer.insert((answer.size()-index),".");
 }
 
 string bignum::removeFrontZeros(string input) const {
@@ -142,6 +130,7 @@ pair<string,string> bignum::strfront_fill0(string a, string b) const {
 			num2[0]='-';
 		}
 		else{
+
 			string pad(length1-length2,'0');
 			num2=pad+num2;
 		}
@@ -156,6 +145,7 @@ pair<string,string> bignum::strfront_fill0(string a, string b) const {
 			num1[0]='-';
 		}
 		else{
+
 			string pad(length2-length1,'0');
 			num1=pad+num1;
 		}
@@ -181,6 +171,7 @@ pair<string,string> bignum::strback_fill0(string a, string b) const {
 			num2[0]='-';
 		}
 		else{
+
 			string pad(length1-length2,'0');
 			num2=num2+pad;
 		}
@@ -195,6 +186,7 @@ pair<string,string> bignum::strback_fill0(string a, string b) const {
 			num1[0]='-';
 		}
 		else{
+
 			string pad(length2-length1,'0');
 			num1=num1+pad;
 		}
@@ -204,9 +196,9 @@ pair<string,string> bignum::strback_fill0(string a, string b) const {
 
 pair<string,string> bignum::dec_slice(string float_number) const {
 	
-	size_t point = 0,
-	       float_size_num = float_number.size();
-	
+	size_t point = 0;
+	size_t float_size_num = float_number.size();
+
 	for(size_t i=0; i<float_size_num; ++i) {
 		
 		if(float_number[i]=='.') {
