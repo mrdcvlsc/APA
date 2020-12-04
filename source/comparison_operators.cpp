@@ -93,4 +93,3 @@ bool bignum::operator>=(const bignum& bnum_) const{
 		return true;
 	return *this>bnum_;
 }
-
