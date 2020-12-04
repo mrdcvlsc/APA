@@ -111,18 +111,15 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 
 bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 
-	internal_division_check(dividen,divisor); // error checker
-
 	if(dividen==divisor) return bignum("1");
 	if(dividen=="0")     return bignum("0");
 	if(divisor=="1")     return dividen;
 
+	string answer	  = "", partialDividen = "";
+	string strDividen = dividen.data;
+	string strDivisor = divisor.data;
 	
-	string 	answer	   = "", partialDividen = "",
-		strDividen = dividen.data,
-		strDivisor = divisor.data;
-
-    	long long partialCnt = 0;
+	long long partialCnt = 0;
   	bignum 	multiplier = "1", current;
 
   	size_t str_dividen_size = strDividen.size();
@@ -148,7 +145,6 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 
 		answer = answer + to_string(partialCnt);
 
-		// back to default values
 		partialCnt = 0;
 		multiplier = "1";
 	}
