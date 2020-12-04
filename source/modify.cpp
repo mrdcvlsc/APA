@@ -1,11 +1,11 @@
 #include "bignum.h"
 
-long bignum::one_thsd(long number, long tens) const {
-	return number-(tens*10000l);
+long long int bignum::one_thsd(long long int number, long long int tens) const {
+	return number-(tens*1000000000ll);
 }
 
-long bignum::ten_thsd(long number) const {
-	return (long)floor((double)number/10000.0);
+long long int bignum::ten_thsd(long long int number) const {
+	return (long long int)floor((double)number/1000000000.0);
 }
 
 pair<string,long long> bignum::removeDecimal(string bignumber) const {
