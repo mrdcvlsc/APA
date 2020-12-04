@@ -92,10 +92,10 @@ bignum bignum::absolute(const bignum& input) const {
 	return number;
 }
 
-vector<long> bignum::str_part_by(int length, string number) const {
+vector<long long int> bignum::str_part_by(long long int length, string number) const {
 	
 	vector<string> str_partition;
-	vector<long>   long_partition;
+	vector<long long int>   long_partition;
 
 	size_t num_size = number.size();
 	for(size_t i=0; i<num_size;++i) {

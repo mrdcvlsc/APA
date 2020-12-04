@@ -71,11 +71,11 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 
 	// set all values of product to zero
 	size_t product_length = multiplicand.size()+multiplier.size(); 
-	long long int int *index_product = new long long int int[product_length];
+	long long int *index_product = new long long int[product_length];
 	
-	for(size_t i=0ul; i<product_length; ++i){
+	for(size_t i=0ll; i<product_length; ++i){
 
-    		index_product[i] = 0l;
+    		index_product[i] = 0ll;
     }
 
 	// add the answer of the multiplicand and multiplier to the answer array
@@ -88,7 +88,7 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 
 	for(size_t i=0ul;i<product_length;++i) {
 
-		if(index_product[product_length-1-i]>=1000000000l) {
+		if(index_product[product_length-1-i]>=1000000000ll) {
 
 			long long int ten = ten_thsd(index_product[product_length-1-i]);
 			long long int one = one_thsd(index_product[product_length-1-i],ten);
