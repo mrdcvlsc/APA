@@ -107,7 +107,7 @@ vector<long long int> bignum::str_part_by(long long int length, string number) c
 
 	size_t str_size = str_partition.size();
 	for(size_t i=0; i<str_size; ++i)	
-		long_partition.push_back(stol(str_partition[str_size-1-i]));
+		long_partition.push_back(stoll(str_partition[str_size-1-i]));
 	
 	return long_partition;
 }
