@@ -1,11 +1,11 @@
 #include "bignum.h"
 
-long bignum::one_thsd(long number, long tens) const {
-	return number-(tens*10000l);
+long long int bignum::one_thsd(long long int number, long long int tens) const {
+	return number-(tens*1000000000ll);
 }
 
-long bignum::ten_thsd(long number) const {
-	return (long)floor((double)number/10000.0);
+long long int bignum::ten_thsd(long long int number) const {
+	return (long long int)floor((double)number/1000000000.0);
 }
 
 pair<string,long long> bignum::removeDecimal(string bignumber) const {
@@ -41,43 +41,51 @@ string bignum::putDecimal(const string& bignumber, int index) const {
 
 string bignum::removeFrontZeros(string input) const {
 	
-	bool stillzero = true;
-	
 	long long in_size = input.size();
-	for(long long i=0;i<in_size && stillzero;++i) {
+	size_t substr_to_remove = 0;
+	bool negative = false;
+	if(input[0]=='-') negative = true;
+
+	for(long long i=0; i<in_size; ++i) {
 		
 		if(in_size>=2) {
 			
 			if(input[i]=='0' && input[i+1]=='.')
 				break;
 		}
+
 		if(input[i]=='0' && in_size!=1) {
 			
-			input.erase(i,1);
-			--in_size;
-			i=-1;
+			++substr_to_remove;
 			continue;
 		}
 		if(input[i]>='1' && input[i]<='9')
-			stillzero = false;
+			break;
 	}
+	
+	if(substr_to_remove and negative)
+		input.erase(1,substr_to_remove);
+	else if(substr_to_remove and !negative)
+		input.erase(0,substr_to_remove);
 	return input;
 }
 
 string bignum::removeRearZeros(string input) const {
 	
 	size_t in_size = input.size();
-	while(input[in_size-1]=='0' or input[in_size-1]=='.') {
-		
-		if(input[in_size-1]=='.') {
-			
-			input.erase(in_size-1);
-			--in_size;
-			break;
+	size_t start_erase_index=0;
+
+	for(size_t i=in_size-1; i>=0; --i){
+		if(input[i]=='0' or input[i]=='.'){
+			start_erase_index=i;
+			if(input[i]=='.')
+				break;
 		}
-		input.erase(in_size-1);
-		--in_size;
+		else
+			break;
 	}
+	if(start_erase_index)
+		input.erase(input.begin()+start_erase_index,input.end());
 	return input;
 }
 
@@ -92,23 +100,27 @@ bignum bignum::absolute(const bignum& input) const {
 	return number;
 }
 
-vector<long> bignum::str_part_by(int length, string number) const {
+vector<long long int> bignum::str_part_by(long long int length, string number) const {
 	
 	vector<string> str_partition;
-	vector<long>   long_partition;
+	vector<long long int>   long_partition;
 
+	string str_temp(length,'0');
 	size_t num_size = number.size();
-	for(size_t i=0; i<num_size;++i) {
+	for(size_t i=0, str_i; i<num_size;++i) {
 		
-		if(i==0 or i%length==0)
-			str_partition.push_back("");
-		str_partition.back() = number[num_size-1-i] + str_partition.back();
+		if(i==0 or i%length==0){
+			str_i = length;
+			str_partition.push_back(str_temp);
+		}
+		str_partition.back()[str_i-1] = number[num_size-1-i];
+		--str_i;
 	}
 
 	size_t str_size = str_partition.size();
 	for(size_t i=0; i<str_size; ++i)	
-		long_partition.push_back(stol(str_partition[str_size-1-i]));
-	
+		long_partition.push_back(stoll(str_partition[str_size-1-i]));
+
 	return long_partition;
 }
 

@@ -26,7 +26,7 @@ public:
 	}
 
 	//partition/slice function
-	vector<long> str_part_by(int,string) const;
+	vector<long long int> str_part_by(long long int,string) const;
 	pair<string,string> dec_slice(string)const;
 
 	pair<string,string> strfront_fill0(string,string)const;
@@ -42,8 +42,8 @@ public:
 	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
 	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
 	
-	long one_thsd(long, long)const;
-	long ten_thsd(long) const;
+	long long int one_thsd(long long int, long long int)const;
+	long long int ten_thsd(long long int) const;
 	
 	bool isPositive() const;
 	bool isFloat() const;

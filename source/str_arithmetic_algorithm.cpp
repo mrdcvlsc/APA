@@ -2,29 +2,29 @@
 
 string bignum::internal_addition(string a, string b) const{
 	
-	vector<long> upper_adden = str_part_by(9,a);
-	vector<long> lower_adden = str_part_by(9,b);
+	vector<long long int> upper_adden = str_part_by(18,a);
+	vector<long long int> lower_adden = str_part_by(18,b);
 
 	size_t adden_size = upper_adden.size();
-	size_t n = adden_size+1ul;
-	long *index_sums = new long[n];
-	index_sums[0] = 0l;									
+	size_t n = adden_size+1ll;
+	long long int *index_sums = new long long int[n];
+	index_sums[0] = 0ll;									
 
-	for(size_t i=0ul ;i<adden_size; ++i)
+	for(size_t i=0ll ;i<adden_size; ++i)
 		index_sums[i+1]=upper_adden[i]+lower_adden[i];
 
-	for(size_t i=n-1ul; i>0ul; --i)
-		if(index_sums[i]>999999999l){
-			index_sums[i]=index_sums[i]-1000000000l;
+	for(size_t i=n-1ll; i>0ll; --i)
+		if(index_sums[i]>999999999999999999ll){
+			index_sums[i]=index_sums[i]-1000000000000000000ll;
 			++index_sums[i-1];
 		}
 
 	string carried_answer="", current_index;
-	for(size_t i=0ul;i<n;++i) {
+	for(size_t i=0ll;i<n;++i) {
 
 		index_sums[i] = abs(index_sums[i]);
 		current_index = to_string(index_sums[i]);
-		string front_zeros(9-current_index.size(),'0');
+		string front_zeros(18-current_index.size(),'0');
 		carried_answer+=(front_zeros+current_index);
 	}
 	
@@ -34,30 +34,30 @@ string bignum::internal_addition(string a, string b) const{
 
 string bignum::internal_subtraction(string a, string b) const{
 
-	vector<long>    minuend = str_part_by(9,a);
-	vector<long> subtrahend = str_part_by(9,b);
+	vector<long long int>    minuend = str_part_by(18,a);
+	vector<long long int> subtrahend = str_part_by(18,b);
 
 	size_t minuend_size = minuend.size();
-	size_t n = minuend_size+1ul;
-	long *index_diff = new long[n];
-	index_diff[0] = 0l; 
+	size_t n = minuend_size+1ll;
+	long long int *index_diff = new long long int[n];
+	index_diff[0] = 0ll; 
 
-	for(size_t i=0l; i<minuend_size; ++i)
+	for(size_t i=0ll; i<minuend_size; ++i)
 		index_diff[i+1]=minuend[i]-subtrahend[i];
 
-	for(size_t i=n-1l; i>0ul; --i)
-		if(index_diff[i]<0l) {
+	for(size_t i=n-1ll; i>0ll; --i)
+		if(index_diff[i]<0ll) {
 
-			index_diff[i]=index_diff[i]+1000000000l;
+			index_diff[i]=index_diff[i]+1000000000000000000ll;
 			--index_diff[i-1];
 		}
 
 	string carried_answer="", current_index;
-	for(size_t i=0ul;i<n;++i) {
+	for(size_t i=0ll;i<n;++i) {
 
 		index_diff[i] = abs(index_diff[i]);
 		current_index = to_string(index_diff[i]);
-		string front_zeros(9-current_index.size(),'0');
+		string front_zeros(18-current_index.size(),'0');
 		carried_answer+=(front_zeros+current_index);
 	}
 	delete [] index_diff;
@@ -66,16 +66,16 @@ string bignum::internal_subtraction(string a, string b) const{
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber) const{
 	
-	vector<long> multiplicand = str_part_by(4,upperNumber);
-	vector<long> multiplier   = str_part_by(4,bottomNumber);
+	vector<long long int> multiplicand = str_part_by(9,upperNumber);
+	vector<long long int> multiplier   = str_part_by(9,bottomNumber);
 
 	// set all values of product to zero
 	size_t product_length = multiplicand.size()+multiplier.size(); 
-	long int *index_product = new long int[product_length];
+	long long int *index_product = new long long int[product_length];
 	
-	for(size_t i=0ul; i<product_length; ++i) {
+	for(size_t i=0ll; i<product_length; ++i){
 
-    		index_product[i] = 0l;
+    		index_product[i] = 0ll;
     }
 
 	// add the answer of the multiplicand and multiplier to the answer array
@@ -88,10 +88,10 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 
 	for(size_t i=0ul;i<product_length;++i) {
 
-		if(index_product[product_length-1-i]>=10000l) {
+		if(index_product[product_length-1-i]>=1000000000ll) {
 
-			long ten = ten_thsd(index_product[product_length-1-i]);
-			long one = one_thsd(index_product[product_length-1-i],ten);
+			long long int ten = ten_thsd(index_product[product_length-1-i]);
+			long long int one = one_thsd(index_product[product_length-1-i],ten);
 			index_product[product_length-1-i]=one;
 			index_product[product_length-1-i-1]=index_product[product_length-1-i-1]+ten;
 		}
@@ -101,7 +101,7 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	for(size_t i=0;i<product_length;++i) {
 
 		current_index = to_string(index_product[product_length-1-i]);
-		string front_zeros(4-current_index.size(),'0');
+		string front_zeros(9-current_index.size(),'0');
 		carried_answer= front_zeros+current_index+carried_answer;
 	}
 	
