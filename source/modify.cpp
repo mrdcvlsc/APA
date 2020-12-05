@@ -44,6 +44,7 @@ string bignum::removeFrontZeros(string input) const {
 	bool stillzero = true;
 	
 	long long in_size = input.size();
+	size_t substr_to_remove = 0;
 	for(long long i=0;i<in_size && stillzero;++i) {
 		
 		if(in_size>=2) {
@@ -52,32 +53,37 @@ string bignum::removeFrontZeros(string input) const {
 				break;
 		}
 		if(input[i]=='0' && in_size!=1) {
-			
-			input.erase(i,1);
-			--in_size;
-			i=-1;
+			++substr_to_remove;
 			continue;
 		}
 		if(input[i]>='1' && input[i]<='9')
 			stillzero = false;
 	}
+	input.erase(0,substr_to_remove);
 	return input;
 }
 
 string bignum::removeRearZeros(string input) const {
 	
 	size_t in_size = input.size();
+	size_t default_size = in_size;
+
 	while(input[in_size-1]=='0' or input[in_size-1]=='.') {
 		
 		if(input[in_size-1]=='.') {
 			
-			input.erase(in_size-1);
+			//input.erase(in_size-1);
 			--in_size;
 			break;
 		}
-		input.erase(in_size-1);
+		//input.erase(in_size-1);
 		--in_size;
 	}
+
+	size_t to_erase = default_size - (default_size-in_size);
+	--in_size;
+
+	input.erase(in_size,to_erase);
 	return input;
 }
 
