@@ -97,18 +97,22 @@ vector<long long int> bignum::str_part_by(long long int length, string number) c
 	vector<string> str_partition;
 	vector<long long int>   long_partition;
 
+	string str_temp(length,'0');
 	size_t num_size = number.size();
-	for(size_t i=0; i<num_size;++i) {
+	for(size_t i=0, str_i; i<num_size;++i) {
 		
-		if(i==0 or i%length==0)
-			str_partition.push_back("");
-		str_partition.back() = number[num_size-1-i] + str_partition.back();
+		if(i==0 or i%length==0){
+			str_i = length;
+			str_partition.push_back(str_temp);
+		}
+		str_partition.back()[str_i-1] = number[num_size-1-i];
+		--str_i;
 	}
 
 	size_t str_size = str_partition.size();
 	for(size_t i=0; i<str_size; ++i)	
 		long_partition.push_back(stoll(str_partition[str_size-1-i]));
-	
+
 	return long_partition;
 }
 
