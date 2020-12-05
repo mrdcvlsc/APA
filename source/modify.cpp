@@ -41,49 +41,46 @@ string bignum::putDecimal(const string& bignumber, int index) const {
 
 string bignum::removeFrontZeros(string input) const {
 	
-	bool stillzero = true;
-	
 	long long in_size = input.size();
 	size_t substr_to_remove = 0;
-	for(long long i=0;i<in_size && stillzero;++i) {
+
+	for(long long i=0;i<in_size;++i) {
 		
 		if(in_size>=2) {
 			
 			if(input[i]=='0' && input[i+1]=='.')
 				break;
 		}
+
 		if(input[i]=='0' && in_size!=1) {
 			++substr_to_remove;
 			continue;
 		}
 		if(input[i]>='1' && input[i]<='9')
-			stillzero = false;
+			break;
 	}
-	input.erase(0,substr_to_remove);
+	
+	if(substr_to_remove)
+		input.erase(0,substr_to_remove);
 	return input;
 }
 
 string bignum::removeRearZeros(string input) const {
 	
 	size_t in_size = input.size();
-	size_t default_size = in_size;
+	size_t start_erase_index=0;
 
-	while(input[in_size-1]=='0' or input[in_size-1]=='.') {
-		
-		if(input[in_size-1]=='.') {
-			
-			//input.erase(in_size-1);
-			--in_size;
-			break;
+	for(size_t i=in_size-1; i>=0; --i){
+		if(input[i]=='0' or input[i]=='.'){
+			start_erase_index=i;
+			if(input[i]=='.')
+				break;
 		}
-		//input.erase(in_size-1);
-		--in_size;
+		else
+			break;
 	}
-
-	size_t to_erase = default_size - (default_size-in_size);
-	--in_size;
-
-	input.erase(in_size,to_erase);
+	if(start_erase_index)
+		input.erase(input.begin()+start_erase_index,input.end());
 	return input;
 }
 
