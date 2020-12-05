@@ -43,8 +43,10 @@ string bignum::removeFrontZeros(string input) const {
 	
 	long long in_size = input.size();
 	size_t substr_to_remove = 0;
+	bool negative = false;
+	if(input[0]=='-') negative = true;
 
-	for(long long i=0;i<in_size;++i) {
+	for(long long i=0; i<in_size; ++i) {
 		
 		if(in_size>=2) {
 			
@@ -53,6 +55,7 @@ string bignum::removeFrontZeros(string input) const {
 		}
 
 		if(input[i]=='0' && in_size!=1) {
+			
 			++substr_to_remove;
 			continue;
 		}
@@ -60,7 +63,9 @@ string bignum::removeFrontZeros(string input) const {
 			break;
 	}
 	
-	if(substr_to_remove)
+	if(substr_to_remove and negative)
+		input.erase(1,substr_to_remove);
+	else if(substr_to_remove and !negative)
 		input.erase(0,substr_to_remove);
 	return input;
 }
