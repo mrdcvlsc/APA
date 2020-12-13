@@ -150,3 +150,14 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 	}
 	return answer;
 }
+
+
+/*
+bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
+
+	string dividen_str=dividen.data, divisor_str=divisor.data;
+	size_t dividen_size = dividen_str.size();
+	size_t divisor_size = divisor_str.size();
+
+	for(size_t i=0; i<)
+}*/

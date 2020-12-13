@@ -14,7 +14,7 @@ using namespace std;
 class bignum{
 public:
 	string data;
-
+	
 	//constructors
 	bignum():data("0"){}
 	bignum(const char* value);
