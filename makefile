@@ -17,12 +17,13 @@ CFLAGS= -I ./include -c -Wall
 SRC = ./source/
 OUT = ./obj/
 
-all:
+all: bignum.lib sample_program_calculator.cpp 
 	make lib
 	make test
 
 test: bignum.lib sample_program_calculator.cpp
 	@echo g++ -o sample_program.exe sample_program_calculator.cpp bignum.lib
+	@./sample_program.exe
 
 lib: library
 
