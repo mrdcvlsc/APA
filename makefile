@@ -1,25 +1,14 @@
-all: done
-
-done: make_lib
-	@echo "copilation done... cleaning working directory..."
-	@echo "done end of compilation."
-
-make_lib: make_obj
-	@echo "building single static library"
-	@ar rvs bignum.lib *.o
-
 #g++ -std=c++14 -static-libgcc -static-libstdc++ -I ./include -c ./source/*.cpp -O2
 #g++ -std=c++14 -o sample_calculator.exe -I ./include sample_program_calculator.cpp bignum.lib
-
 
 CC=g++
 CFLAGS= -I ./include -c -Wall
 SRC = ./source/
 OUT = ./obj/
 
-all: bignum.lib sample_program_calculator.cpp 
-	make lib
-	make test
+all: 
+	@make lib
+	@make test
 
 test: bignum.lib sample_program_calculator.cpp
 	@echo "Compiling Sample Program"
