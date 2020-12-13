@@ -21,8 +21,8 @@ all:
 	make lib
 	make test
 
-test: bignum.lib
-	@echo 
+test: bignum.lib sample_program_calculator.cpp
+	@echo g++ -o sample_program.exe sample_program_calculator.cpp bignum.lib
 
 lib: library
 
