@@ -22,7 +22,9 @@ all: bignum.lib sample_program_calculator.cpp
 	make test
 
 test: bignum.lib sample_program_calculator.cpp
-	@echo g++ -o sample_program.exe sample_program_calculator.cpp bignum.lib
+	@echo "Compiling Sample Program"
+	@g++ -I ./include -o sample_program.exe sample_program_calculator.cpp bignum.lib
+	@echo "Compiled, running Sample program"
 	@./sample_program.exe
 
 lib: library
