@@ -182,6 +182,61 @@ bignum bignum::operator*(const bignum& right_bn) const{
 	return internal_multiplication(mul_num.first,mul_num.second);
 }
 
+bignum bignum::new_division_test(bignum a,bignum b) const{
+	bignum tempDividen = a,
+	       tempDivisor = b;
+
+	if(tempDividen == "0") return bignum("0");
+	
+	bool differentSign = !sameSign(tempDividen,tempDivisor);
+
+	// make the negatives positive
+	tempDividen = absolute(tempDividen);
+	tempDivisor = absolute(tempDivisor);
+
+	// if decimal exist make it whole number
+	pair<string,long long> dividenPair, divisorPair;
+
+	dividenPair = removeDecimal(tempDividen.data);
+	divisorPair = removeDecimal(tempDivisor.data);
+
+	long long ddenDecPlace = dividenPair.second;
+	long long dsorDecPlace = divisorPair.second;
+
+	tempDividen = dividenPair.first;
+	tempDivisor = divisorPair.first;
+
+	// check if dividen is less than divisor, add zero place to make it greater than divisor
+	long long additionalLen = 0;
+	if(tempDividen<tempDivisor)
+		additionalLen = 1+tempDivisor.data.size()-tempDividen.data.size();
+
+	// add accuracy of 50 decimal palces
+	string addAccuracy((25+additionalLen),'0');
+
+	// create a temporary bignumber value where we will modify its decimal if it has
+	bignum dividen = (tempDividen.data + addAccuracy);
+	bignum divisor = tempDivisor;
+	bignum temp    = internal_division(dividen,divisor);
+	
+	// bring back the decimal to its proper place
+	string answerValue = temp.data;
+	if((ddenDecPlace==0 and dsorDecPlace==0) || (ddenDecPlace>0 and dsorDecPlace>0))
+		answerValue = putDecimal(answerValue,(25+additionalLen+(ddenDecPlace-dsorDecPlace)));
+	else if(ddenDecPlace>0 and dsorDecPlace==0)
+		answerValue = putDecimal(answerValue,(25+additionalLen+(ddenDecPlace-1)));
+	else if(dsorDecPlace>0 and ddenDecPlace==0)
+		answerValue = putDecimal(answerValue,(25+additionalLen-(dsorDecPlace-1)));
+	
+	answerValue = removeFrontZeros(answerValue);
+	answerValue = removeRearZeros(answerValue);
+	
+	bignum answer = answerValue;
+	
+	if(!differentSign) return answer;
+	else               return "-"+answer.data;
+}
+
 bignum bignum::operator/(const bignum& bnum_) const{
 
 	bignum tempDividen = *this,
@@ -218,7 +273,7 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	// create a temporary bignumber value where we will modify its decimal if it has
 	bignum dividen = (tempDividen.data + addAccuracy);
 	bignum divisor = tempDivisor;
-	bignum temp    = internal_division(dividen,divisor);
+	bignum temp    = dev_div(dividen.data,divisor.data);
 	
 	// bring back the decimal to its proper place
 	string answerValue = temp.data;
