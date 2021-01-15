@@ -104,7 +104,8 @@ public:
 	string internal_addition(string, string) const;
 	string internal_subtraction(string, string) const;
 	string internal_multiplication(string, string) const;
-	bignum internal_division(bignum&, bignum&) const;	// this method is dependent on the 3 basic arithmetic operators				
+	bignum internal_division(bignum&, bignum&) const;	// this method is dependent on the 3 basic arithmetic operators
+	string dev_div(string a, string b) const;				
 };
 
 #endif

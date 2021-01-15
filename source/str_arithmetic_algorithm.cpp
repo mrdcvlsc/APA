@@ -150,14 +150,41 @@ bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
 	}
 	return answer;
 }
+                      
+string bignum::dev_div(string dividen, string divisor) const
+{
+	if(dividen==divisor) return "1";
+	if(dividen=="0")     return "0";
+	if(divisor=="1")     return dividen;
 
+	bignum BIGDIVISOR = divisor;
 
-/*
-bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
+	size_t DIVIDEN_LENGTH = dividen.size();
 
-	string dividen_str=dividen.data, divisor_str=divisor.data;
-	size_t dividen_size = dividen_str.size();
-	size_t divisor_size = divisor_str.size();
+	string p_answer = "";
+	string remainders = "";
 
-	for(size_t i=0; i<)
-}*/
+	for(size_t i=0; i<DIVIDEN_LENGTH; ++i)
+	{
+		string digitChar(1,dividen[i]);
+		bignum p_dividen = remainders + digitChar;
+
+		int p_count = 0;
+
+		while(true){
+			if(BIGDIVISOR<=p_dividen){
+				p_count++;
+				p_dividen = p_dividen - BIGDIVISOR;
+			}
+			else{
+				break;
+			}
+		}
+		remainders = p_dividen.data;
+		if(remainders=="0") remainders = "";
+
+		p_answer = p_answer + to_string(p_count);
+	}
+
+	return p_answer;
+}

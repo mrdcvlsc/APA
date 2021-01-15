@@ -5,6 +5,7 @@ CC=g++
 CFLAGS= -I ./include -c -Wall
 SRC = ./source/
 OUT = ./obj/
+PRO = -static-libgcc -static-libstdc++
 
 all: 
 	@make lib
