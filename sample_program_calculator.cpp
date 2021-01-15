@@ -8,6 +8,17 @@ using namespace std::chrono;
 
 int main(){
 
+	bignum a=1;
+	auto start2 = high_resolution_clock::now();
+	cout<<a.moveDecimal("49",3)<<endl;
+	cout<<a.moveDecimal("49",-3)<<endl;
+	cout<<a.moveDecimal("49",1)<<endl;
+	cout<<a.moveDecimal("49",-1)<<endl;
+	cout<<a.moveDecimal("49",0)<<endl;
+	auto stop2 = high_resolution_clock::now();
+	auto dur2 = duration_cast<microseconds>(stop2-start2);
+	cout<<"secnd = "<<dur2.count()<<" microseconds"<<endl;
+	/*
 	bignum a = "1";
 	bignum dividen = "146217325473526745324587345826354673242342346712486214612381236.27637812637";
 	bignum divisor = "23427642042424002340920894266423432.7235485632548265482654738725476523742344234";
@@ -25,8 +36,10 @@ int main(){
 	auto dur1 = duration_cast<microseconds>(stop1-start1);
 	auto dur2 = duration_cast<microseconds>(stop2-start2);
 
-	cout<<"first = "<<dur1.count()<<endl;
-	cout<<"secnd = "<<dur2.count()<<endl;
+	cout<<"first = "<<dur1.count()<<" microseconds"<<endl;
+	cout<<"secnd = "<<dur2.count()<<" microseconds"<<endl;
+	*/
+
 	/*
 	string line(20,'=');
 	bignum val1, val2, answer;

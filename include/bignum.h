@@ -38,6 +38,8 @@ public:
 	string removeRearZeros(string)  const;
 	
 	string putDecimal(const string&,int) const;
+
+	string moveDecimal(string,long long) const;
 	
 	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
 	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future

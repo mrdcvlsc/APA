@@ -211,7 +211,7 @@ pair<string,string> bignum::dec_slice(string float_number) const {
 	size_t point = 0;
 	size_t float_size_num = float_number.size();
 
-	for(size_t i=0; i<float_size_num; ++i) {
+	for(size_t i=0; i<float_size_num; ++i){
 		
 		if(float_number[i]=='.') {
 			
@@ -246,4 +246,36 @@ bool bignum::isFloat()const {
 		if(temp[i] == '.' || temp[tmp_size-1-i] == '.')
 			return true;
 	return false;
+}
+
+string bignum::moveDecimal(string number,long long moveBy) const{
+	long long numberLen = number.size();
+	long long decimalPlace = 0;
+	for(long long i=0; i<numberLen; ++i){
+		if(number[i]=='.'){
+			decimalPlace = i;
+			break;
+		}
+	}
+
+	if(decimalPlace==0){
+		number = number + ".";
+		numberLen = number.size();
+		decimalPlace = numberLen-1;
+	}
+
+	number.erase(decimalPlace,1);
+
+	if(moveBy<0){
+		string addZeroes(-moveBy,'0');
+		number = number + addZeroes;
+		number.insert(decimalPlace+abs(moveBy),".");
+	}
+	else{
+		string addZeroes(moveBy,'0');
+		decimalPlace+=moveBy;
+		number = addZeroes + number;
+		number.insert(decimalPlace-(moveBy),".");
+	}
+	return number;
 }

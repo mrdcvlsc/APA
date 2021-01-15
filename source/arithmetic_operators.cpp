@@ -183,6 +183,7 @@ bignum bignum::operator*(const bignum& right_bn) const{
 }
 
 bignum bignum::new_division_test(bignum a,bignum b) const{
+
 	bignum tempDividen = a,
 	       tempDivisor = b;
 
@@ -194,6 +195,13 @@ bignum bignum::new_division_test(bignum a,bignum b) const{
 	tempDividen = absolute(tempDividen);
 	tempDivisor = absolute(tempDivisor);
 
+	// length fixing
+	if(tempDividen.data.size()<=tempDivisor.data.size()){ // add zeroes to the tempDividen
+
+	}
+	else if(tempDivisor.data.size()<tempDividen.data.size()-1){// add zeroes to the tempDivisor
+	
+	}
 	// if decimal exist make it whole number
 	pair<string,long long> dividenPair, divisorPair;
 
