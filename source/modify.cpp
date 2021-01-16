@@ -8,39 +8,8 @@ long long int bignum::ten_thsd(long long int number) const {
 	return (long long int)floor((double)number/1000000000.0);
 }
 
-pair<string,long long> bignum::removeDecimal(string bignumber) const {
-
-	long long  place = 0;
-	bool got   = false;
-	
-	size_t bn_size = bignumber.size(); 
-	for(size_t i=0; i<bn_size; ++i) {
-		
-		if(bignumber[i]=='.') {
-			
-			bignumber.erase(i,1);
-			--bn_size;
-			got = true;
-			place = i;
-			break;
-		}
-	}
-	
-	place = bn_size+1-place;
-	if(!got) place = 0;
-	
-	return make_pair(bignumber,place);
-}
-
-string bignum::putDecimal(const string& bignumber, int index) const {
-
-	string tempFrontZero(index,'0');
-	string answer = tempFrontZero+bignumber;
-	return answer.insert((answer.size()-index),".");
-}
-
-string bignum::removeFrontZeros(string input) const {
-	
+string bignum::removeFrontZeros(string input) const
+{	
 	long long in_size = input.size();
 	size_t substr_to_remove = 0;
 	bool negative = false;
@@ -238,8 +207,8 @@ bool bignum::sameSign(const bignum& a, const bignum& b) const {
 	return true;
 }
 
-bool bignum::isFloat()const {
-	
+bool bignum::isFloat()const
+{	
 	string temp = this->data;
 	size_t tmp_size = temp.size();
 	for(size_t i=0; i<(tmp_size/2)+1; ++i)

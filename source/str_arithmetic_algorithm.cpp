@@ -108,50 +108,8 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	delete [] index_product;
 	return removeFrontZeros(carried_answer);
 }
-
-bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
-
-	if(dividen==divisor) return bignum("1");
-	if(dividen=="0")     return bignum("0");
-	if(divisor=="1")     return dividen;
-
-	string answer	  = "", partialDividen = "";
-	string strDividen = dividen.data;
-	string strDivisor = divisor.data;
-	
-	long long partialCnt = 0;
-  	bignum 	multiplier = "1", current;
-
-  	size_t str_dividen_size = strDividen.size();
-
-	for(size_t i=0; i<str_dividen_size; ++i){
-		partialDividen = partialDividen + strDividen[i];
-		current = partialDividen;
-
-		if(divisor<=current){
-			while((divisor*multiplier)<=current){
-				++multiplier;
-				++partialCnt;	
-			}
-
-			--multiplier;
-			bignum longDivDividen = (divisor*multiplier);
-			longDivDividen = current - longDivDividen;
-
-			partialDividen = longDivDividen.data;
-
-			if(partialDividen=="0") partialDividen="";
-		}
-
-		answer = answer + to_string(partialCnt);
-
-		partialCnt = 0;
-		multiplier = "1";
-	}
-	return answer;
-}
                       
-string bignum::dev_div(string dividen, string divisor) const
+string bignum::internal_division(string dividen, string divisor) const
 {
 	if(dividen==divisor) return "1";
 	if(dividen=="0")     return "0";

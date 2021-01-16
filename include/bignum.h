@@ -32,12 +32,8 @@ public:
 	pair<string,string> strfront_fill0(string,string)const;
 	pair<string,string> strback_fill0(string,string) const;
 	
-	pair<string,long long> removeDecimal(string)const;
-	
 	string removeFrontZeros(string) const;
 	string removeRearZeros(string)  const;
-	
-	string putDecimal(const string&,int) const;
 
 	string moveDecimal(string,long long) const;
 	
@@ -106,10 +102,7 @@ public:
 	string internal_addition(string, string) const;
 	string internal_subtraction(string, string) const;
 	string internal_multiplication(string, string) const;
-	bignum internal_division(bignum&, bignum&) const;	// this method is dependent on the 3 basic arithmetic operators
-	string dev_div(string a, string b) const;
-
-	bignum new_division_test(bignum,bignum) const;	
+	string internal_division(string a, string b) const;
 };
 
 #endif
