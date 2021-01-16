@@ -191,6 +191,12 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	if(!tempDivisor.isFloat()) tempDivisor.data = tempDivisor.data + ".0";
 
 	if(tempDividen == "0") return bignum("0");
+
+	if(tempDivisor=="0"){
+		cout<<"\x1B[33mDetected in "<<__FILE__<<" : at line - "<<__LINE__<<"\033[0m"<<endl;
+		cout<<"\x1B[31mbignum ERROR\033[0m [division] : ("<<tempDividen<<'/'<<tempDivisor<<") dividing by zero is not possible"<<endl;
+		exit(1);
+	}
 	
 	bool differentSign = !sameSign(tempDividen,tempDivisor);
 
@@ -228,6 +234,7 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	string answer = internal_division(strDividen+precision,strDivisor);
 
 	answer = moveDecimal(answer,moveDecimalPlace+decimalPrecision);
+	answer = removeFrontZeros(removeRearZeros(answer));
 
 	if(!differentSign)
 		return answer;
@@ -237,51 +244,14 @@ bignum bignum::operator/(const bignum& bnum_) const{
 
 // ------------------- SPECIAL OPERATORS -------------------------
 
-bignum bignum::operator%(const bignum& divisor) const{
+bignum bignum::operator%(const bignum& bnum_) const{
 
-	bignum dividen =  *this;
+	bignum tempDividen = *this,
+	       tempDivisor = bnum_.data;
 
-	if(divisor=="0"){
-		cout<<"bignum ERROR [modulo] : ("<<dividen<<'%'<<divisor<<") dividing by zero is not possible"<<endl;
-		exit(1);
-	}
+	bignum answer = tempDividen / tempDivisor;
 
-	if(dividen<divisor)  return dividen;
-	if(dividen==divisor) return bignum("0");
+	pair<string,string> getWhole = dec_slice(answer.data);
 	
-	string answer = "", partialDividen = "";
-	string strDividen = dividen.data;
-	string strDivisor = divisor.data;
-	
-	long long partialCnt = 0;
-   	bignum multiplier = "1", current;
-	
-	size_t str_div_size = strDividen.size();
-	for(size_t i=0; i<str_div_size; ++i){
-		partialDividen = partialDividen + strDividen[i];
-		current = partialDividen;
-
-		if(divisor<=current){
-			while((divisor*multiplier)<=current){
-				++multiplier;
-				++partialCnt;	
-			}
-
-			--multiplier;
-			bignum longDivDividen = (divisor*multiplier);
-			longDivDividen = current - longDivDividen;
-
-			partialDividen = longDivDividen.data;
-
-			if(partialDividen=="0") partialDividen="";
-		}
-
-		answer = answer + to_string(partialCnt);
-
-		partialCnt = 0;
-		multiplier = "1";
-	}
-	bignum wholeAnswer = answer;
-	
-	return dividen-divisor*wholeAnswer;
+	return tempDividen-tempDivisor*bignum(getWhole.first);
 }
