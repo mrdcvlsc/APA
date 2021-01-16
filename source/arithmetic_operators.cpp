@@ -187,6 +187,9 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	bignum tempDividen = *this,
 	       tempDivisor = bnum_.data;
 
+	if(!tempDividen.isFloat()) tempDividen.data = tempDividen.data + ".0";
+	if(!tempDivisor.isFloat()) tempDivisor.data = tempDivisor.data + ".0";
+
 	if(tempDividen == "0") return bignum("0");
 	
 	bool differentSign = !sameSign(tempDividen,tempDivisor);
@@ -195,47 +198,41 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	tempDividen = absolute(tempDividen);
 	tempDivisor = absolute(tempDivisor);
 
-	// if decimal exist make it whole number
-	pair<string,long long> dividenPair, divisorPair;
+	// length fixing
+	size_t tempDividenLength = tempDividen.data.size();
+	size_t tempDivisorLength = tempDivisor.data.size();
 
-	dividenPair = removeDecimal(tempDividen.data);
-	divisorPair = removeDecimal(tempDivisor.data);
+	if(tempDividenLength<=tempDivisorLength){ // add zeroes to the tempDividen
+		size_t addLength = (tempDivisorLength+1)-tempDividenLength;
+		string addZero(addLength,'0');
+		tempDividen.data = tempDividen.data + addZero;
+	}
+	else if(tempDivisorLength<tempDividenLength-1){// add zeroes to the tempDivisor
+		size_t addLength = (tempDividenLength-1)-tempDivisorLength;
+		string addZero(addLength,'0');
+		tempDivisor.data = tempDivisor.data + addZero;
+	}
 
-	long long ddenDecPlace = dividenPair.second;
-	long long dsorDecPlace = divisorPair.second;
+	// slice here later don't use dividenPair anymore
+	pair<string,string> slcDividen = dec_slice(tempDividen.data);
+	pair<string,string> slcDivisor = dec_slice(tempDivisor.data);
 
-	tempDividen = dividenPair.first;
-	tempDivisor = divisorPair.first;
+	string strDividen = slcDividen.first + slcDividen.second;
+	string strDivisor = slcDivisor.first + slcDivisor.second;
 
-	// check if dividen is less than divisor, add zero place to make it greater than divisor
-	long long additionalLen = 0;
-	if(tempDividen<tempDivisor)
-		additionalLen = 1+tempDivisor.data.size()-tempDividen.data.size();
+	size_t moveDecimalPlace = slcDividen.second.size() - slcDivisor.second.size();
 
-	// add accuracy of 50 decimal palces
-	string addAccuracy((25+additionalLen),'0');
+	int decimalPrecision = 50;
 
-	// create a temporary bignumber value where we will modify its decimal if it has
-	bignum dividen = (tempDividen.data + addAccuracy);
-	bignum divisor = tempDivisor;
-	bignum temp    = internal_division(dividen,divisor);
-	
-	// bring back the decimal to its proper place
-	string answerValue = temp.data;
-	if((ddenDecPlace==0 and dsorDecPlace==0) || (ddenDecPlace>0 and dsorDecPlace>0))
-		answerValue = putDecimal(answerValue,(25+additionalLen+(ddenDecPlace-dsorDecPlace)));
-	else if(ddenDecPlace>0 and dsorDecPlace==0)
-		answerValue = putDecimal(answerValue,(25+additionalLen+(ddenDecPlace-1)));
-	else if(dsorDecPlace>0 and ddenDecPlace==0)
-		answerValue = putDecimal(answerValue,(25+additionalLen-(dsorDecPlace-1)));
-	
-	answerValue = removeFrontZeros(answerValue);
-	answerValue = removeRearZeros(answerValue);
-	
-	bignum answer = answerValue;
-	
-	if(!differentSign) return answer;
-	else               return "-"+answer.data;
+	string precision(decimalPrecision,'0');
+	string answer = internal_division(strDividen+precision,strDivisor);
+
+	answer = moveDecimal(answer,moveDecimalPlace+decimalPrecision);
+
+	if(!differentSign)
+		return answer;
+	else
+		return "-"+answer;
 }
 
 // ------------------- SPECIAL OPERATORS -------------------------

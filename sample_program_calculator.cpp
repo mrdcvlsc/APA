@@ -1,8 +1,10 @@
 #include <iostream>
+#include <chrono>
 #include <string>
 #include "bignum.h"
 
 using namespace std;
+using namespace std::chrono;
 
 int main(){
 

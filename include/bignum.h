@@ -14,7 +14,7 @@ using namespace std;
 class bignum{
 public:
 	string data;
-
+	
 	//constructors
 	bignum():data("0"){}
 	bignum(const char* value);
@@ -32,15 +32,10 @@ public:
 	pair<string,string> strfront_fill0(string,string)const;
 	pair<string,string> strback_fill0(string,string) const;
 	
-	pair<string,long long> removeDecimal(string)const;
-	
 	string removeFrontZeros(string) const;
 	string removeRearZeros(string)  const;
-	
-	string putDecimal(const string&,int) const;
-	
-	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
-	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
+
+	string moveDecimal(string,long long) const;
 	
 	long long int one_thsd(long long int, long long int)const;
 	long long int ten_thsd(long long int) const;
@@ -104,7 +99,7 @@ public:
 	string internal_addition(string, string) const;
 	string internal_subtraction(string, string) const;
 	string internal_multiplication(string, string) const;
-	bignum internal_division(bignum&, bignum&) const;	// this method is dependent on the 3 basic arithmetic operators				
+	string internal_division(string a, string b) const;
 };
 
 #endif

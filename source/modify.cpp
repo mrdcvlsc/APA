@@ -8,39 +8,8 @@ long long int bignum::ten_thsd(long long int number) const {
 	return (long long int)floor((double)number/1000000000.0);
 }
 
-pair<string,long long> bignum::removeDecimal(string bignumber) const {
-
-	long long  place = 0;
-	bool got   = false;
-	
-	size_t bn_size = bignumber.size(); 
-	for(size_t i=0; i<bn_size; ++i) {
-		
-		if(bignumber[i]=='.') {
-			
-			bignumber.erase(i,1);
-			--bn_size;
-			got = true;
-			place = i;
-			break;
-		}
-	}
-	
-	place = bn_size+1-place;
-	if(!got) place = 0;
-	
-	return make_pair(bignumber,place);
-}
-
-string bignum::putDecimal(const string& bignumber, int index) const {
-
-	string tempFrontZero(index,'0');
-	string answer = tempFrontZero+bignumber;
-	return answer.insert((answer.size()-index),".");
-}
-
-string bignum::removeFrontZeros(string input) const {
-	
+string bignum::removeFrontZeros(string input) const
+{	
 	long long in_size = input.size();
 	size_t substr_to_remove = 0;
 	bool negative = false;
@@ -211,7 +180,7 @@ pair<string,string> bignum::dec_slice(string float_number) const {
 	size_t point = 0;
 	size_t float_size_num = float_number.size();
 
-	for(size_t i=0; i<float_size_num; ++i) {
+	for(size_t i=0; i<float_size_num; ++i){
 		
 		if(float_number[i]=='.') {
 			
@@ -238,12 +207,44 @@ bool bignum::sameSign(const bignum& a, const bignum& b) const {
 	return true;
 }
 
-bool bignum::isFloat()const {
-	
+bool bignum::isFloat()const
+{	
 	string temp = this->data;
 	size_t tmp_size = temp.size();
 	for(size_t i=0; i<(tmp_size/2)+1; ++i)
 		if(temp[i] == '.' || temp[tmp_size-1-i] == '.')
 			return true;
 	return false;
+}
+
+string bignum::moveDecimal(string number,long long moveBy) const{
+	long long numberLen = number.size();
+	long long decimalPlace = 0;
+	for(long long i=0; i<numberLen; ++i){
+		if(number[i]=='.'){
+			decimalPlace = i;
+			break;
+		}
+	}
+
+	if(decimalPlace==0){
+		number = number + ".";
+		numberLen = number.size();
+		decimalPlace = numberLen-1;
+	}
+
+	number.erase(decimalPlace,1);
+
+	if(moveBy<0){
+		string addZeroes(-moveBy,'0');
+		number = number + addZeroes;
+		number.insert(decimalPlace+abs(moveBy),".");
+	}
+	else{
+		string addZeroes(moveBy,'0');
+		decimalPlace+=moveBy;
+		number = addZeroes + number;
+		number.insert(decimalPlace-(moveBy),".");
+	}
+	return number;
 }

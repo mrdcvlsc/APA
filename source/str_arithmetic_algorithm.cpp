@@ -108,45 +108,41 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	delete [] index_product;
 	return removeFrontZeros(carried_answer);
 }
-
-bignum bignum::internal_division(bignum& dividen, bignum& divisor) const{
-
-	if(dividen==divisor) return bignum("1");
-	if(dividen=="0")     return bignum("0");
+                      
+string bignum::internal_division(string dividen, string divisor) const
+{
+	if(dividen==divisor) return "1";
+	if(dividen=="0")     return "0";
 	if(divisor=="1")     return dividen;
 
-	string answer	  = "", partialDividen = "";
-	string strDividen = dividen.data;
-	string strDivisor = divisor.data;
-	
-	long long partialCnt = 0;
-  	bignum 	multiplier = "1", current;
+	bignum BIGDIVISOR = divisor;
 
-  	size_t str_dividen_size = strDividen.size();
+	size_t DIVIDEN_LENGTH = dividen.size();
 
-	for(size_t i=0; i<str_dividen_size; ++i){
-		partialDividen = partialDividen + strDividen[i];
-		current = partialDividen;
+	string p_answer = "";
+	string remainders = "";
 
-		if(divisor<=current){
-			while((divisor*multiplier)<=current){
-				++multiplier;
-				++partialCnt;	
+	for(size_t i=0; i<DIVIDEN_LENGTH; ++i)
+	{
+		string digitChar(1,dividen[i]);
+		bignum p_dividen = remainders + digitChar;
+
+		int p_count = 0;
+
+		while(true){
+			if(BIGDIVISOR<=p_dividen){
+				p_count++;
+				p_dividen = p_dividen - BIGDIVISOR;
 			}
-
-			--multiplier;
-			bignum longDivDividen = (divisor*multiplier);
-			longDivDividen = current - longDivDividen;
-
-			partialDividen = longDivDividen.data;
-
-			if(partialDividen=="0") partialDividen="";
+			else{
+				break;
+			}
 		}
+		remainders = p_dividen.data;
+		if(remainders=="0") remainders = "";
 
-		answer = answer + to_string(partialCnt);
-
-		partialCnt = 0;
-		multiplier = "1";
+		p_answer = p_answer + to_string(p_count);
 	}
-	return answer;
+
+	return p_answer;
 }
