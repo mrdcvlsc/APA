@@ -143,6 +143,5 @@ string bignum::internal_division(string dividen, string divisor) const
 
 		p_answer = p_answer + to_string(p_count);
 	}
-
 	return p_answer;
 }

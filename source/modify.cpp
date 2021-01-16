@@ -15,21 +15,19 @@ string bignum::removeFrontZeros(string input) const
 	bool negative = false;
 	if(input[0]=='-') negative = true;
 
-	for(long long i=0; i<in_size; ++i) {
-		
-		if(in_size>=2) {
-			
-			if(input[i]=='0' && input[i+1]=='.')
-				break;
+	for(long long i=0; i<in_size; ++i)
+	{	
+		if(in_size>=2)
+		{
+			if(input[i]=='0' && input[i+1]=='.') break;
 		}
 
-		if(input[i]=='0' && in_size!=1) {
-			
+		if(input[i]=='0' && i<in_size-1)
+		{	
 			++substr_to_remove;
 			continue;
 		}
-		if(input[i]>='1' && input[i]<='9')
-			break;
+		if(input[i]>='1' && input[i]<='9') break;
 	}
 	
 	if(substr_to_remove and negative)
@@ -39,16 +37,16 @@ string bignum::removeFrontZeros(string input) const
 	return input;
 }
 
-string bignum::removeRearZeros(string input) const {
-	
+string bignum::removeRearZeros(string input) const
+{
 	size_t in_size = input.size();
 	size_t start_erase_index=0;
 
 	for(size_t i=in_size-1; i>=0; --i){
 		if(input[i]=='0' or input[i]=='.'){
 			start_erase_index=i;
-			if(input[i]=='.')
-				break;
+			if(input[i]=='.') break;
+			if(i==1 || i==0) break;
 		}
 		else
 			break;

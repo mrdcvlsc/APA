@@ -4,7 +4,7 @@
 void bignum::check(string &value){
 	size_t value_size = value.size(); 
 	if(value_size<=0){
-		cout<<"\nERROR - bignum [check] : NUMBER HAS NO VALUE"<<endl;
+		cout<<"\n\x1B[31mbignum ERROR\033[0m [check] : NUMBER HAS NO VALUE"<<endl;
 		exit(1);
 	}
 
@@ -37,7 +37,7 @@ void bignum::check(string &value){
 		if(i==value_size)
 			break;
 		else{
-			cout<<"\nERROR - bignum [check] : ASSIGNED INVALID NUMBER DETECTED ("<<value<<")"<<endl;
+			cout<<"\n\x1B[31mbignum ERROR\033[0m [check] : ASSIGNED INVALID NUMBER DETECTED ("<<value<<")"<<endl;
 			exit(1);
 		}
 	}

@@ -92,7 +92,6 @@ public:
 
 	/*********************************   ERROR HANDLING FUNCTIONS   *********************************/
 	void check(string&);
-	void internal_division_check(const bignum&, const bignum&) const; // for development only will remove in future
 
 	/**************************************  INTERNAL METHODS  **************************************/
 	//internal operation for arithmetic operators
