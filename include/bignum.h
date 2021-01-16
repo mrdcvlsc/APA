@@ -37,9 +37,6 @@ public:
 
 	string moveDecimal(string,long long) const;
 	
-	char intToChar(const int& n) const{return(char)'0'+(char)n;} // still being used by division
-	int  charToInt(const char& c)const{return(int)c - (int)'0';}	 // will remove in the future
-	
 	long long int one_thsd(long long int, long long int)const;
 	long long int ten_thsd(long long int) const;
 	
