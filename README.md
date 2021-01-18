@@ -68,50 +68,39 @@ https://mrdcvlsc.github.io/bignum/
 ### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM): EXAMPLES OF USES BELOW
 
    **[done] Addition (+)**
-   
    ```c++   
    cout<< var1 + var3 <<endl;
    cout<< var3 + "56756.4645" <<endl;
    cout<< 7567634 + var1 <<endl;
    ```
-   
    **[done] Subtraction (-)**
-   
    ```c++
    cout<< var2 - var1 <<endl;
    cout<< var4 - 74672323232ull <<endl;
    cout<< "656422" - var3 <<endl;
    ```
-
    **[done] Multiplication (x)**
-   
    ```c++
    cout<< var1 * var3 <<endl;
    cout<< var2 * 2234544.65 <<endl;
    cout<< "64652823.42" * var3 <<endl;
    ```
-   
    **[done] Division (/)**
-   
    ```c++
    cout<< var2 / var6 <<endl;
    cout<< var3 / "521321" <<endl;
    cout<< "652323" / var1 <<endl;
    ```
-
    **[done] Modulo (%)**
-   
    ```c++
    cout<< var2 % var1 <<endl
    ```
-   
    **[done] Addition Assignment (+=)**
    ```c++
    var1+=var2;
    var1+="7822.22";
    var1+=2321;
    ```
-   
    **[done] Subtraction Assignment (-=)**
    ```c++
    var2-=2112312;
@@ -126,6 +115,16 @@ https://mrdcvlsc.github.io/bignum/
    ```c++
    var1/="2222";
    var1/=var3;
+   ```
+   **[done] Increment (++)**
+   ```c++
+   var1++;  // post-fix
+   ++var1;  // pre-fix
+   ```
+   **[done] Decrement (--)**
+   ```c++
+   var1++;  // post-fix
+   ++var1;  // pre-fix
    ```
 -------------------------------------------------------------------
 
@@ -199,16 +198,6 @@ https://mrdcvlsc.github.io/bignum/
    ```c++
    cout<<("76327323" < "2837283"); // this is not allowed
    ```
-      
-**The increment and decrement operators, postfix and pre-fix form is available.**
-
-  ```c++
-  bignum up=0, down="2";
-  up++;
-  ++up;
-  --down;
-  down--;
-  ```     
 
 ### **SUPPORTS INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
 
