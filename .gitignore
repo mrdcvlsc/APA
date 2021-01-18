@@ -1,0 +1,6 @@
+.gitignore
+.vscode
+*.exe
+*.obj
+*.lib
+*.o

@@ -8,6 +8,14 @@ using namespace std::chrono;
 
 int main(){
 
+	bignum t = "1";
+
+	
+	cout<<"test internal : "<<t.internal_multiplication("128736723",
+														"2619920170325641109792152254225082302273609993940889")<<endl;
+	
+	// 1287367.23 * 2619920170325641109792.152254225082302273609993940889
+	
 	string line(20,'=');
 	bignum val1, val2, answer;
 	char operation;

@@ -5,7 +5,7 @@ long long int bignum::one_thsd(long long int number, long long int tens) const {
 }
 
 long long int bignum::ten_thsd(long long int number) const {
-	return (long long int)floor((double)number/1000000000.0);
+	return (long long int)floor((long double)number/1000000000.0);
 }
 
 string bignum::removeFrontZeros(string input) const

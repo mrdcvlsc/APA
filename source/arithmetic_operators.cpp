@@ -3,20 +3,14 @@
 // ----------------- INCREMENT/DECREMENT OPERATORS ---------------------------
 
 //pre-fix increment/decrementa
-bignum bignum::operator++(){
-	return *this = *this+"1"; 
-}
-
-bignum bignum::operator--(){
-	return *this = *this-"1";
-}
+bignum bignum::operator++(){ return *this = *this+"1"; }
+bignum bignum::operator--(){ return *this = *this-"1"; }
 
 //post-fix increment/decrementa
 bignum bignum::operator++(int){
     ++*this;
     return *this-"1"; 
 }
-
 bignum bignum::operator--(int){
     --*this;
     return *this+"1";
@@ -52,7 +46,6 @@ bignum bignum::operator+(const bignum& right_bn) const{
 
 	bool adden1isMax = t_adden1>t_adden2; 
 
-	// add zeros to front to match the length of each other
 	pair<string,string> add_num = strfront_fill0(t_adden1.data,t_adden2.data);
 	
 	// different sign
@@ -242,8 +235,12 @@ bignum bignum::operator/(const bignum& bnum_) const{
 
 bignum bignum::operator%(const bignum& bnum_) const{
 	bignum tempDividen = *this,
-	       tempDivisor = bnum_.data;
+	       tempDivisor = bnum_;
+	cout<<"1: "<<tempDividen<<endl;
+	cout<<"2: "<<tempDivisor<<endl;
 	bignum answer = tempDividen / tempDivisor;
+	cout<<"3: "<<answer<<endl;
+	cout<<"4: "<<tempDividen-(tempDivisor*answer)<<endl;
 	return tempDividen-tempDivisor*answer;
 }
 

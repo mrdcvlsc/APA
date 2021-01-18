@@ -73,23 +73,17 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	size_t product_length = multiplicand.size()+multiplier.size(); 
 	long long int *index_product = new long long int[product_length];
 	
-	for(size_t i=0ll; i<product_length; ++i){
-
-    		index_product[i] = 0ll;
-    }
+	for(size_t i=0ll; i<product_length; ++i){ index_product[i] = 0ll; }
 
 	// add the answer of the multiplicand and multiplier to the answer array
 	for(size_t i=0ul; i<multiplier.size(); ++i){
 		for(size_t j=0ul;j<multiplicand.size();++j) {
-
 			index_product[product_length-1-i-j] = index_product[product_length-1-i-j]+(multiplicand[multiplicand.size()-1-j]*multiplier[multiplier.size()-1-i]);
 		}
 	}
 
 	for(size_t i=0ul;i<product_length;++i) {
-
 		if(index_product[product_length-1-i]>=1000000000ll) {
-
 			long long int ten = ten_thsd(index_product[product_length-1-i]);
 			long long int one = one_thsd(index_product[product_length-1-i],ten);
 			index_product[product_length-1-i]=one;
@@ -99,12 +93,10 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 
 	string carried_answer, current_index;
 	for(size_t i=0;i<product_length;++i) {
-
 		current_index = to_string(index_product[product_length-1-i]);
 		string front_zeros(9-current_index.size(),'0');
 		carried_answer= front_zeros+current_index+carried_answer;
 	}
-	
 	delete [] index_product;
 	return removeFrontZeros(carried_answer);
 }
