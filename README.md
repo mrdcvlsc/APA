@@ -12,6 +12,8 @@ https://mrdcvlsc.github.io/bignum/
 
 # contents
 
+- [Instructions - how to use](#instructions)
+
 - [Initialization/Assignment](#initialization)
 
 - [Arithmetic Operators](#arithmetic-operators)
@@ -25,15 +27,11 @@ https://mrdcvlsc.github.io/bignum/
 - [Implementation - How?](#implementation)
 
 
-
-<details close>
-<summary><b>your title</b></summary>
-<br>
-
-</details>
-### HOW TO USE :
-
 -------------------------------------------------------------------
+
+# instructions
+
+### HOW TO USE :
 
 **For beginners that uses IDE**
 
