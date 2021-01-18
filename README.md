@@ -12,12 +12,17 @@ https://mrdcvlsc.github.io/bignum/
 
 # contents
 
-[Initialization/Assignment](#initialization)
-[Arithmetic Operators](#arithmetic-operators)
-[Comparison Operators](#comparison-operators)
-[IO Operator](#io-operators)
-[Sample Program](#sample-code)
-[Implementation - How?](#implementation)
+- [Initialization/Assignment](#initialization)
+
+- [Arithmetic Operators](#arithmetic-operators)
+
+- [Comparison Operators](#comparison-operators)
+
+- [IO Operator](#io-operators)
+
+- [Sample Program](#sample-code)
+
+- [Implementation - How?](#implementation)
 
 
 
