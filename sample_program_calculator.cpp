@@ -7,7 +7,7 @@ using namespace std;
 using namespace std::chrono;
 
 int main(){
-	
+
 	string line(20,'=');
 	bignum val1, val2, answer;
 	char operation;
