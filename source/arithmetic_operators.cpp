@@ -157,7 +157,6 @@ bignum bignum::operator*(const bignum& right_bn) const{
 		t_multiplicand = absolute(t_multiplicand);
 		t_multiplier   = absolute(t_multiplier);
 
-
 		pair<string,string> multiplicand_slices = dec_slice(t_multiplicand.data),
 						    multiplier_slices   = dec_slice(t_multiplier.data);
 	    
@@ -219,7 +218,6 @@ bignum bignum::operator/(const bignum& bnum_) const{
 		tempDivisor.data = tempDivisor.data + addZero;
 	}
 
-	// slice here later don't use dividenPair anymore
 	pair<string,string> slcDividen = dec_slice(tempDividen.data);
 	pair<string,string> slcDivisor = dec_slice(tempDivisor.data);
 
@@ -236,22 +234,35 @@ bignum bignum::operator/(const bignum& bnum_) const{
 	answer = moveDecimal(answer,moveDecimalPlace+decimalPrecision);
 	answer = removeFrontZeros(removeRearZeros(answer));
 
-	if(!differentSign)
-		return answer;
-	else
-		return "-"+answer;
+	if(!differentSign) return answer;
+	else               return "-"+answer;
 }
 
 // ------------------- SPECIAL OPERATORS -------------------------
 
 bignum bignum::operator%(const bignum& bnum_) const{
-
 	bignum tempDividen = *this,
 	       tempDivisor = bnum_.data;
-
 	bignum answer = tempDividen / tempDivisor;
+	return tempDividen-tempDivisor*answer;
+}
 
-	pair<string,string> getWhole = dec_slice(answer.data);
-	
-	return tempDividen-tempDivisor*bignum(getWhole.first);
+bignum& bignum::operator+=(const bignum a){
+	*this = *this + a;
+	return *this;
+}
+
+bignum& bignum::operator-=(const bignum a){
+	*this = *this - a;
+	return *this;
+}
+
+bignum& bignum::operator*=(const bignum a){
+	*this = *this * a;
+	return *this;
+}
+
+bignum& bignum::operator/=(const bignum a){
+	*this = *this / a;
+	return *this;
 }
