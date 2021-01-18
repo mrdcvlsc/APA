@@ -8,7 +8,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
-[test](## FACTORIAL-SAMPLE-CODE)
+[test](# factorial-sample-code)
 ------------------------------------------------------------------
 
 <details close>
