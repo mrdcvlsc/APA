@@ -3,8 +3,6 @@ https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
 ### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
-
-#### SEE the branch "bignum-v2.2.1(stable)" if you are having problems/bugs with the latest version in master branch
 -------------------------------------------------------------------
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
@@ -67,7 +65,7 @@ https://mrdcvlsc.github.io/bignum/
    ```
 -------------------------------------------------------------------
 
-### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM)
+### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM): EXAMPLES OF USES BELOW
 
    **[done] Addition (+)**
    
@@ -93,7 +91,7 @@ https://mrdcvlsc.github.io/bignum/
    cout<< "64652823.42" * var3 <<endl;
    ```
    
-   **[optimize later] Division (/)**
+   **[done] Division (/)**
    
    ```c++
    cout<< var2 / var6 <<endl;
@@ -101,10 +99,33 @@ https://mrdcvlsc.github.io/bignum/
    cout<< "652323" / var1 <<endl;
    ```
 
-   **[optimize later] Modulo (%)**
+   **[done] Modulo (%)**
    
    ```c++
    cout<< var2 % var1 <<endl
+   ```
+   
+   **[done] Addition Assignment (+=)**
+   ```c++
+   var1+=var2;
+   var1+="7822.22";
+   var1+=2321;
+   ```
+   
+   **[done] Subtraction Assignment (-=)**
+   ```c++
+   var2-=2112312;
+   var1-="2322.32";
+   ```
+   **[done] Multiplication Assignment (*=)**
+   ```c++
+   bignum varNew = var1*="222";
+   var1*=var2;
+   ```
+   **[done] Division Assignment (/=)**
+   ```c++
+   var1/="2222";
+   var1/=var3;
    ```
 -------------------------------------------------------------------
 
