@@ -15,7 +15,12 @@ https://mrdcvlsc.github.io/bignum/
 
 ------------------------------------------------------------------
 
-### TO USE :
+<details close>
+<summary>###your title</summary>
+<br>
+  content
+</details>
+### HOW TO USE :
 
 -------------------------------------------------------------------
 
