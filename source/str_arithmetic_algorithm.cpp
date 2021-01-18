@@ -76,9 +76,12 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	for(size_t i=0ll; i<product_length; ++i){ index_product[i] = 0ll; }
 
 	// add the answer of the multiplicand and multiplier to the answer array
-	for(size_t i=0ul; i<multiplier.size(); ++i){
-		for(size_t j=0ul;j<multiplicand.size();++j) {
-			index_product[product_length-1-i-j] = index_product[product_length-1-i-j]+(multiplicand[multiplicand.size()-1-j]*multiplier[multiplier.size()-1-i]);
+	size_t multiplier_size = multiplier.size();
+	size_t multiplicand_size = multiplicand.size();
+
+	for(size_t i=0ul; i<multiplier_size; ++i){
+		for(size_t j=0ul;j<multiplicand_size;++j) {
+			index_product[product_length-1-i-j] = index_product[product_length-1-i-j]+(multiplicand[multiplicand_size-1-j]*multiplier[multiplier_size-1-i]);
 		}
 	}
 
