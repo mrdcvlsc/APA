@@ -168,13 +168,13 @@ https://mrdcvlsc.github.io/bignum/
 
 ### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
 
-**Addition Operation       : ** ***463.5 microseconds***
+**Addition Operation       : ** _463.5 microseconds_
 
-**Subtraction Operation    : ** ***353.5 microseconds***
+**Subtraction Operation    : ** _353.5 microseconds_
 
-**Multiplication Operation : ** ***434.5 microseconds***
+**Multiplication Operation : ** _434.5 microseconds_
 
-**Division Operation       : ** ***54,733.25 microseconds***
+**Division Operation       : ** _54,733.25 microseconds_
 
 
 -------------------------------------------------------------------
