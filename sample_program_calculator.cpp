@@ -14,7 +14,6 @@ int main(){
 
 	while(true){
 
-
 		cout<<line<<endl;
 		cout<<"OPERATIONS : + - / * %"<<endl;
 		cout<<"\nINPUT FORMAT : (NUMBER SPACE OPERATION_SIGN SPACE NUMBER) \nCALCULATE : ";

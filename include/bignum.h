@@ -47,11 +47,16 @@ public:
 	//bignum functions
 	bignum absolute(const bignum&) const;
 
-    	//arithmetich operators
+    //arithmetich operators
 	bignum operator+(const bignum&) const;
 	bignum operator-(const bignum&) const;
 	bignum operator*(const bignum&) const;
 	bignum operator/(const bignum&) const;
+
+	bignum& operator+=(const bignum);
+	bignum& operator-=(const bignum);
+	bignum& operator*=(const bignum);
+	bignum& operator/=(const bignum);
 
 	template<class N>friend bignum operator+(N cn,const bignum& bn){bignum ra=ra.pa(cn,bn);return ra;}
 	template<class N>friend bignum operator-(N cn,const bignum& bn){bignum ra=ra.ps(cn,bn);return ra;}
