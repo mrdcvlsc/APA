@@ -9,7 +9,17 @@ https://mrdcvlsc.github.io/bignum/
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 ------------------------------------------------------------------
-[test](#go-here)
+
+# contents
+
+[Initialization/Assignment](#initialization)
+[Arithmetic Operators](#arithmetic-operators)
+[Comparison Operators](#comparison-operators)
+[IO Operator](#io-operators)
+[Sample Program](#sample-code)
+[Implementation - How?](#implementation)
+
+
 
 <details close>
 <summary><b>your title</b></summary>
@@ -50,6 +60,8 @@ https://mrdcvlsc.github.io/bignum/
   
 -------------------------------------------------------------------
 
+# initialization
+
 ### bignum initialization (using double quote "" is more recommended)
     
    ```c++
@@ -70,7 +82,11 @@ https://mrdcvlsc.github.io/bignum/
    bignum var7 = var1;
    var3 = var4 = 65652.762;
    ```
+[go back to contents](#contents)
+
 -------------------------------------------------------------------
+
+# arithmetic operators
 
 ### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM): EXAMPLES OF USES BELOW
 
@@ -133,8 +149,12 @@ https://mrdcvlsc.github.io/bignum/
    var1++;  // post-fix
    ++var1;  // pre-fix
    ```
+[go back to contents](#contents)
+
 -------------------------------------------------------------------
-# go here
+
+# sample code
+
 ## FACTORIAL SAMPLE CODE
 
   ```c++
@@ -174,7 +194,11 @@ https://mrdcvlsc.github.io/bignum/
 
 ### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bignum.lib -O3`
 
+[go back to contents](#contents)
+
 -------------------------------------------------------------------
+
+# io operators
 
 ### CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
 
@@ -184,8 +208,15 @@ https://mrdcvlsc.github.io/bignum/
    cout << abigintvariable << endl; 
    cin >> abigintvar;
    ```
+[go back to contents](#contents)   
+
+-------------------------------------------------------------------
+
+# comparison operators
+
+   **COMPARISON : <, >, <=, >=, ==, != (these comparison operators are also available)**
    
-   **COMPARISON : <, >, <=, >=, ==, != (these comparison operators are also available) note: always enclose two bignum values when you are using comparison operators ex:**
+   ***note: always enclose two bignum values when you are using comparison operators inside the ff. operators : <<,>>,() ex:***
    
    ```c++
    bignum large_number = "2887382", big_number = "2367232";
@@ -206,9 +237,11 @@ https://mrdcvlsc.github.io/bignum/
    cout<<("76327323" < "2837283"); // this is not allowed
    ```
 
-### **SUPPORTS INTEGER AND RATIONAL NUMBERS(DECIMAL FORM)** ###
+[go back to contents](#contents)
 
 -------------------------------------------------------------------
+
+# implementation
 
 ### HOW?
 
@@ -238,6 +271,8 @@ https://mrdcvlsc.github.io/bignum/
 
 [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
+[go back to contents](#contents)
+
 ---------------------------------------------------------
 
 ### PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
@@ -256,10 +291,12 @@ https://mrdcvlsc.github.io/bignum/
    
    [ ] cube root / square root / root (fast one)
     
+[go back to contents](#contents)
+
 ---------------------------------------------------------
 
 
-### PLANNED IMPROVEMENTS
+### TO NOTE
     
    ***KEEP REDUCING CODE CLUTTER***
    
@@ -275,6 +312,8 @@ https://mrdcvlsc.github.io/bignum/
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
    *started in 2020, 2nd year CS personal project*
+
+[go back to contents](#contents)
    
 # A C++ Class Library that you can use for computing big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
  
