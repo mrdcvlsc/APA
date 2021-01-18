@@ -26,6 +26,8 @@ https://mrdcvlsc.github.io/bignum/
 
 - [Implementation - How?](#implementation)
 
+- [About this project?](#about)
+
 
 -------------------------------------------------------------------
 
@@ -311,6 +313,8 @@ https://mrdcvlsc.github.io/bignum/
    ***IMPLEMENT FASTER APPROACHES***
     
 ---------------------------------------------------------
+
+# about
 
 ## WHY I CREATED THIS?
   
