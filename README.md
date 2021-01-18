@@ -2,11 +2,9 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
+#### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 
-### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
--------------------------------------------------------------------
-
-## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+#### Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 ------------------------------------------------------------------
 
