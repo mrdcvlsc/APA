@@ -1,7 +1,0 @@
-*.o
-*.exe
-*.lib
-*.a
-".vscode"
-sample_program.exe
-.vscode/settings.json
