@@ -2,23 +2,19 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
-<details close>
-<summary>your title</summary>
-<br>
-  content
-</details>
 
 ### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 -------------------------------------------------------------------
 
 ## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
+[test](## FACTORIAL SAMPLE CODE)
 ------------------------------------------------------------------
 
 <details close>
-  <summary><b>your title</b></summary>
+<summary><b>your title</b></summary>
 <br>
-  content
+
 </details>
 ### HOW TO USE :
 
