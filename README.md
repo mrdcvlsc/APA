@@ -2,7 +2,7 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
-<details open>
+<details close>
 <summary>your title</summary>
 <br>
   content
