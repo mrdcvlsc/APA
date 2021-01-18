@@ -337,7 +337,7 @@ https://mrdcvlsc.github.io/bignum/
 ## WHY I CREATED THIS?
   
    If you're asking...
-   I know there are some C++ libraries out there that supports operations for larger integer values
+   I know there are some C++ libraries out there that supports operations for larger number values
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
