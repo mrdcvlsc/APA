@@ -14,6 +14,8 @@ https://mrdcvlsc.github.io/bignum/
 
 - [Instructions - how to use](#instructions)
 
+- [Performance - time per operation](#performance)
+
 - [Initialization/Assignment](#initialization)
 
 - [Arithmetic Operators](#arithmetic-operators)
@@ -157,6 +159,23 @@ https://mrdcvlsc.github.io/bignum/
    ++var1;  // pre-fix
    ```
 [go back to contents](#contents)
+
+-------------------------------------------------------------------
+
+# performance
+
+## AVERAGE TIME IN MICROSECONDS PER ONE OPERATION :
+
+### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
+
+**Addition Operation       : ** ***463.5 microseconds***
+
+**Subtraction Operation    : ** ***353.5 microseconds***
+
+**Multiplication Operation : ** ***434.5 microseconds***
+
+**Division Operation       : ** ***54,733.25 microseconds***
+
 
 -------------------------------------------------------------------
 
