@@ -16,7 +16,7 @@ https://mrdcvlsc.github.io/bignum/
 ------------------------------------------------------------------
 
 <details close>
-<summary>###your title</summary>
+  <summary><b>your title</b></summary>
 <br>
   content
 </details>
