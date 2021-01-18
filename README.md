@@ -203,13 +203,10 @@ https://mrdcvlsc.github.io/bignum/
 
 # io operators
 
-### CURRENTLY SUPPORTED OPERATORS (bignumber overloaded operators)
-
-   **IO : <<, >> operator for "cout" output and "cin" input is supported.**
-   
    ```c++
-   cout << abigintvariable << endl; 
-   cin >> abigintvar;
+   bignum bignumberVariable = 213213123;
+   cout << bignumberVariable << endl; // output - 213213123
+   cin >> bignumberVariable;     // take user input - should be a number: will end the program if not
    ```
 [go back to contents](#contents)   
 
@@ -217,7 +214,13 @@ https://mrdcvlsc.github.io/bignum/
 
 # comparison operators
 
-   **COMPARISON : <, >, <=, >=, ==, != (these comparison operators are also available)**
+  -**All of the follwing comparison operators below are overloaded/available
+   - ***less than (<)***
+   - ***greater than (>)***
+   - ***less than or equal (<=)***
+   - ***greater than or equal (>=)***
+   - ***equal to (==)***
+   - ***not equal to (!=)***
    
    ***note: always enclose two bignum values when you are using comparison operators inside the ff. operators : <<,>>,() ex:***
    
@@ -258,7 +261,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that division, addition, subtraction and multiplication where you put the numbers on top of each other to compute the answer, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations(idk), and other advance concept.
 
-## IMPLEMENTATION
+## INTO ARRAYS
 
 ###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
 
