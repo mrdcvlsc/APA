@@ -51,9 +51,9 @@ $(OUT)str_arithmetic_algorithm.o : $(SRC)str_arithmetic_algorithm.cpp
 	@echo "compiling source code to object files..."
 	@$(CC) $(CFLAGS) $(SRC)str_arithmetic_algorithm.cpp -o obj/str_arithmetic_algorithm.o
 
-bench: bignum.lib bench.cpp
+bench: lib bench.cpp
 	@echo "compling ..."
-	@echo g++ -o bench bench.cpp bignum.lib
+	@echo g++ -o bench bench.cpp bignum.lib -I ./include
 	@echo "compiled done running..."
 	@./bench
 

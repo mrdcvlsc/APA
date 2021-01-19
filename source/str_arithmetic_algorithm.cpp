@@ -66,8 +66,8 @@ string bignum::internal_subtraction(string a, string b) const{
 
 string bignum::internal_multiplication(string upperNumber, string bottomNumber) const{
 	
-	vector<long long int> multiplicand = str_part_by(9,upperNumber);
-	vector<long long int> multiplier   = str_part_by(9,bottomNumber);
+	vector<long long int> multiplicand = str_part_by(8,upperNumber);
+	vector<long long int> multiplier   = str_part_by(8,bottomNumber);
 
 	// set all values of product to zero
 	size_t product_length = multiplicand.size()+multiplier.size(); 
@@ -86,7 +86,7 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	}
 
 	for(size_t i=0ul;i<product_length;++i) {
-		if(index_product[product_length-1-i]>=1000000000ll) {
+		if(index_product[product_length-1-i]>=100000000ll) {
 			long long int ten = ten_thsd(index_product[product_length-1-i]);
 			long long int one = one_thsd(index_product[product_length-1-i],ten);
 			index_product[product_length-1-i]=one;
@@ -97,7 +97,7 @@ string bignum::internal_multiplication(string upperNumber, string bottomNumber) 
 	string carried_answer, current_index;
 	for(size_t i=0;i<product_length;++i) {
 		current_index = to_string(index_product[product_length-1-i]);
-		string front_zeros(9-current_index.size(),'0');
+		string front_zeros(8-current_index.size(),'0');
 		carried_answer= front_zeros+current_index+carried_answer;
 	}
 	delete [] index_product;

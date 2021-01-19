@@ -6,10 +6,9 @@
 using namespace std;
 using namespace std::chrono;
 
-//test
 int main(){
-    string num1(10,'2');
-    string num2(10,'8');
+    string num1(5000,'2');
+    string num2(5000,'8');
     
     bignum numa = num1;
     bignum numb = num2;
@@ -22,10 +21,6 @@ int main(){
     auto duration  = duration_cast<microseconds>(stop-start);
 
     cout<<"program taken : "<<duration.count()<<" microseconds"<<endl;
-    
-    cout<<"\na = "<<numa<<endl;
-    cout<<"\nb = "<<numb<<endl;
-    cout<<"\nanswer : "<<numc<<endl;
-
+    cout<<"answer : "<<numc<<endl;
     return 0;
 }

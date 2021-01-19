@@ -1,4 +1,6 @@
 .gitignore
+bench.cpp
+bench
 .vscode
 *.exe
 *.obj
