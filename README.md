@@ -2,17 +2,17 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
+#### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
 
-### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
--------------------------------------------------------------------
-
-## Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+#### Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 ------------------------------------------------------------------
 
 # contents
 
 - [Instructions - how to use](#instructions)
+
+- [Performance - time per operation](#performance)
 
 - [Initialization/Assignment](#initialization)
 
@@ -156,6 +156,26 @@ https://mrdcvlsc.github.io/bignum/
    var1++;  // post-fix
    ++var1;  // pre-fix
    ```
+[go back to contents](#contents)
+
+-------------------------------------------------------------------
+
+# performance
+
+## AVERAGE TIME IN MICROSECONDS PER ONE OPERATION :
+
+### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
+
+### time for numbers Nx10^200
+
+**Addition Operation       :** ***463.5 microseconds***
+
+**Subtraction Operation    :** ***353.5 microseconds***
+
+**Multiplication Operation :** ***434.5 microseconds***
+
+**Division Operation       :** ***54,733.25 microseconds***
+
 [go back to contents](#contents)
 
 -------------------------------------------------------------------
@@ -319,7 +339,7 @@ https://mrdcvlsc.github.io/bignum/
 ## WHY I CREATED THIS?
   
    If you're asking...
-   I know there are some C++ libraries out there that supports operations for larger integer values
+   I know there are some C++ libraries out there that supports operations for larger number values
    But I created this as a challenge to myself;
    to gain experience, to practice how to improve existing code, to learn more things along the development process.
    
