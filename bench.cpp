@@ -20,6 +20,7 @@ int main(){
 
     auto stop = high_resolution_clock::now();
     auto duration  = duration_cast<microseconds>(stop-start);
+    
     cout<<"program taken : "<<duration.count()<<" microseconds"<<endl;
     
     cout<<"\na = "<<numa<<endl;
