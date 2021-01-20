@@ -49,19 +49,13 @@ https://mrdcvlsc.github.io/bignum/
 
 **For those who know "make" / makefiles you can use the static library for faster compilation**
 
-  1. open the **cmd** or ***command line terminal**.
+  **make - will generate a bignum.lib file (compiled library)"
   
-  2. change directory to this folder in the command line using **```cd your/directory/path/bignum```**
+  **make test - will compile the sample program with the compiled library"
   
-  3. enter the commad **```make```** to generate "***bignum.lib***"
-
-  4. now you can put the ***bignum.h*** and the ***bignum.lib*** in your project folder then include the header files in your main.cpp file and link the static libray bignum.lib, see the **"FACTORIAL SAMPLE CODE** on this page below.
-
-  5. or put the bignum.lib and bignum.h in your project folder then add it to your project in IDE the build and run (for IDE users)
-  
-**Test the generated library (optional)**
-
-  -use the **```make test```** command after **```make```** to run the test program if you want**
+  ```make
+  make test
+  ```
   
 [go back to contents](#contents)
 
