@@ -33,9 +33,7 @@ https://mrdcvlsc.github.io/bignum/
 
 # instructions
 
-### HOW TO USE :
-
-**For beginners that uses IDE**
+## IDE USER
 
   1. put the **bignum.h** and all the **.cpp** files that is inside the ***source*** folder to your project folder.
 
@@ -47,7 +45,7 @@ https://mrdcvlsc.github.io/bignum/
   
 -------------------------------------------------------------------
 
-**For those who know "make" / makefiles you can use the static library for faster compilation**
+## USING MAKE
 
   **make - will compile bignum.lib (compiled library)**
   
