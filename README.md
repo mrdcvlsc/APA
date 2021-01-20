@@ -52,11 +52,11 @@ https://mrdcvlsc.github.io/bignum/
   **make - will generate a bignum.lib file (compiled library)**
   
   **make test - will compile the sample program with the compiled library**
-  
-  ***```cmd
+ 
+  ```shell
   make
   make test
-  ```***
+  ```
   
 [go back to contents](#contents)
 
