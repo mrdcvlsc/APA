@@ -49,14 +49,14 @@ https://mrdcvlsc.github.io/bignum/
 
 **For those who know "make" / makefiles you can use the static library for faster compilation**
 
-  **make - will generate a bignum.lib file (compiled library)**
+  **make - will compile bignum.lib (compiled library)**
   
   **make test - will compile the sample program with the compiled library**
  
   ```shell
   make
   make test
-  ```
+  ```  
   
 [go back to contents](#contents)
 
