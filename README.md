@@ -53,10 +53,10 @@ https://mrdcvlsc.github.io/bignum/
   
   **make test - will compile the sample program with the compiled library**
   
-  ```cmd
+  ***```cmd
   make
   make test
-  ```
+  ```***
   
 [go back to contents](#contents)
 
