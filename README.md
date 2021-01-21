@@ -299,10 +299,8 @@ https://mrdcvlsc.github.io/bignum/
 ---------------------------------------------------------
 
 ### MY TODO - PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
-
-   **operations :**
    
-   [ ] STUDY IF IT IS POSSIBLE TO MAKE DIVISION FASTER BY REVERSING THE STEPS IN MULTIPLICATION
+   [ ] study if it is possible to achieve a faster division by reversing the steps of multiplication
    
    [ ] POWER FUNCTION
    
