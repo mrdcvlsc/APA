@@ -274,13 +274,13 @@ https://mrdcvlsc.github.io/bignum/
 
 ###### This implementation uses string data type to store large numbers/big numbers.
 
-## ELEMENTRAY TECHNIQUES
+## ELEMENTRAY TECHNIQUES (SCHOOL BOOK)
 
-###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that division, addition, subtraction and multiplication where you put the numbers on top of each other to compute the answer, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations(idk), and other advance concept.
+###### The four basic arithmetic operations are implemented using plain old, slightly tweeked elementary techniques in addition, subtraction, multiplication, and division... yeah that division, addition, subtraction and multiplication where you put the numbers on top of each other to compute the answer, that technique you are doing when you are in grade school, that is what this library is using... nothing fancy like using bitwise operations etc.(idk), and other advance concept.
 
 ## INTO ARRAYS
 
-###### For addition, subtraction, and multiplication every 9 digits (4 digits for multiplication) in the string value of the bignumber is then converted into a long int number then stored into an array of long ints, then arithmetic operations are applied on each index of the array, the results are then processed then each index is converted back and joined into a string... this is how this library mainly works
+###### For addition, subtraction, and multiplication every 18 digits (8 digits for multiplication) in the string value of the bignumber is then converted into a  long long int number then stored into an array of long long ints, then arithmetic operations are applied on each index of the array then stored to another array of long long int, the results' index are then processed carried to the next index when it's value reach a certain limit, then each index is converted back and joined into a string... this is how this library mainly works
 
 ***The "bignum" user made data type provided by the library enables you to:***
 
