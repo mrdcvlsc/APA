@@ -340,7 +340,7 @@ https://mrdcvlsc.github.io/bignum/
 
 [go back to contents](#contents)
    
-# A C++ Class Library that you can use for computing big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
+# A C++ Class Library that you can use to compute big numbers, using this library you can add, subtract, multiply, divide very large numbers in C++
  
 ## LICENCE - MIT
 
