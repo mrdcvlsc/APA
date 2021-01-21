@@ -159,7 +159,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
 
-### time for numbers Nx10^200
+### time for two "200 digit/length" string numbers (Nx10^200)
 
 **Addition Operation       :** ***463.5 microseconds***
 
