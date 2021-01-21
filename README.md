@@ -167,7 +167,7 @@ https://mrdcvlsc.github.io/bignum/
 
 **Multiplication Operation :** ***434.5 microseconds***
 
-**Division Operation       :** ***54,733.25 microseconds***
+**Division Operation       :** ***5,473.32 microseconds***
 
 [go back to contents](#contents)
 
