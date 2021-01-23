@@ -8,6 +8,16 @@ using namespace std::chrono;
 
 int main(){
 
+	bignum a = 1;
+
+	string val1(5000,'9');
+	string val2(5000,'3');
+
+	bignum var1 = val1;
+	bignum var2 = val2;
+
+	cout<<"\n Answer  = "<<var1/var2<<endl;
+	/*
 	string line(20,'=');
 	bignum val1, val2, answer;
 	char operation;
@@ -42,5 +52,6 @@ int main(){
 		cout<<line<<endl;
 		cout<<"ANSWER : "<<answer<<endl;
 	}
+	*/
 	return 0;
 }
