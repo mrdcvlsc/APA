@@ -205,11 +205,6 @@ bignum bignum::operator/(const bignum& bnum_) const{
 		string addZero(addLength,'0');
 		tempDividen.data = tempDividen.data + addZero;
 	}
-	else if(tempDivisorLength<tempDividenLength-1){// add zeroes to the tempDivisor
-		size_t addLength = (tempDividenLength-1)-tempDivisorLength;
-		string addZero(addLength,'0');
-		tempDivisor.data = tempDivisor.data + addZero;
-	}
 
 	pair<string,string> slcDividen = dec_slice(tempDividen.data);
 	pair<string,string> slcDivisor = dec_slice(tempDivisor.data);
