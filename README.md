@@ -300,7 +300,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ### MY TODO - PLANNED UPCOMMING SUPPORTS FOR THE FUTURE
    
-   [ ] study if it is possible to achieve a faster division by reversing the steps of multiplication
+   [ ] Remove conversion of string to long long int and vice-versa on arithmetic operations to increase performance.
    
    [ ] POWER FUNCTION
    
