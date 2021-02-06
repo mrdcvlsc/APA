@@ -169,6 +169,8 @@ https://mrdcvlsc.github.io/bignum/
 
 **Division Operation       :** ***5,473.32 microseconds***
 
+__The performance can be increase further to 5-60 microseconds only (probally) by removing the conversion of string to int data type and vice versa inside the arithmetic operations, and only convert it to string when outputting it or by creating a toString() method, (I will implement this in the future)__
+
 [go back to contents](#contents)
 
 -------------------------------------------------------------------
