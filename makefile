@@ -2,7 +2,7 @@
 #g++ -std=c++14 -o sample_calculator.exe -I ./include sample_program_calculator.cpp bignum.lib
 
 CC=g++
-CFLAGS= -I ./include -c -Wall
+CFLAGS= -I ./include -c -Wall -O3 -march=native
 SRC = ./source/
 OUT = ./obj/
 PRO = -static-libgcc -static-libstdc++
@@ -11,11 +11,11 @@ all:
 	@make lib
 	@make test
 
-test: bignum.lib sample_program_calculator.cpp
+test: bignum.lib sample.cpp
 	@echo "Compiling Sample Program"
-	@g++ -I ./include -o sample_program.exe sample_program_calculator.cpp bignum.lib
+	@g++ -I ./include -o sample sample.cpp bignum.lib
 	@echo "Compiled, running Sample program"
-	@./sample_program.exe
+	@./sample
 
 lib: library
 
@@ -59,4 +59,4 @@ bench: lib bench.cpp
 
 clean:
 	@echo "removed : bignum.lib and sample_calculator.exe"
-	@rm bignum.lib sample_calculator.exe *.o
+	@rm bignum.lib sample_calculator *.o
