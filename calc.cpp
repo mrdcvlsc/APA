@@ -2,7 +2,7 @@
  *
  * Copyright (c) 2021 Al-buharie Amjari <healer.harie@gmail.com>
  *
- * This file is license under MIT license
+ * This file is license under MIT license.
  *
  */
 #include <iostream>
