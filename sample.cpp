@@ -1,120 +1,195 @@
-
-/* This is a draft. Further revision is needed.
+/* Tiny calc
  *
- * FILE: example.cpp
- * DESCRIPTION: This parses a mathematical expression and stores it to bignum.
+ * Copyright (c) 2021 Al-buharie Amjari <healer.harie@gmail.com>
+ *
+ * This file is license under MIT license
+ *
  */
-
 #include <iostream>
-#include <assert.h>
-#include <chrono>
-#include <cstdio>
-#include <string>
-#include "bignum.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <bignum.h>
 
-#define ERROR(...) fprintf(stderr,  __VA_ARGS__)
-using namespace std;
-using namespace std::chrono;
+char expr[100];
+char op[100];
 
-char line[500]; int cur = 0;
-bignum answer;
+bignum num[100];
+int num_c = 0;
+int op_c = 0;
+int cur = 0;
+int operand = 0;
 
-/*-------.
-| Tokens |
-`-------*/
-typedef enum token_t token_t;
-enum token_t {
-  TOK_VAL,
-  TOK_LBRACE,
-  TOK_RBRACE,
-  TOK_ADD,
-  TOK_SUB,
-  TOK_MUL,
-  TOK_DIV,
-  TOK_EOL /*end of line */
-};
+int main() {
+  printf("'q' to quit\n");
+  while (!feof(stdin)) {
+  beg:
+    cur = 0;
+    num_c = 0;
+    op_c = 0;
+    operand = 0;
 
-/*
-/*----------------------------.
-| Terminals and non-terminals |
-`----------------------------*/
-typedef struct symrec_t symrec_t;
-struct symrec_t {
-   token_t type;
-   bignum val;
-};
+    memset(expr, 0, 100);
+    memset(op, 0, 100);
 
+    printf("> ");
+    fflush(stdout);
+    scanf(" %[^\n]%*c", expr);
+    if (*expr == (char)'q')
+      return 0;
+  a:
+    while (1) {
+      while (expr[cur] == ' ' || expr[cur] == '\n')
+        cur++;
+      switch (expr[cur]) {
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9': {
+        if (operand) {
+          fprintf(stderr, "syntax error\n");
+          goto beg;
+        }
+        operand = 1;
+        char buff[100];
+        int nchar;
+        sscanf(expr + cur, "%[0-9\.]%n", buff, &nchar);
+        cur += nchar;
+        num[num_c++] = (string) buff;
+      } break;
 
-/*--------.
-| Scanner |
-`--------*/
-symrec_t * lex(void){
-  while (line[cur]==' '||buff[cur]=='\n') cur++; /* eat whitespace */
-  switch (line[cur]){
-	case '0': case '1': case '2': case '3': case '4':
-	case '5': case '6': case '7': case '8': case '9':
-	{
-	symrec_t *s = malloc(sizeof(symrec_t));
-	assert(s!=NULL);
-	int nchar; char buff[400];
-
-	sscanf(line+cur, "399[0-9]%n", &s->val, &nchar);
-	s->type = TOK_VAL;
-	cur+=nchar-1;
-	return s;
-
-	}
-	case '+': {
-		symrec_t *s = malloc (sizeof(symrec_t));
-		s->type = TOK_ADD;
-		cur++;
-		return s;}
-	case '-':{
-                symrec_t *s = malloc (sizeof(symrec_t));
-                s->type = TOK_SUB;
-                cur++;
-                return s;}
-	case '*': {
-                symrec_t *s = malloc (sizeof(symrec_t));
-                s->type = TOK_MUL;
-                cur++;
-                return s;};
-	case '/': {
-                symrec_t *s = malloc (sizeof(symrec_t));
-                s->type = TOK_DIV;
-                cur++;
-                return s;}
-		  ;
-	case 0: {
-                symrec_t *s = malloc (sizeof(symrec_t));
-                s->type = TOK_EOL;
-                cur++;
-                return s;};
-	default: ERROR("error: character %c is illegal\n", line[cur]); exit(1);
-	
-
+      case '+':
+        if (!operand) {
+          fprintf(stderr, "syntax error\n");
+          goto beg;
+        }
+        operand = 0;
+        if (op_c != 0)
+          if (op[op_c - 1] == '*' || op[op_c - 1] == '/')
+            for (op_c -= 1; op_c > -1; op_c--) {
+              switch (op[op_c]) {
+              case '*':
+                num[num_c - 2] = num[num_c - 2] * num[num_c - 1];
+                break;
+              case '/':
+                num[num_c - 2] = num[num_c - 2] / num[num_c - 1];
+                break;
+              case '-':
+                num[num_c - 2] = num[num_c - 2] - num[num_c - 1];
+                break;
+              case '+':
+                num[num_c - 2] = num[num_c - 2] + num[num_c - 1];
+                break;
+              }
+              num_c--;
+              op[op_c] = 0;
+            }
+	op_c = 0;
+        op[op_c++] = '+';
+        cur++;
+        break;
+      case '-':
+        if (!operand) {
+          if (!isdigit(expr[cur + 1])) {
+            fprintf(stderr, "syntax error\n");
+            goto beg;
+          }
+          operand = 1;
+          char buff[100] = {0};
+          buff[0] = '-';
+          int nchar;
+          int ret = sscanf(expr + cur + 1, "%[0-9\.]%n", buff + 1, &nchar);
+          if (!ret) {
+            fprintf(stderr, "syntax error");
+            goto beg;
+          }
+          cur += nchar + 1;
+          num[num_c++] = (string) buff;
+          goto a;
+        }
+        operand = 0;
+        if (op_c != 0)
+          if (op[op_c - 1] == '*' || op[op_c - 1] == '/')
+            for (op_c -= 1; op_c > -1; op_c--) {
+              switch (op[op_c]) {
+              case '*':
+                num[num_c - 2] = num[num_c - 2] * num[num_c - 1];
+                break;
+              case '/':
+                num[num_c - 2] = num[num_c - 2] / num[num_c - 1];
+                break;
+              case '-':
+                num[num_c - 2] = num[num_c - 2] - num[num_c - 1];
+                break;
+              case '+':
+                num[num_c - 2] = num[num_c - 2] + num[num_c - 1];
+                break;
+              }
+              num_c--;
+              op[op_c] = 0;
+            }
+	op_c = 0;
+        op[op_c++] = '-';
+        cur++;
+        break;
+      case '*':
+        if (!operand) {
+          fprintf(stderr, "syntax error\n");
+          goto beg;
+        }
+        operand = 0;
+        op[op_c++] = '*';
+        cur++;
+        break;
+      case '/':
+        if (!operand) {
+          fprintf(stderr, "syntax error\n");
+          goto beg;
+        }
+	operand = 0;
+        op[op_c++] = '/';
+        cur++;
+        break;
+      case 0:
+        if (!operand) {
+          fprintf(stderr, "syntax error\n");
+          goto beg;
+        }
+        operand = 0;
+        if (op_c != 0)
+          for (op_c -= 1; op_c > -1; op_c--) {
+            switch (op[op_c]) {
+            case '*':
+              num[num_c - 2] = num[num_c - 2] * num[num_c - 1];
+              break;
+            case '/':
+              num[num_c - 2] = num[num_c - 2] / num[num_c - 1];
+              break;
+            case '-':
+              num[num_c - 2] = num[num_c - 2] - num[num_c - 1];
+              break;
+            case '+':
+              num[num_c - 2] = num[num_c - 2] + num[num_c - 1];
+              break;
+            }
+            num_c--;
+            op[op_c] = 0;
+          }
+	std::cout << " = " << num[num_c - 1] << std::endl;
+        goto beg;
+      default:
+        fprintf(stderr, "illegal character: '%c'\n", expr[cur]);
+        goto beg;
+      }
+    }
   }
-}
 
-void parse(void){
-   expression();
-}
-
-void expression(void){
-
-
-}*/
-int main(){
-
-	cout << "q to exit\n";
-	while (1) {
-
-		cout<<"> ";
-	        scanf("%499s", line);
-		if (line[0]=='q') break;
-		parse();
-		cout<<"= "<<answer<<endl;
-	}
-
-	return 0;
+  return 0;
 }

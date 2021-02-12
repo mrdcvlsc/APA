@@ -3,7 +3,7 @@
 
 CC=g++
 CFLAGS= -I ./include -c -Wall -O3 -march=native
-SRC = ./source/
+SRC = ./src/
 OUT = ./obj/
 PRO = -static-libgcc -static-libstdc++
 
@@ -13,7 +13,7 @@ all:
 
 test: bignum.lib sample.cpp
 	@echo "Compiling Sample Program"
-	@g++ -I ./include -o sample sample.cpp bignum.lib
+	@g++ -I ./include -o sample sample.cpp bignum.lib -std=c++11
 	@echo "Compiled, running Sample program"
 	@./sample
 
@@ -54,9 +54,8 @@ $(OUT)str_arithmetic_algorithm.o : $(SRC)str_arithmetic_algorithm.cpp
 bench: lib bench.cpp
 	@echo "compling ..."
 	@echo g++ -o bench bench.cpp bignum.lib -I ./include
-	@echo "compiled done running..."
 	@./bench
 
+.PHONY : clean
 clean:
-	@echo "removed : bignum.lib and sample_calculator.exe"
-	@rm bignum.lib sample_calculator *.o
+	@rm bignum.lib sample obj/*.o
