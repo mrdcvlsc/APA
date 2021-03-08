@@ -2,6 +2,12 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
+compiled library download:
+
+[bignum v2.8-windows](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-win10.7z)
+
+[bignum v2.8-linux](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-linux.7z)
+
 ------------------------------------------------------------------
 
 *this repository provides the 2 library named below*
@@ -66,6 +72,12 @@ https://mrdcvlsc.github.io/bignum/
   3. include the header files in you source code
   4. (IDE) if you are using an IDE add/link the .lib file in your project
   5. (g++) g++ -o main main.cpp bint.lib // see sample program
+
+compiled library download:
+
+[bignum v2.8-windows](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-win10.7z)
+
+[bignum v2.8-linux](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-linux.7z)
  
 -------------------------------------------------------------------
 
@@ -316,11 +328,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ### HOW?
 
-###### This library uses c++ class to encapsulate methods/function to perform operations on big numbers/large numbers.
-
-## JUST STRINGS
-
-###### This implementation uses string data type to store large numbers/big numbers.
+###### This implementation uses a vector of long long ints to store large numbers/big numbers.
 
 ## ELEMENTRAY TECHNIQUES (SCHOOL BOOK)
 
@@ -328,7 +336,7 @@ https://mrdcvlsc.github.io/bignum/
 
 ## INTO ARRAYS
 
-###### For addition, subtraction, and multiplication every 18 digits (8 digits for multiplication) in the string value of the bignumber is then converted into a  long long int number then stored into an array of long long ints, then arithmetic operations are applied on each index of the array then stored to another array of long long int, the results' index are then processed carried to the next index when it's value reach a certain limit, then each index is converted back and joined into a string... this is how this library mainly works
+###### For addition, subtraction, and multiplication every 8 digits of the big number is converted into a long long int stored into a a vector, then arithmetic operations are applied on each index of the vector, the answer per index of vector is then stored to another vector of long long int, the results' index are then processed carried to the next index when it's value reach a certain limit
 
 ***The "bignum" user made data type provided by the library enables you to:***
 
