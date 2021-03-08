@@ -6,17 +6,13 @@ https://mrdcvlsc.github.io/bignum/
 
  **bint** - ___is only used to compute and perform operations on big negative and positive integers___
 
-example of big integer:
-
 ```
 988986382684324233565674342423
 -3274682374723462364764534576867876324
 5666127367517263571264564564557356232
 ```
 
-**bnum** - ___on the otherhand bnum can compute and perform operations on big positive floating point values both positive and negative___
-
-example of big floating point values
+**bnum** - ___on the otherhand can compute and perform operations on big positive floating point values both positive and negative___
 
 ```
 -0.908980373981263876192367846238469238467648234234
