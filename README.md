@@ -179,7 +179,7 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# performance
+# 'bnum' performance
 
 ## AVERAGE TIME IN MICROSECONDS PER ONE OPERATION :
 
@@ -203,6 +203,7 @@ https://mrdcvlsc.github.io/bignum/
 
 (past version) Division Operation       : 5,473.32 microseconds
 
+### 'bint' has a faster performance that 'bnum' but only computes big integers
 
 [go back to contents](#contents)
 
