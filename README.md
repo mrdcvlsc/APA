@@ -8,9 +8,9 @@ https://mrdcvlsc.github.io/bignum/
 
 ------------------------------------------------------------------
 
-### bint - is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...
+### bint - ___is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...___
 
-### bnum - on the otherhand can compute and perform operations on negative and big positive floating point values like 0.3453454353453454353402832, 83.87303, 800423423424343343452.23034545
+### bnum - ___on the otherhand can compute and perform operations on negative and big positive floating point values like 0.3453454353453454353402832, 83.87303, 800423423424343343452.23034545___
 
 ------------------------------------------------------------------
 
