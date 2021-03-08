@@ -245,8 +245,9 @@ https://mrdcvlsc.github.io/bignum/
 
 - Main_Folder
   - main.cpp
-  - bint.h
+  - bint.hpp
   - bint.lib
+  - arr_num_arithmetic.hpp
 
 ### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bint.lib -O3`
 
