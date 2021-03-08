@@ -287,8 +287,9 @@ https://mrdcvlsc.github.io/bignum/
    ***note: always enclose two bignum values when you are using comparison operators inside the ff. operators : <<,>>,() ex:***
    
    ```c++
-   binum large_number = "2887382", big_number = "2367232";
-   cout<< (large_number != bignum); //allowed
+   bnum large_number = "2887382";
+   bnum big_number = "2367232";
+   cout<< (large_number != big_number); //allowed
    ```
    
 *Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
