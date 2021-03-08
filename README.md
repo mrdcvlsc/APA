@@ -203,7 +203,7 @@ https://mrdcvlsc.github.io/bignum/
 
 (past version) Division Operation       : 5,473.32 microseconds
 
-### 'bint' has a faster performance that 'bnum' but only computes big integers
+### 'bint' has a faster performance than 'bnum' but only computes big integers
 
 [go back to contents](#contents)
 
@@ -285,7 +285,7 @@ https://mrdcvlsc.github.io/bignum/
 *Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
    
    ```c++
-   bignum variable1 = "72736273";
+   bnum variable1 = "72736273";
    cout<<(variable1 <= "81283798237")<<endl; // allowed 
    cout<<(-76323.6763f > variable1)<<endl;  // allowed
    ```
