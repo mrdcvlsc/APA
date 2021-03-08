@@ -12,7 +12,7 @@ https://mrdcvlsc.github.io/bignum/
 5666127367517263571264564564557356232
 ```
 
-**bnum** - ___on the otherhand can compute and perform operations on big positive floating point values both positive and negative___
+**bnum** - ___on the otherhand can compute and perform operations on big floating point values both positive and negative___
 
 ```
 -0.908980373981263876192367846238469238467648234234
