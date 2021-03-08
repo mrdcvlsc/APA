@@ -267,7 +267,7 @@ https://mrdcvlsc.github.io/bignum/
 
 # comparison operators
 
-  **All of the follwing comparison operators below are overloaded/available
+  **All of the follwing comparison operators below are overloaded/available**
    - ***less than (<)***
    - ***greater than (>)***
    - ***less than or equal (<=)***
