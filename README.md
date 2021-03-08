@@ -7,6 +7,15 @@ https://mrdcvlsc.github.io/bignum/
 #### Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 ------------------------------------------------------------------
+# bint
+
+## bint is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...
+
+# bnum
+
+## bnum on the otherhand can compute and performe operations on negative and big positive floating point values like 0.02832, 83.87303, 8002.230
+
+------------------------------------------------------------------
 
 # contents
 
@@ -35,9 +44,9 @@ https://mrdcvlsc.github.io/bignum/
 
 ## IDE USER
 
-  1. put the **bignum.h** and all the **.cpp** files that is inside the ***source*** folder to your project folder.
+  1. depending on what you are using either bint or bnum, copy all of the files 'inside' the 'include' folder and 'src' folder into your project
 
-  2. add **```#include "bignum.h"```** in your ***main.cpp*** file.
+  2. add **```#include "bnum.hpp"```** or **```#include "bnum.hpp"```** in your ***main.cpp*** file.
   
   3. select and add the files on your project in your IDE.
 
@@ -47,14 +56,21 @@ https://mrdcvlsc.github.io/bignum/
 
 ## USING MAKE
 
-  **make - will compile bignum.lib (compiled library)**
-  
-  **make test - will compile the sample program with the compiled library**
- 
+  **change directory in command line to either the "bint" or "bnum" folder
   ```shell
-  make
-  make test
-  ```  
+  cd bnum
+  or
+  cd bint
+  ```
+  
+  **on on either bnum or bint folder, this command will compile the library and put it inside the designated 'lib' folder
+  ```shell
+  make library
+  ```
+  
+  **on on either bnum or bint folder, this command will compile run the default sample programs provided
+  ```make sample1``` - calculator program
+  ```make sample2``` - performance test program
   
 [go back to contents](#contents)
 
@@ -62,24 +78,24 @@ https://mrdcvlsc.github.io/bignum/
 
 # initialization
 
-### bignum initialization (using double quote "" is more recommended)
+### bnum initialization (using double quote "" is more recommended)
     
    ```c++
    // use string or const char* for big values
-   bignum var1 = "23234.78634";
-   bignum var2 = "-67864254234324234";
+   bnum var1 = "23234.78634";
+   bnum var2 = "-67864254234324234";
    
    // you can also use constant integers up to 18.4e+18
-   bignum var3  = -57232;
-   bignum var4 = 96725372372ll;
+   bnum var3  = -57232;
+   bnum var4 = 96725372372ll;
    
    // or float and doubles
    // for very long rational numbers use strings instead to avoid automatic rounding
-   bignum var5 = 7676434.2323234L; // long doubles
-   bignum var6 = -76734.57623f;
+   bnum var5 = 7676434.2323234L; // long doubles
+   bnum var6 = -76734.57623f;
    
    // copy bignum
-   bignum var7 = var1;
+   bnum var7 = var1;
    var3 = var4 = 65652.762;
    ```
 [go back to contents](#contents)
@@ -89,6 +105,8 @@ https://mrdcvlsc.github.io/bignum/
 # arithmetic operators
 
 ### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM): EXAMPLES OF USES BELOW
+
+#### NOTE : for bnum division, at the start of the program write ```bnum::set_div_precision(n)``` to increase the accuracy of division, the higher the number the more accurate the answer will be, though it also increases the time to get the answer, by default the value is set to 1.
 
    **[done] Addition (+)**
    ```c++   
@@ -131,7 +149,7 @@ https://mrdcvlsc.github.io/bignum/
    ```
    **[done] Multiplication Assignment (*=)**
    ```c++
-   bignum varNew = var1*="222";
+   bnum varNew = var1*="222";
    var1*=var2;
    ```
    **[done] Division Assignment (/=)**
@@ -161,15 +179,22 @@ https://mrdcvlsc.github.io/bignum/
 
 ### time for two "200 digit/length" string numbers (Nx10^200)
 
-**Addition Operation       :** ***463.5 microseconds***
+**Addition Operation       :** ***22 microseconds***
 
-**Subtraction Operation    :** ***353.5 microseconds***
+**Subtraction Operation    :** ***20 microseconds***
 
-**Multiplication Operation :** ***434.5 microseconds***
+**Multiplication Operation :** ***37 microseconds***
 
-**Division Operation       :** ***5,473.32 microseconds***
+**Division Operation       :** ***4,873 microseconds***
 
-__The performance can be increase further to 5-60 microseconds only (probally) by removing the conversion of string to int data type and vice versa inside the arithmetic operations, and only convert it to string when outputting the result value or by creating a toString() method to get the converted string value, (I will implement this in the future)__
+(past version) Addition Operation       : 463.5 microseconds
+
+(past version) Subtraction Operation    : 353.5 microseconds
+
+(past version) Multiplication Operation : 434.5 microseconds
+
+(past version) Division Operation       : 5,473.32 microseconds
+
 
 [go back to contents](#contents)
 
@@ -183,7 +208,7 @@ __The performance can be increase further to 5-60 microseconds only (probally) b
   // main.cpp
   
   #include <iostream>
-  #include "bignum.h"
+  #include "bint.hpp"
 
   using namespace std;
 
@@ -211,10 +236,10 @@ __The performance can be increase further to 5-60 microseconds only (probally) b
 
 - Main_Folder
   - main.cpp
-  - bignum.h
-  - bignum.lib
+  - bint.h
+  - bint.lib
 
-### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bignum.lib -O3`
+### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bint.lib -O3`
 
 [go back to contents](#contents)
 
@@ -223,7 +248,7 @@ __The performance can be increase further to 5-60 microseconds only (probally) b
 # io operators
 
    ```c++
-   bignum bignumberVariable = 213213123;
+   bnum bignumberVariable = 213213123;
    cout << bignumberVariable << endl; // output - 213213123
    cin >> bignumberVariable;     // take user input - should be a number: will end the program if not
    ```
@@ -244,7 +269,7 @@ __The performance can be increase further to 5-60 microseconds only (probally) b
    ***note: always enclose two bignum values when you are using comparison operators inside the ff. operators : <<,>>,() ex:***
    
    ```c++
-   bignum large_number = "2887382", big_number = "2367232";
+   binum large_number = "2887382", big_number = "2367232";
    cout<< (large_number != bignum); //allowed
    ```
    
