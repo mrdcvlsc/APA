@@ -2,10 +2,6 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
-#### **SUPPORTS OPERATION ON INTEGER AND RATIONAL NUMBERS IN DECIMAL FORM** ###
-
-#### Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
-
 ------------------------------------------------------------------
 
  **bint** - ___is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...___
