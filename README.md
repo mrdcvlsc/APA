@@ -179,13 +179,13 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# 'bnum' performance
+# performance
 
-## AVERAGE TIME IN MICROSECONDS PER ONE OPERATION :
+## bnum's AVERAGE TIME PER OPERATION IN MICROSECONDS :
 
 ### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
 
-### time for two "200 digit/length" string numbers (Nx10^200)
+### time for two "200 digit/length" string numbers (nx10^200)
 
 **Addition Operation       :** ***22 microseconds***
 
