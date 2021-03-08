@@ -226,11 +226,11 @@ https://mrdcvlsc.github.io/bignum/
 
     cout<<"FACTORIAL OF A NUMBER : "<<endl;
 
-    bignum limit = 1000;
+    bint limit = 1000;
     
-    bignum n = limit, fac = "1";
+    bint n = limit, fac = "1";
 
-    for(bignum i=1; i<=limit; ++i)
+    for(bint i=1; i<=limit; ++i)
     {
       fac = fac*i;
     }
