@@ -4,21 +4,23 @@ https://mrdcvlsc.github.io/bignum/
 
 ------------------------------------------------------------------
 
- **bint** - ___is only used to compute and perform operations on big negative and positive integers___
+*this repository provides the 2 library named below*
 
-```
-988986382684324233565674342423
--3274682374723462364764534576867876324
-5666127367517263571264564564557356232
-```
+**bint** - ___is only used to compute and perform operations on signed big integers___
 
-**bnum** - ___on the otherhand can compute and perform operations on big floating point values both positive and negative___
+**bnum** - ___on the otherhand can compute and perform operations on signed big floating point values___
 
-```
--0.908980373981263876192367846238469238467648234234
-2364623742342343543545474534.2731238125365172357165786435
-97873494389584334324234.234526734235467347534
-```
+### terms :
+
+
+
+##### signed - from negative infinity to positive infinity
+
+##### unsigned - from zero to positive infinity
+
+##### floating point values - 0.1, 5649.0064, PI are all examples of floating point values
+
+##### integers - whole numbers
 
 ------------------------------------------------------------------
 
