@@ -62,11 +62,12 @@ https://mrdcvlsc.github.io/bignum/
 ## USING MAKE
 
   **change directory in command line to either the "bint" or "bnum" folder
-  ```shell
+  
+  **```shell
   cd bnum
   or
   cd bint
-  ```
+  ```**
   
   **on on either bnum or bint folder, this command will compile the library and put it inside the designated 'lib' folder
   ```shell
@@ -75,9 +76,9 @@ https://mrdcvlsc.github.io/bignum/
   
   **on on either bnum or bint folder, this command will compile run the default sample programs provided**
   
-  ```make sample1``` - calculator program
+  **```make sample1```** - calculator program
   
-  ```make sample2``` - performance test program
+  **```make sample2```** - performance test program
   
 [go back to contents](#contents)
 
