@@ -7,13 +7,10 @@ https://mrdcvlsc.github.io/bignum/
 #### Download It Here - [Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
 
 ------------------------------------------------------------------
-# bint
 
-## bint is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...
+### bint - is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...
 
-# bnum
-
-## bnum on the otherhand can compute and performe operations on negative and big positive floating point values like 0.02832, 83.87303, 8002.230
+### bnum - on the otherhand can compute and performe operations on negative and big positive floating point values like 0.02832, 83.87303, 8002.230
 
 ------------------------------------------------------------------
 
