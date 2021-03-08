@@ -32,28 +32,28 @@ library: $(OUT)arithmetic_operators.o $(OUT)comparison.o $(OUT)constructors.o $(
 
 $(OUT)arithmetic_operators.o :$(SRC)arithmetic_operators.cpp
 	@echo "compiling source code to obj files ... 1/7"
-	@$(CC) $(CFLAGS) $(SRC)arithmetic_operators.cpp -o obj/arithmetic_operators.o
+	@$(CC) $(CFLAGS) $(SRC)arithmetic_operators.cpp -o obj/arithmetic_operators.o -O2
 
 $(OUT)comparison.o :$(SRC)comparison.cpp
 	@echo "compiling source code to obj files ... 2/7"
-	@$(CC) $(CFLAGS) $(SRC)comparison.cpp -o obj/comparison.o
+	@$(CC) $(CFLAGS) $(SRC)comparison.cpp -o obj/comparison.o -O2
 
 $(OUT)constructors.o :$(SRC)constructors.cpp
 	@echo "compiling source code to obj files ... 3/7"
-	@$(CC) $(CFLAGS) $(SRC)constructors.cpp -o obj/constructors.o
+	@$(CC) $(CFLAGS) $(SRC)constructors.cpp -o obj/constructors.o -O2
 
 $(OUT)integer_arithmetic.o :$(SRC)integer_arithmetic.cpp
 	@echo "compiling source code to obj files ... 4/7"
-	@$(CC) $(CFLAGS) $(SRC)integer_arithmetic.cpp -o obj/integer_arithmetic.o
+	@$(CC) $(CFLAGS) $(SRC)integer_arithmetic.cpp -o obj/integer_arithmetic.o -O2
 
 $(OUT)iostream.o :$(SRC)iostream.cpp
 	@echo "compiling source code to obj files ... 5/7"
-	@$(CC) $(CFLAGS) $(SRC)iostream.cpp -o obj/iostream.o
+	@$(CC) $(CFLAGS) $(SRC)iostream.cpp -o obj/iostream.o -O2
 
 $(OUT)string_manip.o :$(SRC)string_manip.cpp
 	@echo "compiling source code to obj files ... 6/7"
-	@$(CC) $(CFLAGS) $(SRC)string_manip.cpp -o obj/string_manip.o
+	@$(CC) $(CFLAGS) $(SRC)string_manip.cpp -o obj/string_manip.o -O2
 
 $(OUT)sets.o :$(SRC)sets.cpp
 	@echo "compiling source code to obj files ... 7/7"
-	@$(CC) $(CFLAGS) $(SRC)sets.cpp -o obj/sets.o
+	@$(CC) $(CFLAGS) $(SRC)sets.cpp -o obj/sets.o -O2
