@@ -73,8 +73,10 @@ https://mrdcvlsc.github.io/bignum/
   make library
   ```
   
-  **on on either bnum or bint folder, this command will compile run the default sample programs provided
+  **on on either bnum or bint folder, this command will compile run the default sample programs provided**
+  
   ```make sample1``` - calculator program
+  
   ```make sample2``` - performance test program
   
 [go back to contents](#contents)
