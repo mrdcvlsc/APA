@@ -57,6 +57,14 @@ https://mrdcvlsc.github.io/bignum/
 
   4. then compile and run.
   
+# USING THE COMPILED LIBRARY IN 'RELEASE'
+
+  1. download the compile library in release
+  2. extract the files and put it in you project
+  3. include the header files in you source code
+  4. (IDE) if you are using an IDE add/link the .lib file in your project
+  5. (g++) g++ -o main main.cpp bint.lib // see sample program
+ 
 -------------------------------------------------------------------
 
 ## USING MAKE
@@ -249,7 +257,7 @@ https://mrdcvlsc.github.io/bignum/
   - bint.lib
   - arr_num_arithmetic.hpp
 
-### FACTORIAL SAMPLE CODE: compilation `g++ -o output.exe main.cpp bint.lib -O3`
+### FACTORIAL SAMPLE CODE: compilation `g++ -o main.exe main.cpp bint.lib`
 
 [go back to contents](#contents)
 
