@@ -4,9 +4,25 @@ https://mrdcvlsc.github.io/bignum/
 
 ------------------------------------------------------------------
 
- **bint** - ___is only used to compute and perform operations on big negative and positive integers like ...-2,-1,0,1,2... and so on...___
+ **bint** - ___is only used to compute and perform operations on big negative and positive integers___
 
-**bnum** - ___on the otherhand can compute and perform operations on negative and big positive floating point values like 0.3453454353453454353402832, 83.87303, 800423423424343343452.23034545___
+example of big integer:
+
+```
+988986382684324233565674342423
+-3274682374723462364764534576867876324
+5666127367517263571264564564557356232
+```
+
+**bnum** - ___on the otherhand bnum can compute and perform operations on big positive floating point values both positive and negative___
+
+example of big floating point values
+
+```
+-0.908980373981263876192367846238469238467648234234
+2364623742342343543545474534.2731238125365172357165786435
+97873494389584334324234.234526734235467347534
+```
 
 ------------------------------------------------------------------
 
