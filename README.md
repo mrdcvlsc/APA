@@ -18,8 +18,6 @@ compiled library download:
 
 ### terms :
 
-
-
 ##### signed - from negative infinity to positive infinity
 
 ##### unsigned - from zero to positive infinity
@@ -83,21 +81,23 @@ compiled library download:
 
 ## USING MAKE
 
-  **change directory in command line to either the "bint" or "bnum" folder**
+  **to create the compiled library**
   
   ```shell
-  cd bnum
-  or
-  cd bint
-  ```
-  
-  **on either 'bnum' or 'bint' folder, this command will compile the library and put it inside the designated 'lib' folder**
-  ```shell
-  make library
+  git clone https://github.com/mrdcvlsc/bignum.git
+  cd bignum
+  make win  // for windows os
+  make lin  // for linux os
   ```
   
   **on either 'bnum' or 'bint' folder, this command will compile run the default sample programs provided**
   
+  ```shell
+  git clone https://github.com/mrdcvlsc/bignum.git
+  cd bignum
+  cd bint // or cd bnum
+  ```
+
   **```make sample1```** - calculator program
   
   **```make sample2```** - performance test program
