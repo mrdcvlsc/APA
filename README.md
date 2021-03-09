@@ -2,11 +2,7 @@
 https://mrdcvlsc.github.io/bignum/
 ## bignum - c++ for big number computation (arbitrary-precision arithmetic).
 
-compiled library download:
-
-[bignum v2.8-windows](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-win10.7z)
-
-[bignum v2.8-linux](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-linux.7z)
+[Download Bignum - compiled library](https://github.com/mrdcvlsc/bignum/releases/tag/v2.8.8)
 
 ------------------------------------------------------------------
 
@@ -71,11 +67,7 @@ compiled library download:
   4. (IDE) if you are using an IDE add/link the .lib file in your project
   5. (g++) g++ -o main main.cpp bint.lib // see sample program
 
-compiled library download:
-
-[bignum v2.8-windows](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-win10.7z)
-
-[bignum v2.8-linux](https://github.com/mrdcvlsc/bignum/releases/download/v2.8/bignum.v2.8-linux.7z)
+[Download Bignum - compiled library](https://github.com/mrdcvlsc/bignum/releases/tag/v2.8.8)
  
 -------------------------------------------------------------------
 
@@ -348,7 +340,7 @@ compiled library download:
    
    4. IDK... you can do anything with it.
 
-[Github Repo - source codes](https://github.com/mrdcvlsc/bignum)
+[Download Bignum - compiled library](https://github.com/mrdcvlsc/bignum/releases/tag/v2.8.8)
 
 [go back to contents](#contents)
 
@@ -373,7 +365,6 @@ compiled library download:
 [go back to contents](#contents)
 
 ---------------------------------------------------------
-
 
 ### TO NOTE
     
