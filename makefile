@@ -13,26 +13,48 @@ DEV= -Wall -Wextra -Wshadow -Wpedantic
 OFLAG= -O3
 
 win:
-	make bintlib
-	make bnumlib
-	mkdir bignum_win
-	copy ./bint/lib/bint.lib ./bignum_win
-	copy ./bnum/lib/bnum.lib ./bignum_win
-	copy ./bint/include/bint.hpp ./bignum_win
-	copy ./bnum/include/bnum.hpp ./bignum_win
-	copy ./bint/include/arr_num_arithmetic.hpp ./bignum_win
-	copy ./bnum/include/arr_num_arithmetic.hpp ./bignum_win
+	@echo "building for windows..."
+	@echo "building bint library..."
+	@make bintlib
+	@echo "building bnum library..."
+	@make bnumlib
+	@echo "creating bignum library..."
+	@mkdir bignum_win
+	@echo "moving files... 1/6"
+	@cp "bint\lib\bint.lib" "bignum_win\bint.lib"
+	@echo "moving files... 2/6"
+	@cp "bnum\lib\bnum.lib" "bignum_win\bnum.lib"
+	@echo "moving files... 3/6"
+	@cp "bint\include\bint.hpp" "bignum_win\bint.hpp"
+	@echo "moving files... 4/6"
+	@cp "bnum\include\bnum.hpp" "bignum_win\bnum.hpp"
+	@echo "moving files... 5/6"
+	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@echo "moving files... 6/6"
+	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@echo "release build for windows done..."
 
 lin:
-	make bintlib
-	make bnumlib
-	mkdir bignum_lin
-	cp ./bint/lib/bint.lib ./bignum_lin
-	cp ./bnum/lib/bnum.lib ./bignum_lin
-	cp ./bint/include/bint.hpp ./bignum_lin
-	cp ./bnum/include/bnum.hpp ./bignum_lin
-	cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin
-	cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin
+	@echo "building for windows..."
+	@echo "building bint library..."
+	@make bintlib
+	@echo "building bnum library..."
+	@make bnumlib
+	@echo "creating bignum library..."
+	@mkdir bignum_lin
+	@echo "moving files... 1/6"
+	@cp ./bint/lib/bint.lib ./bignum_lin
+	@echo "moving files... 2/6"
+	@cp ./bnum/lib/bnum.lib ./bignum_lin
+	@echo "moving files... 3/6"
+	@cp ./bint/include/bint.hpp ./bignum_lin
+	@echo "moving files... 4/6"
+	@cp ./bnum/include/bnum.hpp ./bignum_lin
+	@echo "moving files... 5/6"
+	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin
+	@echo "moving files... 6/6"
+	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin
+	@echo "release build for linux done..."
 
 bintlib: $(OUTBINT)arithmetic_operators.o $(OUTBINT)comparison.o $(OUTBINT)constructors.o $(OUTBINT)integer_arithmetic.o $(OUTBINT)iostream.o $(OUTBINT)string_manip.o $(OUTBINT)sets.o
 	@echo "compiling static library : bint.lib"
