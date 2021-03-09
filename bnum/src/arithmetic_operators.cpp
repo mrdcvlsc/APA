@@ -308,8 +308,8 @@ bnum bnum::operator*(const bnum& that) const{
 
 size_t bnum::div_precision = 1;
 bnumfield bnum::precision_chunk(1,0);
-bnum bnum::operator/(const bnum& that) const{
-
+bnum bnum::operator/(const bnum& that) const
+{
     bnum answer;
     bnum dividen = *this;
     bnum divisor = that;
@@ -317,7 +317,9 @@ bnum bnum::operator/(const bnum& that) const{
     size_t dividen_chunk_size = dividen.integer.size();
     size_t divisor_chunk_size = divisor.integer.size();
 
-    bnumfield r_precision_pad;
+    bool same_sign = dividen.sign==divisor.sign;
+
+    bnumfield dividen_rpad_equalizer;
 
     if(dividen_chunk_size==2 && dividen.integer[0]==0 && dividen.integer[1]==0){
         answer.set_bnum_field({0,0});
@@ -328,7 +330,7 @@ bnum bnum::operator/(const bnum& that) const{
     else
     {
         bnumfield set_pad_value(div_precision,0);
-        r_precision_pad = set_pad_value;
+        dividen_rpad_equalizer = set_pad_value;
     }
 
     if(divisor_chunk_size==2 && divisor.integer[0]==0 && divisor.integer[1]==0){
@@ -336,19 +338,30 @@ bnum bnum::operator/(const bnum& that) const{
         exit(1);
     }
     
+    // if pad zero chunks to dividen if its chunks is lessthan or equal divisor chunks
     if(dividen_chunk_size<=divisor_chunk_size)
     {
         long long int dif = (long long int)divisor_chunk_size - (long long int)dividen_chunk_size + 1;
         bnumfield rpad(dif,0ll);
         bnumfield newval;
-        newval.reserve(dividen.integer.size()+dif+r_precision_pad.size());
+        newval.reserve(dividen.integer.size()+dif+dividen_rpad_equalizer.size());
         newval.insert(newval.end(),dividen.integer.begin(),dividen.integer.end());
         newval.insert(newval.end(),rpad.begin(),rpad.end());
-        newval.insert(newval.end(),r_precision_pad.begin(),r_precision_pad.end());
+        newval.insert(newval.end(),dividen_rpad_equalizer.begin(),dividen_rpad_equalizer.end());
         dividen.integer = newval;
     }
- 
-    bool same_sign = dividen.sign==divisor.sign;
+
+    // add more chunks to dividen if decimal length of divisor is greater than or equal than the dividen's decimal len
+    size_t dividen_dec_len = dividen.integer.size() - dividen.point_place;
+    size_t divisor_dec_len = divisor.integer.size() - divisor.point_place;
+    if(dividen_dec_len<=divisor_dec_len)
+    {
+        size_t dividen_rpad_dec_len = divisor_dec_len - dividen_dec_len;
+        bnumfield dividen_rpad_dec(dividen_rpad_dec_len,0);
+        dividen.integer.insert(dividen.integer.end(),dividen_rpad_dec.begin(),dividen_rpad_dec.end());
+    }
+  
+    // add precision level
     dividen.integer.insert(dividen.integer.end(),precision_chunk.begin(),precision_chunk.end());
 
     try{

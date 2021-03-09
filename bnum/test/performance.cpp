@@ -4,9 +4,7 @@
 using namespace std;
 using namespace std::chrono;
 int main()
-{
-    bnum::set_div_precision(5);
-    
+{ 
     string line(80,')');
     line = "\n"+line+"\n";
 
@@ -21,7 +19,7 @@ int main()
     cout<<"Var1 Initialization1 taken : "<<duration1.count()<<" microseconds"<<endl;
 
     auto start2 = high_resolution_clock::now();
-    // initialize
+    // initialize 200 length digit
     bnum var2 = "-9999999999999999999999999999999999999999999999999988888888888888888888888888888888888888888888888888.2222222222222222222222222222222222222222222222222277777777777777777777777777777777777777777777777777"; // a negative 200 digit length number
     auto stop2 = high_resolution_clock::now();
     auto duration2 = duration_cast<microseconds>(stop2-start2);

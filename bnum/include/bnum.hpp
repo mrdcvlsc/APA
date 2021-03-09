@@ -78,6 +78,7 @@ class bnum{
 		/// @def ex. if set_div_precision(5) was set, division will compute additional precision of up to 40 point precision
 		static void set_div_precision(size_t prec)
 		{
+			div_precision = prec;
 			bnumfield addprec(prec,0);
 			precision_chunk = addprec;
 		}
