@@ -28,7 +28,7 @@ https://mrdcvlsc.github.io/bignum/
 
     - [Comparison Operators](#comparison-operators)
 
-    - [IO Operator](#console-input-and-operators)
+    - [IO Operator](#console-input-and-output)
 
 - [Sample Program](#sample-code)
 
