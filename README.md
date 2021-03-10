@@ -29,6 +29,8 @@ https://mrdcvlsc.github.io/bignum/
     - [Comparison Operators](#comparison-operators)
 
     - [IO Operator](#console-input-and-output)
+  
+- [Functions & Methods](#functions-and-methods)
 
 - [Sample Program](#sample-code)
 
@@ -170,6 +172,12 @@ https://mrdcvlsc.github.io/bignum/
   ```
 
 [go back to contents](#contents)
+
+-------------------------------------------------------------------
+
+# functions and methods
+
+```bnum::set_div_precision(n);``` - default value is 1, increase division precision here
 
 -------------------------------------------------------------------
 
