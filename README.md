@@ -12,16 +12,6 @@ https://mrdcvlsc.github.io/bignum/
 
 **bnum** - ___on the otherhand can compute and perform operations on signed big floating point values___
 
-### terms :
-
-##### signed - from negative infinity to positive infinity
-
-##### unsigned - from zero to positive infinity
-
-##### floating point values - 0.1, 5649.0064, PI are all examples of floating point values
-
-##### integers - whole numbers
-
 ------------------------------------------------------------------
 
 # contents
@@ -73,122 +63,108 @@ https://mrdcvlsc.github.io/bignum/
 
 ## USING MAKE
 
-  **to create the compiled library**
+  **to create the compiled library in windows**
   
   ```shell
   git clone https://github.com/mrdcvlsc/bignum.git
   cd bignum
-  make win  // for windows os
-  make lin  // for linux os
+  make win
   ```
+
+  ```make lin``` for linux
+
   
-  **on either 'bnum' or 'bint' folder, this command will compile run the default sample programs provided**
-  
+  **sample program 1 - calculator***
+
   ```shell
   git clone https://github.com/mrdcvlsc/bignum.git
   cd bignum
   cd bint // or cd bnum
+  make sample1
   ```
 
-  **```make sample1```** - calculator program
-  
-  **```make sample2```** - performance test program
-  
+  **sample program 2 - performance test**
+
+  ```shell
+  git clone https://github.com/mrdcvlsc/bignum.git
+  cd bignum
+  cd bint // or cd bnum
+  make sample2
+  ```
+
 [go back to contents](#contents)
 
 -------------------------------------------------------------------
 
 # initialization
 
-### bnum initialization (using double quote "" is more recommended)
-    
    ```c++
-   // use string or const char* for big values
-   bnum var1 = "23234.78634";
-   bnum var2 = "-67864254234324234";
-   
-   // you can also use constant integers up to 18.4e+18
-   bnum var3  = -57232;
-   bnum var4 = 96725372372ll;
-   
-   // or float and doubles
-   // for very long rational numbers use strings instead to avoid automatic rounding
-   bnum var5 = 7676434.2323234L; // long doubles
-   bnum var6 = -76734.57623f;
-   
-   // copy bignum
-   bnum var7 = var1;
+   bnum var1 = "23234.78665464846464686434";
+   bnum var2 = -57232;
+   bnum var3 = 96725372372ll;
+   bnum var4 = 7676434.2323234L;
+   bnum var5 = -76734.57623f;
+   bnum var6 = var1;
    var3 = var4 = 65652.762;
    ```
-[go back to contents](#contents)
 
--------------------------------------------------------------------
+# Arithmetic Operators
+  
+  ```c++
+  bnum a = "966649767633554246465753766946573.67644334";;
+  bnum b = 365365211765899436ll;
+  bnum i = 0, j = 100;
 
-# arithmetic operators
+  bnum add, sub, mul, div, mod;
 
-### SUPPORTED OPERATIONS (FOR INTEGERS AND RATIONAL NUMBERS/DECIMAL FORM): EXAMPLES OF USES BELOW
+  // overloaded arithmetic operators
+  add = a + b;
+  sub = a - b;
+  mul = a * b;
+  div = a / b;
+  mod = a % b;
 
-#### NOTE : for bnum division, at the start of the program write ```bnum::set_div_precision(n)``` to increase the accuracy of division, the higher the number the more accurate the answer will be, though it also increases the time to get the answer, by default the value is set to 1.
+  /* you can also directly perform arithmetic operators
+     on 'const char*', string and numeric data types that is a valid number
+     with a bnum or bint object.
+     ex:
+     add = b + "-46433491854.646755464";
+     sub = 64523494.666455543L - a;           */
 
-   **[done] Addition (+)**
-   ```c++   
-   cout<< var1 + var3 <<endl;
-   cout<< var3 + "56756.4645" <<endl;
-   cout<< 7567634 + var1 <<endl;
-   ```
-   **[done] Subtraction (-)**
-   ```c++
-   cout<< var2 - var1 <<endl;
-   cout<< var4 - 74672323232ull <<endl;
-   cout<< "656422" - var3 <<endl;
-   ```
-   **[done] Multiplication (x)**
-   ```c++
-   cout<< var1 * var3 <<endl;
-   cout<< var2 * 2234544.65 <<endl;
-   cout<< "64652823.42" * var3 <<endl;
-   ```
-   **[done] Division (/)**
-   ```c++
-   cout<< var2 / var6 <<endl;
-   cout<< var3 / "521321" <<endl;
-   cout<< "652323" / var1 <<endl;
-   ```
-   **[done] Modulo (%)**
-   ```c++
-   cout<< var2 % var1 <<endl
-   ```
-   **[done] Addition Assignment (+=)**
-   ```c++
-   var1+=var2;
-   var1+="7822.22";
-   var1+=2321;
-   ```
-   **[done] Subtraction Assignment (-=)**
-   ```c++
-   var2-=2112312;
-   var1-="2322.32";
-   ```
-   **[done] Multiplication Assignment (*=)**
-   ```c++
-   bnum varNew = var1*="222";
-   var1*=var2;
-   ```
-   **[done] Division Assignment (/=)**
-   ```c++
-   var1/="2222";
-   var1/=var3;
-   ```
-   **[done] Increment (++)**
-   ```c++
-   var1++;  // post-fix
-   ++var1;  // pre-fix
-   ```
-   **[done] Decrement (--)**
-   ```c++
-   var1++;  // post-fix
-   ++var1;  // pre-fix
-   ```
+  // arithmetic assignment operators
+  i+=1;
+  j-=1;
+  i*=a+j;
+  j/=b*"546";
+
+  // increment/decrement operators
+  i++;
+  ++i;
+  j--;
+  --j;
+  ```
+
+# console input and output
+
+  ```c++
+  bnum a;
+  cin>>a;
+  cout<<a;
+  ```
+
+# comparison operators
+
+  ```c++
+  bnum a = 745, b = "745", c = 524;
+  bool s[6];
+  s[0] = a != b; // 0
+  s[1] = a == b; // 1
+  s[2] = a < c;  // 0
+  s[3] = a > c;  // 1
+  s[4] = a <= b; // 1
+  s[5] = a >= c; // 1
+  ```
+
 [go back to contents](#contents)
 
 -------------------------------------------------------------------
@@ -208,6 +184,7 @@ https://mrdcvlsc.github.io/bignum/
 **Multiplication Operation :** ***37 microseconds***
 
 **Division Operation       :** ***4,873 microseconds***
+
 
 (past version) Addition Operation       : 463.5 microseconds
 
@@ -264,53 +241,6 @@ https://mrdcvlsc.github.io/bignum/
   - arr_num_arithmetic.hpp
 
 ### FACTORIAL SAMPLE CODE: compilation `g++ -o main.exe main.cpp bint.lib`
-
-[go back to contents](#contents)
-
--------------------------------------------------------------------
-
-# io operators
-
-   ```c++
-   bnum bignumberVariable = 213213123;
-   cout << bignumberVariable << endl; // output - 213213123
-   cin >> bignumberVariable;     // take user input - should be a number: will end the program if not
-   ```
-[go back to contents](#contents)   
-
--------------------------------------------------------------------
-
-# comparison operators
-
-  **All of the follwing comparison operators below are overloaded/available**
-   - ***less than (<)***
-   - ***greater than (>)***
-   - ***less than or equal (<=)***
-   - ***greater than or equal (>=)***
-   - ***equal to (==)***
-   - ***not equal to (!=)***
-   
-   ***note: always enclose two bignum values when you are using comparison operators inside the ff. operators : <<,>>,() ex:***
-   
-   ```c++
-   bnum large_number = "2887382";
-   bnum big_number = "2367232";
-   cout<< (large_number != big_number); //allowed
-   ```
-   
-*Comparison between a bignum variable and a string value or const char* is possible, but you should enclose it with ()*
-   
-   ```c++
-   bnum variable1 = "72736273";
-   cout<<(variable1 <= "81283798237")<<endl; // allowed 
-   cout<<(-76323.6763f > variable1)<<endl;  // allowed
-   ```
-   
-*WARNING: Do not expect when comparing two "const char*" to behave like two bignum values*
-   
-   ```c++
-   cout<<("76327323" < "2837283"); // this is not allowed
-   ```
 
 [go back to contents](#contents)
 
