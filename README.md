@@ -20,13 +20,15 @@ https://mrdcvlsc.github.io/bignum/
 
 - [Performance - time per operation](#performance)
 
-- [Initialization/Assignment](#initialization)
+- [Overloaded Operators](#operators)
 
-- [Arithmetic Operators](#arithmetic-operators)
+    - [Initialization/Assignment](#initialization)
 
-- [Comparison Operators](#comparison-operators)
+    - [Arithmetic Operators](#arithmetic-operators)
 
-- [IO Operator](#io-operators)
+    - [Comparison Operators](#comparison-operators)
+
+    - [IO Operator](#console-input-and-operators)
 
 - [Sample Program](#sample-code)
 
@@ -96,7 +98,9 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# initialization
+# operators
+
+# Initialization
 
    ```c++
    bnum var1 = "23234.78665464846464686434";
@@ -144,7 +148,7 @@ https://mrdcvlsc.github.io/bignum/
   --j;
   ```
 
-# console input and output
+# Console Input and Output
 
   ```c++
   bnum a;
@@ -152,7 +156,7 @@ https://mrdcvlsc.github.io/bignum/
   cout<<a;
   ```
 
-# comparison operators
+# Comparison Operators
 
   ```c++
   bnum a = 745, b = "745", c = 524;
