@@ -60,9 +60,9 @@ https://mrdcvlsc.github.io/bignum/
   3. include the header files in you source code ex: ```#include <bint.hpp>```
   4. when compiling specify the paths of the header file and the static library using the -I & -L flags
 
-  eg:
-  
-    ```g++ -o main main.cpp -I"path/bignum/bint/include" -L"path/bignum/bint/lib" -lbint``` // see sample program
+  eg: ```g++ -o main main.cpp -I"path/bignum/bint/include" -L"path/bignum/bint/lib" -lbint```
+
+  see the factorial sample program for more info in compilation
 
 [Download Bignum - compiled library](https://github.com/mrdcvlsc/bignum/releases/tag/v2.8.8)
  
