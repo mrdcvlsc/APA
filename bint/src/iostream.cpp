@@ -10,13 +10,13 @@ ostream& operator<<(ostream &out, const bint& value)
 istream& operator>>(istream &in, bint &value) {
     string input;
 	in >> input;
-    check(input,input);
     if(input[0]=='-'){
 		value.set_sign(-1);
 		input[0] = '0';
 	}
 	else
 		value.set_sign(1);
+    check(input,input);
     value.set_bint_field(str_part_by(8,input));
 	return in;
 }

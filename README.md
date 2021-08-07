@@ -57,9 +57,12 @@ https://mrdcvlsc.github.io/bignum/
 
   1. download the compile library in release
   2. extract the files and put it in you project
-  3. include the header files in you source code
-  4. (IDE) if you are using an IDE add/link the .lib file in your project
-  5. (g++) g++ -o main main.cpp bint.lib // see sample program
+  3. include the header files in you source code ex: ```#include <bint.hpp>```
+  4. when compiling specify the paths of the header file and the static library using the -I & -L flags
+
+  eg: ```g++ -o main main.cpp -I"path/bignum/bint/include" -L"path/bignum/bint/lib" -lbint```
+
+  see the factorial sample program for more info in compilation
 
 [Download Bignum - compiled library](https://github.com/mrdcvlsc/bignum/releases/tag/v2.8.8)
  
@@ -248,11 +251,15 @@ https://mrdcvlsc.github.io/bignum/
 
 - Main_Folder
   - main.cpp
-  - bint.hpp
-  - bint.lib
-  - arr_num_arithmetic.hpp
+  - include
+    - bint.hpp
+    - arr_num_arithmetic.hpp
+  - lib
+    - bint.lib
 
-### FACTORIAL SAMPLE CODE: compilation `g++ -o main.exe main.cpp bint.lib`
+### FACTORIAL SAMPLE CODE: compilation
+
+  ```g++ -o main.exe main.cpp -I"./include" -L"./lib" -lbint```
 
 [go back to contents](#contents)
 

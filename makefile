@@ -10,7 +10,7 @@ OUTBNUM= ./bnum/obj/
 
 PRO= -static-libgcc -static-libstdc++
 DEV= -Wall -Wextra -Wshadow -Wpedantic
-OFLAG= -O3
+OFLAG= -O3 -march=native
 
 win:
 	@echo "building for windows..."
@@ -20,18 +20,22 @@ win:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_win
+	@mkdir bignum_win/include
+	@mkdir bignum_win/lib
+	@echo "moving files... 0/6"
+	@cp "factorial.cpp" "bignum_win\factorial.cpp"
 	@echo "moving files... 1/6"
-	@cp "bint\lib\bint.lib" "bignum_win\bint.lib"
+	@cp "bint\lib\libbint.a" "bignum_win\lib\libbint.a"
 	@echo "moving files... 2/6"
-	@cp "bnum\lib\bnum.lib" "bignum_win\bnum.lib"
+	@cp "bnum\lib\libbnum.a" "bignum_win\lib\libbnum.a"
 	@echo "moving files... 3/6"
-	@cp "bint\include\bint.hpp" "bignum_win\bint.hpp"
+	@cp "bint\include\bint.hpp" "bignum_win\include\bint.hpp"
 	@echo "moving files... 4/6"
-	@cp "bnum\include\bnum.hpp" "bignum_win\bnum.hpp"
+	@cp "bnum\include\bnum.hpp" "bignum_win\include\bnum.hpp"
 	@echo "moving files... 5/6"
-	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
 	@echo "moving files... 6/6"
-	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
 	@echo "release build for windows done..."
 
 lin:
@@ -42,23 +46,27 @@ lin:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_lin
+	@mkdir bignum_lin/include
+	@mkdir bignum_lin/lib
+	@echo "moving files... 0/6"
+	@cp ./factorial.cpp ./bignum_lin
 	@echo "moving files... 1/6"
-	@cp ./bint/lib/bint.lib ./bignum_lin
+	@cp ./bint/lib/libbint.a ./bignum_lin/lib
 	@echo "moving files... 2/6"
-	@cp ./bnum/lib/bnum.lib ./bignum_lin
+	@cp ./bnum/lib/libbnum.a ./bignum_lin/lib
 	@echo "moving files... 3/6"
-	@cp ./bint/include/bint.hpp ./bignum_lin
+	@cp ./bint/include/bint.hpp ./bignum_lin/include
 	@echo "moving files... 4/6"
-	@cp ./bnum/include/bnum.hpp ./bignum_lin
+	@cp ./bnum/include/bnum.hpp ./bignum_lin/include
 	@echo "moving files... 5/6"
-	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin
+	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin/include
 	@echo "moving files... 6/6"
-	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin
+	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin/include
 	@echo "release build for linux done..."
 
 bintlib: $(OUTBINT)arithmetic_operators.o $(OUTBINT)comparison.o $(OUTBINT)constructors.o $(OUTBINT)integer_arithmetic.o $(OUTBINT)iostream.o $(OUTBINT)string_manip.o $(OUTBINT)sets.o
-	@echo "compiling static library : bint.lib"
-	@ar rvs bint/lib/bint.lib $(OUTBINT)*.o
+	@echo "compiling static library : libbint.a"
+	@ar rvs bint/lib/libbint.a $(OUTBINT)*.o
 
 $(OUTBINT)arithmetic_operators.o :$(SRCBINT)arithmetic_operators.cpp
 	@echo "compiling source code to obj files ... 1/7"
@@ -90,8 +98,8 @@ $(OUTBINT)sets.o :$(SRCBINT)sets.cpp
 
 
 bnumlib: $(OUTBNUM)arithmetic_operators.o $(OUTBNUM)comparison.o $(OUTBNUM)constructors.o $(OUTBNUM)integer_arithmetic.o $(OUTBNUM)iostream.o $(OUTBNUM)string_manip.o $(OUTBNUM)sets.o
-	@echo "compiling static library : bnum.lib"
-	@ar rvs bnum/lib/bnum.lib $(OUTBNUM)*.o
+	@echo "compiling static library : libbnum.a"
+	@ar rvs bnum/lib/libbnum.a $(OUTBNUM)*.o
 
 $(OUTBNUM)arithmetic_operators.o :$(SRCBNUM)arithmetic_operators.cpp
 	@echo "compiling source code to obj files ... 1/7"
