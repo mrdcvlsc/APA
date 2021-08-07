@@ -4,7 +4,7 @@ SRC= ./src/
 OUT= ./obj/
 PRO= -static-libgcc -static-libstdc++
 DEV= -Wall -Wextra -Wshadow -Wpedantic
-OFLAG= -O3
+OFLAG= -O3 -march=native
 
 direct:
 	@echo "direct integration, for faster performance, but slow compilation"
@@ -13,23 +13,23 @@ direct:
 
 sample1: $(OUT)arithmetic_operators.o $(OUT)comparison.o $(OUT)constructors.o $(OUT)integer_arithmetic.o $(OUT)iostream.o $(OUT)string_manip.o $(OUT)sets.o
 	@echo "compiling static library"
-	@ar rvs lib/bint.lib $(OUT)*.o
+	@ar rvs lib/libbint.a $(OUT)*.o
 	@echo "compiling sample 1 - calculator program"
-	@g++ -o test/test.exe test/calculator.cpp lib/bint.lib -I ./include
+	@g++ -o test/test.exe test/calculator.cpp -I ./include -L ./lib -lbint
 	@echo "running program test"
 	@./test/test.exe
 
 sample2: $(OUT)arithmetic_operators.o $(OUT)comparison.o $(OUT)constructors.o $(OUT)integer_arithmetic.o $(OUT)iostream.o $(OUT)string_manip.o $(OUT)sets.o
 	@echo "compiling static library"
-	@ar rvs lib/bint.lib $(OUT)*.o
+	@ar rvs lib/libbint.a $(OUT)*.o
 	@echo "compiling sample 2 - performance program"
-	@g++ -o test/test.exe test/performance.cpp lib/bint.lib -I ./include
+	@g++ -o test/test.exe test/performance.cpp -I ./include -L ./lib -lbint
 	@echo "running program test"
 	@./test/test.exe
 
 library: $(OUT)arithmetic_operators.o $(OUT)comparison.o $(OUT)constructors.o $(OUT)integer_arithmetic.o $(OUT)iostream.o $(OUT)string_manip.o $(OUT)sets.o
-	@echo "compiling static library : bint.lib"
-	@ar rvs lib/bint.lib $(OUT)*.o
+	@echo "compiling static library : libbint.a"
+	@ar rvs lib/libbint.a $(OUT)*.o
 
 $(OUT)arithmetic_operators.o :$(SRC)arithmetic_operators.cpp
 	@echo "compiling source code to obj files ... 1/7"
