@@ -20,18 +20,20 @@ win:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_win
+	@echo "moving files... 0/6"
+	@cp "factorial.cpp" "bignum_win\factorial.cpp"
 	@echo "moving files... 1/6"
-	@cp "bint\lib\libbint.a" "bignum_win\libbint.a"
+	@cp "bint\lib\libbint.a" "bignum_win\lib\libbint.a"
 	@echo "moving files... 2/6"
-	@cp "bnum\lib\libbnum.a" "bignum_win\libbnum.a"
+	@cp "bnum\lib\libbnum.a" "bignum_win\lib\libbnum.a"
 	@echo "moving files... 3/6"
-	@cp "bint\include\bint.hpp" "bignum_win\bint.hpp"
+	@cp "bint\include\bint.hpp" "bignum_win\include\bint.hpp"
 	@echo "moving files... 4/6"
-	@cp "bnum\include\bnum.hpp" "bignum_win\bnum.hpp"
+	@cp "bnum\include\bnum.hpp" "bignum_win\include\bnum.hpp"
 	@echo "moving files... 5/6"
-	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
 	@echo "moving files... 6/6"
-	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\arr_num_arithmetic.hpp"
+	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
 	@echo "release build for windows done..."
 
 lin:
@@ -42,18 +44,20 @@ lin:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_lin
+	@echo "moving files... 0/6"
+	@cp ./factorial.cpp ./bignum_lin
 	@echo "moving files... 1/6"
-	@cp ./bint/lib/libbint.a ./bignum_lin
+	@cp ./bint/lib/libbint.a ./bignum_lin/lib
 	@echo "moving files... 2/6"
-	@cp ./bnum/lib/libbnum.a ./bignum_lin
+	@cp ./bnum/lib/libbnum.a ./bignum_lin/lib
 	@echo "moving files... 3/6"
-	@cp ./bint/include/bint.hpp ./bignum_lin
+	@cp ./bint/include/bint.hpp ./bignum_lin/include
 	@echo "moving files... 4/6"
-	@cp ./bnum/include/bnum.hpp ./bignum_lin
+	@cp ./bnum/include/bnum.hpp ./bignum_lin/include
 	@echo "moving files... 5/6"
-	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin
+	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin/include
 	@echo "moving files... 6/6"
-	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin
+	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin/include
 	@echo "release build for linux done..."
 
 bintlib: $(OUTBINT)arithmetic_operators.o $(OUTBINT)comparison.o $(OUTBINT)constructors.o $(OUTBINT)integer_arithmetic.o $(OUTBINT)iostream.o $(OUTBINT)string_manip.o $(OUTBINT)sets.o
