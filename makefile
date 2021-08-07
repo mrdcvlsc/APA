@@ -20,6 +20,8 @@ win:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_win
+	@mkdir bignum_win/include
+	@mkdir bignum_win/lib
 	@echo "moving files... 0/6"
 	@cp "factorial.cpp" "bignum_win\factorial.cpp"
 	@echo "moving files... 1/6"
@@ -44,6 +46,8 @@ lin:
 	@make bnumlib
 	@echo "creating bignum library..."
 	@mkdir bignum_lin
+	@mkdir bignum_lin/include
+	@mkdir bignum_lin/lib
 	@echo "moving files... 0/6"
 	@cp ./factorial.cpp ./bignum_lin
 	@echo "moving files... 1/6"
