@@ -184,13 +184,15 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# performance (average time per operation)
+# performance
 
 ### compiled with -O3 -march=native
 
 ### operation speed on two bnum variables let's call them ```bnum a``` & ```bnum b```
 
-_performance was recorded using std::chrono::high_resolution_clock;_
+__Average time per operation__
+
+_performance was recorded using ```std::chrono::high_resolution_clock```_
 
 **Level 1 : ```bnum a``` & ```bnum b``` having 200 digits each**
    - _Addition Operation       :_ ***4 microseconds***
