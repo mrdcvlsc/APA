@@ -194,17 +194,17 @@ __Average time per operation__
 
 _performance was recorded using ```std::chrono::high_resolution_clock```_
 
-**Level 1 : ```bnum a``` & ```bnum b``` having 200 digits each**
+**Level 1 :** ```bnum a``` & ```bnum b``` both having ***200 digits*** each**
    - _Addition Operation       :_ ***4 microseconds***
    - _Subtraction Operation    :_ ***8 microseconds***
    - _Multiplication Operation :_ ***32 microseconds***
    - _Division Operation       :_ ***683 microseconds***
 
-**Level 2 : ```bnum a``` having 20,001 digits & ```bnum b``` having 19,001 digits**
+**Level 2 :** ```bnum a``` having ***20,001 digits***, while ```bnum b``` having ***19,001 digits***
    - _Addition Operation       :_ ***33 microseconds***
    - _Subtraction Operation    :_ ***30 microseconds***
-   - _Multiplication Operation :_ ***13349 microseconds***
-   - _Division Operation       :_ ***660821 microseconds***
+   - _Multiplication Operation :_ ***13349 microseconds*** == _0.013349 seconds_
+   - _Division Operation       :_ ***660821 microseconds*** == _0.660821 seconds_
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
 
