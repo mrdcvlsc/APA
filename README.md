@@ -195,22 +195,22 @@ __Average time per operation__
 _performance was recorded using ```std::chrono::high_resolution_clock```_
 
 **Level 1 :** ```bnum a``` & ```bnum b``` both having ***200 digits*** each**
-   - _add      ```bnum c = a+b;```_ : _ ***4 microseconds***
-   - _subtract ```bnum c = a-b;```_ : _ ***8 microseconds***
-   - _multiply ```bnum c = a*b;```_ : _ ***32 microseconds***
-   - _divide   ```bnum c = a/b;```_ : _ ***683 microseconds***
+   - _add      ```bnum c = a+b;```_ : ***4 microseconds***
+   - _subtract ```bnum c = a-b;```_ : ***8 microseconds***
+   - _multiply ```bnum c = a*b;```_ : ***32 microseconds***
+   - _divide   ```bnum c = a/b;```_ : ***683 microseconds***
 
 **Level 2 :** ```bnum a``` having ***20,001 digits***, while ```bnum b``` having ***19,001 digits***
-   - _add      ```bnum c = a+b;```_ : _ ***33 microseconds***
-   - _subtract ```bnum c = a-b;```_ : _ ***30 microseconds***
-   - _multiply ```bnum c = a*b;```_ : _ ***13349 microseconds*** == _0.013349 seconds_
-   - _divide   ```bnum c = a/b;```_ : _ ***660821 microseconds*** == _0.660821 seconds_
+   - _add      ```bnum c = a+b;```_ : ***33 microseconds***
+   - _subtract ```bnum c = a-b;```_ : ***30 microseconds***
+   - _multiply ```bnum c = a*b;```_ : ***13349 microseconds*** == _0.013349 seconds_
+   - _divide   ```bnum c = a/b;```_ : ***660821 microseconds*** == _0.660821 seconds_
 
 **Level 3 :** ```bnum a``` having ***1,413,641 digits***, while ```bnum b``` having ***1,413,631 digits***
-   - _add      ```bnum c = a+b;```_ : _ ***4659 microseconds***
-   - _subtract ```bnum c = a-b;```_ : _ ***4186 microseconds***
-   - _multiply ```bnum c = a*b;```_ : _ ***145977711 microseconds*** == _145.977711 seconds_
-   - _divide   ```bnum c = a/b;```_ : _ ***1470898793 microseconds*** == _24.51497988333 minutes_
+   - _add      ```bnum c = a+b;```_ : ***4659 microseconds***
+   - _subtract ```bnum c = a-b;```_ : ***4186 microseconds***
+   - _multiply ```bnum c = a*b;```_ : ***145977711 microseconds*** == _145.977711 seconds_
+   - _divide   ```bnum c = a/b;```_ : ***1470898793 microseconds*** == _24.51497988333 minutes_
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
 
