@@ -184,9 +184,9 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# performance (average time per operation)- compiled with -O3 -march=native
+# performance (average time per operation) : compiled with -O3 -march=native
 
-- **time for two "200 digit/length" string numbers (nx10^200)**
+- **operation performance on two bnum variables : ```a``` & ```b``` having 200 digits each**
 
     - **Addition Operation       :** ***4 microseconds***
 
@@ -195,6 +195,16 @@ https://mrdcvlsc.github.io/bignum/
     - **Multiplication Operation :** ***32 microseconds***
 
     - **Division Operation       :** ***683 microseconds***
+
+- **operation performance on two bnum variables : ```a``` having 20,001 digits & ```b``` having 19,001 digits**
+
+    - **Addition Operation       :** ***33 microseconds***
+
+    - **Subtraction Operation    :** ***30 microseconds***
+
+    - **Multiplication Operation :** ***13349 microseconds***
+
+    - **Division Operation       :** ***660821 microseconds***
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
 
