@@ -184,32 +184,46 @@ https://mrdcvlsc.github.io/bignum/
 
 -------------------------------------------------------------------
 
-# performance
+# performance (average time per operation)- compiled with -O3 -march=native
 
-## bnum's AVERAGE TIME PER OPERATION IN MICROSECONDS :
+- **time for two "200 digit/length" string numbers (nx10^200)**
 
-### NOTE: (DEFAULT COMPILATION) NO G++ OPTIMIZATION FLAG USED
+    - **Addition Operation       :** ***4 microseconds***
 
-### time for two "200 digit/length" string numbers (nx10^200)
+    - **Subtraction Operation    :** ***8 microseconds***
 
-**Addition Operation       :** ***22 microseconds***
+    - **Multiplication Operation :** ***32 microseconds***
 
-**Subtraction Operation    :** ***20 microseconds***
-
-**Multiplication Operation :** ***37 microseconds***
-
-**Division Operation       :** ***4,873 microseconds***
-
-
-(past version) Addition Operation       : 463.5 microseconds
-
-(past version) Subtraction Operation    : 353.5 microseconds
-
-(past version) Multiplication Operation : 434.5 microseconds
-
-(past version) Division Operation       : 5,473.32 microseconds
+    - **Division Operation       :** ***683 microseconds***
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
+
+***machine specs where the preformance test was done***
+```
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              1
+Core(s) per socket:              4
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           76
+Model name:                      Intel(R) Pentium(R) CPU  N3700  @ 1.60GHz
+Stepping:                        3
+CPU MHz:                         2259.578
+CPU max MHz:                     2400.0000
+CPU min MHz:                     480.0000
+BogoMIPS:                        3200.00
+L1d cache:                       96 KiB
+L1i cache:                       128 KiB
+L2 cache:                        2 MiB
+Flags:                           fpu vme . . . sse, sse2, sse_4, sse4_2 . . . .
+```
 
 [go back to contents](#contents)
 
