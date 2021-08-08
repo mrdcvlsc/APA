@@ -191,25 +191,16 @@ https://mrdcvlsc.github.io/bignum/
 _performance was recorded using std::chrono::high_resolution_clock;_
 
 **Level 1 : ```bnum a``` & ```bnum b``` having 200 digits each**
-
-    - **Addition Operation       :** ***4 microseconds***
-
-    - **Subtraction Operation    :** ***8 microseconds***
-
-    - **Multiplication Operation :** ***32 microseconds***
-
-    - **Division Operation       :** ***683 microseconds***
-
+   - **Addition Operation       :** ***4 microseconds***
+   - **Subtraction Operation    :** ***8 microseconds***
+   - **Multiplication Operation :** ***32 microseconds***
+   - **Division Operation       :** ***683 microseconds***
 
 **Level 2 : ```bnum a``` having 20,001 digits & ```bnum b``` having 19,001 digits**
-
-    - **Addition Operation       :** ***33 microseconds***
-
-    - **Subtraction Operation    :** ***30 microseconds***
-
-    - **Multiplication Operation :** ***13349 microseconds***
-
-    - **Division Operation       :** ***660821 microseconds***
+   - **Addition Operation       :** ***33 microseconds***
+   - **Subtraction Operation    :** ***30 microseconds***
+   - **Multiplication Operation :** ***13349 microseconds***
+   - **Division Operation       :** ***660821 microseconds***
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
 
