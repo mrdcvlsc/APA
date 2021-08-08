@@ -213,8 +213,8 @@ each level initializes the bnum variables _a & b_ with different numbers of digi
 **Level 3 :** ```bnum a``` having ***1,413,641 digits***, while ```bnum b``` having ***1,413,631 digits***
    - _add      ```bnum c = a+b;```_ : ***4659 microseconds***
    - _subtract ```bnum c = a-b;```_ : ***4186 microseconds***
-   - _multiply ```bnum c = a*b;```_ : ***145977711 microseconds*** == _145.977711 seconds_
-   - _divide   ```bnum c = a/b;```_ : ***1470898793 microseconds*** == _24.51497988333 minutes_
+   - _multiply ```bnum c = a*b;```_ : ***145977711 microseconds*** == _2.43 minutes_
+   - _divide   ```bnum c = a/b;```_ : ***1470898793 microseconds*** == _24.51 minutes_
 
 ### 'bint' has a faster performance than 'bnum' but only computes big integers
 
