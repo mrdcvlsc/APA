@@ -198,7 +198,7 @@ each level initializes the bnum variables _a & b_ with different numbers of digi
 
 **it is not the actual value**... for examle; the number ```778,476,234``` has 9 digits
 
-**Level 1 :** ```bnum a``` & ```bnum b``` both having ***200 digits*** each**
+**Level 1 :** ```bnum a``` & ```bnum b``` both having ***200 digits*** each
    - _add      ```bnum c = a+b;```_ : ***4 microseconds***
    - _subtract ```bnum c = a-b;```_ : ***8 microseconds***
    - _multiply ```bnum c = a*b;```_ : ***32 microseconds***
