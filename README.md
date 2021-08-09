@@ -10,7 +10,7 @@ https://mrdcvlsc.github.io/bignum/
 
 **bint** - ___For signed Integers only (no decimal points)___
 
-**bnum** - ___For Real numbers___
+**bnum** - ___For Rational numbers___
 
 ------------------------------------------------------------------
 
