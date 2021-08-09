@@ -8,9 +8,9 @@ https://mrdcvlsc.github.io/bignum/
 
 *this repository provides the 2 library named below*
 
-**bint** - ___is only used to compute and perform operations on signed big integers___
+**bint** - ___For signed Integers only (no decimal points)___
 
-**bnum** - ___on the otherhand can compute and perform operations on signed big floating point values___
+**bnum** - ___For Real numbers___
 
 ------------------------------------------------------------------
 
