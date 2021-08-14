@@ -1,0 +1,1 @@
+### This is bint's header only version, this version is much more dynamic and has a much optimized long division algorithm, the code is also restructured, renamed some variables and fuctions, test are still not done
