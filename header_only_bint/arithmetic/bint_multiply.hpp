@@ -12,7 +12,8 @@ namespace arb
         bool same_sign = this->sign==rhs.sign;
 
         product.intlimbs = this->intlimbs*rhs.intlimbs;
-        if(!same_sign){
+        if(!same_sign)
+        {
             product.sign = -1;
             return product;
         }
@@ -25,7 +26,8 @@ namespace arb
         bool same_sign = this->sign==rhs.sign;
 
         this->intlimbs = this->intlimbs * rhs.intlimbs;
-        if(!same_sign){
+        if(!same_sign)
+        {
             this->sign = -1;
             return *this;
         }

@@ -267,7 +267,7 @@ namespace backend_bigint
         return accumulator;
     }
 
-    inline limb limb::operator/(const limb& divisor) const
+    inline limb limb::fdivdigit(const limb& divisor) const
     {
         // division special cases
         #ifndef PRODUCTION
@@ -301,7 +301,6 @@ namespace backend_bigint
         }
         // end of special cases
 
-        // create a num type using the 8 limb bintfields
         limb_one::num arr_dividen;
         limb_one::num arr_divisor;
 
@@ -324,7 +323,8 @@ namespace backend_bigint
 
             int counts = 0;
 
-            while(limb_one::is_less_equal(arr_divisor,part_dividen)){
+            while(limb_one::is_less_equal(arr_divisor,part_dividen))
+            {
                 counts++;
                 part_dividen = limb_one::sub(part_dividen,arr_divisor);
             }
@@ -337,8 +337,10 @@ namespace backend_bigint
         size_t limb_to_remove = 0;
         size_t resulting_size = accumulator.size();
      
-        for(size_t i=0; i<accumulator.size(); ++i){
-            if(accumulator[i]=='0' && resulting_size>1){
+        for(size_t i=0; i<accumulator.size(); ++i)
+        {
+            if(accumulator[i]=='0' && resulting_size>1)
+            {
                 limb_to_remove++;
                 resulting_size--;
             }
@@ -348,9 +350,31 @@ namespace backend_bigint
             }
         }
 
-        if(limb_to_remove) accumulator.erase(accumulator.begin()+0,accumulator.begin()+limb_to_remove);
+        if(limb_to_remove)
+        {
+            accumulator.erase(accumulator.begin()+0,accumulator.begin()+limb_to_remove);
+        }
         
         return accumulator;
-    } // previous preformance in nanoseconds 822500
+    }
+
+    inline limb limb::operator/(const limb& divisor) const
+    {
+        long long limb_count_difference = limbs.size()-divisor.limbs.size();
+        if(limb_count_difference<0)
+        {
+            return limb("0");
+        }
+        else if(limb_count_difference<3)
+        {
+            return fdivlong(divisor);
+        }
+        else if(limb_count_difference<7)
+        {
+            return fdivision(divisor);
+        }
+        
+        return fdivdigit(divisor);
+    }
 }
 #endif

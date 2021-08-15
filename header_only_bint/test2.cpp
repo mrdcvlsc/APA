@@ -2,7 +2,7 @@
 #include "bint.hpp"
 
 template<typename T>
-T fib(T n)
+T Fibonacci(T n)
 {
     if(n==0) return 0;
 
@@ -19,27 +19,19 @@ T fib(T n)
     return base1;
 }
 
-// fib test
+// Fibonacci test
 
 int main()
 {
-    // while(true)
-    // {
-    //     std::cout<<"get_fib_of_nth_term&: ";
-    //     arb::bint nth;
-    //     std::cin>>nth;
-    //     std::cout<<"fib of "<<nth<<" is : "<<fib(nth)<<"\n\n";
-    // }
-
-    arb::bint fiba = fib<arb::bint>(0);
-    std::cout<<"fib of -0th term   = "<<fiba<<"\n";
-    std::cout<<"string form        = "<<fiba.string_form()<<"\n\n";
+    arb::bint fiba = Fibonacci<arb::bint>(0);
+    std::cout<<"fib of 0th term   = "<<fiba<<"\n";
+    std::cout<<"string form       = "<<fiba.string_form()<<"\n\n";
     if(fiba.string_form()!="0")
     {
         throw std::logic_error("the fib of -0th term is wrong");
     }
 
-    arb::bint fibb = fib<arb::bint>(-1);
+    arb::bint fibb = Fibonacci<arb::bint>(-1);
     std::cout<<"fib of -1th term   = "<<fibb<<"\n";
     std::cout<<"string form        = "<<fibb.string_form()<<"\n\n";
     if(fibb.string_form()!="-1")
@@ -47,7 +39,7 @@ int main()
         throw std::logic_error("the fib of -1th term is wrong");
     }
 
-    arb::bint fibc = fib<arb::bint>(-50);
+    arb::bint fibc = Fibonacci<arb::bint>(-50);
     std::cout<<"fib of -50th term  = "<<fibc<<"\n";
     std::cout<<"string form        = "<<fibc.string_form()<<"\n\n";
     if(fibc.string_form()!="-12586269025")
@@ -55,7 +47,7 @@ int main()
         throw std::logic_error("the fib of -50th term is wrong");
     }
 
-    arb::bint fibd = fib<arb::bint>(-125);
+    arb::bint fibd = Fibonacci<arb::bint>(-125);
     std::cout<<"fib of -125th term = "<<fibd<<"\n";
     std::cout<<"string form        = "<<fibd.string_form()<<"\n\n";
     if(fibd.string_form()!="-59425114757512643212875125")
@@ -63,7 +55,7 @@ int main()
         throw std::logic_error("the fib of -0th term is wrong");
     }
 
-    arb::bint fibe = fib<arb::bint>(-250);
+    arb::bint fibe = Fibonacci<arb::bint>(-250);
     std::cout<<"fib of -250th term = "<<fibe<<"\n";
     std::cout<<"string form        = "<<fibe.string_form()<<"\n\n";
     if(fibe.string_form()!="-7896325826131730509282738943634332893686268675876375")
@@ -71,15 +63,15 @@ int main()
         throw std::logic_error("the fib of -250th term is wrong");
     }
 
-    arb::bint fibf = fib<arb::bint>(-4791);
+    arb::bint fibf = Fibonacci<arb::bint>(-4791);
     std::cout<<"fib of -4791th term = "<<fibf<<"\n";
-    std::cout<<"\nstring form        = "<<fibf.string_form()<<"\n\n";
+    std::cout<<"\nstring form         = "<<fibf.string_form()<<"\n\n";
     if(fibf.string_form()!="-81339113627586038220075190055247789192880568618630451707018330137861517389158662600956996694846174589801469761512161313215689806905310862985024337939085870965238560635970957792660824904392047271094122294793272484563464072049275313738096650483261684061366405464337657087693955674365623243244313144555525734930847697924533371594078067471044085863078048666920758081314479926308697764627559698033104575510557171344869183739238830679557713527392771191576405457289994077481332719403213634424769607167748620818075825244885846435557980209966356282547711846517397448804387979462291291567084251103673083221868154825314856311929454870166455136775912287273068264359301319801383022153785801110046531437989315467648852308299147172496144333940023447276613167612884771436229672376790405385432747154491541992332127813197768675502425697687895826665267674543412303600098536011986692552057857548702420851052304543203400542443453837366673606205740550355224688965493278830040099542233431719451611889064817728030544594803234")
     {
         throw std::logic_error("the fib of -4791th term is wrong");
     }
 
-    std::cout<<"ALL FIB BINTS ARE CORRECT\n\n";
+    std::cout<<"ALL OUTPUTS ARE CORRECT\n\n";
 
     return 0;
 }

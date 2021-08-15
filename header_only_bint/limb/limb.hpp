@@ -106,6 +106,7 @@ namespace backend_bigint
             inline limb fdiv1limb(dtype single_limb_divisor) const;
             inline limb fdivlong(const limb& multiple_limbed) const;
             inline std::pair<limb,limb> fdivlong_with_remainder(const limb& multiple_limbed) const;
+            inline limb fdivdigit(const limb& divisor) const;
             inline limb fdivision(const limb& divisor) const;
 
             static inline limb karatsuba(const limb& x, const limb& y);

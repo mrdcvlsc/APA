@@ -31,6 +31,22 @@ namespace arb
         *this = *this/rhs;
         return *this;
     }
+
+    bint bint::operator%(const bint& rhs) const
+    {
+        int comp = intlimbs.compare(rhs.intlimbs);
+
+        if(comp<0)
+        {
+            return bint("0");
+        }
+        else if(comp==0)
+        {
+            return bint("1");
+        }
+
+        return *this-(rhs*(*this/rhs));
+    }
 }
 
 #endif

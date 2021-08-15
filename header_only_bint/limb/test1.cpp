@@ -6,7 +6,7 @@
 
 // if the two size are almost equal the fdivlong() is the fastest
 // if the divisor is less than 10 limbs with the dividen fdivision() is the fastest
-// if the divisor is below half of the difits of the dividen the operator/() is the fastest
+// if the divisor is below half of the digits of the dividen the operator/() is the fastest
 
 // g++ test1.cpp -I"/home/lovelace/Documents/libraries/Cpp/precompiled/bignum_lin/include" -L"/home/lovelace/Documents/libraries/Cpp/precompiled/bignum_lin/lib" -lbint -o test1.o -O3 -march=native
 

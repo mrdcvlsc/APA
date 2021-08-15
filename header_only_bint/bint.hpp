@@ -74,8 +74,8 @@ namespace arb
 
             //// Increment Decrement Operators
             //pre-fix and post-fix increment/decrement
-            bint operator++();
-            bint operator--();
+            bint& operator++();
+            bint& operator--();
             bint operator++(int);
             bint operator--(int);
 
@@ -90,5 +90,6 @@ namespace arb
 #include "arithmetic/bint_subtract.hpp"
 #include "arithmetic/bint_multiply.hpp"
 #include "arithmetic/bint_division.hpp"
+#include "arithmetic/bint_indecrement.hpp"
 
 #endif

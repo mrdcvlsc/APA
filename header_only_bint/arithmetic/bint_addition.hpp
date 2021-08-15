@@ -50,7 +50,7 @@ namespace arb
             return *this;
         }
 
-        // same sign bot positive
+        // same sign both positive
         this->intlimbs += rhs.intlimbs;
         this->sign = 1;
         return *this;

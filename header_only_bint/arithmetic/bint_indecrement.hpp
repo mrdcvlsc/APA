@@ -6,14 +6,16 @@
 
 namespace arb
 {
-    bint bint::operator++()
+    bint& bint::operator++()
     {
-        return *this += bint("1");
+        *this += bint("1");
+        return *this;
     }
 
-    bint bint::operator--()
+    bint& bint::operator--()
     {
-        return *this -= bint("1");
+        *this -= bint("1");
+        return *this;
     }
 
     //post-fix increment/decrementa

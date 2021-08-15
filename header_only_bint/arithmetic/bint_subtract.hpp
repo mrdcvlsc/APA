@@ -8,7 +8,7 @@ namespace arb
 {
     bint bint::operator-(const bint& rhs) const
     {
-        bint difference;
+        bint difference = *this;
         difference-=rhs;
         return difference;
     }
@@ -19,9 +19,11 @@ namespace arb
         bool pos_minuend = (this->sign)>=0;
         bool minuendIsMax = *this>rhs;
 
+        int comp = intlimbs.compare(rhs.intlimbs);
+
         if(same_sign)
         {
-            if(*this==rhs)
+            if(comp==0)
             {
                 sign = 1;
                 intlimbs.limbs.clear();
@@ -57,7 +59,7 @@ namespace arb
         else
         {
             this->intlimbs += rhs.intlimbs;
-            if(*this<rhs)
+            if(comp<0)
             {
                 this->sign = -1;
                 return *this;
