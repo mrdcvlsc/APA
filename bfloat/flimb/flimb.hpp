@@ -14,6 +14,8 @@ namespace backend_bigfloat
     {
         private:
 
+            static size_t div_precision; 
+
             std::vector<dtype> dec_str_part_by(const std::string& number);
             std::pair<std::string,std::string> dec_slice(const std::string& float_number);
 
@@ -55,6 +57,8 @@ namespace backend_bigfloat
 
             std::string string_form() const;
     };
+
+    size_t flimb::div_precision = 1;
 }
 
 #include "helpers/fstring_formatters.hpp"
