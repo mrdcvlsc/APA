@@ -1,130 +1,79 @@
-CC= g++
+check: limb_check flimb_check bint_check
+	@echo "ALL CHECK PASSED"
 
-CFLAGSBINT= -I ./bint/include -c
-SRCBINT= ./bint/src/
-OUTBINT= ./bint/obj/
+limb_check:
+	@echo "bint : limbs - test1..."
+	@echo "compiling test program"
+	@g++ ./bint/limb/test/test1.cpp -O3 -march=native -fsanitize=address -o ./bint/limb/test/test1.o
+	@echo "running test program, please wait.."
+	@./bint/limb/test/test1.o
 
-CFLAGSBNUM= -I ./bnum/include -c
-SRCBNUM= ./bnum/src/
-OUTBNUM= ./bnum/obj/
+flimb_check:
+	@echo "bfloat : limbs - test1..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test1.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test1.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test1.o
 
-PRO= -static-libgcc -static-libstdc++
-DEV= -Wall -Wextra -Wshadow -Wpedantic
-OFLAG= -O3 -march=native
+	@echo "bfloat : limbs - test2..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test2.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test2.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test2.o
 
-win:
-	@echo "building for windows..."
-	@echo "building bint library..."
-	@make bintlib
-	@echo "building bnum library..."
-	@make bnumlib
-	@echo "creating bignum library..."
-	@mkdir bignum_win
-	@mkdir bignum_win/include
-	@mkdir bignum_win/lib
-	@echo "moving files... 0/6"
-	@cp "factorial.cpp" "bignum_win\factorial.cpp"
-	@echo "moving files... 1/6"
-	@cp "bint\lib\libbint.a" "bignum_win\lib\libbint.a"
-	@echo "moving files... 2/6"
-	@cp "bnum\lib\libbnum.a" "bignum_win\lib\libbnum.a"
-	@echo "moving files... 3/6"
-	@cp "bint\include\bint.hpp" "bignum_win\include\bint.hpp"
-	@echo "moving files... 4/6"
-	@cp "bnum\include\bnum.hpp" "bignum_win\include\bnum.hpp"
-	@echo "moving files... 5/6"
-	@cp "bint\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
-	@echo "moving files... 6/6"
-	@cp "bnum\include\arr_num_arithmetic.hpp" "bignum_win\include\arr_num_arithmetic.hpp"
-	@echo "release build for windows done..."
+	@echo "bfloat : limbs - test3..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test3.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test3.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test3.o
 
-lin:
-	@echo "building for windows..."
-	@echo "building bint library..."
-	@make bintlib
-	@echo "building bnum library..."
-	@make bnumlib
-	@echo "creating bignum library..."
-	@mkdir bignum_lin
-	@mkdir bignum_lin/include
-	@mkdir bignum_lin/lib
-	@echo "moving files... 0/6"
-	@cp ./factorial.cpp ./bignum_lin
-	@echo "moving files... 1/6"
-	@cp ./bint/lib/libbint.a ./bignum_lin/lib
-	@echo "moving files... 2/6"
-	@cp ./bnum/lib/libbnum.a ./bignum_lin/lib
-	@echo "moving files... 3/6"
-	@cp ./bint/include/bint.hpp ./bignum_lin/include
-	@echo "moving files... 4/6"
-	@cp ./bnum/include/bnum.hpp ./bignum_lin/include
-	@echo "moving files... 5/6"
-	@cp ./bint/include/arr_num_arithmetic.hpp ./bignum_lin/include
-	@echo "moving files... 6/6"
-	@cp ./bnum/include/arr_num_arithmetic.hpp ./bignum_lin/include
-	@echo "release build for linux done..."
+	@echo "bfloat : limbs - test4..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test4.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test4.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test4.o
 
-bintlib: $(OUTBINT)arithmetic_operators.o $(OUTBINT)comparison.o $(OUTBINT)constructors.o $(OUTBINT)integer_arithmetic.o $(OUTBINT)iostream.o $(OUTBINT)string_manip.o $(OUTBINT)sets.o
-	@echo "compiling static library : libbint.a"
-	@ar rvs bint/lib/libbint.a $(OUTBINT)*.o
+	@echo "bfloat : limbs - test5..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test5.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test5.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test5.o
 
-$(OUTBINT)arithmetic_operators.o :$(SRCBINT)arithmetic_operators.cpp
-	@echo "compiling source code to obj files ... 1/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)arithmetic_operators.cpp -o bint/obj/arithmetic_operators.o $(OFLAG)
+	@echo "bfloat : limbs - test6..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test6.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test6.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test6.o
 
-$(OUTBINT)comparison.o :$(SRCBINT)comparison.cpp
-	@echo "compiling source code to obj files ... 2/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)comparison.cpp -o bint/obj/comparison.o $(OFLAG)
+bint_check:
+	@echo "bint class : - test1..."
+	@echo "compiling test program"
+	@g++ ./bint/test/test1.cpp -O3 -march=native -fsanitize=address -o ./bint/test/test1.o
+	@echo "running test program, please wait.."
+	@./bint/test/test1.o
 
-$(OUTBINT)constructors.o :$(SRCBINT)constructors.cpp
-	@echo "compiling source code to obj files ... 3/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)constructors.cpp -o bint/obj/constructors.o $(OFLAG)
+	@echo "bint class : - test2..."
+	@echo "compiling test program"
+	@g++ ./bint/test/test2.cpp -O3 -march=native -fsanitize=address -o ./bint/test/test2.o
+	@echo "running test program, please wait.."
+	@./bint/test/test2.o
 
-$(OUTBINT)integer_arithmetic.o :$(SRCBINT)integer_arithmetic.cpp
-	@echo "compiling source code to obj files ... 4/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)integer_arithmetic.cpp -o bint/obj/integer_arithmetic.o $(OFLAG)
+	@echo "bint class : - test3..."
+	@echo "compiling test program"
+	@g++ ./bint/test/test3.cpp -O3 -march=native -fsanitize=address -o ./bint/test/test3.o
+	@echo "running test program, please wait.."
+	@./bint/test/test3.o
 
-$(OUTBINT)iostream.o :$(SRCBINT)iostream.cpp
-	@echo "compiling source code to obj files ... 5/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)iostream.cpp -o bint/obj/iostream.o $(OFLAG)
+	@echo "bint class : - test4..."
+	@echo "compiling test program"
+	@g++ ./bint/test/test4.cpp -O3 -march=native -fsanitize=address -o ./bint/test/test4.o
+	@echo "running test program, please wait.."
+	@./bint/test/test4.o
 
-$(OUTBINT)string_manip.o :$(SRCBINT)string_manip.cpp
-	@echo "compiling source code to obj files ... 6/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)string_manip.cpp -o bint/obj/string_manip.o $(OFLAG)
+	@echo "no errors detected"
 
-$(OUTBINT)sets.o :$(SRCBINT)sets.cpp
-	@echo "compiling source code to obj files ... 7/7"
-	@$(CC) $(CFLAGSBINT) $(SRCBINT)sets.cpp -o bint/obj/sets.o $(OFLAG)
-
-
-bnumlib: $(OUTBNUM)arithmetic_operators.o $(OUTBNUM)comparison.o $(OUTBNUM)constructors.o $(OUTBNUM)integer_arithmetic.o $(OUTBNUM)iostream.o $(OUTBNUM)string_manip.o $(OUTBNUM)sets.o
-	@echo "compiling static library : libbnum.a"
-	@ar rvs bnum/lib/libbnum.a $(OUTBNUM)*.o
-
-$(OUTBNUM)arithmetic_operators.o :$(SRCBNUM)arithmetic_operators.cpp
-	@echo "compiling source code to obj files ... 1/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)arithmetic_operators.cpp -o bnum/obj/arithmetic_operators.o $(OFLAG)
-
-$(OUTBNUM)comparison.o :$(SRCBNUM)comparison.cpp
-	@echo "compiling source code to obj files ... 2/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)comparison.cpp -o bnum/obj/comparison.o $(OFLAG)
-
-$(OUTBNUM)constructors.o :$(SRCBNUM)constructors.cpp
-	@echo "compiling source code to obj files ... 3/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)constructors.cpp -o bnum/obj/constructors.o $(OFLAG)
-
-$(OUTBNUM)integer_arithmetic.o :$(SRCBNUM)integer_arithmetic.cpp
-	@echo "compiling source code to obj files ... 4/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)integer_arithmetic.cpp -o bnum/obj/integer_arithmetic.o $(OFLAG)
-
-$(OUTBNUM)iostream.o :$(SRCBNUM)iostream.cpp
-	@echo "compiling source code to obj files ... 5/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)iostream.cpp -o bnum/obj/iostream.o $(OFLAG)
-
-$(OUTBNUM)string_manip.o :$(SRCBNUM)string_manip.cpp
-	@echo "compiling source code to obj files ... 6/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)string_manip.cpp -o bnum/obj/string_manip.o $(OFLAG)
-
-$(OUTBNUM)sets.o :$(SRCBNUM)sets.cpp
-	@echo "compiling source code to obj files ... 7/7"
-	@$(CC) $(CFLAGSBNUM) $(SRCBNUM)sets.cpp -o bnum/obj/sets.o $(OFLAG)
+clean:
+	@echo "deleting object files"
+	@rm bint/limb/test/*.o
+	@rm bint/test/*.o
+	@rm bfloat/flimb/test/*.o
