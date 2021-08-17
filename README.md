@@ -2,6 +2,10 @@
 
 ## a c++ library for big number computation (arbitrary-precision arithmetic).
 
+![ubuntu](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp.yml/badge.svg) ![windows](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp_windows.yml/badge.svg)
+
+
+
 ------------------------------------------------------------------
 
 - header only version
