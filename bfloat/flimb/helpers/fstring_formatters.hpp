@@ -32,7 +32,7 @@ namespace backend_bigfloat
                 continue;
             }
 
-            if(value[i]<'0'^value[i]>'9')
+            if((value[i]<'0')^(value[i]>'9'))
             {
                 std::string errmsg = "limb constructor error, \"" + value + "\" is not a valid number\n";
                 throw std::invalid_argument(errmsg);

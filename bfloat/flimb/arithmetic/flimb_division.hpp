@@ -77,6 +77,7 @@ namespace backend_bigfloat
     
     inline flimb& flimb::operator/=(const flimb& divisor)
     {
+        *this = *this/divisor;
         return *this;
     }
     

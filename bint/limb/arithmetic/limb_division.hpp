@@ -98,8 +98,6 @@ namespace backend_bigint
         limb current_base = original_base;
         limb quotient = original_base;
         limb partial_product;
-
-        size_t total_digit_cnt = digit_count();
         
         bool not_found = true;
 
@@ -170,8 +168,6 @@ namespace backend_bigint
         limb current_base = original_base;
         limb quotient = original_base;
         limb partial_product;
-
-        size_t total_digit_cnt = digit_count();
         
         bool not_found = true;
 

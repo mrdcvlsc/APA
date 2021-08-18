@@ -17,7 +17,7 @@ namespace backend_bigint
 
         for(size_t i=0; i<value_size; ++i)
         {
-            if(value[i]<'0'^value[i]>'9')
+            if((value[i]<'0')^(value[i]>'9'))
             {
                 std::string errmsg = "limb constructor error, \"" + value + "\" is not a valid number\n";
                 throw std::invalid_argument(errmsg);
