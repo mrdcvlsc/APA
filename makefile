@@ -45,6 +45,12 @@ flimb_check:
 	@echo "running test program, please wait.."
 	@./bfloat/flimb/test/test6.o
 
+	@echo "bfloat : limbs - test7..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test7.cpp -O3 -march=native -fsanitize=address -o ./bfloat/flimb/test/test7.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test7.o
+
 bint_check:
 	@echo "bint class : - test1..."
 	@echo "compiling test program"

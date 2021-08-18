@@ -15,7 +15,7 @@ int main()
         std::cout<<"b = "<<b<<"\n";
         std::cout<<"\na*b = "<<c<<"\n";
 
-        if(c.string_form()!="7.9907060000000000") throw std::logic_error("wrong product in first example");
+        if(c.string_form()!="7.990706") throw std::logic_error("wrong product in first example");
     }
 
     {
@@ -28,7 +28,7 @@ int main()
         std::cout<<"b = "<<b<<"\n";
         std::cout<<"\na*b = "<<c<<"\n";
 
-        if(c.string_form()!="1.2142900000000000") throw std::logic_error("wrong product in second example");
+        if(c.string_form()!="1.21429") throw std::logic_error("wrong product in second example");
     }
 
     {
@@ -41,7 +41,7 @@ int main()
         std::cout<<"b = "<<b<<"\n";
         std::cout<<"\na*b = "<<c<<"\n";
 
-        if(c.string_form()!="22.9540000000000000") throw std::logic_error("wrong product in thrid example");
+        if(c.string_form()!="22.954") throw std::logic_error("wrong product in thrid example");
     }
 
     std::cout<<"all output is correct\n";

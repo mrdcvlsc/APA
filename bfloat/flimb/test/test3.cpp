@@ -31,14 +31,14 @@ int main()
     std::cout<<"te = "<<te<<"\n";
     std::cout<<"tf = "<<tf<<"\n";
 
-    if(a.string_form()!="826732433683248234.763254723253467343000000") throw std::logic_error("wrong values in a");
-    if(b.string_form()!="77672364567672377253.00000000") throw std::logic_error("wrong vblues in b");
+    if(a.string_form()!="826732433683248234.763254723253467343") throw std::logic_error("wrong values in a");
+    if(b.string_form()!="77672364567672377253.0") throw std::logic_error("wrong vblues in b");
     if(c.string_form()!="0.672346362758267723872364") throw std::logic_error("wrong vclues in c");
-    if(d.string_form()!="1.50000000") throw std::logic_error("wrong vdlues in d");
-    if(e.string_form()!="23.0002366928323000") throw std::logic_error("wrong values in e");
+    if(d.string_form()!="1.5") throw std::logic_error("wrong vdlues in d");
+    if(e.string_form()!="23.0002366928323") throw std::logic_error("wrong values in e");
 
-    if(ta.string_form()!="1653464867366496469.526509446506934686000000") throw std::logic_error("wrong values in ta");
-    if(tb.string_form()!="78499097001355625487.763254723253467343000000") throw std::logic_error("wrong values in tb");
+    if(ta.string_form()!="1653464867366496469.526509446506934686") throw std::logic_error("wrong values in ta");
+    if(tb.string_form()!="78499097001355625487.763254723253467343") throw std::logic_error("wrong values in tb");
     if(tc.string_form()!="826732433683248235.435601086011735066872364") throw std::logic_error("wrong values in tc");
     if(td.string_form()!="2.172346362758267723872364") throw std::logic_error("wrong values in td");
     if(te.string_form()!="2.172346362758267723872364") throw std::logic_error("wrong values in te");

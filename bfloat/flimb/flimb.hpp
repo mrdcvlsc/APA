@@ -23,6 +23,8 @@ namespace backend_bigfloat
 
         public:
 
+            static void set_div_precision(size_t n) { div_precision = n; }
+
             size_t decimal_point;
 
             flimb();

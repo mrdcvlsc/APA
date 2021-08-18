@@ -8,6 +8,17 @@ namespace backend_bigfloat
 {
     inline flimb flimb::operator/(const flimb& divisor) const
     {
+        int comp = compare(divisor);
+
+        if(comp==0)
+        {
+            std::vector<dtype> one;
+            one.push_back(1);
+            one.push_back(0);
+
+            return flimb(one,1);
+        }
+
         limb padded_dividen, limb_divisor;
         padded_dividen.limbs = limbs;
         limb_divisor.limbs = divisor.limbs;

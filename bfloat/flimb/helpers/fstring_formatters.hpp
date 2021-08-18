@@ -115,8 +115,31 @@ namespace backend_bigfloat
                 carried_answer.push_back('.');
             }
 
-            carried_answer.append(front_zeros);
-            carried_answer.append(current_index);
+            std::string whole_limb = front_zeros.append(current_index);
+
+            if(i==limbs.size()-1)
+            {
+                if(limbs[i]==0)
+                {
+                    whole_limb = "0";
+                }
+                else
+                {
+                    std::string last_limb = whole_limb;
+                    size_t zero_remove_rear = 0;
+                    for(size_t i=0; i<last_limb.size(); ++i)
+                    {
+                        if(last_limb[last_limb.size()-1-i]!='0')
+                        {
+                            break;
+                        }
+                        zero_remove_rear++;
+                    }
+                    whole_limb = last_limb.substr(0,last_limb.size()-zero_remove_rear);
+                }
+            }
+
+            carried_answer.append(whole_limb);
 
         }
 

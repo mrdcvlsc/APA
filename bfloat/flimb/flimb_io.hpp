@@ -26,11 +26,11 @@ namespace backend_bigfloat
                     
             size_t real_digits = value.limb_length;
             dtype current_index = value.limbs[i];
-            if(current_index==0 && current_index!=0)
+            if(current_index==0 && current_index!=0 && i!=value.limbs.size()-1)
             {
                 std::cout<<std::string(real_digits-1,'0');
             }
-            else
+            else if(i!=value.limbs.size()-1)
             {
                 while(current_index)
                 {
@@ -47,7 +47,31 @@ namespace backend_bigfloat
                 }
             }
             #ifndef SHOW_LIMB_SPACE
-            std::cout<<value.limbs[i];
+            if(i==value.limbs.size()-1)
+            {
+                if(value.limbs[i]==0)
+                {
+                    std::cout<<0;
+                }
+                else
+                {
+                    std::string last_limb = std::to_string(value.limbs[i]);
+                    size_t zero_remove_rear = 0;
+                    for(size_t i=0; i<last_limb.size(); ++i)
+                    {
+                        if(last_limb[last_limb.size()-1-i]!='0')
+                        {
+                            break;
+                        }
+                        zero_remove_rear++;
+                    }
+                    std::cout<<last_limb.substr(0,last_limb.size()-zero_remove_rear);
+                }
+            }
+            else
+            {
+                std::cout<<value.limbs[i];
+            }
             #else
             std::cout<<value.limbs[i]<<' ';
             #endif
