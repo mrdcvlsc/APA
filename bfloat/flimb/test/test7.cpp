@@ -12,15 +12,10 @@ int main()
           e("23.0002366928323");
 
     flimb ta = a/a;
-    std::cout<<"+++++++++++++++\n";
     flimb tb = a/b;
-    std::cout<<"+++++++++++++++\n";
     flimb tc = a/c;
-    std::cout<<"+++++++++++++++\n";
     flimb td = c/d;
-    std::cout<<"+++++++++++++++\n";
     flimb te = d/c;
-    std::cout<<"+++++++++++++++\n";
     flimb tf = e/c;
 
     std::cout<<"a = "<<a<<"\n";

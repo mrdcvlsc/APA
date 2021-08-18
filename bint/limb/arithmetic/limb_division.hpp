@@ -44,7 +44,6 @@ namespace backend_bigint
 
         limb base(tmp), quotient;
 
-//
         while((divisor*base)<dividen)
         {
             base.fmulINT_self(10);
@@ -56,8 +55,6 @@ namespace backend_bigint
     /// long division - turns out it is slower than my older implementation
     limb limb::fdivlong(const limb& divisor) const
     {
-        // std::cout<<"fdivlong()\n";
-        // division special cases
         #ifndef PRODUCTION
         if(divisor.limbs.size()==1 && divisor.limbs[0]==0)
         {
@@ -89,11 +86,7 @@ namespace backend_bigint
         }
         // end of special cases
 
-        // std::cout<<"special case end\n";
-
         limb original_base = mfind_base10(*this,divisor); // this function can be optimized
-
-        // std::cout<<"base found\n";
 
         limb current_base = original_base;
         limb quotient = original_base;
@@ -102,7 +95,6 @@ namespace backend_bigint
         bool not_found = true;
 
         while(not_found)
-        // here
         {
             while((partial_product = quotient*divisor)<*this)
             {
@@ -124,8 +116,6 @@ namespace backend_bigint
 
     inline std::pair<limb,limb> limb::fdivlong_with_remainder(const limb& divisor) const
     {
-        // std::cout<<"fdivlong()\n";
-        // division special cases
         #ifndef PRODUCTION
         if(divisor.limbs.size()==1 && divisor.limbs[0]==0)
         {
@@ -157,13 +147,8 @@ namespace backend_bigint
             limb remainder = (*this)-(quotient*divisor);
             return {quotient,remainder};
         }
-        // end of special cases
-
-        // std::cout<<"special case end\n";
 
         limb original_base = mfind_base10(*this,divisor); // this function can be optimized
-
-        // std::cout<<"base found\n";
 
         limb current_base = original_base;
         limb quotient = original_base;
