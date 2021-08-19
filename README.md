@@ -8,15 +8,22 @@
 ------------------------------------------------------------------
 
 - header only version
-- more optimized cases for long division
+- more optimized cases for long division than the previous version
 
-__NOTICE__ : this version is still new, and might still have some bugs
+<details>
+<summary><b><i>Notice</i></b></summary>
+<br>
+<ul>
+
+this version is still new, and might still have some bugs
 
 - you can use the more stable previous version in this link
   - https://github.com/mrdcvlsc/bignum/tree/version_2.8.8
 
 - or clone it
   - ```git clone --single-branch --branch version_2.8.8 https://github.com/mrdcvlsc/bignum```
+
+</details>
 
 ## DOCUMENTATION
 
