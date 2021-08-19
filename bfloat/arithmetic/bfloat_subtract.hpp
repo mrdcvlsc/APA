@@ -1,33 +1,35 @@
-#ifndef BINT_SUBTRACT_HPP
-#define BINT_SUBTRACT_HPP
+#ifndef BFLOAT_SUBTRACT_HPP
+#define BFLOAT_SUBTRACT_HPP
 
 #include <iostream>
-#include "../bint.hpp"
+#include "../bfloat.hpp"
 
 namespace arb
 {
-    bint bint::operator-(const bint& rhs) const
+    bfloat bfloat::operator-(const bfloat& rhs) const
     {
-        bint difference = *this;
+        bfloat difference = *this;
         difference-=rhs;
         return difference;
     }
 
-    bint& bint::operator-=(const bint& rhs)
+    bfloat& bfloat::operator-=(const bfloat& rhs)
     {
         bool same_sign = this->sign==rhs.sign;
         bool pos_minuend = (this->sign)>=0;
         bool minuendIsMax = *this>rhs;
 
-        int comp = intlimbs.compare(rhs.intlimbs);
+        int comp = floatlimbs.compare(rhs.floatlimbs);
 
         if(same_sign)
         {
             if(comp==0)
             {
                 sign = 1;
-                intlimbs.limbs.clear();
-                intlimbs.limbs.push_back(0);
+                floatlimbs.limbs.clear();
+                floatlimbs.limbs.push_back(0);
+                floatlimbs.limbs.push_back(0);
+                floatlimbs.decimal_point = 1;
                 return *this;
             }
 
@@ -35,11 +37,11 @@ namespace arb
             {
                 if(minuendIsMax)
                 {
-                    this->intlimbs -= rhs.intlimbs;
+                    this->floatlimbs -= rhs.floatlimbs;
                     this->sign = 1;
                     return *this;
                 }
-                this->intlimbs = rhs.intlimbs-this->intlimbs;
+                this->floatlimbs = rhs.floatlimbs-this->floatlimbs;
                 this->sign = -1;
                 return *this;
             }
@@ -47,18 +49,18 @@ namespace arb
             {
                 if(minuendIsMax)
                 {
-                    this->intlimbs = rhs.intlimbs-this->intlimbs;
+                    this->floatlimbs = rhs.floatlimbs-this->floatlimbs;
                     this->sign = 1;
                     return *this;
                 }
-                this->intlimbs -= rhs.intlimbs;
+                this->floatlimbs -= rhs.floatlimbs;
                 this->sign = (-1);
                 return *this;
             }
         }
         else
         {
-            this->intlimbs += rhs.intlimbs;
+            this->floatlimbs += rhs.floatlimbs;
             if(*this<rhs)
             {
                 this->sign = -1;
@@ -69,8 +71,8 @@ namespace arb
         }
 
         sign = 1;
-        intlimbs.limbs.clear();
-        intlimbs.limbs.push_back(0);
+        floatlimbs.limbs.clear();
+        floatlimbs.limbs.push_back(0);
         return *this;
     }
 }

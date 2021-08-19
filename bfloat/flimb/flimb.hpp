@@ -10,7 +10,7 @@ namespace backend_bigfloat
 {
     using namespace backend_bigint;
 
-    class flimb : private limb
+    class flimb : public limb
     {
         private:
 
@@ -28,11 +28,14 @@ namespace backend_bigfloat
             size_t decimal_point;
 
             flimb();
-            flimb(const std::vector<dtype>& limbs, size_t decimal_point);
             flimb(const std::string& number);
+            flimb(const std::vector<dtype>& limbs, size_t decimal_point);
             flimb(float number);
             flimb(double number);
             flimb(long double number);
+
+            size_t flimb_count() const;
+            size_t flimb_length() const;
 
             inline flimb operator+(const flimb& lower_adden) const;
             inline flimb& operator+=(const flimb& lower_adden);
@@ -67,6 +70,7 @@ namespace backend_bigfloat
 #include "flimb_comparison.hpp"
 #include "flimb_io.hpp"
 #include "flimb_constructor.hpp"
+#include "helpers/flimb_sizes.hpp"
 
 #include "arithmetic/flimb_addition.hpp"
 #include "arithmetic/flimb_subtract.hpp"

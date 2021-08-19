@@ -31,13 +31,15 @@ namespace backend_bigfloat
             padded_dividen.limbs.insert(padded_dividen.limbs.end(),pad_zeros.begin(),pad_zeros.end());
         }
 
-        std::vector<dtype> pad_zeros(div_precision,0);
+
+        size_t average_precision = (padded_dividen.limbs.size()+divisor.limbs.size())/2;
+        std::vector<dtype> pad_zeros(average_precision+div_precision,0);
         padded_dividen.limbs.insert(padded_dividen.limbs.end(),pad_zeros.begin(),pad_zeros.end());
 
 
         size_t quotient_decimal_place = decimal_point + (divisor.limbs.size()-divisor.decimal_point);
-        limb quotient = padded_dividen/limb_divisor;
 
+        limb quotient = padded_dividen/limb_divisor;
 
         size_t pad_front_zeros = padded_dividen.limbs.size()-quotient.limbs.size();
         std::vector<dtype> front_zeros(pad_front_zeros,0);

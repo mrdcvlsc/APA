@@ -76,11 +76,24 @@ bint_check:
 	@echo "running test program, please wait.."
 	@./bint/test/test4.o
 
+bfloat_check:
+	@echo "bfloat class : - test1..."
+	@echo "compiling test program"
+	@g++ ./bfloat/test/test1.cpp -O3 -march=native -fsanitize=address -o ./bfloat/test/test1.o
+	@echo "running test program, please wait.."
+	@./bfloat/test/test1.o
+
+	@echo "bfloat class : - test2..."
+	@echo "compiling test program"
+	@g++ ./bfloat/test/test2.cpp -O3 -march=native -fsanitize=address -o ./bfloat/test/test2.o
+	@echo "running test program, please wait.."
+	@./bfloat/test/test2.o
+
 	@echo "UBUNTU TEST no errors detected"
 
 
 check_win: limb_check_win flimb_check_win bint_check_win
-	@echo "ALL CHECK PASSED"
+	@echo "ALL CHECK_win PASSED"
 
 limb_check_win:
 	@echo "bint : limbs - test1..."
@@ -126,6 +139,12 @@ flimb_check_win:
 	@echo "running test program, please wait.."
 	@./bfloat/flimb/test/test6.o
 
+	@echo "bfloat : limbs - test7..."
+	@echo "compiling test program"
+	@g++ ./bfloat/flimb/test/test7.cpp -O3 -march=native -o ./bfloat/flimb/test/test7.o
+	@echo "running test program, please wait.."
+	@./bfloat/flimb/test/test7.o
+
 bint_check_win:
 	@echo "bint class : - test1..."
 	@echo "compiling test program"
@@ -150,6 +169,19 @@ bint_check_win:
 	@g++ ./bint/test/test4.cpp -O3 -march=native -o ./bint/test/test4.o
 	@echo "running test program, please wait.."
 	@./bint/test/test4.o
+
+bfloat_check_win:
+	@echo "bfloat class : - test1..."
+	@echo "compiling test program"
+	@g++ ./bfloat/test/test1.cpp -O3 -march=native -o ./bfloat/test/test1.o
+	@echo "running test program, please wait.."
+	@./bfloat/test/test1.o
+
+	@echo "bfloat class : - test2..."
+	@echo "compiling test program"
+	@g++ ./bfloat/test/test2.cpp -O3 -march=native -o ./bfloat/test/test2.o
+	@echo "running test program, please wait.."
+	@./bfloat/test/test2.o
 
 	@echo "WINDOWS TEST no errors detected"
 
