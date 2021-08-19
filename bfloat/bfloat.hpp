@@ -78,14 +78,14 @@ namespace arb
     };// end of bfloat class
 }// end of arb namespace
 
-#include "bfloat_constructor.hpp"
-#include "bfloat_comparison.hpp"
-#include "bfloat_io.hpp"
+#include "bfloat_constructor.cpp"
+#include "bfloat_comparison.cpp"
+#include "bfloat_io.cpp"
 
-#include "arithmetic/bfloat_addition.hpp"
-#include "arithmetic/bfloat_subtract.hpp"
-#include "arithmetic/bfloat_multiply.hpp"
-#include "arithmetic/bfloat_division.hpp"
-#include "arithmetic/bfloat_indecrement.hpp"
+#include "arithmetic/bfloat_addition.cpp"
+#include "arithmetic/bfloat_subtract.cpp"
+#include "arithmetic/bfloat_multiply.cpp"
+#include "arithmetic/bfloat_division.cpp"
+#include "arithmetic/bfloat_indecrement.cpp"
 
 #endif

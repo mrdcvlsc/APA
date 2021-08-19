@@ -82,14 +82,14 @@ namespace arb
     };// end of bint class
 }// end of arb namespace
 
-#include "bint_constructor.hpp"
-#include "bint_comparison.hpp"
-#include "bint_io.hpp"
+#include "bint_constructor.cpp"
+#include "bint_comparison.cpp"
+#include "bint_io.cpp"
 
-#include "arithmetic/bint_addition.hpp"
-#include "arithmetic/bint_subtract.hpp"
-#include "arithmetic/bint_multiply.hpp"
-#include "arithmetic/bint_division.hpp"
-#include "arithmetic/bint_indecrement.hpp"
+#include "arithmetic/bint_addition.cpp"
+#include "arithmetic/bint_subtract.cpp"
+#include "arithmetic/bint_multiply.cpp"
+#include "arithmetic/bint_division.cpp"
+#include "arithmetic/bint_indecrement.cpp"
 
 #endif

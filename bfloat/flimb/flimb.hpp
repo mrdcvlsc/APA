@@ -66,15 +66,15 @@ namespace backend_bigfloat
     size_t flimb::div_precision = 1;
 }
 
-#include "helpers/fstring_formatters.hpp"
-#include "flimb_comparison.hpp"
-#include "flimb_io.hpp"
-#include "flimb_constructor.hpp"
-#include "helpers/flimb_sizes.hpp"
+#include "helpers/fstring_formatters.cpp"
+#include "flimb_comparison.cpp"
+#include "flimb_io.cpp"
+#include "flimb_constructor.cpp"
+#include "helpers/flimb_sizes.cpp"
 
-#include "arithmetic/flimb_addition.hpp"
-#include "arithmetic/flimb_subtract.hpp"
-#include "arithmetic/flimb_multiply.hpp"
-#include "arithmetic/flimb_division.hpp"
+#include "arithmetic/flimb_addition.cpp"
+#include "arithmetic/flimb_subtract.cpp"
+#include "arithmetic/flimb_multiply.cpp"
+#include "arithmetic/flimb_division.cpp"
 
 #endif

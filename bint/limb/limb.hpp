@@ -130,16 +130,16 @@ namespace backend_bigint
     size_t limb::limb_length = SET_LIMB_LENGTH();
 }
 
-#include "helpers/string_formatters.hpp"
-#include "limb_comparison.hpp"
-#include "limb_io.hpp"
-#include "limb_constructor.hpp"
-#include "arithmetic/limb_addition.hpp"
-#include "arithmetic/limb_subtraction.hpp"
-#include "arithmetic/limb_multiply.hpp"
-#include "arithmetic/limb_multiply_by_int.hpp"
-#include "arithmetic/limb_division_by_10.hpp"
-#include "arithmetic/limb_division_by_1limb.hpp"
-#include "arithmetic/limb_division.hpp"
+#include "helpers/string_formatters.cpp"
+#include "limb_comparison.cpp"
+#include "limb_io.cpp"
+#include "limb_constructor.cpp"
+#include "arithmetic/limb_addition.cpp"
+#include "arithmetic/limb_subtraction.cpp"
+#include "arithmetic/limb_multiply.cpp"
+#include "arithmetic/limb_multiply_by_int.cpp"
+#include "arithmetic/limb_division_by_10.cpp"
+#include "arithmetic/limb_division_by_1limb.cpp"
+#include "arithmetic/limb_division.cpp"
 
 #endif
