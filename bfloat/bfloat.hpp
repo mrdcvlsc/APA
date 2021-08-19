@@ -75,6 +75,11 @@ namespace arb
             bfloat operator++(int);
             bfloat operator--(int);
 
+            static void set_div_precision(size_t n)
+            {
+                backend_bigfloat::flimb::set_div_precision(n);
+            }
+
     };// end of bfloat class
 }// end of arb namespace
 
