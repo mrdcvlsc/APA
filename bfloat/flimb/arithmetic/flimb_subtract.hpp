@@ -45,39 +45,58 @@ namespace backend_bigfloat
             }
         }
 
-        // check and remove zero limbs in front
-        size_t front_remove_limit = decimal_point-1;
-        size_t front_limb_to_remove = 0;
-        size_t resulting_size = diff_limb_cnt;
-        for(size_t i=0; i<diff_limb_cnt; ++i)
+        // old : check and remove zero limbs in front
+        // size_t front_remove_limit = decimal_point-1;
+        // size_t front_limb_to_remove = 0;
+        // size_t resulting_size = diff_limb_cnt;
+        // for(size_t i=0; i<diff_limb_cnt; ++i)
+        // {
+        //     if(limbs[i]==0 && resulting_size>1 && front_remove_limit--)
+        //     {
+        //         front_limb_to_remove++;
+        //         resulting_size--;
+        //         decimal_point--;
+        //     }
+        //     else break;
+        // }
+        // if(front_limb_to_remove)
+        // {
+        //     limbs.erase(limbs.begin()+0,limbs.begin()+front_limb_to_remove);
+        // }
+        //
+
+        // new : check and remoze zero limbs in front
+        size_t limb_to_remove = 0;
+        for(size_t i=0; i<decimal_point-1; ++i)
         {
-            if(limbs[i]==0 && resulting_size>1 && front_remove_limit--)
+            if(limbs[i]==0)
             {
-                front_limb_to_remove++;
-                resulting_size--;
+                limb_to_remove++;
             }
             else break;
         }
-        if(front_limb_to_remove)
+        if(limb_to_remove)
         {
-            limbs.erase(limbs.begin()+0,limbs.begin()+front_limb_to_remove);
+            limbs.erase(limbs.begin()+0,limbs.begin()+limb_to_remove);
         }
 
+        decimal_point -= limb_to_remove;
+        //---------------------------------------------
+
         // check and remove zero limbs in rear
-        size_t rear_remove_limit = rational_diff_limb_cnt-1;
         size_t rear_limb_to_remove = 0;
-        for(size_t i=limbs.size()-1; i<limbs.size(); ++i)
+        for(size_t i=limbs.size()-1; i>decimal_point; --i)
         {
-            if(limbs[i]==0 && resulting_size>1 && rear_remove_limit--)
+            if(limbs[i]!=0)
             {
-                rear_limb_to_remove++;
-                resulting_size--;
+                break;
             }
-            else break;
+            rear_limb_to_remove++;
         }
+   
         if(rear_limb_to_remove)
         {
-            limbs.erase(limbs.begin()+(limbs.size()-1-rear_limb_to_remove),limbs.end());
+            limbs.erase(limbs.end()-rear_limb_to_remove, limbs.end());
         }
 
         return *this;

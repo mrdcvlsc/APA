@@ -38,16 +38,13 @@ namespace backend_bigfloat
         size_t product_decimal_limb_count = multiplicand_decimal_limb_count+multiplier_decimal_limb_count;
         size_t product_decimal_place = product_flimbs.size() - product_decimal_limb_count;
 
-        // remove fron zero limbs
-        // check and remove zero limbs
+        // check and remove zero limbs in front
         size_t limb_to_remove = 0;
-        size_t resulting_size = product_flimbs.size();
-        for(size_t i=0; i<product_flimbs.size(); ++i)
+        for(size_t i=0; i<product_decimal_place-1; ++i)
         {
-            if(product_flimbs[i]==0 && resulting_size>1)
+            if(product_flimbs[i]==0)
             {
                 limb_to_remove++;
-                resulting_size--;
             }
             else break;
         }
@@ -57,6 +54,22 @@ namespace backend_bigfloat
         }
 
         product_decimal_place -= limb_to_remove;
+
+        // check and remove zero limbs in rear
+        size_t rear_limb_to_remove = 0;
+        for(size_t i=product_flimbs.size()-1; i>product_decimal_place; --i)
+        {
+            if(product_flimbs[i]!=0)
+            {
+                break;
+            }
+            rear_limb_to_remove++;
+        }
+   
+        if(rear_limb_to_remove)
+        {
+            product_flimbs.erase(product_flimbs.end()-rear_limb_to_remove, product_flimbs.end());
+        }
 
         return flimb(product_flimbs,product_decimal_place);
     }

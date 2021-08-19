@@ -59,6 +59,22 @@ namespace backend_bigfloat
             limbs.insert(limbs.begin(),1);
         }
 
+        // check and remove zero limbs in rear
+        size_t rear_limb_to_remove = 0;
+        for(size_t i=limbs.size()-1; i>decimal_point; --i)
+        {
+            if(limbs[i]!=0)
+            {
+                break;
+            }
+            rear_limb_to_remove++;
+        }
+   
+        if(rear_limb_to_remove)
+        {
+            limbs.erase(limbs.end()-rear_limb_to_remove, limbs.end());
+        }
+
         return *this;
     }
 
