@@ -397,7 +397,7 @@ int main()
 <br>
 <ul>
 
-**you can increase the precision of the quotient of ```bfloat``` using the ```arb::bfloat::set_div_precision(n);``` function by a level of n, one level of n adds 8 digit precision if your ```dtype``` is ```long long```**
+**you can increase the precision of the quotient of ```bfloat``` using ```arb::bfloat::set_div_precision(n);``` function by a level of n, one level of n adds 8 digit precision if your ```dtype``` is ```long long```**
 
 ```c++
 #include <iostream>
@@ -419,7 +419,7 @@ int main()
 
 /* output
 
-  pi1 = 3.1415929203539823884955
+  pi1 = 3.141592920353982300884955
 
   pi2 = 3.1415929203539823008849557522123893805309734513274336283185840707964601769911504424778761619469
 
