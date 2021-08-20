@@ -1,9 +1,11 @@
-# bignum
+# APA
 
-## a c++ library for big number computation (apaitrary-precision arithmetic).
+## a c++ library for big number computation (arbitrary-precision arithmetic).
 
 ![ubuntu](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp.yml/badge.svg)
 ![windows](https://github.com/mrdcvlsc/bignum/actions/workflows/windows_output.yml/badge.svg)
+
+APA - is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on values that usually cannot fit in the standard primitive C++ data types.
 
 ------------------------------------------------------------------
 
