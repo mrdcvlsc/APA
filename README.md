@@ -5,7 +5,7 @@
 ![ubuntu](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp.yml/badge.svg)
 ![windows](https://github.com/mrdcvlsc/bignum/actions/workflows/windows_output.yml/badge.svg)
 
-this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard primitive C++ data types.
+this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard C++ primitive data types.
 
 ------------------------------------------------------------------
 
