@@ -36,19 +36,13 @@ namespace apa
     {
         int comp = floatlimbs.compare(rhs.floatlimbs);
 
-        if(comp<0)
+        if(*this<rhs)
         {
-            bfloat mod;
-            mod.floatlimbs = backend_bigfloat::flimb({0,0},1);
-            mod.sign = 1;
-            return mod;
+            return *this;
         }
-        else if(comp==0)
+        else if(*this==rhs)
         {
-            bfloat mod;
-            mod.floatlimbs = backend_bigfloat::flimb({1,0},1);
-            mod.sign = 1;
-            return mod;
+            return bfloat("0.0");
         }
 
         return *this-(rhs*(*this/rhs));
