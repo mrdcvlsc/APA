@@ -479,6 +479,7 @@ int main()
 ```c++
 #include <iostream>
 #include "bignum/bfloat/bfloat.hpp"
+#include "bignum/function/apa_math.hpp"
 
 int main()
 {
