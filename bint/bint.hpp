@@ -5,7 +5,7 @@
 #include "limb/limb.hpp"
 
 /// arbitrary-precision namespace
-namespace arb
+namespace apa
 {
     /// arbitrary-precision type
     class bint
@@ -78,7 +78,7 @@ namespace arb
             bint& operator--();
             bint operator++(int);
             bint operator--(int);
-
+            
     };// end of bint class
 }// end of arb namespace
 

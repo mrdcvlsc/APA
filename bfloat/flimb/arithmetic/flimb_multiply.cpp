@@ -11,27 +11,38 @@ namespace backend_bigfloat
         std::vector<dtype> product_flimbs(limbs.size()+multiplier.limbs.size(),0);
 
         // operation
+        dtype ten;
+        dtype one;
         for(size_t i=0; i<multiplier.limbs.size(); ++i)
         {
             for(size_t j=0;j<limbs.size();++j)
             {
                 product_flimbs[product_flimbs.size()-1-i-j] += (limbs[limbs.size()-1-j]*multiplier.limbs[multiplier.limbs.size()-1-i]);
+
+                // carry to avoid overflow
+                if(product_flimbs[product_flimbs.size()-1-i-j]>=max_value+1)
+                {
+                    ten = ten_thsd(product_flimbs[product_flimbs.size()-1-i-j]);
+                    one = one_thsd(product_flimbs[product_flimbs.size()-1-i-j],ten);
+                    product_flimbs[product_flimbs.size()-1-i-j]=one;
+                    product_flimbs[product_flimbs.size()-1-i-j-1]=product_flimbs[product_flimbs.size()-1-i-j-1]+ten;
+                }
             }
         }
 
-        // carry
-        dtype ten;
-        dtype one;
-        for(size_t i=0;i<product_flimbs.size();++i)
-        {
-            if(product_flimbs[product_flimbs.size()-1-i]>=max_value+1)
-            {
-                ten = ten_thsd(product_flimbs[product_flimbs.size()-1-i]);
-                one = one_thsd(product_flimbs[product_flimbs.size()-1-i],ten);
-                product_flimbs[product_flimbs.size()-1-i]=one;
-                product_flimbs[product_flimbs.size()-1-i-1]=product_flimbs[product_flimbs.size()-1-i-1]+ten;
-            }
-        }
+        // // carry
+        // dtype ten;
+        // dtype one;
+        // for(size_t i=0;i<product_flimbs.size();++i)
+        // {
+        //     if(product_flimbs[product_flimbs.size()-1-i]>=max_value+1)
+        //     {
+        //         ten = ten_thsd(product_flimbs[product_flimbs.size()-1-i]);
+        //         one = one_thsd(product_flimbs[product_flimbs.size()-1-i],ten);
+        //         product_flimbs[product_flimbs.size()-1-i]=one;
+        //         product_flimbs[product_flimbs.size()-1-i-1]=product_flimbs[product_flimbs.size()-1-i-1]+ten;
+        //     }
+        // }
 
         size_t multiplicand_decimal_limb_count = limbs.size()-decimal_point;
         size_t multiplier_decimal_limb_count = multiplier.limbs.size()-multiplier.decimal_point;

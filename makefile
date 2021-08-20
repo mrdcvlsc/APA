@@ -1,4 +1,4 @@
-check: limb_check flimb_check bint_check
+check: limb_check flimb_check bint_check bfloat_check
 	@echo "ALL CHECK PASSED"
 
 limb_check:
@@ -92,7 +92,7 @@ bfloat_check:
 	@echo "UBUNTU TEST no errors detected"
 
 
-check_win: limb_check_win flimb_check_win bint_check_win
+check_win: limb_check_win flimb_check_win bint_check_win bfloat_check_win
 	@echo "ALL CHECK_win PASSED"
 
 limb_check_win:
@@ -190,3 +190,4 @@ clean:
 	@rm bint/limb/test/*.o
 	@rm bint/test/*.o
 	@rm bfloat/flimb/test/*.o
+	@rm bfloat/test/*.o

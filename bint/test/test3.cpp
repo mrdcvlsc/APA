@@ -10,11 +10,11 @@ int main()
 
   cout<<"FACTORIAL OF A NUMBER : "<<endl;
 
-  arb::bint limit = 16827;
+  apa::bint limit = 16827;
   
-  arb::bint n = limit, fac("1");
+  apa::bint n = limit, fac("1");
 
-  for(arb::bint i=1; i<=limit; ++i)
+  for(apa::bint i=1; i<=limit; ++i)
   {
     fac = fac*i;
   }

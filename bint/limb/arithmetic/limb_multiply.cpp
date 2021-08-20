@@ -27,25 +27,36 @@ namespace backend_bigint
         std::vector<dtype> product_limb(product_length,0);
 
         // operation
+        dtype ten;
+        dtype one;
         for(size_t i=0; i<multiplier_len; ++i)
         {
-            for(size_t j=0;j<multiplicand_len;++j)
+            for(size_t j=0; j<multiplicand_len; ++j)
             {
                 product_limb[product_length-1-i-j] += (limbs[multiplicand_len-1-j]*multiplier.limbs[multiplier_len-1-i]);
+                
+                // carry
+                if(product_limb[product_length-1-i-j]>=max_value+1)
+                {
+                    ten = ten_thsd(product_limb[product_length-1-i-j]);
+                    one = one_thsd(product_limb[product_length-1-i-j],ten);
+                    product_limb[product_length-1-i-j]=one;
+                    product_limb[product_length-1-i-j-1]=product_limb[product_length-1-i-j-1]+ten;
+                }
             }
         }
 
-        // carry
-        dtype ten;
-        dtype one;
-        for(size_t i=0;i<product_length;++i) {
-            if(product_limb[product_length-1-i]>=max_value+1) {
-                ten = ten_thsd(product_limb[product_length-1-i]);
-                one = one_thsd(product_limb[product_length-1-i],ten);
-                product_limb[product_length-1-i]=one;
-                product_limb[product_length-1-i-1]=product_limb[product_length-1-i-1]+ten;
-            }
-        }
+        // // carry
+        // dtype ten;
+        // dtype one;
+        // for(size_t i=0;i<product_length;++i) {
+        //     if(product_limb[product_length-1-i]>=max_value+1) {
+        //         ten = ten_thsd(product_limb[product_length-1-i]);
+        //         one = one_thsd(product_limb[product_length-1-i],ten);
+        //         product_limb[product_length-1-i]=one;
+        //         product_limb[product_length-1-i-1]=product_limb[product_length-1-i-1]+ten;
+        //     }
+        // }
 
         // remove fron zero limbs
         // check and remove zero limbs

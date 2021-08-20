@@ -1,6 +1,6 @@
 # bignum
 
-## a c++ library for big number computation (arbitrary-precision arithmetic).
+## a c++ library for big number computation (apaitrary-precision arithmetic).
 
 ![ubuntu](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp.yml/badge.svg)
 ![windows](https://github.com/mrdcvlsc/bignum/actions/workflows/windows_output.yml/badge.svg)
@@ -42,8 +42,13 @@ this version is still new, and might still have some bugs
 
   ```c++
   #include <iostream>
+  
   #include "bignum/bint/bint.hpp" // for big integers
   #include "bignum/bfloat/bfloat.hpp" // for big rational numbers
+
+  //or
+
+  #include "bignum/bignum.hpp" // to include both bint.hpp & bfloat.hpp and the function headers
   ```
 
 </ul>
@@ -69,7 +74,7 @@ this version is still new, and might still have some bugs
 
 int main()
 {
-  arb::bint a("-888349834923489328492834983294234873284672346877264872");
+  apa::bint a("-888349834923489328492834983294234873284672346877264872");
 }
 ```
 
@@ -83,7 +88,7 @@ int main()
   short num1 = -23;
   unsigned short num2 = 32;
 
-  arb::bint a = num1,               // short
+  apa::bint a = num1,               // short
             b = num2,              // unsigned short
             c = -788834,           // int
             d = 977342,            // unsigned int
@@ -107,7 +112,7 @@ you cannot use floating point types directly to construct big integers, so you n
 
 int main()
 {
-  arb::bint a = (int)89.02f,    // float
+  apa::bint a = (int)89.02f,    // float
             b = (int)8923.123,  // double
             c = (long)723.236L; // long double
 
@@ -141,7 +146,7 @@ int main()
 
 int main()
 {
-  arb::bfloat a("-777238478264784234234.632456723574236727362465623564723");
+  apa::bfloat a("-777238478264784234234.632456723574236727362465623564723");
   std::cout<<a<<"\n";
 
   /* output
@@ -162,7 +167,7 @@ int main()
   short num1 = -23;
   unsigned short num2 = 32;
 
-  arb::bfloat a = (float) num1,                    // short
+  apa::bfloat a = (float) num1,                    // short
             b = (float) num2,                    // unsigned short
             c = (double) -788834,                // int
             d = (double) 977342,                 // unsigned int
@@ -205,7 +210,7 @@ the output might be different in your machine/compiler because of different roun
 
 int main()
 {
-  arb::bfloat a = 89.02f,   // float
+  apa::bfloat a = 89.02f,   // float
               b = 8923.123, // double
               c = 723.236L; // long double
 
@@ -225,9 +230,20 @@ int main()
 </details>
 
 <details>
-<summary><b><i>Arithmetic operations</i></b></summary>
+<summary><b><i>Arithmetic Operators</i></b></summary>
 <br>
 <ul>
+
+**the following operators are available for both ```bint``` and ```bfloat``` class**
+
+  - **```+```** addition
+  - **```-```** subtration
+  - **```*```** multiplication
+  - **```/```** division
+  - **```+=```** addition assignment
+  - **```-=```** subtraction assignment
+  - **```*=```** multiplication assignment
+  - **```/=```** division assignment
 
 <!--=====================================================================================-->
 <details>
@@ -241,10 +257,10 @@ int main()
 
 int main()
 {
-  arb::bint a("-89283483274977878767667823647234682364823647368462382837498237489723984789324634864723"),
+  apa::bint a("-89283483274977878767667823647234682364823647368462382837498237489723984789324634864723"),
             b("374782837462364823646327648238467236846237468723678667678346786436346574365876435");
 
-  arb::bint add = a+b,
+  apa::bint add = a+b,
             sub = a-b,
             mul = a*b,
             div = a/b;
@@ -287,14 +303,14 @@ div = -238227
 
 ```c++
 #include <iostream>
-#include "../bfloat/bfloat.hpp"
+#include "bignum/bfloat/bfloat.hpp"
 
 int main()
 {
-  arb::bfloat a("1238213681276386123123123435.2432499000023949238947982348723894798234"),
+  apa::bfloat a("1238213681276386123123123435.2432499000023949238947982348723894798234"),
             b("-0.7777263483274682347382764236846237468236472364876238476238467");
 
-  arb::bfloat add = a+b,
+  apa::bfloat add = a+b,
               sub = a-b,
               mul = a*b,
               div = a/b;
@@ -329,29 +345,29 @@ int main()
 </details>
 
 <details>
-<summary><b><i>Comparison Operations</i></b></summary>
+<summary><b><i>Comparison Operators</i></b></summary>
 <br>
 <ul>
 
 **all comparison operators are overloaded and supported**
 
-  - ```<``` less-than
-  - ```>``` greater-than
-  - ```<=``` less-than-equal
-  - ```>=``` less-than-equal
-  - ```==``` equal
-  - ```!=``` not equal
+  - **```<```** less-than
+  - **```>```** greater-than
+  - **```<=```** less-than-equal
+  - **```>=```** less-than-equal
+  - **```==```** equal
+  - **```!=```** not equal
 
 
 
 ```c++
 #include <iostream>
-#include "../bint/bint.hpp"
-#include "../bfloat/bfloat.hpp"
+#include "bignum/bint/bint.hpp"
+#include "bignum/bfloat/bfloat.hpp"
 
 int main()
 {
-    arb::bint a = 87832423432ll,
+    apa::bint a = 87832423432ll,
               b ("-656324364572634");
 
     if(a<b)
@@ -363,7 +379,7 @@ int main()
         std::cout<<"a is greater-than b\n";
     }
 
-    arb::bfloat c = -8734.34,
+    apa::bfloat c = -8734.34,
                 d = 73.43f;
 
     if(c>d)
@@ -375,7 +391,7 @@ int main()
         std::cout<<"c is less-than d\n";
     }
 
-    arb::bint e("-37824678234234234234555");
+    apa::bint e("-37824678234234234234555");
 
     if(e==e) std::cout<<"e is equal with itself\n";
 }
@@ -393,27 +409,40 @@ int main()
 </details>
 
 <details>
+<summary><b><i>Other Overloaded Operators</i></b></summary>
+<br>
+<ul>
+
+**the following operators are also available for both ```bint``` and ```bfloat``` class**
+
+  - **```++```** post-fix & pre-fix increment
+  - **```--```** post-fix & pre-fix decrement
+  - **```%```** mod
+
+</details>
+
+<details>
 <summary><b><i>Bfloat precision increase</i></b></summary>
 <br>
 <ul>
 
-**you can increase the precision of the quotient of ```bfloat``` using ```arb::bfloat::set_div_precision(n);``` function by a level of n, one level of n adds 8 digit precision if your ```dtype``` is ```long long```**
+**you can increase the precision of the quotient of ```bfloat``` using ```apa::bfloat::set_div_precision(n);``` function by a level of n, one level of n adds 8 digit precision if your ```dtype``` is ```long long```**
 
 ```c++
 #include <iostream>
-#include "../bfloat/bfloat.hpp"
+#include "bignum/bfloat/bfloat.hpp"
 
 int main()
 {
-    arb::bfloat a = 355.0,
+    apa::bfloat a = 355.0,
                 b = 113.0;
 
-    arb::bfloat pi_approximation1 = a/b;
+    apa::bfloat pi_approximation1 = a/b;
     std::cout<<"pi1 = "<<pi_approximation1<<"\n\n";
 
-    arb::bfloat::set_div_precision(10);
+    apa::bfloat::set_div_precision(10);
 
-    arb::bfloat pi_approximation2 = a/b;
+    apa::bfloat pi_approximation2 = a/b;
     std::cout<<"pi2 = "<<pi_approximation2<<"\n";
 }
 
@@ -426,8 +455,55 @@ int main()
 */
 
 ```
+</details>
+
 
 </details>
+
+<!----------------------------------------------------------------------------------->
+<details>
+<summary><b><i>Math Functions</i></b></summary>
+<br>
+<ul>
+
+<!--=====================================================================================-->
+<details>
+<summary><b>power</b></summary>
+<br>
+<ul>
+
+**overloads**
+- ```bint apa::math::pow(const bint& base, const bint& exponent);```
+- ```bfloat apa::math::pow(const bfloat& base, const bint& exponent);```
+
+```c++
+#include <iostream>
+#include "bignum/bfloat/bfloat.hpp"
+
+int main()
+{
+  apa::bfloat b("2.2");
+  apa::bint e = 321;
+
+  apa::power = apa::math::pow(b,e);
+  
+  std::cout<<power<<"\n";
+
+  /* output
+
+  82733337426266713526325852808546470983403982888124144770331506094928027938777139065229084725716751315911897210.74543221264142915
+  75696707119831328517886660461460858728136256844778637653193470359856043666862962857819245746193505881242508583105869039144390543
+  43119594612138707164329955150317078286139488995582660335248028665245492930295727471626133973850977966242139290346266904810277993
+  046638156865321497984580207663602337611169923072
+
+  */
+
+}
+```
+
+</details>
+</details>
+
 
 </details>
 

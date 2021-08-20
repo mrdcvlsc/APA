@@ -6,7 +6,7 @@
 #include "../bint/limb/limb.hpp"
 
 /// arbitrary-precision namespace
-namespace arb
+namespace apa
 {
     /// arbitrary-precision type
     class bfloat

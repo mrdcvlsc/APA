@@ -1,9 +1,9 @@
 #include <iostream>
 #include "../bint.hpp"
 
-arb::bint euclid_gcd(arb::bint a, arb::bint b)
+apa::bint euclid_gcd(apa::bint a, apa::bint b)
 {
-    arb::bint R;
+    apa::bint R;
     while((a%b)>0)
     {
         R = a % b;
@@ -16,17 +16,17 @@ arb::bint euclid_gcd(arb::bint a, arb::bint b)
 
 int main()
 {
-    arb::bint a("286428886421086240088866425686688228484884411288664422288818828"
+    apa::bint a("286428886421086240088866425686688228484884411288664422288818828"
                 "806861028640866108264861826408126408126480264061284610284610284"),
               b("100020002042402640620640626460606026048284260462806806802640862"
                 "806802604826482664802648620886886862486204680");
 
-    arb::bint gcd = euclid_gcd(a,b); // 4
+    apa::bint gcd = euclid_gcd(a,b); // 4
 
     std::cout<<"a = "<<a<<"\n\n";
     std::cout<<"b = "<<b<<"\n\n";
     
-    arb::bint quotient = a/b,
+    apa::bint quotient = a/b,
               mod = a%b;
 
     std::cout<<"div = "<<quotient<<"\n\n";

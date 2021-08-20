@@ -4,7 +4,7 @@
 #include <iostream>
 #include "bfloat.hpp"
 
-namespace arb
+namespace apa
 {
     // temporary fix this later
 

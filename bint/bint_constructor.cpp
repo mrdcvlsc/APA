@@ -4,7 +4,7 @@
 #include <iostream>
 #include "bint.hpp"
 
-namespace arb
+namespace apa
 {
     bint::bint() {}
     

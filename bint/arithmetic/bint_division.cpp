@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../bint.hpp"
 
-namespace arb
+namespace apa
 {
     bint bint::operator/(const bint& rhs) const
     {
@@ -36,13 +36,13 @@ namespace arb
     {
         int comp = intlimbs.compare(rhs.intlimbs);
 
-        if(comp<0)
+        if(*this<rhs)
+        {
+            return *this;
+        }
+        else if(*this==rhs)
         {
             return bint("0");
-        }
-        else if(comp==0)
-        {
-            return bint("1");
         }
 
         return *this-(rhs*(*this/rhs));

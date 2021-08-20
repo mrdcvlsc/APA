@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../bfloat.hpp"
 
-namespace arb
+namespace apa
 {
     // all of these can be optimized more by directly adding or subtractiong instead of passing to constructor the 1 value
 

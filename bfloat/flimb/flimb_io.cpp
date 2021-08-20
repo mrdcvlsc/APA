@@ -66,9 +66,9 @@ namespace backend_bigfloat
                         zero_remove_rear++;
                     }
                     std::string last_element = last_limb.substr(0,last_limb.size()-zero_remove_rear);
-                    size_t pad_last = backend_bigint::limb::limb_length-last_element.size();
-                    std::string front_zeros_last(pad_last,'0');
-                    last_element = front_zeros_last+last_element;
+                    // size_t pad_last = backend_bigint::limb::limb_length-last_element.size();
+                    // std::string front_zeros_last(pad_last,'0');
+                    // last_element = front_zeros_last+last_element;
                     std::cout<<last_element;
                 }
             }

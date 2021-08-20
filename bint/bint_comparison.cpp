@@ -4,7 +4,7 @@
 #include <iostream>
 #include "bint.hpp"
 
-namespace arb
+namespace apa
 {
     bool bint::operator==(const bint& right) const
     {
