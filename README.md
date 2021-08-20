@@ -9,6 +9,8 @@ this is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 ------------------------------------------------------------------
 
+### don't forget to compile with ```-O3 -march=native``` to get the fastest performance
+
 - header only version
 - more optimized cases for long division than the previous version
 
