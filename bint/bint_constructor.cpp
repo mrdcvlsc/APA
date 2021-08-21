@@ -19,9 +19,10 @@ namespace apa
         intlimbs = backend_bigint::limb(num);
     }
 
-    bint::bint(const std::vector<backend_bigint::dtype>& limbs)
+    bint::bint(const std::vector<backend_bigint::dtype>& limbs, short signedness)
     {
         intlimbs = backend_bigint::limb(limbs);
+        sign = signedness;
     }
 
     bint::bint(short number)

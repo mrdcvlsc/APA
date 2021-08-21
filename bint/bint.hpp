@@ -20,7 +20,7 @@ namespace apa
 
             bint();
             bint(const std::string& numbers);
-            bint(const std::vector<backend_bigint::dtype>& limbs);
+            bint(const std::vector<backend_bigint::dtype>& limbs, short signedness);
             bint(short number);
             bint(unsigned short number);
             bint(int number);
