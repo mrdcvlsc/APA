@@ -27,6 +27,7 @@ namespace backend_bigfloat
         {
             std::vector<dtype> front_zeros(front_inserts,0);
             limbs.insert(limbs.begin(),front_zeros.begin(),front_zeros.end());
+            decimal_point+=front_inserts; // added
         }
 
         size_t rear_inserts = rational_sum_limb_cnt - left_rational_limb_cnt;

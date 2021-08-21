@@ -12,14 +12,6 @@ namespace apa
 
         bool same_sign = (this->sign==rhs.sign);
 
-        // divisor is greater than dividen
-        if(rhs.floatlimbs>this->floatlimbs)
-        {
-            quotient.floatlimbs = backend_bigfloat::flimb({0,0},1);
-            quotient.sign = 1;
-            return quotient;
-        }
-
         quotient.floatlimbs = this->floatlimbs/rhs.floatlimbs;
         if(same_sign) quotient.sign = 1;
         else quotient.sign = -1;
