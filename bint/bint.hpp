@@ -7,12 +7,13 @@
 /// arbitrary-precision namespace
 namespace apa
 {
+    #define KARATSUBA_TRESHOLD 17
+    
     /// arbitrary-precision type
     class bint
     {
         private:
 
-            bint karatsuba_backend(const bint& multiplier);
             backend_bigint::limb intlimbs;
             short sign;
 
@@ -64,7 +65,8 @@ namespace apa
             bint& operator/=(const bint&);
 
             // experimental
-            bint karatsuba(const bint& multiplier);
+            bint karatsuba(const bint& multiplier) const;
+            bint naive_mul(const bint& multiplier) const;
             // - - - - - - -
 
             template<class N> bint pa(N cn,bint bn)const{return bint(cn)+bn;}
@@ -85,6 +87,14 @@ namespace apa
             bint operator--(int);
             
     };// end of bint class
+
+
+    // CONSTANTS
+
+    const bint BINTZERO = 0;
+    const bint BINTONE = 1;
+    const bint BINTTWO = 2;
+
 }// end of arb namespace
 
 #include "bint_constructor.cpp"
@@ -94,6 +104,8 @@ namespace apa
 #include "arithmetic/bint_addition.cpp"
 #include "arithmetic/bint_subtract.cpp"
 #include "arithmetic/bint_multiply.cpp"
+#include "arithmetic/bint_naive_mul.cpp"
+#include "arithmetic/bint_karatsuba.cpp"
 #include "arithmetic/bint_division.cpp"
 #include "arithmetic/bint_indecrement.cpp"
 

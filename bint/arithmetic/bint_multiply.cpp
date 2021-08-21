@@ -11,7 +11,17 @@ namespace apa
         bint product;
         bool same_sign = this->sign==rhs.sign;
 
-        product.intlimbs = this->intlimbs*rhs.intlimbs;
+        if(intlimbs.limb_count()<=KARATSUBA_TRESHOLD || rhs.intlimbs.limb_count()<=KARATSUBA_TRESHOLD)
+        {
+            // use naive at a certain treshold
+            product = naive_mul(rhs);
+        }
+        else
+        {
+            // karatsuba
+            product = karatsuba(rhs);
+        }
+
         if(!same_sign)
         {
             product.sign = -1;

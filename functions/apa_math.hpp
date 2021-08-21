@@ -6,15 +6,7 @@
 #include "../bfloat/bfloat.hpp"
 
 namespace apa
-{
-    apa::bint BINTZERO = 0;
-    apa::bint BINTONE = 1;
-    apa::bint BINTTWO = 2;
-
-    apa::bfloat BFLOATZERO("0.0");
-    apa::bfloat BFLOATONE("1.0");
-    apa::bfloat BFLOATTWO("2.0");
-    
+{    
     namespace math
     {
         bint pow(const bint& base, const bint& exponent);

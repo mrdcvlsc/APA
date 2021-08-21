@@ -81,6 +81,13 @@ namespace apa
             }
 
     };// end of bfloat class
+
+    // CONSTANTS
+
+    const apa::bfloat BFLOATZERO("0.0");
+    const apa::bfloat BFLOATONE("1.0");
+    const apa::bfloat BFLOATTWO("2.0");
+
 }// end of arb namespace
 
 #include "bfloat_constructor.cpp"

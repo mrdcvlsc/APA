@@ -54,8 +54,6 @@ namespace backend_bigint
             inline std::string removeFrontZeros(const std::string& str) const;
             static inline limb mfind_base10(const limb& dividen, const limb& divisor);
 
-            static inline limb karatsuba_backend(const limb& x, const limb& y); // experimental : not supported yet
-
         public:
 
             /// limbs - used as the representation of big integers
@@ -111,8 +109,6 @@ namespace backend_bigint
             inline std::pair<limb,limb> fdivlong_with_remainder(const limb& multiple_limbed) const;
             inline limb fdivdigit(const limb& divisor) const;
             inline limb fdivision(const limb& divisor) const;
-
-            static inline limb karatsuba(const limb& x, const limb& y);
 
             size_t digit_count() const;
 

@@ -8,7 +8,7 @@ int main()
     std::mt19937_64 rand_engine(seed);
     std::uniform_int_distribution<long long> random_number(0,99999999);
 
-    size_t digits = 200000;
+    size_t digits = 20000;
     size_t numlimb = digits/8;
 
     std::vector<long long> num1, num2;
@@ -26,7 +26,7 @@ int main()
     apa::bint
         a(num1,1),
         b(num2,1),
-        c, k;
+        c, k, m;
 
 
     std::cout<<"benchmark started\n";
@@ -38,7 +38,7 @@ int main()
         #ifdef BENCHMARK
         auto start = std::chrono::high_resolution_clock::now();
         #endif
-        c=a*b;
+        c=a.naive_mul(b);
         #ifdef BENCHMARK
         auto end = std::chrono::high_resolution_clock::now();
         auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
@@ -60,12 +60,29 @@ int main()
         #endif
     }
 
+    std::cout<<"\n";
+
+    for(size_t i=L; i--;)
+    {
+        #ifdef BENCHMARK
+        auto start = std::chrono::high_resolution_clock::now();
+        #endif
+        m=a*b;
+        #ifdef BENCHMARK
+        auto end = std::chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+        std::cout<<"optimized proccess taken "<<dur.count()<<" microseconds\n";
+        #endif
+    }
+
     // std::cout<<"\n\na = "<<a<<"\n";
     // std::cout<<"b = "<<b<<"\n\n";
     // std::cout<<"c = "<<c<<"\n";
     // std::cout<<"k = "<<k<<"\n";
     if(k!=c) throw std::logic_error("wrong karatsuba product\n");
-
+    if(m!=c) throw std::logic_error("wrong karatsuba product\n");
+    if(k!=m) throw std::logic_error("wrong karatsuba product\n");
+    
     std::cout<<"correct answer\n";
 
     return 0;
