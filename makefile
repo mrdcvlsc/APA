@@ -188,6 +188,6 @@ bfloat_check_win:
 clean:
 	@echo "deleting object files"
 	@rm bint/limb/test/*.o
-	@rm bint/test/*.o
 	@rm bfloat/flimb/test/*.o
+	@rm bint/test/*.o
 	@rm bfloat/test/*.o

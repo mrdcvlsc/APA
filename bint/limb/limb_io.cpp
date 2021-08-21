@@ -18,6 +18,10 @@ namespace backend_bigint
         
         for(size_t i=0; i<value.limbs.size(); ++i)
         {
+            #ifdef SHOW_LIMB_SPACE
+            std::cout<<' ';
+            #endif
+
             size_t real_digits = value.limb_length;
             dtype current_index = value.limbs[i];
             if(current_index==0)

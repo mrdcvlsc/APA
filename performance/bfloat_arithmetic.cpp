@@ -1,7 +1,7 @@
 #include <iostream>
 #include <random>
 #include <chrono>
-#include "../bfloat/bfloat.hpp"
+#include "../bint/bint.hpp"
 
 int main()
 {
@@ -22,10 +22,10 @@ int main()
     //     num2.push_back(random_number(rand_engine1));
     // }
 
-    apa::bfloat a("32750879526546289498442939676535478677728526823164537273512101804878005623761455.219020471647875776589306919899389868354445186264824254934530590825588848792333570607520036392168784858854172939754110712");
-    apa::bfloat b("77481082352307402063005652609529360269636842535076451045987483604520473788200955229395842650662791449948.24018379591585585315157804386355888214387556397592430967459882849516522076089245183189476073334");
+    apa::bint a("32750879526546289498442939676535478677728526823164537273512101804878005623761455219020471647875776589306919899389868354445186264824254934530590825588848792333570607520036392168784858854172939754110712");
+    apa::bint b("77481082352307402063005652609529360269636842535076451045987483604520473788200955229395842650662791449948240183795915855853151578043863558882143875563975924309674598828495165220760892451831894760733340");
 
-    apa::bfloat add, sub, mul, div;
+    apa::bint add, sub, mul, kar, div;
 
 
     std::cout<<"a = "<<a<<"\n\n";
@@ -79,6 +79,20 @@ int main()
         #ifdef BENCHMARK
         auto start1 = std::chrono::high_resolution_clock::now();
         #endif
+        kar = a.karatsuba(b);
+        #ifdef BENCHMARK
+        auto end1 = std::chrono::high_resolution_clock::now();
+        auto dur1 = std::chrono::duration_cast<std::chrono::microseconds>(end1-start1);
+        std::cout<<"kar proccess taken "<<dur1.count()<<" microseconds\n";
+        #endif
+    }
+    std::cout<<"\n\n";
+
+    for(size_t i=6; i>0; --i)
+    {
+        #ifdef BENCHMARK
+        auto start1 = std::chrono::high_resolution_clock::now();
+        #endif
         div = a/b;
         #ifdef BENCHMARK
         auto end1 = std::chrono::high_resolution_clock::now();
@@ -91,6 +105,7 @@ int main()
     std::cout<<"add = "<<add<<"\n\n";
     std::cout<<"sub = "<<sub<<"\n\n";
     std::cout<<"mul = "<<mul<<"\n\n";
+    std::cout<<"kar = "<<kar<<"\n\n";
     std::cout<<"div = "<<div<<"\n\n";
 
     return 0;

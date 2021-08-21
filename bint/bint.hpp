@@ -12,6 +12,7 @@ namespace apa
     {
         private:
 
+            bint karatsuba_backend(const bint& multiplier);
             backend_bigint::limb intlimbs;
             short sign;
 
@@ -62,6 +63,10 @@ namespace apa
             bint& operator*=(const bint&);
             bint& operator/=(const bint&);
 
+            // experimental
+            bint karatsuba(const bint& multiplier);
+            // - - - - - - -
+
             template<class N> bint pa(N cn,bint bn)const{return bint(cn)+bn;}
             template<class N> bint ps(N cn,bint bn)const{return bint(cn)-bn;}
             template<class N> bint pm(N cn,bint bn)const{return bint(cn)*bn;}
@@ -91,5 +96,7 @@ namespace apa
 #include "arithmetic/bint_multiply.cpp"
 #include "arithmetic/bint_division.cpp"
 #include "arithmetic/bint_indecrement.cpp"
+
+#include "experimental/karatsuba.cpp"
 
 #endif
