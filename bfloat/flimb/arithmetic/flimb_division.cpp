@@ -33,6 +33,7 @@ namespace backend_bigfloat
 
         // size_t average_precision = (padded_dividen.limbs.size()+divisor.limbs.size())/2; // old : higher precision by default
         // size_t average_precision = ((padded_dividen.limbs.size()-decimal_point)+(divisor.limbs.size()-divisor.decimal_point))/2; // slight lower precision
+        //
         size_t average_precision = std::min((padded_dividen.limbs.size()-decimal_point),(divisor.limbs.size()-divisor.decimal_point)); // even lower precision
         std::vector<dtype> pad_zeros(average_precision+div_precision,0);
         padded_dividen.limbs.insert(padded_dividen.limbs.end(),pad_zeros.begin(),pad_zeros.end());
