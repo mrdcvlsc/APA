@@ -28,7 +28,7 @@ int main()
 
     apa::bfloat div = a/b;
     std::cout<<"a/b = "<<div<<"\n\n";
-    if(div.string_form()!="-13599308240754297331312348002392955579280150152506455272945.6353363546156605846866929921273746069999672037400096746953921849165224037843615373799858") throw std::logic_error("error in constructor div");
+    if(div.string_form()!="-13599308240754297331312348002392955579280150152506455272945.63533635") throw std::logic_error("error in constructor div");
     
     std::cout<<"all operations are correct\n";
 

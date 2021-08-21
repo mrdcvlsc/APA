@@ -40,11 +40,11 @@ int main()
     if(e.string_form()!="23.0002366928323") throw std::logic_error("wrong values in e");
 
     if(ta.string_form()!="1.0") throw std::logic_error("wrong values in ta");
-    if(tb.string_form()!="0.01064384273975532305903893784883160534243099188769256108917717315392727310330986") throw std::logic_error("wrong values in tb");
-    if(tc.string_form()!="1229622824598350298.4040189796823293847324680265189341709837784952498547487261236647") throw std::logic_error("wrong values in tc");
-    if(td.string_form()!="0.4482309085055118159149093333333333333333333333333333333333333333") throw std::logic_error("wrong values in td");
-    if(te.string_form()!="2.23099295703233097659836763275866005135301416674522165638") throw std::logic_error("wrong values in te");
-    if(tf.string_form()!="34.20891071452363586425598509740249031641948896234024469862") throw std::logic_error("wrong values in tf");
+    if(tb.string_form()!="0.010643842739755323059038937848831605342430991887") throw std::logic_error("wrong values in tb");
+    if(tc.string_form()!="1229622824598350298.404018979682329384732468026518934170983778495249") throw std::logic_error("wrong values in tc");
+    if(td.string_form()!="0.448230908505511815914909333333333333333333333333") throw std::logic_error("wrong values in td");
+    if(te.string_form()!="2.230992957032330976598367632758660051353014166745") throw std::logic_error("wrong values in te");
+    if(tf.string_form()!="34.20891071452363586425598509740249031641948896234") throw std::logic_error("wrong values in tf");
 
     std::cout<<"\n\nall answers are correct\n";
 
