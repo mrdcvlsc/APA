@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make check for windows output
-      run: make check_win
+      run: make check

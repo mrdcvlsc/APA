@@ -9,23 +9,9 @@ this is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 ------------------------------------------------------------------
 
-### don't forget to compile with ```-O3 -march=native``` to get the fastest performance
+### make sure to compile with ```-O3 -march=native``` to achieve the best performance
 
-- header only version
-- more optimized cases for long division than the previous version
-
-<details>
-<summary><b><i>Notice</i></b></summary>
-<br>
-<ul>
-
-this version is still new, and might still have some bugs
-
-- you can use the more stable previous version in this link
-  - https://github.com/mrdcvlsc/bignum/tree/version_2.8.8
-
-- or clone it
-  - ```git clone --single-branch --branch version_2.8.8 https://github.com/mrdcvlsc/bignum```
+- header only, just include the needed header files in you source code then compile.
 
 </details>
 
@@ -39,7 +25,7 @@ this version is still new, and might still have some bugs
 
 *1. Download or Clone this repository*
   - [Download Repository](https://github.com/mrdcvlsc/bignum/archive/refs/heads/main.zip)
-  - ```git clone https://github.com/mrdcvlsc/bignum.git```
+  - ```git clone https://github.com/mrdcvlsc/APA.git```
 
 
 *2. link the header files of the library in your source code*
@@ -67,7 +53,7 @@ this version is still new, and might still have some bugs
 
 <!--=====================================================================================-->
 <details>
-<summary><b>large integers</b></summary>
+<summary><b>bint - large integers</b></summary>
 <br>
 <ul>
 
@@ -139,7 +125,7 @@ int main()
 
 <!--=====================================================================================-->
 <details>
-<summary><b>large floating point numbers</b></summary>
+<summary><b>bfloat - large floating point numbers</b></summary>
 <br>
 <ul>
 
