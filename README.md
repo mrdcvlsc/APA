@@ -25,7 +25,7 @@ this is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 *1. Download or Clone this repository*
   - [Download Repository](https://github.com/mrdcvlsc/bignum/archive/refs/heads/main.zip)
-  - ```git clone https://github.com/mrdcvlsc/bignum.git```
+  - ```git clone https://github.com/mrdcvlsc/APA.git```
 
 
 *2. link the header files of the library in your source code*
