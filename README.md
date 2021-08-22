@@ -53,7 +53,7 @@ this is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 <!--=====================================================================================-->
 <details>
-<summary><b>large integers</b></summary>
+<summary><b>bint - large integers</b></summary>
 <br>
 <ul>
 
@@ -125,7 +125,7 @@ int main()
 
 <!--=====================================================================================-->
 <details>
-<summary><b>large floating point numbers</b></summary>
+<summary><b>bfloat - large floating point numbers</b></summary>
 <br>
 <ul>
 
