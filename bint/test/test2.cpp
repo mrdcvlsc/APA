@@ -71,7 +71,7 @@ int main()
         throw std::logic_error("the fib of -4791th term is wrong");
     }
 
-    std::cout<<"\nTEST 2 - bint class :ALL OUTPUTS ARE CORRECT\n\n";
+    std::cout<<"\n\n\nTEST 2 - bint class :ALL OUTPUTS ARE CORRECT\n\n";
 
     return 0;
 }

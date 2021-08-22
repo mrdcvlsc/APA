@@ -59,6 +59,10 @@ namespace apa
             bint operator/(const bint&) const;
             bint operator%(const bint&) const;
 
+            static inline bint p_add(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+            static inline bint p_sub(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+            static inline bint p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+
             bint& operator+=(const bint&);
             bint& operator-=(const bint&);
             bint& operator*=(const bint&);

@@ -80,8 +80,6 @@ namespace backend_bigint
         // operation
         dtype ten;
         dtype one;
-        
-        size_t b_count = b_len;
 
         size_t a_end = a_start+a_len;
         size_t b_end = b_start+b_len;

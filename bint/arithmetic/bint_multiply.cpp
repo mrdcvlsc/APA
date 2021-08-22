@@ -44,6 +44,11 @@ namespace apa
         this->sign = 1;
         return *this;
     }
+
+    inline bint bint::p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len)
+    {
+        return bint({1},1);
+    }
 }
 
 #endif

@@ -48,7 +48,7 @@ int main()
         throw std::logic_error("incorrect gcd");
     }
 
-    std::cout<<"\n\nTEST 4 - bint class :all outputs are correct\n\n";
+    std::cout<<"\n\n\nTEST 4 - bint class :all outputs are correct\n\n";
 
     return 0;
 }
