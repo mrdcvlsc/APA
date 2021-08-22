@@ -40,7 +40,7 @@ int main()
       throw std::logic_error("factorial answer is incorrect");
   }
   
-  std::cout<<"\n\nFactorial of 16827 is correct\n";
+  std::cout<<"\n\n\nTEST 2 - bint class :Factorial of 16827 is correct\n";
 
   return 0;
 } 

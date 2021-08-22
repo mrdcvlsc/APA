@@ -8,7 +8,7 @@ int main()
     std::mt19937_64 rand_engine(seed);
     std::uniform_int_distribution<long long> random_number(0,99999999);
 
-    size_t digits = 20000;
+    size_t digits = 200000;
     size_t numlimb = digits/8;
 
     std::vector<long long> num1, num2;

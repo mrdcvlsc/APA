@@ -45,7 +45,9 @@ int main()
 
     std::cout<<"c = \n";
     std::cout<<c<<"\n";
-    std::cout<<c.string_form()<<"\n\n";
+    std::cout<<c.string_form()<<"\n\nTEST 1 - flimb : ";
+
+    
 
     return 0;
 }

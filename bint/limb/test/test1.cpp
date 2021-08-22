@@ -26,6 +26,8 @@ int main()
          b("7782476738873246723468236476283468273648623846826482364876234682364836762384762384682364823657348563465743658436"
            "438573686584657385634756765827638462347263847623876483647623846237467236482634876237462374636473647");
 
+    std::cout<<"\nWAHHHHHHT?\n";
+
     std::cout<<"a = "<<a<<"\n\n";
     std::cout<<"b = "<<b<<"\n\n";
 
@@ -200,6 +202,8 @@ int main()
     std::cout<<"\na.fdivlong()  = "<<divlong<<"\n";
     std::cout<<"\na.fdivision() = "<<division<<"\n";
     std::cout<<"\n       a / b  = "<<bintdivision<<"\n";
+
+    std::cout<<"TEST 1 - limb : CORRECT\n";
 
     return 0;
 }

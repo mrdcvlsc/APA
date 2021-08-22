@@ -44,7 +44,7 @@ int main()
     if(te.string_form()!="2.172346362758267723872364") throw std::logic_error("wrong values in te");
     if(tf.string_form()!="23.672583055590567723872364") throw std::logic_error("wrong values in tf");
 
-    std::cout<<"\n\nall answers are correct\n";
+    std::cout<<"\n\nTEST 3 - flimb : all answers are correct\n";
 
     return 0;
 }

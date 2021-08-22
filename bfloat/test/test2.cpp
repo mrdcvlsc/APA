@@ -30,7 +30,7 @@ int main()
     std::cout<<"a/b = "<<div<<"\n\n";
     if(div.string_form()!="-13599308240754297331312348002392955579280150152506455272945.63533635") throw std::logic_error("error in constructor div");
     
-    std::cout<<"all operations are correct\n";
+    std::cout<<"\nTEST 2 - bfloat class : all operations are correct\n";
 
     return 0;
 }

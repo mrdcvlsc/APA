@@ -42,7 +42,7 @@ int main()
         throw std::logic_error("e's values is incorrect\n");
     }
 
-    std::cout<<"\n\nNO ERRORS ENCOUNTERED ALL IS CORRECT\n";
+    std::cout<<"\n\n\nTEST 1 - bint class : NO ERRORS ENCOUNTERED ALL IS CORRECT\n";
 
     return 0;
 }

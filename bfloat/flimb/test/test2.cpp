@@ -40,7 +40,7 @@ int main()
     std::cout<<"\nb = "<<b<<"\n";
     std::cout<<"b = "<<b.string_form()<<"\n";
 
-    std::cout<<"\n\ncomparisions are correct\n";
+    std::cout<<"\n\nTEST 2 - flimb : comparisions are correct\n";
 
     return 0;
 }

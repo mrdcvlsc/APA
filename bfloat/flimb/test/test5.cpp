@@ -44,7 +44,7 @@ int main()
         if(c.string_form()!="22.954") throw std::logic_error("wrong product in thrid example");
     }
 
-    std::cout<<"all output is correct\n";
+    std::cout<<"TEST 5 - flimb : all output is correct\n";
 
     return 0;
 }

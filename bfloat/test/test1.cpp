@@ -34,7 +34,7 @@ int main()
     
     
 
-    std::cout<<"all constructors are correct\n";
+    std::cout<<"\nTEST 1 - bfloat class : all constructors are correct\n";
 
     return 0;
 }
