@@ -495,6 +495,36 @@ int main()
 </details>
 </details>
 
+<!----------------------------------------------------------------------------------->
+<details>
+<summary><b><i>string conversion</i></b></summary>
+<br>
+<ul>
+
+you can  convert the value of ```bint``` & ```bfloat``` using the method ```.string_form()```
+
+```c++
+#include <iostream>
+#include "bignum/bfloat/bfloat.hpp"
+
+int main()
+{
+  apa::bfloat a("-23648677234.76876728746787887767");
+  
+  std::cout<<"std::cout   = "<<a<<"\n";
+  std::cout<<"string_form = "<<a.string_form()<<"\n";
+
+  /* output
+
+  std::cout   = -23648677234.76876728746787887767
+  string_form = -23648677234.76876728746787887767
+
+  */
+
+}
+```
+
+</details>
 
 </details>
 

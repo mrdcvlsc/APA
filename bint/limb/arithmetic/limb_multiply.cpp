@@ -70,62 +70,62 @@ namespace backend_bigint
         return limb(product_limb);
     }
 
-    /// partial limb multiplication
-    inline limb limb::p_mul(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len)
-    {
-        // set all values of product to zero
-        size_t product_length = a_len+b_len; 
-        std::vector<dtype> product_limb(product_length,0);
+    // /// partial limb multiplication
+    // inline limb limb::p_mul(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len)
+    // {
+    //     // set all values of product to zero
+    //     size_t product_length = a_len+b_len; 
+    //     std::vector<dtype> product_limb(product_length,0);
 
-        // operation
-        dtype ten;
-        dtype one;
+    //     // operation
+    //     dtype ten;
+    //     dtype one;
 
-        size_t a_end = a_start+a_len;
-        size_t b_end = b_start+b_len;
+    //     size_t a_end = a_start+a_len;
+    //     size_t b_end = b_start+b_len;
 
-        for(size_t i=0; i<b_len; ++i)
-        {
-            for(size_t j=0; j<a_len; ++j)
-            {
-                product_limb[product_length-1-i-j] += (a.limbs[a_end-1-j]*b.limbs[b_end-1-i]);
-                // carry - can be optimized by scanning first the max values of multiplicand and multiplier then setting the threshold if we can
-                // continue to just add the product in the product index, or to carry immidietely
-                if(product_limb[product_length-1-i-j]>=max_value+1)
-                {
-                    ten = product_limb[product_length-1-i-j]/(max_value+1);
-                    one = product_limb[product_length-1-i-j]-(ten*(max_value+1));
-                    product_limb[product_length-1-i-j]=one;
-                    product_limb[product_length-1-i-j-1]=product_limb[product_length-1-i-j-1]+ten;
-                }
-            }
-        }
+    //     for(size_t i=0; i<b_len; ++i)
+    //     {
+    //         for(size_t j=0; j<a_len; ++j)
+    //         {
+    //             product_limb[product_length-1-i-j] += (a.limbs[a_end-1-j]*b.limbs[b_end-1-i]);
+    //             // carry - can be optimized by scanning first the max values of multiplicand and multiplier then setting the threshold if we can
+    //             // continue to just add the product in the product index, or to carry immidietely
+    //             if(product_limb[product_length-1-i-j]>=max_value+1)
+    //             {
+    //                 ten = product_limb[product_length-1-i-j]/(max_value+1);
+    //                 one = product_limb[product_length-1-i-j]-(ten*(max_value+1));
+    //                 product_limb[product_length-1-i-j]=one;
+    //                 product_limb[product_length-1-i-j-1]=product_limb[product_length-1-i-j-1]+ten;
+    //             }
+    //         }
+    //     }
 
-        // for(auto e: product_limb) std::cout<<e<<' ';
-        // std::cout<<"\n";
+    //     // for(auto e: product_limb) std::cout<<e<<' ';
+    //     // std::cout<<"\n";
 
-        // remove fron zero limbs
-        // check and remove zero limbs
-        size_t limb_to_remove = 0;
-        size_t resulting_size = product_length;
+    //     // remove fron zero limbs
+    //     // check and remove zero limbs
+    //     size_t limb_to_remove = 0;
+    //     size_t resulting_size = product_length;
 
-        for(size_t i=0; i<product_length; ++i)
-        {
-            if(product_limb[i]==0 && resulting_size>1)
-            {
-                limb_to_remove++;
-                resulting_size--;
-            }
-            else break;
-        }
+    //     for(size_t i=0; i<product_length; ++i)
+    //     {
+    //         if(product_limb[i]==0 && resulting_size>1)
+    //         {
+    //             limb_to_remove++;
+    //             resulting_size--;
+    //         }
+    //         else break;
+    //     }
 
-        if(limb_to_remove)
-        {
-            product_limb.erase(product_limb.begin(),product_limb.begin()+limb_to_remove);
-        }
+    //     if(limb_to_remove)
+    //     {
+    //         product_limb.erase(product_limb.begin(),product_limb.begin()+limb_to_remove);
+    //     }
 
-        return limb(product_limb);
-    }
+    //     return limb(product_limb);
+    // }
 }
 
 #endif

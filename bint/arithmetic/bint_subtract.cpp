@@ -74,10 +74,66 @@ namespace apa
         return *this;
     }
 
-    inline bint bint::p_sub(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len)
-    {
-        return bint({1},1);
-    }
+    // inline bint bint::p_sub(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len)
+    // {
+    //     bool same_sign = a.sign==b.sign;
+    //     bool pos_minuend = (a.sign)>=0;
+    //     bool minuendIsMax = a>b;
+
+    //     bint dif;
+
+    //     int comp = a.intlimbs.compare(b.intlimbs);
+
+    //     if(same_sign)
+    //     {
+    //         if(comp==0)
+    //         {
+    //             dif.sign = 1;
+    //             dif.intlimbs.limbs.push_back(0);
+    //             return dif;
+    //         }
+
+    //         else if(pos_minuend)
+    //         {
+    //             if(minuendIsMax)
+    //             {
+    //                 dif.intlimbs = backend_bigint::limb::p_sub(a.intlimbs,a_start,a_len,b.intlimbs,b_start,b_len);
+    //                 dif.sign = 1;
+    //                 return dif;
+    //             }
+    //             dif.intlimbs = backend_bigint::limb::p_sub(b.intlimbs,b_start,b_len,a.intlimbs,a_start,a_len);
+    //             dif.sign = -1;
+    //             return dif;
+    //         }
+    //         else if(!pos_minuend)
+    //         {
+    //             if(minuendIsMax)
+    //             {
+    //                 dif.intlimbs = backend_bigint::limb::p_sub(b.intlimbs,b_start,b_len,a.intlimbs,a_start,a_len);
+    //                 dif.sign = 1;
+    //                 return dif;
+    //             }
+    //             dif.intlimbs = backend_bigint::limb::p_sub(a.intlimbs,a_start,a_len,b.intlimbs,b_start,b_len);
+    //             dif.sign = (-1);
+    //             return a;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         dif.intlimbs = backend_bigint::limb::p_add(a.intlimbs,a_start,a_len,b.intlimbs,b_start,b_len);
+    //         if(a<b)
+    //         {
+    //             dif.sign = -1;
+    //             return dif;
+    //         }
+    //         dif.sign = 1;
+    //         return dif;
+    //     }
+
+    //     dif.sign = 1;
+    //     dif.intlimbs.limbs.push_back(0);
+    //     return dif;
+    // }
 }
 
 #endif

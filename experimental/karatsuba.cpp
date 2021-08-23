@@ -8,7 +8,7 @@ int main()
     std::mt19937_64 rand_engine(seed);
     std::uniform_int_distribution<long long> random_number(0,99999999);
 
-    size_t digits = 200000;
+    size_t digits = 20000;
     size_t numlimb = digits/8;
 
     std::vector<long long> num1, num2;
@@ -26,13 +26,14 @@ int main()
     apa::bint
         a(num1,1),
         b(num2,1),
-        c, k, m;
+        c, k, m, n;
 
 
     std::cout<<"benchmark started\n";
 
     size_t L = 5;
 
+    std::cout<<"naive\n";
     for(size_t i=L; i--;)
     {
         #ifdef BENCHMARK
@@ -47,6 +48,7 @@ int main()
     }
     std::cout<<"\n";
 
+    std::cout<<"karatsuba\n";
     for(size_t i=L; i--;)
     {
         #ifdef BENCHMARK
@@ -60,8 +62,23 @@ int main()
         #endif
     }
 
+    // std::cout<<"karatsuba2\n";
+    // for(size_t i=L; i--;)
+    // {
+    //     #ifdef BENCHMARK
+    //     auto start = std::chrono::high_resolution_clock::now();
+    //     #endif
+    //     n=a.karatsuba2(0,a.limb_count(),b,0,b.limb_count());
+    //     #ifdef BENCHMARK
+    //     auto end = std::chrono::high_resolution_clock::now();
+    //     auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+    //     std::cout<<"karatsub2 proccess taken "<<dur.count()<<" microseconds\n";
+    //     #endif
+    // }
+
     std::cout<<"\n";
 
+    std::cout<<"operator *\n";
     for(size_t i=L; i--;)
     {
         #ifdef BENCHMARK
@@ -82,6 +99,7 @@ int main()
     if(k!=c) throw std::logic_error("wrong karatsuba product\n");
     if(m!=c) throw std::logic_error("wrong karatsuba product\n");
     if(k!=m) throw std::logic_error("wrong karatsuba product\n");
+    // if(n!=m) throw std::logic_error("wrong karatsuba2 product\n");
     
     std::cout<<"correct answer\n";
 

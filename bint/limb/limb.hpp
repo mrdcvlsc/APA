@@ -97,9 +97,9 @@ namespace backend_bigint
             
             inline limb operator*(const limb& multiplier) const;
             
-            static inline limb p_add(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
-            static inline limb p_sub(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
-            static inline limb p_mul(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
+            // static inline limb p_add(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
+            // static inline limb p_sub(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
+            // static inline limb p_mul(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len);
 
             inline limb operator/(const limb& divisor) const;
 

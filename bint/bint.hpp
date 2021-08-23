@@ -59,9 +59,9 @@ namespace apa
             bint operator/(const bint&) const;
             bint operator%(const bint&) const;
 
-            static inline bint p_add(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
-            static inline bint p_sub(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
-            static inline bint p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+            // static inline bint p_add(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+            // static inline bint p_sub(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
+            // static inline bint p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len);
 
             bint& operator+=(const bint&);
             bint& operator-=(const bint&);
@@ -70,6 +70,7 @@ namespace apa
 
             // experimental
             bint karatsuba(const bint& multiplier) const;
+            // bint karatsuba2(size_t a_start, size_t a_len, const bint& b, size_t b_start, size_t b_len) const;
             bint naive_mul(const bint& multiplier) const;
             // - - - - - - -
 
@@ -89,6 +90,11 @@ namespace apa
             bint& operator--();
             bint operator++(int);
             bint operator--(int);
+
+            size_t limb_count()
+            {
+                return intlimbs.limb_count();
+            }
             
     };// end of bint class
 
@@ -110,9 +116,8 @@ namespace apa
 #include "arithmetic/bint_multiply.cpp"
 #include "arithmetic/bint_naive_mul.cpp"
 #include "arithmetic/bint_karatsuba.cpp"
+#include "arithmetic/bint_karatsuba2.cpp"
 #include "arithmetic/bint_division.cpp"
 #include "arithmetic/bint_indecrement.cpp"
-
-#include "experimental/karatsuba.cpp"
 
 #endif

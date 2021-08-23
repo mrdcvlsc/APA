@@ -125,73 +125,73 @@ namespace backend_bigint
         return *this;
     }
 
-    /// partial limb multiplication
-    inline limb limb::p_sub(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len)
-    {
-        #ifndef PRODUCTION
-        int cases = a.compare(b);
-        switch(cases)
-        {
-            case -1 :
-                throw std::length_error(
-                    "ERROR : limb operator-() : cannot subtract limbs with subtrahend("+b.string_form()+") greater than the minuend"
-                    "("+a.string_form()+")"
-                );
-            case 0 :
-                return limb("0");
-            default:
-                break;
-        }
-        #endif
+    // /// partial limb subtraction
+    // inline limb limb::p_sub(const limb& a, const size_t a_start, const size_t a_len, const limb&b, const size_t b_start, const size_t b_len)
+    // {
+    //     #ifndef PRODUCTION
+    //     int cases = a.compare(b);
+    //     switch(cases)
+    //     {
+    //         case -1 :
+    //             throw std::length_error(
+    //                 "ERROR : limb operator-() : cannot subtract limbs with subtrahend("+b.string_form()+") greater than the minuend"
+    //                 "("+a.string_form()+")"
+    //             );
+    //         case 0 :
+    //             return limb("0");
+    //         default:
+    //             break;
+    //     }
+    //     #endif
 
-        size_t longest_len = std::max(a_len,b_len);
-        size_t ans_len = longest_len;
-        std::vector<dtype> diff_limbs(ans_len,0);	
+    //     size_t longest_len = std::max(a_len,b_len);
+    //     size_t ans_len = longest_len;
+    //     std::vector<dtype> diff_limbs(ans_len,0);	
 
-        size_t a_end = a_start+a_len;
-        size_t b_end = b_start+b_len;
+    //     size_t a_end = a_start+a_len;
+    //     size_t b_end = b_start+b_len;
 
-        // operation
-        for(size_t i=0 ;i<a_len; ++i)
-        {
-            diff_limbs[ans_len-1-i]=a.limbs[a_end-1-i];
-        }
+    //     // operation
+    //     for(size_t i=0 ;i<a_len; ++i)
+    //     {
+    //         diff_limbs[ans_len-1-i]=a.limbs[a_end-1-i];
+    //     }
         
-        for(size_t i=0 ;i<b_len; ++i)
-        {
-            diff_limbs[ans_len-1-i]-=b.limbs[b_end-1-i];
-        }
+    //     for(size_t i=0 ;i<b_len; ++i)
+    //     {
+    //         diff_limbs[ans_len-1-i]-=b.limbs[b_end-1-i];
+    //     }
 
-        // carry
-        for(size_t i=ans_len-1; i>0; --i)
-        {
-            if(diff_limbs[i]<0)
-            {
-                diff_limbs[i]=diff_limbs[i]+(max_value+1);
-                diff_limbs[i-1]--;
-            }
-        }
+    //     // carry
+    //     for(size_t i=ans_len-1; i>0; --i)
+    //     {
+    //         if(diff_limbs[i]<0)
+    //         {
+    //             diff_limbs[i]=diff_limbs[i]+(max_value+1);
+    //             diff_limbs[i-1]--;
+    //         }
+    //     }
 
-        // check and remove zero limbs in front
-        size_t limb_to_remove = 0;
-        size_t resulting_size = ans_len;
-        for(size_t i=0; i<ans_len; ++i)
-        {
-            if(diff_limbs[i]==0 && resulting_size>1)
-            {
-                limb_to_remove++;
-                resulting_size--;
-            }
-            else break;
-        }
+    //     // check and remove zero limbs in front
+    //     size_t limb_to_remove = 0;
+    //     size_t resulting_size = ans_len;
+    //     for(size_t i=0; i<ans_len; ++i)
+    //     {
+    //         if(diff_limbs[i]==0 && resulting_size>1)
+    //         {
+    //             limb_to_remove++;
+    //             resulting_size--;
+    //         }
+    //         else break;
+    //     }
         
-        if(limb_to_remove)
-        {
-            diff_limbs.erase(diff_limbs.begin()+0,diff_limbs.begin()+limb_to_remove);
-        }
+    //     if(limb_to_remove)
+    //     {
+    //         diff_limbs.erase(diff_limbs.begin()+0,diff_limbs.begin()+limb_to_remove);
+    //     }
 
-        return limb(diff_limbs);
-    }
+    //     return limb(diff_limbs);
+    // }
 }
 
 #endif

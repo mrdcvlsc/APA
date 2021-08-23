@@ -32,8 +32,6 @@ int main()
     std::cout<<"g     : "<<g<<"\n";
     if(g.string_form()!="0.1") throw std::logic_error("error in constructor g");
     
-    
-
     std::cout<<"\nTEST 1 - bfloat class : all constructors are correct\n";
 
     return 0;

@@ -45,10 +45,22 @@ namespace apa
         return *this;
     }
 
-    inline bint bint::p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len)
-    {
-        return bint({1},1);
-    }
+    // inline bint bint::p_mul(const bint& a, const size_t a_start, const size_t a_len, const bint&b, const size_t b_start, const size_t b_len)
+    // {
+    //     bint product;
+    //     bool same_sign = a.sign==b.sign;
+
+    //     // use naive at a certain treshold
+    //     product.intlimbs = backend_bigint::limb::p_mul(a.intlimbs,a_start,a_len,b.intlimbs,b_start,b_len);
+
+    //     if(!same_sign)
+    //     {
+    //         product.sign = -1;
+    //         return product;
+    //     }
+    //     product.sign = 1;
+    //     return product;
+    // }
 }
 
 #endif
