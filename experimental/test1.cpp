@@ -15,7 +15,7 @@ int main()
     std::cout<<"b = "<<b<<"\n\n";
 
     k = a.karatsuba(b);
-    c = a.karatsuba2(0,a.limb_count(),b,0,b.limb_count());
+    // c = a.karatsuba2(0,a.limb_count(),b,0,b.limb_count());
 
     std::cout<<"karatsuba = "<<k<<"\n\n";
     std::cout<<"karatsub2 = "<<c<<"\n";
