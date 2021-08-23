@@ -14,7 +14,7 @@ this is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 any contribution/pull request is accepted as long as it passed the original workflow test.
 
-In the ```functions/apa_math.hpp``` there are some functions that are not implemented yet, contributors can work on those if they want to... just follow the structure of ```pow.cpp``` where the function name is also the name of the cpp file, and the function definition should be enclosed in the ```apa::math``` namespace, also make a test program for these function in the ```bint/test``` or ```bfloat/test``` (look at the given directory for examples) where if something goes wrong throw an exception so that the test can detect it, also you can implement anything you want as long as it is useful and make a test program for it.
+In the ```functions/apa_math.hpp``` there are some functions that are not implemented yet, contributors can work on those if they want to... just follow the structure of ```pow.cpp``` where the function name is also the name of the cpp file, and the function definition should be enclosed in the ```apa::math``` namespace, also make a test program for these function inside the ```bint/test``` or ```bfloat/test``` (look at the given directory for examples), this program should throw an exception if something goes wrong so that the test can detect it, also you can implement anything you want as long as it is useful and make a test program for it.
 
 I kinda want to implement the cook-toom's multiplication for this hobby project in the future but if anyone is willing to do it you can freely try.
 
