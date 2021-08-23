@@ -7,6 +7,19 @@
 
 this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard C++ primitive data types.
 
+<details>
+<summary><b>contribute</b></summary>
+<br>
+<ul>
+
+any contribution/pull request is accepted as long as it passed the original workflow test.
+
+In the ```functions/apa_math.hpp``` there are some functions that are not implemented yet that contributors can work on, just follow the structure of ```pow.cpp``` where the function name is also the name of the cpp file, and the function definition should be enclosed in the ```apa::math``` namespace, also make a test program for these function in the ```bint/test``` or ```bfloat/test``` (look at the given directory for examples) where if something goes wrong throw an exception so that the test can detect it.
+
+I kinda want to implement the cook-toom's multiplication for this hobby project in the future but if anyone is willing to do it you can freely try.
+
+</details>
+
 ------------------------------------------------------------------
 
 ### make sure to compile with ```-O3 -march=native``` to achieve the best performance
