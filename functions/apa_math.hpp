@@ -12,6 +12,8 @@ namespace apa
         bint pow(const bint& base, const bint& exponent);
         bfloat pow(const bfloat& base, const bint& exponent);
 
+        // you can implement the functions below if you want
+
         bint gcd(const bint& a, const bint& b); // not defined
         bint lcm(const bint&a, const bint& b); // not defined
 
