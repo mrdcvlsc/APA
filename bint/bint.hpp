@@ -14,10 +14,11 @@ namespace apa
     {
         private:
 
-            backend_bigint::limb intlimbs;
             short sign;
 
         public:
+
+            backend_bigint::limb intlimbs;
 
             bint();
             bint(const std::string& numbers);

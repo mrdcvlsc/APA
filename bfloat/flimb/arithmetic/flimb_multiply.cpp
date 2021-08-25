@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../flimb.hpp"
+#include "../../../bint/bint.hpp"
 
 namespace backend_bigfloat
 {
@@ -10,26 +11,35 @@ namespace backend_bigfloat
     {
         std::vector<dtype> product_flimbs(limbs.size()+multiplier.limbs.size(),0);
 
-        // operation
-        dtype ten;
-        dtype one;
-        for(size_t i=0; i<multiplier.limbs.size(); ++i)
+        if(limbs.size()>=KARATSUBA_TRESHOLD || multiplier.limbs.size()>=KARATSUBA_TRESHOLD)
         {
-            for(size_t j=0;j<limbs.size();++j)
+            apa::bint a(limbs,1), b(multiplier.limbs,1);
+            apa::bint c = a*b;
+            product_flimbs = c.intlimbs.limbs;
+        }
+        else
+        {
+            // operation
+            dtype ten;
+            dtype one;
+            for(size_t i=0; i<multiplier.limbs.size(); ++i)
             {
-                product_flimbs[product_flimbs.size()-1-i-j] += (limbs[limbs.size()-1-j]*multiplier.limbs[multiplier.limbs.size()-1-i]);
-
-                // carry to avoid overflow
-                if(product_flimbs[product_flimbs.size()-1-i-j]>=max_value+1)
+                for(size_t j=0;j<limbs.size();++j)
                 {
-                    ten = ten_thsd(product_flimbs[product_flimbs.size()-1-i-j]);
-                    one = one_thsd(product_flimbs[product_flimbs.size()-1-i-j],ten);
-                    product_flimbs[product_flimbs.size()-1-i-j]=one;
-                    product_flimbs[product_flimbs.size()-1-i-j-1]=product_flimbs[product_flimbs.size()-1-i-j-1]+ten;
+                    product_flimbs[product_flimbs.size()-1-i-j] += (limbs[limbs.size()-1-j]*multiplier.limbs[multiplier.limbs.size()-1-i]);
+
+                    // carry to avoid overflow
+                    if(product_flimbs[product_flimbs.size()-1-i-j]>=max_value+1)
+                    {
+                        ten = ten_thsd(product_flimbs[product_flimbs.size()-1-i-j]);
+                        one = one_thsd(product_flimbs[product_flimbs.size()-1-i-j],ten);
+                        product_flimbs[product_flimbs.size()-1-i-j]=one;
+                        product_flimbs[product_flimbs.size()-1-i-j-1]=product_flimbs[product_flimbs.size()-1-i-j-1]+ten;
+                    }
                 }
             }
         }
-
+        
         // // carry
         // dtype ten;
         // dtype one;
