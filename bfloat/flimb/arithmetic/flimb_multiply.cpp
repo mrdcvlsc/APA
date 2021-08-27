@@ -13,9 +13,19 @@ namespace backend_bigfloat
 
         if(limbs.size()>=KARATSUBA_TRESHOLD || multiplier.limbs.size()>=KARATSUBA_TRESHOLD)
         {
+            size_t original_flimb_limbs = product_flimbs.size();
+
             apa::bint a(limbs,1), b(multiplier.limbs,1);
             apa::bint c = a*b;
             product_flimbs = c.intlimbs.limbs;
+
+            size_t zero_front = original_flimb_limbs-product_flimbs.size();
+
+            if(zero_front)
+            {
+                std::vector<dtype> zeros_front_pad(zero_front,0);
+                product_flimbs.insert(product_flimbs.begin(),zeros_front_pad.begin(),zeros_front_pad.end());
+            }
         }
         else
         {
