@@ -25,5 +25,7 @@ int main()
 
     // if(craw!=csub) throw std::logic_error("Test 5 bint failed");
 
+    // std::cout<<"bint "
+
     return 0;
 }

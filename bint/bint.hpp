@@ -73,7 +73,13 @@ namespace apa
             bint karatsuba(const bint& multiplier) const;
             // bint karatsuba2(size_t a_start, size_t a_len, const bint& b, size_t b_start, size_t b_len) const;
             bint naive_mul(const bint& multiplier) const;
+
+            static std::pair<bint,bint> div2by1(const bint& A, const bint& B);
+            static std::pair<bint,bint> div3by2(const bint& a1, const bint& a2, const bint& a3, const bint& b1, const bint& b2);
             // - - - - - - -
+
+            bint operator<<(const bint&) const;
+            bint operator>>(const bint&) const;
 
             template<class N> bint pa(N cn,bint bn)const{return bint(cn)+bn;}
             template<class N> bint ps(N cn,bint bn)const{return bint(cn)-bn;}
@@ -92,7 +98,7 @@ namespace apa
             bint operator++(int);
             bint operator--(int);
 
-            size_t limb_count()
+            size_t limb_count() const
             {
                 return intlimbs.limb_count();
             }
@@ -106,11 +112,16 @@ namespace apa
     const bint BINTONE = 1;
     const bint BINTTWO = 2;
 
+    // FUNCTIONS
+
+    bint pow(const bint& base, const bint& exponent);
+
 }// end of arb namespace
 
 #include "bint_constructor.cpp"
 #include "bint_comparison.cpp"
 #include "bint_io.cpp"
+#include "bint_shifts.cpp"
 
 #include "arithmetic/bint_addition.cpp"
 #include "arithmetic/bint_subtract.cpp"
@@ -120,5 +131,7 @@ namespace apa
 #include "arithmetic/bint_karatsuba2.cpp"
 #include "arithmetic/bint_division.cpp"
 #include "arithmetic/bint_indecrement.cpp"
+
+#include "functions/bint_math.cpp"
 
 #endif

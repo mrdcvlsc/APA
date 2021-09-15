@@ -88,6 +88,10 @@ namespace apa
     const apa::bfloat BFLOATONE("1.0");
     const apa::bfloat BFLOATTWO("2.0");
 
+    // FUNCTIONS
+
+    bfloat pow(const bfloat& base, const bint& exponent);
+
 }// end of arb namespace
 
 #include "bfloat_constructor.cpp"
@@ -99,5 +103,7 @@ namespace apa
 #include "arithmetic/bfloat_multiply.cpp"
 #include "arithmetic/bfloat_division.cpp"
 #include "arithmetic/bfloat_indecrement.cpp"
+
+#include "functions/bfloat_math.cpp"
 
 #endif
