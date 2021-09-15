@@ -32,7 +32,7 @@ int main()
 
     // if(csub!=cpproc) throw std::logic_error("2nd partial answer is wrong");
 
-    // std::cout<<"TEST 2 - limb : CORRECT\n";
+    std::cout<<"TEST 2 - limb : CORRECT\n";
 
     return 0;
 }

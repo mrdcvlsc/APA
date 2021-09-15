@@ -33,7 +33,7 @@ int main()
 
     // if(cadd!=cpproc) throw std::logic_error("2nd partial answer is wrong");
 
-    // std::cout<<"TEST 3 - limb : CORRECT\n";
+    std::cout<<"TEST 3 - limb : CORRECT\n";
 
     return 0;
 }

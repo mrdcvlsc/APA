@@ -418,6 +418,8 @@ int main()
 
 **the following operators are also available for both ```bint``` and ```bfloat``` class**
 
+  - **```<<```** left shift (for bint only)
+  - **```>>```** right shift (for bint only)
   - **```++```** post-fix & pre-fix increment
   - **```--```** post-fix & pre-fix decrement
   - **```%```** mod
@@ -476,20 +478,19 @@ int main()
 <ul>
 
 **overloads**
-- ```bint apa::math::pow(const bint& base, const bint& exponent);```
-- ```bfloat apa::math::pow(const bfloat& base, const bint& exponent);```
+- ```bint apa::pow(const bint& base, const bint& exponent);```
+- ```bfloat apa::pow(const bfloat& base, const bint& exponent);```
 
 ```c++
 #include <iostream>
 #include "bignum/bfloat/bfloat.hpp"
-#include "bignum/function/apa_math.hpp"
 
 int main()
 {
   apa::bfloat b("2.2");
   apa::bint e = 321;
 
-  apa::power = apa::math::pow(b,e);
+  apa::power = apa::pow(b,e);
   
   std::cout<<power<<"\n";
 
