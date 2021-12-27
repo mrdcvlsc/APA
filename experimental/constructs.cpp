@@ -1,25 +1,30 @@
 #include <iostream>
-#include "../bint/bint.hpp"
+#include "../bfloat/bfloat.hpp"
 
 int main()
 {
-    std::cout << "-----------------------------------------\n";
-    apa::bint a = 12673;
+    std::cout << "\t\twhat is happening\n";
+    std::cout << "#########################################\n";
+    apa::bfloat a = 12673.92f;
+    apa::bfloat e;
+    apa::bfloat c;
 
     std::cout << "-----------------------------------------\n";
-    apa::bint b = a;
+    
+    apa::bfloat b = a;
 
     std::cout << "-----------------------------------------\n";
-    apa::bint c;
+    
     c = a;
 
     std::cout << "-----------------------------------------\n";
-    apa::bint d = a * c;
+    
+    apa::bfloat d = a * c;
 
     std::cout << "-----------------------------------------\n";
-    apa::bint e;
-    e = a*c;
     
+    e = a*c;
+
     std::cout << "-----------------------------------------\n";
 
     return 0;
