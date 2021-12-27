@@ -15,8 +15,9 @@ namespace apa
     }
 
     // move constructor
-    bfloat::bfloat(bfloat&& temp) noexcept : floatlimbs(std::move(temp.floatlimbs))
+    bfloat::bfloat(bfloat&& temp) noexcept
     {
+        floatlimbs = std::move(temp.floatlimbs);
         sign = temp.sign;
     }
 

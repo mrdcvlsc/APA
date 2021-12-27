@@ -15,8 +15,9 @@ namespace apa
     }
 
     // move constructor
-    bint::bint(bint&& temp) noexcept : intlimbs(temp.intlimbs)
+    bint::bint(bint&& temp) noexcept
     {
+        intlimbs = std::move(temp.intlimbs);
         sign = temp.sign;
     }
 
@@ -31,7 +32,7 @@ namespace apa
     // move assignment
     bint& bint::operator=(bint&& temp) noexcept
     {
-        intlimbs = temp.intlimbs;
+        intlimbs = std::move(temp.intlimbs);
         sign = temp.sign;
         return *this;
     }
