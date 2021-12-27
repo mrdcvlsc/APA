@@ -490,7 +490,7 @@ int main()
   apa::bfloat b("2.2");
   apa::bint e = 321;
 
-  apa::power = apa::pow(b,e);
+  apa::bfloat power = apa::pow(b,e);
   
   std::cout<<power<<"\n";
 
@@ -502,7 +502,6 @@ int main()
   046638156865321497984580207663602337611169923072
 
   */
-
 }
 ```
 
