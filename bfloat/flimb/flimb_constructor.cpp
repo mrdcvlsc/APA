@@ -13,18 +13,21 @@ namespace backend_bigfloat
     {
         limbs.reserve(other.limbs.size());
         limbs.insert(limbs.begin(),other.limbs.begin(),other.limbs.end());
+        decimal_point = other.decimal_point;
     }
 
     // move constructor
     flimb::flimb(flimb&& temp) noexcept
     {
         limbs = std::move(temp.limbs);
+        decimal_point = temp.decimal_point;
     }
 
     // copy assignment
     flimb& flimb::operator=(const flimb& other)
     {
         limbs = other.limbs;
+        decimal_point = other.decimal_point;
         return *this;
     }
 
@@ -32,6 +35,7 @@ namespace backend_bigfloat
     flimb& flimb::operator=(flimb&& temp) noexcept
     {
         limbs = std::move(temp.limbs);
+        decimal_point = temp.decimal_point;
         return *this;
     }
 
