@@ -7,7 +7,7 @@
 
 this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard C++ primitive data types.
 
-for big floating point numbers, this library will compute the exact decimals and will not convert itself into a scientific notation.
+NOTE : for big floating point numbers (```bfloat```), this library will compute the **exact decimals** and will not convert itself into a scientific notation, this is also the same for big integers (```bint```), it will compute the exact number and will not be converted to scientific notation or any other notation that shortens or simplify the number itself.
 
 any contribution/pull request is accepted as long as it passed the original workflow test.
 
