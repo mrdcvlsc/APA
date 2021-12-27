@@ -24,6 +24,18 @@ namespace apa
             bfloat(float number);
             bfloat(double number);
             bfloat(long double number);
+
+            // copy constructor
+            bfloat(const bfloat& other);
+
+            // move constructor
+            bfloat(bfloat&& temp) noexcept;
+
+            // copy assignment
+            bfloat& operator=(const bfloat& other);
+
+            // move assignment
+            bfloat& operator=(bfloat&& temp) noexcept;
             
             std::string string_form() const;
 

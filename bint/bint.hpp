@@ -31,6 +31,18 @@ namespace apa
             bint(unsigned long number);
             bint(long long number);
             bint(unsigned long long number);
+
+            // copy constructor
+            bint(const bint& other);
+
+            // move constructor
+            bint(bint&& temp) noexcept;
+
+            // copy assignment
+            bint& operator=(const bint& other);
+
+            // move assignment
+            bint& operator=(bint&& temp) noexcept;
             
             std::string string_form() const;
 
