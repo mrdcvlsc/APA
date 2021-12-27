@@ -8,6 +8,37 @@ namespace backend_bigfloat
 {
     flimb::flimb(){}
 
+    // copy constructor
+    flimb::flimb(const flimb& other)
+    {
+        limbs.reserve(other.limbs.size());
+        limbs.insert(limbs.begin(),other.limbs.begin(),other.limbs.end());
+        decimal_point = other.decimal_point;
+    }
+
+    // move constructor
+    flimb::flimb(flimb&& temp) noexcept
+    {
+        limbs = std::move(temp.limbs);
+        decimal_point = temp.decimal_point;
+    }
+
+    // copy assignment
+    flimb& flimb::operator=(const flimb& other)
+    {
+        limbs = other.limbs;
+        decimal_point = other.decimal_point;
+        return *this;
+    }
+
+    // move assignment
+    flimb& flimb::operator=(flimb&& temp) noexcept
+    {
+        limbs = std::move(temp.limbs);
+        decimal_point = temp.decimal_point;
+        return *this;
+    }
+
     flimb::flimb(const std::vector<dtype>& limbs, size_t decimal_point)
     {
         this->limbs = limbs;

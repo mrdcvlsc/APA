@@ -7,6 +7,35 @@
 namespace apa
 {
     bfloat::bfloat() {}
+
+    // copy constructor
+    bfloat::bfloat(const bfloat& other) : floatlimbs(other.floatlimbs)
+    {
+        sign = other.sign;
+    }
+
+    // move constructor
+    bfloat::bfloat(bfloat&& temp) noexcept
+    {
+        floatlimbs = std::move(temp.floatlimbs);
+        sign = temp.sign;
+    }
+
+    // copy assignment
+    bfloat& bfloat::operator=(const bfloat& other)
+    {
+        floatlimbs = other.floatlimbs;
+        sign = other.sign;
+        return *this;
+    }
+
+    // move assignment
+    bfloat& bfloat::operator=(bfloat&& temp) noexcept
+    {
+        floatlimbs = std::move(temp.floatlimbs);
+        sign = temp.sign;
+        return *this;
+    }
     
     bfloat::bfloat(const std::string& number)
     {

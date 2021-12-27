@@ -74,6 +74,22 @@ namespace backend_bigint
             limb();
             limb(const std::string& number);
             limb(const std::vector<dtype>& limbs) : limbs(limbs) {}
+
+            // special constructors and operators - start
+
+            // copy constructor
+            limb(const limb& other);
+
+            // move constructor
+            limb(limb&& temp) noexcept;
+
+            // copy assignment
+            limb& operator=(const limb& other);
+
+            // move assignment
+            limb& operator=(limb&& temp) noexcept;
+
+            // special constructors and operators - end
             
             /// this limb constructor should accept a possitive integers only,
             /// the signedes of the number should be addressed to the big integer class,

@@ -8,6 +8,35 @@ namespace apa
 {
     bint::bint() {}
     
+    // copy constructor
+    bint::bint(const bint& other) : intlimbs(other.intlimbs)
+    {
+        sign = other.sign;
+    }
+
+    // move constructor
+    bint::bint(bint&& temp) noexcept
+    {
+        intlimbs = std::move(temp.intlimbs);
+        sign = temp.sign;
+    }
+
+    // copy assignment
+    bint& bint::operator=(const bint& other)
+    {
+        intlimbs = other.intlimbs;
+        sign = other.sign;
+        return *this;
+    }
+
+    // move assignment
+    bint& bint::operator=(bint&& temp) noexcept
+    {
+        intlimbs = std::move(temp.intlimbs);
+        sign = temp.sign;
+        return *this;
+    }
+    
     bint::bint(const std::string& number)
     {
         std::string num = number;

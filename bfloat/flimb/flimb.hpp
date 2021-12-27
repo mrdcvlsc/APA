@@ -34,6 +34,22 @@ namespace backend_bigfloat
             flimb(double number);
             flimb(long double number);
 
+            // special constructors and operators - start
+
+            // copy constructor
+            flimb(const flimb& other);
+
+            // move constructor
+            flimb(flimb&& temp) noexcept;
+
+            // copy assignment
+            flimb& operator=(const flimb& other);
+
+            // move assignment
+            flimb& operator=(flimb&& temp) noexcept;
+
+            // special constructors and operators - end
+
             size_t flimb_count() const;
             size_t flimb_length() const;
 

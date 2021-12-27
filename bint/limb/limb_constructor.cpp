@@ -8,6 +8,33 @@ namespace backend_bigint
 {
     limb::limb() {}
 
+    // copy constructor
+    limb::limb(const limb& other)
+    {
+        limbs.reserve(other.limbs.size());
+        limbs.insert(limbs.begin(),other.limbs.begin(),other.limbs.end());
+    }
+
+    // move constructor
+    limb::limb(limb&& temp) noexcept
+    {
+        limbs = std::move(temp.limbs);
+    }
+
+    // copy assignment
+    limb& limb::operator=(const limb& other)
+    {
+        limbs = other.limbs;
+        return *this;
+    }
+
+    // move assignment
+    limb& limb::operator=(limb&& temp) noexcept
+    {
+        limbs = std::move(temp.limbs);
+        return *this;
+    }
+
     limb::limb(const std::string& number)
     {
         #ifndef PRODUCTION
