@@ -66,6 +66,7 @@ namespace backend_bigfloat
             inline flimb& operator/=(const flimb& divisor);
 
             friend std::ostream& operator<<(std::ostream &out, const flimb& value);
+            friend std::istream& operator>>(std::istream& in, flimb& value);
 
             bool operator==(const flimb& right) const;
             bool operator!=(const flimb& right) const;

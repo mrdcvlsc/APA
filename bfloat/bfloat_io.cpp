@@ -11,11 +11,8 @@ namespace apa
     //// IO Operators
     std::ostream& operator<<(std::ostream &out, const bfloat &num)
     {
-        std::string output = "";
-        if(num.sign<0) std::cout<<"-";
-
-        std::cout<<num.floatlimbs;
-        out<<output;
+        if(num.sign<0) out << "-";
+        out << num.floatlimbs;
         return out;
     }
 
