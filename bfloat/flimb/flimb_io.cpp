@@ -6,14 +6,18 @@
 
 namespace backend_bigfloat
 {
+    std::istream& operator>>(std::istream& in, flimb& value)
+    {
+        std::string input_stream(std::istreambuf_iterator<char>(in), {});
+        value = flimb(input_stream);
+        return in;
+    }
+
     std::ostream& operator<<(std::ostream &out, const flimb& value)
     {
-        std::string outputstring = "";
-
         if(value.limbs.size()==2 && value.limbs[0]==0 && value.limbs[1]==0)
         {
-            outputstring = "0.0";
-            out << outputstring;
+            out << "0.0";
             return out;
         }
         
@@ -21,14 +25,14 @@ namespace backend_bigfloat
         {
             if(i==value.decimal_point)
             {
-                std::cout<<'.';
+                out << '.';
             }
                     
             size_t real_digits = value.limb_length;
             dtype current_index = value.limbs[i];
             if(current_index==0 && current_index!=0 && i!=value.limbs.size()-1)
             {
-                std::cout<<std::string(real_digits-1,'0');
+                out << std::string(real_digits-1,'0');
             }
             else if(i!=value.limbs.size()-1)
             {
@@ -43,7 +47,7 @@ namespace backend_bigfloat
                     {
                         real_digits--;
                     }
-                    std::cout<<std::string(real_digits,'0');
+                    out << std::string(real_digits,'0');
                 }
             }
             #ifndef SHOW_LIMB_SPACE
@@ -51,7 +55,7 @@ namespace backend_bigfloat
             {
                 if(value.limbs[i]==0)
                 {
-                    std::cout<<0;
+                    out << 0;
                 }
                 else
                 {
@@ -65,22 +69,18 @@ namespace backend_bigfloat
                         }
                         zero_remove_rear++;
                     }
-                    std::string last_element = last_limb.substr(0,last_limb.size()-zero_remove_rear);
-                    // size_t pad_last = backend_bigint::limb::limb_length-last_element.size();
-                    // std::string front_zeros_last(pad_last,'0');
-                    // last_element = front_zeros_last+last_element;
-                    std::cout<<last_element;
+                    out << last_limb.substr(0,last_limb.size()-zero_remove_rear);
                 }
             }
             else
             {
-                std::cout<<value.limbs[i];
+                out << value.limbs[i];
             }
             #else
-            std::cout<<value.limbs[i]<<' ';
+            out << value.limbs[i];
+            out << ' ';
             #endif
         }
-        out << outputstring;
         return out;
     }
 }

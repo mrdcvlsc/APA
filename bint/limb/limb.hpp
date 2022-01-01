@@ -90,6 +90,8 @@ namespace backend_bigint
             limb& operator=(limb&& temp) noexcept;
 
             // special constructors and operators - end
+            friend std::ostream& operator<<(std::ostream &out, const limb& value);
+            friend std::istream& operator>>(std::istream& in, limb& value);
             
             /// this limb constructor should accept a possitive integers only,
             /// the signedes of the number should be addressed to the big integer class,

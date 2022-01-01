@@ -11,11 +11,8 @@ namespace apa
     //// IO Operators
     std::ostream& operator<<(std::ostream &out, const bint &num)
     {
-        std::string output = "";
-        if(num.sign<0) std::cout<<"-";
-
-        std::cout<<num.intlimbs;
-        out<<output;
+        if(num.sign<0) out << "-";
+        out << num.intlimbs;
         return out;
     }
 
