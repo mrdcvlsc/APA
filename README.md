@@ -2,8 +2,8 @@
 
 ## a c++ library for big number computation (arbitrary-precision arithmetic).
 
-![ubuntu](https://github.com/mrdcvlsc/bignum/actions/workflows/c-cpp.yml/badge.svg)
-![windows](https://github.com/mrdcvlsc/bignum/actions/workflows/windows_output.yml/badge.svg)
+![ubuntu](https://github.com/mrdcvlsc/APA/actions/workflows/c-cpp.yml/badge.svg)
+![windows](https://github.com/mrdcvlsc/APA/actions/workflows/windows_output.yml/badge.svg)
 
 this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard C++ primitive data types.
 
@@ -32,7 +32,7 @@ any contribution/pull request is accepted as long as it passed the original work
 <ul>
 
 *1. Download or Clone this repository*
-  - [Download Repository](https://github.com/mrdcvlsc/bignum/archive/refs/heads/main.zip)
+  - [Download Repository](https://github.com/mrdcvlsc/APA/archive/refs/heads/main.zip)
   - ```git clone https://github.com/mrdcvlsc/APA.git```
 
 
@@ -46,7 +46,7 @@ any contribution/pull request is accepted as long as it passed the original work
 
   //or
 
-  #include "APA/bignum.hpp" // to include both bint.hpp & bfloat.hpp and the function headers
+  #include "APA/core.hpp" // to include both bint.hpp & bfloat.hpp and the function headers
   ```
 
 </ul>
