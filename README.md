@@ -17,6 +17,10 @@ any contribution/pull request is accepted as long as it passed the original work
 
 - header only, just include the needed header files in you source code then compile.
 
+```c++
+#include "APA/core.hpp"
+```
+
 </details>
 
 ## DOCUMENTATION
@@ -37,12 +41,12 @@ any contribution/pull request is accepted as long as it passed the original work
   ```c++
   #include <iostream>
   
-  #include "bignum/bint/bint.hpp" // for big integers
-  #include "bignum/bfloat/bfloat.hpp" // for big rational numbers
+  #include "APA/bint/bint.hpp" // for big integers
+  #include "APA/bfloat/bfloat.hpp" // for big rational numbers
 
   //or
 
-  #include "bignum/bignum.hpp" // to include both bint.hpp & bfloat.hpp and the function headers
+  #include "APA/bignum.hpp" // to include both bint.hpp & bfloat.hpp and the function headers
   ```
 
 </ul>
@@ -64,7 +68,7 @@ any contribution/pull request is accepted as long as it passed the original work
 ***using std::string or const char****
 ```c++
 #include <iostream>
-#include "bignum/bint/bint.hpp"
+#include "APA/bint/bint.hpp"
 
 int main()
 {
@@ -75,7 +79,7 @@ int main()
 ***using integral types***
 ```c++
 #include <iostream>
-#include "bignum/bint/bint.hpp"
+#include "APA/bint/bint.hpp"
 
 int main()
 {
@@ -102,7 +106,7 @@ int main()
 you cannot use floating point types directly to construct big integers, so you need to cast it first to any integral types, take note that the decimal numbers will be cut off too, this is also the same for big floating point ```bfloat``` you need to cast integral types first into any floating point types
 ```c++
 #include <iostream>
-#include "bignum/bint/bint.hpp"
+#include "APA/bint/bint.hpp"
 
 int main()
 {
@@ -136,7 +140,7 @@ int main()
 ***using std::string or const char****
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -154,7 +158,7 @@ int main()
 ***using integral types***
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -200,7 +204,7 @@ the output might be different in your machine/compiler because of different roun
 
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -247,7 +251,7 @@ int main()
 
 ```c++
 #include <iostream>
-#include "bignum/bint/bint.hpp"
+#include "APA/bint/bint.hpp"
 
 int main()
 {
@@ -297,7 +301,7 @@ div = -238227
 
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -356,8 +360,8 @@ int main()
 
 ```c++
 #include <iostream>
-#include "bignum/bint/bint.hpp"
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bint/bint.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -426,7 +430,7 @@ int main()
 
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -474,7 +478,7 @@ int main()
 
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
@@ -509,7 +513,7 @@ you can  convert the value of ```bint``` & ```bfloat``` using the method ```.str
 
 ```c++
 #include <iostream>
-#include "bignum/bfloat/bfloat.hpp"
+#include "APA/bfloat/bfloat.hpp"
 
 int main()
 {
