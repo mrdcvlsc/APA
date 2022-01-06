@@ -2,8 +2,8 @@
 
 ## a c++ library for big number computation (arbitrary-precision arithmetic).
 
-![ubuntu](https://github.com/mrdcvlsc/APA/actions/workflows/c-cpp.yml/badge.svg)
-![windows](https://github.com/mrdcvlsc/APA/actions/workflows/windows_output.yml/badge.svg)
+![sanitizer](https://github.com/mrdcvlsc/APA/actions/workflows/c-cpp.yml/badge.svg)
+![build-test](https://github.com/mrdcvlsc/APA/actions/workflows/windows_output.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 this is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers(bignum) that usually cannot fit in the standard C++ primitive data types.
