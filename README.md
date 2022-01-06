@@ -2,7 +2,7 @@
 
 ## a c++ library for big number computation (arbitrary-precision arithmetic).
 
-![sanitizer](https://github.com/mrdcvlsc/APA/actions/workflows/c-cpp.yml/badge.svg)
+![sanitizer](https://github.com/mrdcvlsc/APA/actions/workflows/sanitizer.yml/badge.svg)
 ![build-test](https://github.com/mrdcvlsc/APA/actions/workflows/windows_output.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
