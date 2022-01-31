@@ -23,7 +23,6 @@ int main(){
     std::cout << "product    = " << bint_product << "\n";
     std::cout << "quotient   = " << bint_quotient << "\n";
 
-
     bfloat bigFloatA("-8762723764723468723647.7468726468234");
     bfloat bigFloatB = 0.65f;
 
