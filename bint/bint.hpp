@@ -140,7 +140,6 @@ namespace apa
 #include "arithmetic/bint_multiply.cpp"
 #include "arithmetic/bint_naive_mul.cpp"
 #include "arithmetic/bint_karatsuba.cpp"
-#include "arithmetic/bint_karatsuba2.cpp"
 #include "arithmetic/bint_division.cpp"
 #include "arithmetic/bint_indecrement.cpp"
 
