@@ -45,6 +45,11 @@ check: $(OBJ_BINT_LIMB) $(OBJ_BFLOAT_LIMB) $(OBJ_BINT_CLASS) $(OBJ_BFLOAT_CLASS)
 
 	@echo "NO ERRORS IN ALL THE TEST PROGRAMS ENCOUNTERED"
 
+ifeq ($(OS), Linux)
+	@echo "RUNNING BUILD TEST PROGRAM"
+	make build_sample
+endif
+
 # ------------------------ TEST PROGRAM COMPILATIONS ------------------------ 
 
 # checks for bint limbs
@@ -70,6 +75,15 @@ $(SRC_BFLOAT_CLASS)/%.o: $(SRC_BFLOAT_CLASS)/%.cpp
 	@g++ $(CPPFLAGS) $(CXXFLAGS) -o $@ $<
 
 # ----------------------------------------------------------------------------
+
+build_sample:
+	@echo "compile build test"
+	@g++ sample/build.cpp -o sample/build -fsanitize=address
+	@echo "running build test program"
+	@cd sample && ./build
+	@echo "build done..."
+	@rm sample/build
+	@echo "removed build program"
 
 clean:
 	@echo "deleting object files"
