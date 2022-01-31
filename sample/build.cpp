@@ -39,7 +39,6 @@ int main(){
     std::cout << "sum        = " << bfloat_sum << "\n";
     std::cout << "difference = " << bfloat_difference << "\n";
     std::cout << "product    = " << bfloat_product << "\n";
-    std::cout << "product    = " << bfloat_product.string_form() << "\n";
     std::cout << "quotient   = " << bfloat_quotient << "\n";
 
     return 0;
