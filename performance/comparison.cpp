@@ -19,7 +19,66 @@ int main(){
     // cout<<"======================== Multiplication ========================="<<endl;
     // cout<<"======================== Division ========================="<<endl;
 
-    cout<<"======================== FACTORIAL OF A NUMBER ========================="<<endl;
+    cout<<"======================== FIBONACCI : PERFORMANCE TEST FOR ADDITION ========================="<<endl;
+
+    size_t NthFibonacci = 100000;
+
+    boost_int boost_base0 = 0;
+    boost_int boost_base1 = 1;
+    boost_int boost_nthFib = NthFibonacci;
+
+    mpz_class gmp_base0 = 0;
+    mpz_class gmp_base1 = 1;
+    mpz_class gmp_nthFib = NthFibonacci;
+
+    apa::bint bint_base0 = 0;
+    apa::bint bint_base1 = 1;
+    apa::bint bint_nthFib = NthFibonacci;
+    
+    { // GMP FIB
+        auto start = chrono::high_resolution_clock::now();
+        for(size_t i=2; i<NthFibonacci; ++i){
+            gmp_nthFib = gmp_base0 + gmp_base1;
+            gmp_base0 = gmp_base1;
+            gmp_base1 = gmp_nthFib;
+        }
+        auto end = chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+        cout << "gmp   fib(" << NthFibonacci << ") took " << dur.count() << " microseconds\n";
+    }
+
+    { // BOOST FIB
+        auto start = chrono::high_resolution_clock::now();
+        for(size_t i=2; i<NthFibonacci; ++i){
+            boost_nthFib = boost_base0 + boost_base1;
+            boost_base0 = boost_base1;
+            boost_base1 = boost_nthFib;
+        }
+        auto end = chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+        cout << "boost fib(" << NthFibonacci << ") took " << dur.count() << " microseconds\n";
+    }
+
+    { // APA FIB
+        auto start = chrono::high_resolution_clock::now();
+        for(size_t i=2; i<NthFibonacci; ++i){
+            bint_nthFib = bint_base0 + bint_base1;
+            bint_base0 = bint_base1;
+            bint_base1 = bint_nthFib;
+        }
+        auto end = chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+        cout << "apa   fib(" << NthFibonacci << ") took " << dur.count() << " microseconds\n";
+    }
+
+    if(boost_nthFib.str()!=gmp_nthFib.get_str())
+        throw std::logic_error("gmp and boost fibonacci is not equal");
+    else if(gmp_nthFib.get_str()!=bint_nthFib.string_form())
+        throw std::logic_error("apa fibonacci is wrong");
+    else
+        cout << "All Fibonacci is correct\n\n";
+
+    cout<<"======================== FACTORIAL : PERFORMANCE TEST FOR MULTIPLICATION ========================="<<endl;
 
     boost_int boost_limit = LIMITS;
     boost_int boost_n = LIMITS;
