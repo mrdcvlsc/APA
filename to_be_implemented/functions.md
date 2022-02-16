@@ -1,4 +1,4 @@
-# Functions to be implemented
+# Functions and Methods to be implemented
 
 - bint gcd(const bint& a, const bint& b); [NOT_YET_IMPLEMENTED]
 - bint lcm(const bint&a, const bint& b); [NOT_YET_IMPLEMENTED]
