@@ -13,15 +13,16 @@
 namespace apa {
     ubint::ubint() {
         capacity = UBINT_INITIAL_LIMB_CAPACITY;
-        length = 1;
+        length = UBINT_INITIAL_LIMB_LENGTH;
         limbs = (uint64_t*) malloc(UBINT_INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
     ubint::ubint(uint64_t num) {
         capacity = UBINT_INITIAL_LIMB_CAPACITY;
-        length = 1;
+        length = UBINT_INITIAL_LIMB_LENGTH;
         limbs = (uint64_t*) malloc(UBINT_INITIAL_LIMB_CAPACITY*LIMB_BYTES);
-        limbs[0] = num;
+        limbs[0] = (uint32_t) num;
+        limbs[1] = num >> 32;
     }
 
     /// copy constructor.
@@ -64,7 +65,6 @@ namespace apa {
 
         return *this;
     }
-
 
     ubint::~ubint() {
         if(limbs != NULL)

@@ -5,14 +5,21 @@
 #include <cstring>
 
 #if (__MINGW64__ || __MINGW64)
-#define PRINT_LIMBHEX "%016llx "
+#define PRINT_LIMBHEX "%08llx "
 #elif (__clang__ || __GNUC__ || __GNUG__)
-#define PRINT_LIMBHEX "%016lx "
+#define PRINT_LIMBHEX "%08lx "
 #else
 #error not supported
 #endif
 
-#define UBINT_INITIAL_LIMB_CAPACITY 2
+// BASE => MAX VALUE OF EACH LIMBS CAN HOLD
+
+#define UBINT_BASE 4294967295
+#define UBINT_BASEBITS 32
+#define UBINT_BASEBYTES 4
+
+#define UBINT_INITIAL_LIMB_CAPACITY 4
+#define UBINT_INITIAL_LIMB_LENGTH 2
 #define LIMB_BYTES 8
 
 #define LESS -1
