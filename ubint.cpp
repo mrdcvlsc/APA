@@ -29,7 +29,7 @@ namespace apa {
     ubint::ubint(const ubint& src) {
         capacity = src.capacity;
         length   = src.length;
-        limbs = (uint64_t*) malloc(src.length*LIMB_BYTES);
+        limbs = (uint64_t*) malloc(capacity*LIMB_BYTES);
         memcpy(limbs,src.limbs,length*LIMB_BYTES);
     }
 
@@ -43,11 +43,12 @@ namespace apa {
 
     /// copy assignment.
     ubint& ubint::operator=(const ubint& src) {
-        if(capacity < src.capacity)
-            limbs = (uint64_t*) realloc(limbs,src.length*LIMB_BYTES);
+        if(capacity < src.capacity) {
+            limbs = (uint64_t*) realloc(limbs,src.capacity*LIMB_BYTES);
+            capacity = src.capacity;
+        }
 
-        capacity = src.capacity;
-        length   = src.length;
+        length = src.length;
         memcpy(limbs,src.limbs,src.length*LIMB_BYTES);
 
         return *this;
@@ -119,7 +120,7 @@ namespace apa {
             limbs = (uint64_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
 
-        if(length<op.length) {
+        if(length<=op.length) {
             memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
         }
 
@@ -149,7 +150,8 @@ namespace apa {
 
     ubint ubint::operator+(const ubint& op) const {
         ubint sum = *this;
-        return (sum+=op);
+        sum += op;
+        return sum;
     }
     
     ubint& ubint::operator-=(const ubint& op) {
