@@ -66,6 +66,16 @@ namespace apa {
         return *this;
     }
 
+    ubint& ubint::operator=(std::initializer_list<uint32_t> limbs) {
+        capacity = limbs.size()*2;
+        length = limbs.size();
+        this->limbs = (uint64_t*) malloc(capacity*LIMB_BYTES);
+        size_t i = 0;
+        for(auto limb : limbs) {
+            this->limbs[length-1-i++] = limb;
+        }
+    }
+
     ubint::~ubint() {
         if(limbs != NULL)
             free(limbs);

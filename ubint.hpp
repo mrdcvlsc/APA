@@ -49,6 +49,8 @@ namespace apa {
             /// move assignment.
             ubint& operator=(ubint&& src) noexcept;
 
+            ubint& operator=(std::initializer_list<uint32_t> limbs);
+
             ~ubint();
 
             /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
@@ -57,7 +59,7 @@ namespace apa {
 
             ubint& operator+=(const ubint& op);
             ubint operator+(const ubint& op) const;
-            
+
             ubint& operator-=(const ubint& op);
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
