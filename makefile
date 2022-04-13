@@ -19,6 +19,7 @@ test: $(OBJ)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out
+	@./$(SRC)/ubint_add.out
 
 # -------------------------- test program compilation ---------------------------
 
