@@ -66,7 +66,8 @@ namespace apa {
         return *this;
     }
 
-    ubint& ubint::operator=(std::initializer_list<uint32_t> limbs) {
+
+    ubint::ubint(std::initializer_list<uint32_t> limbs) {
         capacity = limbs.size()*2;
         length = limbs.size();
         this->limbs = (uint64_t*) malloc(capacity*LIMB_BYTES);
@@ -84,9 +85,17 @@ namespace apa {
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
     int ubint::compare(const ubint& op) const {
 
+        if(length<op.length)
+            return -1;
+        
+        if(length>op.length)
+            return 1;
+
         for(size_t i=0; i<length; ++i) {
+
             if(limbs[length-1-i]<op.limbs[length-1-i])
                 return -1;
+                
             else if(limbs[length-1-i]>op.limbs[length-1-i])
                 return 1;
         }

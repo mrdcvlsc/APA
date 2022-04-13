@@ -8,15 +8,17 @@ int main() {
     apa::ubint a;
     apa::ubint b(value);
     apa::ubint c;
+    apa::ubint d = { (uint32_t)(value>>32), (uint32_t)value};
+    apa::ubint x = { 0xfeed, 0xfaf, 0xbeef};
+    apa::ubint y = x;
+    apa::ubint z;
+    z = x;
+    
     a.limbs[0] = (uint32_t) value;
     a.limbs[1] = value >> 32;
     c = a;
 
-    a.printHex();
-    b.printHex();
-    c.printHex();
-
-    if(a==b && a==c) {
+    if(a==b && a==c && a==d && x==y && x==z) {
         std::cout << "test 1 : PASSED\n";
         return 0;
     }

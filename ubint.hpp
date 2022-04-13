@@ -49,7 +49,7 @@ namespace apa {
             /// move assignment.
             ubint& operator=(ubint&& src) noexcept;
 
-            ubint& operator=(std::initializer_list<uint32_t> limbs);
+            ubint(std::initializer_list<uint32_t> limbs);
 
             ~ubint();
 
@@ -65,6 +65,13 @@ namespace apa {
             ubint operator/(const ubint& op) const;
 
             void printHex() const;
+            void printStatus(std::string printIdentifier="default") const {
+                std::cout << "\n-----\n";
+                std::cout << printIdentifier << "\n";
+                std::cout << "capacity : " << capacity << "\n";
+                std::cout << "length   : " << length << "\n";
+                printHex();
+            }
     };
 }
 #endif
