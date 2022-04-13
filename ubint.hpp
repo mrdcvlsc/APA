@@ -21,6 +21,7 @@
 #define UBINT_INITIAL_LIMB_CAPACITY 4
 #define UBINT_INITIAL_LIMB_LENGTH 2
 #define LIMB_BYTES 8
+#define LIMB_EXPANSION 2
 
 #define LESS -1
 #define EQUAL 0
@@ -55,6 +56,8 @@ namespace apa {
             bool operator==(const ubint& op) const;
 
             ubint& operator+=(const ubint& op);
+            ubint operator+(const ubint& op) const;
+            
             ubint& operator-=(const ubint& op);
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;

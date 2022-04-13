@@ -89,8 +89,48 @@ namespace apa {
     }
 
     ubint& ubint::operator+=(const ubint& op) {
-        *this = op;
+        
+        if(capacity<=op.length+1) {
+            capacity = op.length*LIMB_EXPANSION;
+            limbs = (uint64_t*) realloc(limbs,capacity*LIMB_BYTES);
+        }
+        
+        if(length==capacity) {
+            capacity = length*LIMB_EXPANSION;
+            limbs = (uint64_t*) realloc(limbs,capacity*LIMB_BYTES);
+        }
+
+        if(length<op.length) {
+            memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
+        }
+
+        for(size_t i=0; i<op.length; ++i) {
+            limbs[i] += op.limbs[i];
+            limbs[i+1] += (limbs[i] >> 32);
+            limbs[i] = (uint32_t) limbs[i];
+        }
+
+        for(size_t i=op.length; i<length; ++i) {
+            uint64_t carry = limbs[i] >> 32;
+            if(carry) {
+                limbs[i+1] += carry;
+                limbs[i] = (uint32_t) limbs[i];
+            }
+            else {
+                break;
+            }
+        }
+
+        length = std::max(length,op.length);
+
+        if(limbs[length]) length++;
+
         return *this;
+    }
+
+    ubint ubint::operator+(const ubint& op) const {
+        ubint sum = *this;
+        return (sum+=op);
     }
     
     ubint& ubint::operator-=(const ubint& op) {
