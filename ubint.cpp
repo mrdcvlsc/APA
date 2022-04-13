@@ -75,14 +75,12 @@ namespace apa {
     int ubint::compare(const ubint& op) const {
 
         for(size_t i=0; i<length; ++i) {
-
-            if(limbs[length-1-i]<op.limbs[length-1-i]) {
+            if(limbs[length-1-i]<op.limbs[length-1-i])
                 return -1;
-            }
-            else if(limbs[length-1-i]>op.limbs[length-1-i]) {
+            else if(limbs[length-1-i]>op.limbs[length-1-i])
                 return 1;
-            }
         }
+
         return 0;
     }
 
