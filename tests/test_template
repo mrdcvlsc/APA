@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+
+#ifndef _MAKE_LIB
+#include "../ubint.hpp"
+#else
+#include <ubint.hpp>
+#endif
+
+#include "mini-test.hpp"
+
+
+int main() { START_TEST;
+
+    // ASSERT_UBINT(UBINT_A,UBINT_A,"SPECIFIC_TEST_NAME");
+
+    RESULT("MAIN TEST NAME");
+}
