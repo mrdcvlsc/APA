@@ -5,9 +5,13 @@
 #include <cstring>
 
 #if (__MINGW64__ || __MINGW64)
-#define PRINT_LIMBHEX "%08llx "
+#define PRINT_LIMBHEX_NOPAD "%llx"
+#define PRINT_LIMBHEX "%08llx"
+#define PRINT_LIMBHEX_SPACED " %08llx"
 #elif (__clang__ || __GNUC__ || __GNUG__)
-#define PRINT_LIMBHEX "%08lx "
+#define PRINT_LIMBHEX_NOPAD "%lx"
+#define PRINT_LIMBHEX "%08lx"
+#define PRINT_LIMBHEX_SPACED " %08lx"
 #else
 #error not supported
 #endif
@@ -65,13 +69,8 @@ namespace apa {
             ubint operator/(const ubint& op) const;
 
             void printHex() const;
-            void printStatus(std::string printIdentifier="default") const {
-                std::cout << "\n-----\n";
-                std::cout << printIdentifier << "\n";
-                std::cout << "capacity : " << capacity << "\n";
-                std::cout << "length   : " << length << "\n";
-                printHex();
-            }
+            void printHex_spaced_out() const;
+            void printStatus(std::string printIdentifier="default") const;
     };
 }
 #endif

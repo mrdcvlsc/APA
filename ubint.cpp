@@ -169,9 +169,25 @@ namespace apa {
 
     void ubint::printHex() const {
         std::cout << "0x";
-        for(size_t i=0; i<length; ++i)
+        printf(PRINT_LIMBHEX_NOPAD,limbs[length-1]);
+        for(size_t i=1; i<length; ++i)
             printf(PRINT_LIMBHEX,limbs[length-1-i]);
         std::cout << "\n";
+    }
+
+    void ubint::printHex_spaced_out() const {
+        printf(PRINT_LIMBHEX,limbs[length-1]);
+        for(size_t i=1; i<length; ++i)
+            printf(PRINT_LIMBHEX_SPACED,limbs[length-1-i]);
+        std::cout << "\n";
+    }
+
+    void ubint::printStatus(std::string printIdentifier) const {
+        std::cout << "\n-----\n";
+        std::cout << printIdentifier << "\n";
+        std::cout << "capacity : " << capacity << "\n";
+        std::cout << "length   : " << length << "\n";
+        printHex_spaced_out();
     }
 }
 
