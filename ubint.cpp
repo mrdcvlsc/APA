@@ -12,24 +12,24 @@
 
 namespace apa {
     ubint::ubint() {
-        capacity = UBINT_INITIAL_LIMB_CAPACITY;
-        length = UBINT_INITIAL_LIMB_LENGTH;
-        limbs = (uint64_t*) malloc(UBINT_INITIAL_LIMB_CAPACITY*LIMB_BYTES);
+        capacity = INITIAL_LIMB_CAPACITY;
+        length = INITIAL_LIMB_LENGTH;
+        limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
-    ubint::ubint(uint64_t num) {
-        capacity = UBINT_INITIAL_LIMB_CAPACITY;
-        length = UBINT_INITIAL_LIMB_LENGTH;
-        limbs = (uint64_t*) malloc(UBINT_INITIAL_LIMB_CAPACITY*LIMB_BYTES);
-        limbs[0] = (uint32_t) num;
-        limbs[1] = num >> 32;
+    ubint::ubint(limb_t num) {
+        capacity = INITIAL_LIMB_CAPACITY;
+        length = INITIAL_LIMB_LENGTH;
+        limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
+        limbs[0] = (base_t) num;
+        limbs[1] = num >> BASE_BITS;
     }
 
     /// copy constructor.
     ubint::ubint(const ubint& src) {
         capacity = src.capacity;
         length   = src.length;
-        limbs = (uint64_t*) malloc(capacity*LIMB_BYTES);
+        limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         memcpy(limbs,src.limbs,length*LIMB_BYTES);
     }
 
@@ -44,7 +44,7 @@ namespace apa {
     /// copy assignment.
     ubint& ubint::operator=(const ubint& src) {
         if(capacity < src.capacity) {
-            limbs = (uint64_t*) realloc(limbs,src.capacity*LIMB_BYTES);
+            limbs = (limb_t*) realloc(limbs,src.capacity*LIMB_BYTES);
             capacity = src.capacity;
         }
 
@@ -68,10 +68,10 @@ namespace apa {
     }
 
 
-    ubint::ubint(std::initializer_list<uint32_t> limbs) {
-        capacity = limbs.size()*2;
+    ubint::ubint(std::initializer_list<base_t> limbs) {
+        capacity = limbs.size()*LIMB_GROWTH_FACTOR;
         length = limbs.size();
-        this->limbs = (uint64_t*) malloc(capacity*LIMB_BYTES);
+        this->limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         size_t i = 0;
         for(auto limb : limbs) {
             this->limbs[length-1-i++] = limb;
@@ -111,13 +111,13 @@ namespace apa {
     ubint& ubint::operator+=(const ubint& op) {
         
         if(capacity<=op.length+1) {
-            capacity = op.length*LIMB_EXPANSION;
-            limbs = (uint64_t*) realloc(limbs,capacity*LIMB_BYTES);
+            capacity = op.length*LIMB_GROWTH_FACTOR;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
         
         if(length==capacity) {
-            capacity = length*LIMB_EXPANSION;
-            limbs = (uint64_t*) realloc(limbs,capacity*LIMB_BYTES);
+            capacity = length*LIMB_GROWTH_FACTOR;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
 
         if(length<=op.length) {
@@ -126,15 +126,15 @@ namespace apa {
 
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] += op.limbs[i];
-            limbs[i+1] += (limbs[i] >> 32);
-            limbs[i] = (uint32_t) limbs[i];
+            limbs[i+1] += (limbs[i] >> BASE_BITS);
+            limbs[i] = (base_t) limbs[i];
         }
 
         for(size_t i=op.length; i<length; ++i) {
-            uint64_t carry = limbs[i] >> 32;
+            limb_t carry = limbs[i] >> BASE_BITS;
             if(carry) {
                 limbs[i+1] += carry;
-                limbs[i] = (uint32_t) limbs[i];
+                limbs[i] = (base_t) limbs[i];
             }
             else {
                 break;

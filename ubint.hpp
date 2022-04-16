@@ -16,27 +16,32 @@
 #error not supported
 #endif
 
-// BASE => MAX VALUE OF EACH LIMBS CAN HOLD
-
-#define UBINT_BASE 4294967295
-#define UBINT_BASEBITS 32
-#define UBINT_BASEBYTES 4
-
-#define UBINT_INITIAL_LIMB_CAPACITY 4
-#define UBINT_INITIAL_LIMB_LENGTH 2
-#define LIMB_BYTES 8
-#define LIMB_EXPANSION 2
-
+#define BITS_PER_BYTE 8
 #define LESS -1
 #define EQUAL 0
 #define GREAT 1
 
 namespace apa {
+
+    typedef uint32_t base_t;
+    typedef uint64_t limb_t; // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
+
+    const static size_t BASE = 4294967295;
+    constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
+    constexpr static size_t BASE_BYTES = BASE_BITS/8;
+
+    constexpr static size_t LIMB_BITS = BASE_BITS*2;
+    constexpr static size_t LIMB_BYTES = BASE_BYTES*2;
+
+    const static size_t INITIAL_LIMB_CAPACITY = 4;
+    const static size_t INITIAL_LIMB_LENGTH = 2;
+    const static size_t LIMB_GROWTH_FACTOR = 2;
+
     class ubint {
         public:
             size_t capacity;
             size_t length;
-            uint64_t *limbs;
+            limb_t *limbs;
 
             ubint();
             ubint(size_t num);
