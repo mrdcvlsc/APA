@@ -44,7 +44,7 @@ namespace apa {
             limb_t *limbs;
 
             ubint();
-            ubint(size_t num);
+            ubint(limb_t num);
 
             /// copy constructor.
             ubint(const ubint& src);
@@ -58,7 +58,7 @@ namespace apa {
             /// move assignment.
             ubint& operator=(ubint&& src) noexcept;
 
-            ubint(std::initializer_list<uint32_t> limbs);
+            ubint(std::initializer_list<base_t> limbs);
 
             ~ubint();
 
