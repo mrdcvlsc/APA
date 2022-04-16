@@ -1,5 +1,6 @@
+BASE:=BASE_32
 CC := g++
-TESTFLAGS := -g -Og -D_HIDE_WARNING
+TESTFLAGS := -g -Og -D_HIDE_WARNING -D_$(BASE)
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
@@ -16,6 +17,7 @@ OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
 test: $(OBJ)
 	@echo OS : $(OS)
+	@echo LIMB : $(BASE)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out

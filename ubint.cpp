@@ -168,18 +168,33 @@ namespace apa {
     }
 
     void ubint::printHex() const {
+#ifdef _BASE_64
+        std::cout << "0x";
+        printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
+        for(size_t i=1; i<length; ++i)
+            printf(PRINT_LIMBHEX, (base_t) limbs[length-1-i]);
+        std::cout << "\n";
+#else
         std::cout << "0x";
         printf(PRINT_LIMBHEX_NOPAD,limbs[length-1]);
         for(size_t i=1; i<length; ++i)
             printf(PRINT_LIMBHEX,limbs[length-1-i]);
         std::cout << "\n";
+#endif
     }
 
     void ubint::printHex_spaced_out() const {
+#ifdef _BASE_64
+        printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
+        for(size_t i=1; i<length; ++i)
+            printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
+        std::cout << "\n";
+#else
         printf(PRINT_LIMBHEX,limbs[length-1]);
         for(size_t i=1; i<length; ++i)
             printf(PRINT_LIMBHEX_SPACED,limbs[length-1-i]);
         std::cout << "\n";
+#endif
     }
 
     void ubint::printStatus(std::string printIdentifier) const {

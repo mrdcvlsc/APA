@@ -4,16 +4,30 @@
 #include <iostream>
 #include <cstring>
 
-#if (__MINGW64__ || __MINGW64)
-#define PRINT_LIMBHEX_NOPAD "%llx"
-#define PRINT_LIMBHEX "%08llx"
-#define PRINT_LIMBHEX_SPACED " %08llx"
-#elif (__clang__ || __GNUC__ || __GNUG__)
-#define PRINT_LIMBHEX_NOPAD "%lx"
-#define PRINT_LIMBHEX "%08lx"
-#define PRINT_LIMBHEX_SPACED " %08lx"
-#else
-#error not supported
+#ifdef _BASE_64
+    #if (__MINGW64__ || __MINGW64)
+        #define PRINT_LIMBHEX_NOPAD "%llx"
+        #define PRINT_LIMBHEX "%16llx"
+        #define PRINT_LIMBHEX_SPACED " %16llx"
+    #elif (__clang__ || __GNUC__ || __GNUG__)
+        #define PRINT_LIMBHEX_NOPAD "%lx"
+        #define PRINT_LIMBHEX "%016lx"
+        #define PRINT_LIMBHEX_SPACED " %016lx"
+    #else
+        #error not supported
+    #endif
+#elif defined(_BASE_32)
+    #if (__MINGW64__ || __MINGW64)
+        #define PRINT_LIMBHEX_NOPAD "%llx"
+        #define PRINT_LIMBHEX "%08llx"
+        #define PRINT_LIMBHEX_SPACED " %08llx"
+    #elif (__clang__ || __GNUC__ || __GNUG__)
+        #define PRINT_LIMBHEX_NOPAD "%lx"
+        #define PRINT_LIMBHEX "%08lx"
+        #define PRINT_LIMBHEX_SPACED " %08lx"
+    #else
+        #error not supported
+    #endif
 #endif
 
 #define BITS_PER_BYTE 8
@@ -23,8 +37,14 @@
 
 namespace apa {
 
+    // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
+#ifdef _BASE_64
+    typedef uint64_t base_t;
+    typedef __uint128_t limb_t;
+#else
     typedef uint32_t base_t;
-    typedef uint64_t limb_t; // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
+    typedef uint64_t limb_t;
+#endif
 
     const static size_t BASE = 4294967295;
     constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
