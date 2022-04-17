@@ -4,10 +4,6 @@
 #include <iostream>
 #include <cstring>
 
-#if (!defined(_BASE2_64) && !defined(_BASE2_32))
-    #define _BASE2_32
-#endif
-
 #ifdef _BASE2_64
     #if (__MINGW64__ || __MINGW64)
         #define PRINT_LIMBHEX_NOPAD "%llx"
@@ -34,13 +30,13 @@
     #endif
 #elif defined(_BASE2_16)
     #if (__MINGW64__ || __MINGW64)
-        #define PRINT_LIMBHEX_NOPAD "%llx"
-        #define PRINT_LIMBHEX "%04llx"
-        #define PRINT_LIMBHEX_SPACED " %04llx"
+        #define PRINT_LIMBHEX_NOPAD "%x"
+        #define PRINT_LIMBHEX "%04x"
+        #define PRINT_LIMBHEX_SPACED " %04x"
     #elif (__clang__ || __GNUC__ || __GNUG__)
-        #define PRINT_LIMBHEX_NOPAD "%lx"
-        #define PRINT_LIMBHEX "%04lx"
-        #define PRINT_LIMBHEX_SPACED " %04lx"
+        #define PRINT_LIMBHEX_NOPAD "%x"
+        #define PRINT_LIMBHEX "%04x"
+        #define PRINT_LIMBHEX_SPACED " %04x"
     #else
         #error not supported
     #endif
@@ -65,7 +61,6 @@ namespace apa {
     typedef uint32_t limb_t;
 #endif
 
-    const static size_t BASE = 4294967295;
     constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
     constexpr static size_t BASE_BYTES = BASE_BITS/8;
 

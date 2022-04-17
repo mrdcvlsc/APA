@@ -22,7 +22,47 @@ apa::ubint fib(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
 
 int main() { START_TEST;
 
-    #if defined(_BASE2_32)
+    #if defined(_BASE2_16)
+    {
+        apa::ubint fib250C = {0x151a, 0xe2a8, 0x207e, 0xf442, 0x5d98, 0x671d, 0xe203, 0xbfb8, 0x94e8, 0xf601, 0xe617};
+        apa::ubint fib250 = fib(250);
+
+        apa::ubint fib1000C = {
+            0x0021, 0xd8cb, 0x07b5, 0x72c2, 0x5732, 0xbb11, 0x6f2c, 0x33ba,
+            0xb0e8, 0x3d0c, 0x699b, 0xad1a, 0x727a, 0x736a, 0x7e42, 0xca93,
+            0xb697, 0xad22, 0x4d55, 0x3983, 0x7306, 0x2f18, 0xff62, 0xb99c,
+            0x2806, 0x8131, 0xa3fa, 0xb0c1, 0x2e35, 0x1028, 0x3c1d, 0x60b0,
+            0x0930, 0xb7e8, 0x803c, 0x312b, 0x4c8e, 0x6d52, 0x8680, 0x5fc7,
+            0x0b59, 0x4dc7, 0x5cc0, 0x604b
+        };
+
+        apa::ubint fib1000 = fib(1000);
+
+        apa::ubint fib1000_b9_9C = {
+            0x01ec, 0xe35e, 0x12b8, 0xf7fd, 0x9e08, 0x4739, 0xb608, 0x8668, 0x08ac, 0xe0dc, 0x4c10, 0x6578, 0x20ca, 0xa252,
+            0xe2fa, 0x0002, 0x1d82, 0x3420, 0x41f1, 0x1620, 0xb67c, 0xf41c, 0xfdef, 0xdd9d, 0x0a54, 0x345f, 0x2538, 0xb61f,
+            0xf4ed, 0x143f, 0xbc6a, 0xc884, 0x4f99, 0x801d, 0xe4b9, 0xb936, 0x9b38, 0x754e, 0x700b, 0x129b, 0x6e09, 0xdae4,
+            0xc340, 0x6855
+        };
+
+        apa::ubint fib1000_1_99927737 = fib(1000,1,99927737);
+        apa::ubint fib1000_1_99927737_C = {
+            0xc998, 0xdee1, 0x8201, 0x1030, 0x7276, 0x9e7e, 0xe803, 0xca11, 0x3a44, 0x6de2, 0x7f3c,
+            0x67e4, 0xdd91, 0x6c39, 0x09d9, 0x95b4, 0xd857, 0x794c, 0x412a, 0xcd27, 0xa845, 0x782f, 0x308f,
+            0x6e20, 0xaafc, 0x5b0a, 0x5a45, 0xe69c, 0x8045, 0x1998, 0x4738, 0x2904, 0xaad4, 0x42a7, 0x5a69,
+            0xddcd, 0xe1af, 0xd690, 0xb6d3, 0xbdf4, 0x3f19, 0xbf2d, 0x5a97, 0x01d0, 0x98d5
+        };
+
+        apa::ubint fib1000_b9_9 = fib(1000,9,9);
+
+        ASSERT_UBINT(fib250,fib250C,"FIB(250)");
+        ASSERT_UBINT(fib1000,fib1000C,"FIB(1000)");
+        ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
+
+        RESULT("UBINT BASE 2^16 ADDITION");
+    }
+    #elif defined(_BASE2_32)
     {
         apa::ubint fib250C = {0x151a, 0xe2a8207e, 0xf4425d98, 0x671de203, 0xbfb894e8, 0xf601e617};
         apa::ubint fib250 = fib(250);
@@ -60,9 +100,7 @@ int main() { START_TEST;
         ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
         ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
-        fib1000.printHex();
-
-        RESULT("UBINT BASE32 ADDITION");
+        RESULT("UBINT BASE 2^32 ADDITION");
     }
     #elif defined(_BASE2_64)
     {
@@ -100,9 +138,7 @@ int main() { START_TEST;
         ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
         ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
-        fib1000.printHex();
-
-        RESULT("UBINT BASE64 ADDITION");
+        RESULT("UBINT BASE 2^64 ADDITION");
     }
     #endif
 }
