@@ -22,7 +22,7 @@ apa::ubint fib(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
 
 int main() { START_TEST;
 
-    if(apa::BASE_BITS==32)
+    #if defined(_BASE2_32)
     {
         apa::ubint fib250C = {0x151a, 0xe2a8207e, 0xf4425d98, 0x671de203, 0xbfb894e8, 0xf601e617};
         apa::ubint fib250 = fib(250);
@@ -60,9 +60,11 @@ int main() { START_TEST;
         ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
         ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
+        fib1000.printHex();
+
         RESULT("UBINT BASE32 ADDITION");
     }
-    else if(apa::BASE_BITS==64)
+    #elif defined(_BASE2_64)
     {
         apa::ubint fib250C = {0x151ae2a8207e, 0xf4425d98671de203, 0xbfb894e8f601e617};
         apa::ubint fib250 = fib(250);
@@ -98,7 +100,9 @@ int main() { START_TEST;
         ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
         ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
+        fib1000.printHex();
+
         RESULT("UBINT BASE64 ADDITION");
     }
-    
+    #endif
 }

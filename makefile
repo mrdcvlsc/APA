@@ -1,6 +1,6 @@
-BASE:=BASE_32
+BASE2_RAISED_BY:=DEFAULT_TO_32
 CC := g++
-TESTFLAGS := -g -Og -D_HIDE_WARNING -D_$(BASE)
+TESTFLAGS := -g -Og -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED_BY)
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
@@ -17,7 +17,7 @@ OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
 test: $(OBJ)
 	@echo OS : $(OS)
-	@echo LIMB : $(BASE)
+	@echo LIMB : Base2^$(BASE2_RAISED_BY)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out

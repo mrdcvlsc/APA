@@ -2,7 +2,7 @@
 
 int main() {
     
-    if(apa::BASE_BITS==32)
+    #if defined(_BASE2_32)
     {
         std::cout << "===== Constructor Tests - Base32 =====\n";
         uint64_t value = 0xfedcab8761aff37a;
@@ -29,7 +29,8 @@ int main() {
             return 0;
         }
     }
-    else if(apa::BASE_BITS==64) {
+    #elif defined(_BASE2_64)
+    {
         std::cout << "===== Constructor Tests - Base64 =====\n";
         uint64_t value = 0xfedcab8761aff37a;
 
@@ -55,4 +56,5 @@ int main() {
             return 0;
         }
     }
+    #endif
 }
