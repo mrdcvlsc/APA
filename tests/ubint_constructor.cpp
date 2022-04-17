@@ -29,14 +29,6 @@ int main() {
 
         c = a;
 
-        a.printHex();
-        b.printHex();
-        c.printHex();
-        d.printHex();
-        x.printHex();
-        y.printHex();
-        z.printHex();
-
         if(a==b && a==c && a==d && x==y && x==z) {
             std::cout << "test 1 : PASSED\n";
             return 0;
