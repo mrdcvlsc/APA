@@ -20,7 +20,7 @@ else { \
 }
 
 #define RESULT(MAIN_TEST_NAME) \
-std::cout << "-------------------------------\n"; \
+std::cout << "----------------------------------------------\n"; \
 std::cout <<"    " << MAIN_TEST_NAME << " : "; \
 for(auto e : TEST_RESULTS) { \
     if(!e) { \
@@ -29,6 +29,7 @@ for(auto e : TEST_RESULTS) { \
     } \
 } \
 std::cout << "PASSED\n"; \
+std::cout << "----------------------------------------------\n\n"; \
         return 0;
 
 #endif
