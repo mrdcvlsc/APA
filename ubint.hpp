@@ -104,6 +104,8 @@ namespace apa {
             ubint operator+(const ubint& op) const;
 
             ubint& operator-=(const ubint& op);
+            ubint operator-(const ubint& op) const;
+
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
 

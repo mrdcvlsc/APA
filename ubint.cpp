@@ -155,8 +155,41 @@ namespace apa {
     }
     
     ubint& ubint::operator-=(const ubint& op) {
-        *this = op;
+        
+        limb_t carry = 0;
+
+        for(size_t i=0; i<op.length; ++i) {
+            limbs[i] -= carry;
+            limbs[i] -= op.limbs[i];
+
+            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            limbs[i] = (base_t) limbs[i];
+        }
+
+        for(size_t i=op.length; i<length; ++i) {
+            limbs[i] -= carry;
+
+            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            limbs[i] = (base_t) limbs[i];
+        }
+
+        size_t ms_index = length-1;
+        while(ms_index) {
+            if(limbs[ms_index]) {
+                break;
+            }
+            --ms_index;
+        }
+
+        length = ms_index+1;
+
         return *this;
+    }
+
+    ubint ubint::operator-(const ubint& op) const {
+        ubint dif = *this;
+        dif -= op;
+        return dif;
     }
     
     ubint ubint::operator*(const ubint& op) const {
