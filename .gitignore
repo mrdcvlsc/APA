@@ -7,3 +7,4 @@ ChaCha20-Poly1305.hpp
 static
 *.py
 .txt
+test.cpp
