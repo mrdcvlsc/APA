@@ -19,6 +19,17 @@ else { \
     TEST_RESULTS.push_back(false); \
 }
 
+#define FOURWAY_ASSERT_UBINT(A,B,C,D,SPECIFIC_TEST_NAME) \
+std::cout << SPECIFIC_TEST_NAME << " : "; \
+if(A==B && C==D && A==D) { \
+    std::cout << "PASSED\n"; \
+    TEST_RESULTS.push_back(true); \
+} \
+else { \
+    std::cout << "FAILED\n"; \
+    TEST_RESULTS.push_back(false); \
+}
+
 #define RESULT(MAIN_TEST_NAME) \
 std::cout << "----------------------------------------------\n"; \
 std::cout <<"    " << MAIN_TEST_NAME << " : "; \

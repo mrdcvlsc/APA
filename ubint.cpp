@@ -133,8 +133,8 @@ namespace apa {
         for(size_t i=op.length; i<length; ++i) {
             limb_t carry = limbs[i] >> BASE_BITS;
             if(carry) {
-                limbs[i+1] += carry;
                 limbs[i] = (base_t) limbs[i];
+                limbs[i+1] += carry;
             }
             else {
                 break;
@@ -143,7 +143,7 @@ namespace apa {
 
         length = std::max(length,op.length);
 
-        if(limbs[length]) length++;
+        if(limbs[length]==1) length++;
 
         return *this;
     }
