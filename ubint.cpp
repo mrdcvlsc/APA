@@ -237,7 +237,12 @@ namespace apa {
         std::cout << "length   : " << length << "\n";
         printHex_spaced_out();
     }
-}
 
+    void swap(ubint& a, ubint& b) {
+        ubint temp = std::move(a);
+        a = std::move(b);
+        b = std::move(temp);
+    }
+}
 
 #endif

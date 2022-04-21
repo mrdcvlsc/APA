@@ -113,6 +113,8 @@ namespace apa {
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
     };
+
+    void swap(ubint& a, ubint& b);
 }
 #endif
 

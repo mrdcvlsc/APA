@@ -39,6 +39,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_constructor.out
 	@./$(SRC)/ubint_add.out
 	@./$(SRC)/ubint_sub.out
+	@./$(SRC)/ubint_swap.out
 
 # -------------------------- test program compilation ---------------------------
 
