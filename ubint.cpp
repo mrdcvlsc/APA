@@ -73,7 +73,7 @@ namespace apa {
             memset(limbs,0x0,capacity*LIMB_BYTES);
 
             for(size_t i=0; i<text.size(); ++i) {
-                
+
                 unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[i]);
                 if(CharByte==0xff)
                     break;
@@ -81,6 +81,13 @@ namespace apa {
                 size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
                 limbs[i/LIMB_BYTES] |= CharByte * multiplier;
             }
+
+            size_t cut_length = 0;
+
+            while(!limbs[length-1-cut_length])
+                cut_length++;
+
+            length -= cut_length;
         }
         else {
             // base 10
