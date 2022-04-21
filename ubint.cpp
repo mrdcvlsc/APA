@@ -201,8 +201,32 @@ namespace apa {
         return dif;
     }
     
+    ubint& ubint::operator*=(const ubint& op) {
+        ubint product = *this * op;
+        swap(product,*this);
+        return *this;
+    }
+
     ubint ubint::operator*(const ubint& op) const {
-        return op;
+        ubint product(length+op.length,length+op.length);
+        memset(product.limbs,0x0,product.capacity*LIMB_BYTES);
+        
+        for(size_t i=0; i<op.length; ++i) {
+            for(size_t j=0; j<length; ++j) {
+                product.limbs[i+j] += limbs[j] * op.limbs[i];
+                limb_t carry = product.limbs[i+j] >> BASE_BITS;
+
+                if(carry) {
+                    product.limbs[i+j] = (base_t) product.limbs[i+j];
+                    product.limbs[i+j+1] += carry;
+                }
+            }
+        }
+
+        if(!product.limbs[product.length-1])
+            product.length--;
+
+        return product;
     }
     
     ubint ubint::operator/(const ubint& op) const {
