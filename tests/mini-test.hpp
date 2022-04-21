@@ -32,7 +32,7 @@ else { \
 
 #define RESULT(MAIN_TEST_NAME) \
 std::cout << "----------------------------------------------\n"; \
-std::cout <<"    " << MAIN_TEST_NAME << " : "; \
+std::cout <<"    " << MAIN_TEST_NAME << "(" << __FILE__  << ") : "; \
 for(auto e : TEST_RESULTS) { \
     if(!e) { \
         std::cout << "FAILED\n"; \

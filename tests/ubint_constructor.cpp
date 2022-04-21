@@ -1,8 +1,9 @@
 #include "../ubint.hpp"
+#include "mini-test.hpp"
 
-// #define _BASE2_16
+// #define _BASE2_64
 
-int main() {
+int main() { START_TEST;
     
     #if defined(_BASE2_16)
     {
@@ -29,14 +30,13 @@ int main() {
 
         c = a;
 
-        if(a==b && a==c && a==d && x==y && x==z) {
-            std::cout << "test 1 : PASSED\n";
-            return 0;
-        }
-        else {
-            std::cout << "test 1 : FAILED\n";
-            return 0;
-        }
+        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        
+        RESULT("UBINT BASE 2^16 CONSTRUCTORS");
     }
     #elif defined(_BASE2_32)
     {
@@ -56,14 +56,13 @@ int main() {
         a.limbs[1] = value >> 32;
         c = a;
 
-        if(a==b && a==c && a==d && x==y && x==z) {
-            std::cout << "test 1 : PASSED\n";
-            return 0;
-        }
-        else {
-            std::cout << "test 1 : FAILED\n";
-            return 0;
-        }
+        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        
+        RESULT("UBINT BASE 2^32 CONSTRUCTORS");
     }
     #elif defined(_BASE2_64)
     {
@@ -83,14 +82,13 @@ int main() {
         a.limbs[1] = 0;
         c = a;
 
-        if(a==b && a==c && a==d && x==y && x==z) {
-            std::cout << "test 1 : PASSED\n";
-            return 0;
-        }
-        else {
-            std::cout << "test 1 : FAILED\n";
-            return 0;
-        }
+        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        
+        RESULT("UBINT BASE 2^64 CONSTRUCTORS");
     }
     #endif
 }

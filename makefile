@@ -11,19 +11,23 @@ endif
 
 all_test:
 	@echo ===============================
-	@echo Basce 2^16 Test
+	@echo Base 2^16 Test
 	@make test BASE2_RAISED_BY=16
 	@make clean
 
 	@echo ===============================
-	@echo Basce 2^32 Test
+	@echo Base 2^32 Test
 	@make test BASE2_RAISED_BY=32
 	@make clean
 
 	@echo ===============================
-	@echo Basce 2^64 Test
+	@echo Base 2^64 Test
 	@make test BASE2_RAISED_BY=64
 	@make clean
+
+	@echo ===============================
+	@echo       ALL TESTS PASSED
+	@echo ===============================
 
 SRC := tests
 SRC_FILES := $(wildcard $(SRC)/*.cpp)

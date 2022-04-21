@@ -2,7 +2,11 @@
 #define UNSIGNED_BIG_INTEGER_HPP
 
 #include <iostream>
+#include <algorithm>
 #include <cstring>
+#include <cmath>
+
+// #define _BASE2_64
 
 #ifdef _BASE2_64
     #if (__MINGW64__ || __MINGW64)
@@ -47,6 +51,8 @@
 #define EQUAL 0
 #define GREAT 1
 
+#define PADDING(LENGTH,BLOCK) (LENGTH%BLOCK==0) ? 0 : (BLOCK-(LENGTH%BLOCK))
+
 namespace apa {
 
     // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
@@ -79,7 +85,9 @@ namespace apa {
 
             ubint();
             ubint(limb_t num);
+            ubint(std::initializer_list<base_t> limbs);
             ubint(size_t capacity, size_t length, bool AllocateSpace=true);
+            ubint(std::string text, bool isHex=true);
 
             /// copy constructor.
             ubint(const ubint& src);
@@ -92,8 +100,6 @@ namespace apa {
 
             /// move assignment.
             ubint& operator=(ubint&& src) noexcept;
-
-            ubint(std::initializer_list<base_t> limbs);
 
             ~ubint();
 

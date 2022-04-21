@@ -11,6 +11,30 @@
 #endif
 
 namespace apa {
+
+    unsigned char CHAR_TO_HEX(unsigned char c) {
+        switch (c)
+        {
+            case '0': return 0x0;
+            case '1': return 0x1;
+            case '2': return 0x2;
+            case '3': return 0x3;
+            case '4': return 0x4;
+            case '5': return 0x5;
+            case '6': return 0x6;
+            case '7': return 0x7;
+            case '8': return 0x8;
+            case '9': return 0x9;
+            case 'a': return 0xa;
+            case 'b': return 0xb;
+            case 'c': return 0xc;
+            case 'd': return 0xd;
+            case 'e': return 0xe;
+            case 'f': return 0xf;
+        }
+        return 0xff;
+    }
+
     ubint::ubint() {
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
@@ -32,6 +56,35 @@ namespace apa {
             limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         else
             limbs = NULL;
+    }
+
+    ubint::ubint(std::string text, bool isHex) {
+
+        if(isHex) {
+            std::reverse(text.begin(),text.end());
+
+            size_t blocks = text.size()/(LIMB_BYTES);
+            size_t remain = text.size()%(LIMB_BYTES);
+
+            length = blocks;
+            if(remain) length++;
+            capacity = length*LIMB_GROWTH_FACTOR;
+            limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+            memset(limbs,0x0,capacity*LIMB_BYTES);
+
+            for(size_t i=0; i<text.size(); ++i) {
+                
+                unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[i]);
+                if(CharByte==0xff)
+                    break;
+
+                size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
+                limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+            }
+        }
+        else {
+            // base 10
+        }
     }
 
     /// copy constructor.
