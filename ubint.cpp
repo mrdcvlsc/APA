@@ -25,6 +25,15 @@ namespace apa {
         limbs[1] = num >> BASE_BITS;
     }
 
+    ubint::ubint(size_t capacity, size_t length, bool AllocateSpace) {
+        this->capacity = capacity;
+        this->length = length;
+        if(AllocateSpace)
+            limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+        else
+            limbs = NULL;
+    }
+
     /// copy constructor.
     ubint::ubint(const ubint& src) {
         capacity = src.capacity;

@@ -79,6 +79,7 @@ namespace apa {
 
             ubint();
             ubint(limb_t num);
+            ubint(size_t capacity, size_t length, bool AllocateSpace=true);
 
             /// copy constructor.
             ubint(const ubint& src);
