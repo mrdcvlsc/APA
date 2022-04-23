@@ -35,4 +35,12 @@ If your system does not have these requirements, it might produce wrong results.
 
 -----
 
+# Description
+
 This is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers (bignum) that usually cannot fit in the standard C++ primitive data types.
+
+-----
+
+**About**
+
+This repository started as a personal hobby project not intended to replace big number libraries like [boost multiprecision](https://www.boost.org/doc/libs/1_72_0/libs/multiprecision/doc/html/index.html) and [gmplib](https://gmplib.org/) and is only for didactic purposes. Though performance is still a priority, meaning this library will... as much as possible, use the fastest and the most effecient algorithms and implementations THAT THE AUTHOR(s) KNOW OF.
