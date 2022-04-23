@@ -1,0 +1,17 @@
+name: mingw32
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  header-mode-tests:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: compile and run tests in header mode
+      run: make all_test
