@@ -1,6 +1,6 @@
 # APA - Arbitrary Precision Arithmetic
 
-A c++ library for big number computation (arbitrary-precision arithmetic).
+A c++ library for big integer and big number computation in general (arbitrary-precision arithmetic).
 
 # Version 4
 
@@ -38,6 +38,14 @@ If your system does not have these requirements, it might produce wrong results.
 # Description
 
 This is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers (bignum) that usually cannot fit in the standard C++ primitive data types.
+
+**user defined data types/classes**
+
+- ```apa::ubint``` dynamically big unsigned integers.
+- ```apa::bint``` dynamically big signed integers.
+- ```apa::bfloat``` dynamically big floating point numbers (real).
+
+The sizes of these data types are dynamic, meaning they are not fix and they can grow in size. There is no max value or range for these data types, and the only limit is the available memory of the device.
 
 -----
 
