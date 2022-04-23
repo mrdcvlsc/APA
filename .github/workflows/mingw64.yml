@@ -1,4 +1,4 @@
-name: mingw32
+name: mingw64
 
 on:
   push:
@@ -13,5 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: compile and run tests in header mode
-      run: make all_test
+    - name: compile and run tests in header mode base 2^16
+      run: make test BASE2_RAISED_BY=16
+    - name: clean
+      run: make clean
+    - name: compile and run tests in header mode base 2^32
+      run: make test BASE2_RAISED_BY=32
+    - name: clean
+      run: make clean
+    - name: compile and run tests in header mode base 2^64
+      run: make test BASE2_RAISED_BY=64
+    - name: clean
+      run: make clean
