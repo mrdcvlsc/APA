@@ -2,16 +2,20 @@
 
 A c++ library for big number computation (arbitrary-precision arithmetic).
 
-# Version 4 Notes
+# Version 4
 
-This branch **version 4** is a complete rewrite from the previous versions. **[A WORK IN PROGRESS]**
+[A WORK IN PROGRESS]
 
-Visit [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) branch for the previous working version
+This branch **version 4** is an ongoing rewrite of the whole library.
 
-New approaches:
-- using a larger base either **2^16**, **2^32** or **2^64** for the limbs (the user can choose during compilation which of the three bases they want to use), the old versions only use base **10^8**.
+Visit [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) branch for the latest previous working version and implementation.
+
+This version will address the problems in the previous versions.
+
+- This version will use a larger base either **2^16**, **2^32** or **2^64** for the limbs (the user can choose one of the three bases during compilation), the old versions only use base **10^8**, and the very first version uses a ```string``` of base 10 digits to implement big numbers which is very slow.
+- The total size of each limbs is doubled by it's base size, so for bases **2^16**, **2^32** and **2^64**, their limb size would be **2^32**, **2^64**, and **2^128**. (This would also mean that using **base 2^64** on 32-bit computers is not supported).
 - more effecient memory reallocation for ```--```, ```++```, ```+=``` and ```-=``` operators, kinda how ```std::vector```'s work when adding an element, wherin it implements a ```capacity()``` and ```size()``` and only reallocation the ```size()``` when the ```capacity()``` is reached.
-- due to using a base that is a power of **2** implementation of bitwiser and bitwise logical operators will be easier.
+- due to using a base that is a power of **2**, the implementation of bitwise and bitwise logical operators will be easier much easier.
 
 <!-- ![build](https://github.com/mrdcvlsc/uint320/actions/workflows/build.yml/badge.svg) -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -20,7 +24,7 @@ New approaches:
 
 ![gcc-gnu](https://github.com/mrdcvlsc/APA/actions/workflows/gcc-gnu.yml/badge.svg)
 ![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
-![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw32.yml/badge.svg)
+![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
 
 -----
 
