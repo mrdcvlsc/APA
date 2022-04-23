@@ -2,9 +2,9 @@ name: mingw32
 
 on:
   push:
-    branches: [ main ]
+    branches: [ version_4 ]
   pull_request:
-    branches: [ main ]
+    branches: [ version_4 ]
 
 jobs:
   header-mode-tests:
