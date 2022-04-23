@@ -12,10 +12,10 @@ Visit [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) branch for 
 
 This version will address the problems in the previous versions.
 
-- This version will use a larger base either **2^16**, **2^32** or **2^64** for the limbs (the user can choose one of the three bases during compilation), the old versions only use base **10^8**, and the very first version uses a ```string``` of base 10 digits to implement big numbers which is very slow.
-- The total size of each limbs is doubled by it's base size, so for bases **2^16**, **2^32** and **2^64**, their limb size would be **2^32**, **2^64**, and **2^128**. (This would also mean that using **base 2^64** on 32-bit computers is not supported).
-- more effecient memory reallocation for ```--```, ```++```, ```+=``` and ```-=``` operators, kinda how ```std::vector```'s work when adding an element, wherin it implements a ```capacity()``` and ```size()``` and only reallocation the ```size()``` when the ```capacity()``` is reached.
-- due to using a base that is a power of **2**, the implementation of bitwise and bitwise logical operators will be much easier.
+- This version will be able to use a larger number base to further increase the performance... either base **2<sup>16</sup>**, **2<sup>32</sup>** or **2<sup>64</sup>** for each digit limbs (the user can choose one of the three bases during compilation), the older versions (2-3) only used number base of **10<sup>8</sup>** which is faster than the very first version. version 1 uses a ```string``` of base 10 character digits to implement big numbers which is very slow.
+- The total size of each limbs is doubled by it's base size, so for bases **2<sup>16</sup>**, **2<sup>32</sup>** and **2<sup>64</sup>**, their limb size would be **2<sup>32</sup>**, **2<sup>64</sup>**, and **2<sup>128</sup>**. (This would also mean that using **base 2<sup>64</sup>** on 32-bit computers is not supported).
+- More effecient memory reallocation for ```--```, ```++```, ```+=``` and ```-=``` operators, kinda how ```std::vector```'s work when adding an element, wherin it implements a ```capacity()``` and ```size()``` and only reallocation the ```size()``` when the ```capacity()``` is reached.
+- Due to using a base that is a power of **2**, the implementation of bitwise and bitwise logical operators will be much easier.
 
 <!-- ![build](https://github.com/mrdcvlsc/uint320/actions/workflows/build.yml/badge.svg) -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
