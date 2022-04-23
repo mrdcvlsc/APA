@@ -46,7 +46,11 @@ namespace apa {
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
         limbs[0] = (base_t) num;
-        limbs[1] = num >> BASE_BITS;
+        limb_t high = num >> BASE_BITS;
+        if((base_t)high) {
+            limbs[1] = high;
+            length++;
+        }
     }
 
     ubint::ubint(size_t capacity, size_t length, bool AllocateSpace) {
@@ -269,7 +273,7 @@ namespace apa {
 
     ubint ubint::operator*(const ubint& op) const {
         ubint product(length+op.length,length+op.length);
-        memset(product.limbs,0x0,product.capacity*LIMB_BYTES);
+        memset(product.limbs,0x0,product.length*LIMB_BYTES);
         
         for(size_t i=0; i<op.length; ++i) {
             for(size_t j=0; j<length; ++j) {

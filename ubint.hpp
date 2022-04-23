@@ -73,8 +73,8 @@ namespace apa {
     constexpr static size_t LIMB_BITS = BASE_BITS*2;
     constexpr static size_t LIMB_BYTES = BASE_BYTES*2;
 
-    const static size_t INITIAL_LIMB_CAPACITY = 4;
-    const static size_t INITIAL_LIMB_LENGTH = 2;
+    const static size_t INITIAL_LIMB_CAPACITY = 2;
+    const static size_t INITIAL_LIMB_LENGTH = 1;
     const static size_t LIMB_GROWTH_FACTOR = 2;
 
     class ubint {

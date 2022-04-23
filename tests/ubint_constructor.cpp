@@ -9,7 +9,7 @@ int main() { START_TEST;
     {
         std::cout << "===== Constructor Tests - Base16 =====\n";
 
-        apa::ubint a;
+        apa::ubint a(4,0);
         apa::ubint b(0x61aff37a);
         apa::ubint c;
         apa::ubint d = { 0xfedc, 0xab87, 0x61af, 0xf37a };
@@ -18,6 +18,7 @@ int main() { START_TEST;
         apa::ubint z;
         z = x;
 
+        b.limbs = (apa::limb_t*) realloc(b.limbs,4*apa::LIMB_BYTES);
         b.length=4;
         b.limbs[2] = 0xab87;
         b.limbs[3] = 0xfedc;
@@ -79,7 +80,12 @@ int main() { START_TEST;
         
         a.limbs[0] = (uint32_t) value;
         a.limbs[1] = value >> 32;
+        a.length++;
         c = a;
+
+        a.printStatus("a");
+        b.printStatus("b");
+        d.printStatus("d");
 
         ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
         ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
@@ -122,7 +128,7 @@ int main() { START_TEST;
         apa::ubint a;
         apa::ubint b((apa::limb_t)value);
         apa::ubint c;
-        apa::ubint d = { 0 , value };
+        apa::ubint d = { value };
         apa::ubint x = { 0xfeed, 0xfaf0000beef};
         apa::ubint y = x;
         apa::ubint z;

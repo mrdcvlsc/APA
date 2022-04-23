@@ -41,9 +41,10 @@ test: $(OBJ)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out
+	@./$(SRC)/ubint_swap.out
 	@./$(SRC)/ubint_add.out
 	@./$(SRC)/ubint_sub.out
-	@./$(SRC)/ubint_swap.out
+	@./$(SRC)/ubint_mul.out
 
 # -------------------------- test program compilation ---------------------------
 
