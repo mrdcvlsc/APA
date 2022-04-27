@@ -75,7 +75,7 @@ namespace apa {
 
     const static size_t INITIAL_LIMB_CAPACITY = 2;
     const static size_t INITIAL_LIMB_LENGTH = 1;
-    const static size_t LIMB_GROWTH_FACTOR = 2;
+    const static size_t LIMB_GROWTH = 2;
 
     class ubint {
         public:

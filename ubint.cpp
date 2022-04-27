@@ -72,7 +72,7 @@ namespace apa {
 
             length = blocks;
             if(remain) length++;
-            capacity = length*LIMB_GROWTH_FACTOR;
+            capacity = length+LIMB_GROWTH;
             limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
             memset(limbs,0x0,capacity*LIMB_BYTES);
 
@@ -142,7 +142,7 @@ namespace apa {
 
 
     ubint::ubint(std::initializer_list<base_t> limbs) {
-        capacity = limbs.size()*LIMB_GROWTH_FACTOR;
+        capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
         this->limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         size_t i = 0;
@@ -312,12 +312,12 @@ namespace apa {
     ubint& ubint::operator+=(const ubint& op) {
         
         if(capacity<=op.length+1) {
-            capacity = op.length*LIMB_GROWTH_FACTOR;
+            capacity = op.length+LIMB_GROWTH;
             limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
         
         if(length==capacity) {
-            capacity = length*LIMB_GROWTH_FACTOR;
+            capacity = length+LIMB_GROWTH;
             limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
 
