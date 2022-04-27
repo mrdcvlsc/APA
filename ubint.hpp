@@ -107,6 +107,17 @@ namespace apa {
             int compare(const ubint& with) const;
             bool operator==(const ubint& op) const;
 
+            // Bit-Wise Logical Operators
+            ubint& operator&=(const ubint& op);
+            ubint operator&(const ubint& op) const;
+            ubint& operator|=(const ubint& op);
+            ubint operator|(const ubint& op) const;
+            ubint& operator^=(const ubint& op);
+            ubint operator^(const ubint& op) const;
+            ubint operator~() const;
+
+            // Arithmetic Operators
+
             ubint& operator+=(const ubint& op);
             ubint operator+(const ubint& op) const;
 
@@ -117,6 +128,7 @@ namespace apa {
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
 
+            // print methods
             void printHex() const;
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
