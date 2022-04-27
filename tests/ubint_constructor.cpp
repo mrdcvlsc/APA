@@ -83,10 +83,6 @@ int main() { START_TEST;
         a.length++;
         c = a;
 
-        a.printStatus("a");
-        b.printStatus("b");
-        d.printStatus("d");
-
         ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
         ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
         ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");

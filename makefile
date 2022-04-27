@@ -1,4 +1,4 @@
-BASE2_RAISED_BY:=DEFAULT_TO_32
+BASE2_RAISED_BY:=
 CC := g++
 TESTFLAGS := -g -Og -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED_BY)
 CXXFLAGS := -std=c++11 -Wall -Wextra
@@ -45,6 +45,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_add.out
 	@./$(SRC)/ubint_sub.out
 	@./$(SRC)/ubint_mul.out
+	@./$(SRC)/ubint_bitwise_logic.out
 
 # -------------------------- test program compilation ---------------------------
 

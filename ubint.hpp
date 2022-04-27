@@ -75,7 +75,7 @@ namespace apa {
 
     const static size_t INITIAL_LIMB_CAPACITY = 2;
     const static size_t INITIAL_LIMB_LENGTH = 1;
-    const static size_t LIMB_GROWTH_FACTOR = 2;
+    const static size_t LIMB_GROWTH = 2;
 
     class ubint {
         public:
@@ -107,6 +107,17 @@ namespace apa {
             int compare(const ubint& with) const;
             bool operator==(const ubint& op) const;
 
+            // Bit-Wise Logical Operators
+            ubint& operator&=(const ubint& op);
+            ubint operator&(const ubint& op) const;
+            ubint& operator|=(const ubint& op);
+            ubint operator|(const ubint& op) const;
+            ubint& operator^=(const ubint& op);
+            ubint operator^(const ubint& op) const;
+            ubint operator~() const;
+
+            // Arithmetic Operators
+
             ubint& operator+=(const ubint& op);
             ubint operator+(const ubint& op) const;
 
@@ -117,6 +128,7 @@ namespace apa {
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
 
+            // print methods
             void printHex() const;
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;

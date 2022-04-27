@@ -72,7 +72,7 @@ namespace apa {
 
             length = blocks;
             if(remain) length++;
-            capacity = length*LIMB_GROWTH_FACTOR;
+            capacity = length+LIMB_GROWTH;
             limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
             memset(limbs,0x0,capacity*LIMB_BYTES);
 
@@ -142,7 +142,7 @@ namespace apa {
 
 
     ubint::ubint(std::initializer_list<base_t> limbs) {
-        capacity = limbs.size()*LIMB_GROWTH_FACTOR;
+        capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
         this->limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         size_t i = 0;
@@ -178,18 +178,146 @@ namespace apa {
     }
 
     bool ubint::operator==(const ubint& op) const {
+        
         return compare(op)==EQUAL ? true : false;
     }
+
+    // Bit-Wise Logical Operators
+
+    ubint& ubint::operator&=(const ubint& op) {
+
+        if(length<op.length) {
+            capacity = op.capacity;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            size_t zero_set = length*LIMB_BYTES;
+            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
+            length = op.length;
+        }
+
+        for(size_t i=0; i<op.length; ++i)
+            limbs[i] &= op.limbs[i];
+
+        for(size_t i=op.length; i<length; ++i)
+            limbs[i] &= 0;
+
+        for(size_t i=0; i<length; ++i) {
+            if(limbs[length-1-i]) {
+                length -= i;
+                break;
+            }
+        }
+        
+        return *this;
+    }
+
+    ubint ubint::operator&(const ubint& op) const {
+
+        ubint bitwise_and = *this;
+        bitwise_and &= op;
+        return bitwise_and;
+    }
+
+    ubint& ubint::operator|=(const ubint& op) {
+
+        if(length<op.length) {
+            capacity = op.capacity;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            size_t zero_set = length*LIMB_BYTES;
+            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
+            length = op.length;
+        }
+
+        for(size_t i=0; i<op.length; ++i)
+            limbs[i] |= op.limbs[i];
+
+        for(size_t i=op.length; i<length; ++i)
+            limbs[i] |= 0;
+
+        for(size_t i=0; i<length; ++i) {
+            if(limbs[length-1-i]) {
+                length -= i;
+                break;
+            }
+        }
+        
+        return *this;
+    }
+
+    ubint ubint::operator|(const ubint& op) const {
+
+        ubint bitwise_and = *this;
+        bitwise_and |= op;
+        return bitwise_and;
+    }
+
+    ubint& ubint::operator^=(const ubint& op) {
+
+        if(length<op.length) {
+            capacity = op.capacity;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            size_t zero_set = length*LIMB_BYTES;
+            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
+            length = op.length;
+        }
+
+        for(size_t i=0; i<op.length; ++i)
+            limbs[i] ^= op.limbs[i];
+
+        for(size_t i=op.length; i<length; ++i)
+            limbs[i] ^= 0;
+
+        for(size_t i=0; i<length; ++i) {
+            if(limbs[length-1-i]) {
+                length -= i;
+                break;
+            }
+        }
+        
+        return *this;
+    }
+
+    ubint ubint::operator^(const ubint& op) const {
+
+        ubint bitwise_and = *this;
+        bitwise_and ^= op;
+        return bitwise_and;
+    }
+
+    ubint ubint::operator~() const {
+
+        ubint bwn = *this;
+        for(size_t i=0; i<bwn.length-1; ++i)
+            bwn.limbs[i] = (base_t)(~bwn.limbs[i]);
+
+        base_t mslimb = bwn.limbs[bwn.length-1];
+        base_t bitmask = mslimb | (mslimb >> 1);
+        for(size_t i=2; i<BASE_BITS; i*=2)
+            bitmask |= bitmask >> i;
+        
+        bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
+
+        for(size_t i=0; i<bwn.length; ++i) {
+            if(bwn.limbs[bwn.length-1-i]) {
+                bwn.length -= i;
+                break;
+            }
+        }
+
+        return bwn;
+    }
+
+
+    // Arithmetic Operators
 
     ubint& ubint::operator+=(const ubint& op) {
         
         if(capacity<=op.length+1) {
-            capacity = op.length*LIMB_GROWTH_FACTOR;
+            capacity = op.length+LIMB_GROWTH;
             limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
         
         if(length==capacity) {
-            capacity = length*LIMB_GROWTH_FACTOR;
+            capacity = length+LIMB_GROWTH;
             limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
 
