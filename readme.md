@@ -1,6 +1,6 @@
 # APA - Arbitrary Precision Arithmetic
 
-Visit Old Working Branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) branch for the latest previous working version and implementation.
+**Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) for the latest previous working version.**
 
 A c++ library for big integer and big number computation in general (arbitrary-precision arithmetic).
 
