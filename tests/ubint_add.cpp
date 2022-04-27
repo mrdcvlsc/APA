@@ -73,6 +73,11 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
+        fib1000_1_99927737.printStatus("fib1000_1_99927737");
+        fib1000_b9_9.printStatus("fib1000_b9_9");
+        ans1.printStatus("ans1");
+        ans2.printStatus("ans2");
+
         FOURWAY_ASSERT_UBINT(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
         RESULT("UBINT BASE 2^16 ADDITION");
