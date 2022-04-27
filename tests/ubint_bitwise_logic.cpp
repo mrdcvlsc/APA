@@ -107,10 +107,6 @@ int main() { START_TEST;
     ASSERT_UBINT(num2_not,num2_not_C,"~num2");
     ASSERT_UBINT(num3_not,num3_not_C,"~num3");
 
-    num1.printStatus("num1");
-    num1_not.printStatus("num1_not");
-    num1_not_C.printStatus("num1_not_C");
-
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 LOGICAL BITWISE OPERATOR");
     #elif defined(_BASE2_32)
