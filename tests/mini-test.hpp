@@ -8,7 +8,18 @@ std::vector<bool> TEST_RESULTS;
 
 #define START_TEST std::cout << "-------------------------------\n";
 
-#define ASSERT_UBINT(A,B,SPECIFIC_TEST_NAME) \
+#define ASSERT_EXPRESSION(LOGIC,SPECIFIC_TEST_NAME) \
+std::cout << SPECIFIC_TEST_NAME << " : "; \
+if(LOGIC) { \
+    std::cout << "PASSED\n"; \
+    TEST_RESULTS.push_back(true); \
+} \
+else { \
+    std::cout << "FAILED\n"; \
+    TEST_RESULTS.push_back(false); \
+}
+
+#define ASSERT_EQUALITY(A,B,SPECIFIC_TEST_NAME) \
 std::cout << SPECIFIC_TEST_NAME << " : "; \
 if(A==B) { \
     std::cout << "PASSED\n"; \
@@ -19,7 +30,7 @@ else { \
     TEST_RESULTS.push_back(false); \
 }
 
-#define FOURWAY_ASSERT_UBINT(A,B,C,D,SPECIFIC_TEST_NAME) \
+#define FOURWAY_ASSERT_EQUALITY(A,B,C,D,SPECIFIC_TEST_NAME) \
 std::cout << SPECIFIC_TEST_NAME << " : "; \
 if(A==B && C==D && A==D) { \
     std::cout << "PASSED\n"; \

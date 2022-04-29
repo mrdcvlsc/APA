@@ -55,10 +55,10 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_UBINT(fib250,fib250C,"FIB(250)");
-        ASSERT_UBINT(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
-        ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
+        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
+        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
             0x6000, 0x0712, 0x3656, 0x4fff, 0x0ef6, 0x56f3, 0x2fa4, 0xc45d, 0x0000, 0x777e, 0xeebb, 0xbfff,
@@ -73,7 +73,7 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        FOURWAY_ASSERT_UBINT(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
+        FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
         RESULT("UBINT BASE 2^16 ADDITION");
     }
@@ -110,10 +110,10 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_UBINT(fib250,fib250C,"FIB(250)");
-        ASSERT_UBINT(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
-        ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
+        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
+        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
             0x60000712, 0x36564fff, 0x0ef656f3, 0x2fa4c45d, 0x0000777e, 0xeebbbfff,
@@ -128,7 +128,7 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        FOURWAY_ASSERT_UBINT(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
+        FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
         RESULT("UBINT BASE 2^32 ADDITION");
     }
@@ -163,10 +163,10 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_UBINT(fib250,fib250C,"FIB(250)");
-        ASSERT_UBINT(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_UBINT(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
-        ASSERT_UBINT(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
+        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
+        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
             0x6000071236564fff, 0x0ef656f32fa4c45d, 0x0000777eeebbbfff,
@@ -181,7 +181,7 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        FOURWAY_ASSERT_UBINT(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
+        FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
         RESULT("UBINT BASE 2^64 ADDITION");
 

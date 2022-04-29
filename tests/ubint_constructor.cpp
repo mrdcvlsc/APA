@@ -31,11 +31,11 @@ int main() { START_TEST;
 
         c = a;
 
-        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
-        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
-        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
-        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
-        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        ASSERT_EQUALITY(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_EQUALITY(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_EQUALITY(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_EQUALITY(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_EQUALITY(x,z,"initialize_list<base_t> equal operator= assignment    ");
         
         // additionals
 
@@ -59,8 +59,8 @@ int main() { START_TEST;
             "a2b3c4d5e6f89af9999999999999999"
         );
 
-        ASSERT_UBINT(num1,num2, "initializer_list<base_t> equal string constructor num2");
-        ASSERT_UBINT(num1,num3, "initializer_list<base_t> equal string constructor num3");
+        ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");
+        ASSERT_EQUALITY(num1,num3, "initializer_list<base_t> equal string constructor num3");
 
         RESULT("UBINT BASE 2^16 CONSTRUCTORS");
     }
@@ -83,11 +83,11 @@ int main() { START_TEST;
         a.length++;
         c = a;
 
-        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
-        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
-        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
-        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
-        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        ASSERT_EQUALITY(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_EQUALITY(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_EQUALITY(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_EQUALITY(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_EQUALITY(x,z,"initialize_list<base_t> equal operator= assignment    ");
         
         // additionals
 
@@ -111,8 +111,8 @@ int main() { START_TEST;
             "a2b3c4d5e6f89af9999999999999999"
         );
 
-        ASSERT_UBINT(num1,num2, "initializer_list<base_t> equal string constructor num2");
-        ASSERT_UBINT(num1,num3, "initializer_list<base_t> equal string constructor num3");
+        ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");
+        ASSERT_EQUALITY(num1,num3, "initializer_list<base_t> equal string constructor num3");
 
         RESULT("UBINT BASE 2^32 CONSTRUCTORS");
     }
@@ -134,11 +134,11 @@ int main() { START_TEST;
         a.limbs[1] = 0;
         c = a;
 
-        ASSERT_UBINT(a,b,"manual-limb-assignments equal limb_t constructor      ");
-        ASSERT_UBINT(a,c,"manual-limb-assignments equal operator= assignment    ");
-        ASSERT_UBINT(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
-        ASSERT_UBINT(x,y,"initialize_list<base_t> equal copy constructor        ");
-        ASSERT_UBINT(x,z,"initialize_list<base_t> equal operator= assignment    ");
+        ASSERT_EQUALITY(a,b,"manual-limb-assignments equal limb_t constructor      ");
+        ASSERT_EQUALITY(a,c,"manual-limb-assignments equal operator= assignment    ");
+        ASSERT_EQUALITY(a,d,"manual-limb-assignments equal initialize_list<base_t> ");
+        ASSERT_EQUALITY(x,y,"initialize_list<base_t> equal copy constructor        ");
+        ASSERT_EQUALITY(x,z,"initialize_list<base_t> equal operator= assignment    ");
 
         // additionals
 
@@ -161,8 +161,8 @@ int main() { START_TEST;
             "a2b3c4d5e6f89af9999999999999999"
         );
 
-        ASSERT_UBINT(num1,num2, "initializer_list<base_t> equal string constructor num2");
-        ASSERT_UBINT(num1,num3, "initializer_list<base_t> equal string constructor num3");
+        ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");
+        ASSERT_EQUALITY(num1,num3, "initializer_list<base_t> equal string constructor num3");
         
         RESULT("UBINT BASE 2^64 CONSTRUCTORS");
     }

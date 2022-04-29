@@ -177,9 +177,32 @@ namespace apa {
         return 0;
     }
 
+    // Logical Operators
+
+    bool ubint::operator<(const ubint& op) const {
+        return compare(op)==LESS ? true : false;
+    }
+
+    bool ubint::operator>(const ubint& op) const {
+        return compare(op)==GREAT ? true : false;
+    }
+
     bool ubint::operator==(const ubint& op) const {
-        
         return compare(op)==EQUAL ? true : false;
+    }
+
+    bool ubint::operator!=(const ubint& op) const {
+        return !(*this==op);
+    }
+
+    bool ubint::operator<=(const ubint& op) const {
+        int cmp = compare(op);
+        return (cmp==EQUAL || cmp==LESS) ? true : false;
+    }
+
+    bool ubint::operator>=(const ubint& op) const {
+        int cmp = compare(op);
+        return (cmp==EQUAL || cmp==GREAT) ? true : false;
     }
 
     // Bit-Wise Logical Operators

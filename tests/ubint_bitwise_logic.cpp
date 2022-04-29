@@ -79,33 +79,33 @@ int main() { START_TEST;
         num2_not_C("0x3ccc505500012121524110aa98543edcba9876f44"),
         num3_not_C("0xffffffffffffffeee");
 
-    ASSERT_UBINT(num1_and_num2,num1_and_num2_C,"num1 & num2");
-    ASSERT_UBINT(num1_and_num3,num1_and_num3_C,"num1 & num3");
-    ASSERT_UBINT(num2_and_num3,num2_and_num3_C,"num2 & num3");
+    ASSERT_EQUALITY(num1_and_num2,num1_and_num2_C,"num1 & num2");
+    ASSERT_EQUALITY(num1_and_num3,num1_and_num3_C,"num1 & num3");
+    ASSERT_EQUALITY(num2_and_num3,num2_and_num3_C,"num2 & num3");
 
-    ASSERT_UBINT(num2_and_num1,num1_and_num2_C,"num2 & num1");
-    ASSERT_UBINT(num3_and_num1,num1_and_num3_C,"num3 & num1");
-    ASSERT_UBINT(num3_and_num2,num2_and_num3_C,"num3 & num2");
+    ASSERT_EQUALITY(num2_and_num1,num1_and_num2_C,"num2 & num1");
+    ASSERT_EQUALITY(num3_and_num1,num1_and_num3_C,"num3 & num1");
+    ASSERT_EQUALITY(num3_and_num2,num2_and_num3_C,"num3 & num2");
 
-    ASSERT_UBINT(num1_or_num2,num1_or_num2_C,"num1 | num2");
-    ASSERT_UBINT(num1_or_num3,num1_or_num3_C,"num1 | num3");
-    ASSERT_UBINT(num2_or_num3,num2_or_num3_C,"num2 | num3");
+    ASSERT_EQUALITY(num1_or_num2,num1_or_num2_C,"num1 | num2");
+    ASSERT_EQUALITY(num1_or_num3,num1_or_num3_C,"num1 | num3");
+    ASSERT_EQUALITY(num2_or_num3,num2_or_num3_C,"num2 | num3");
 
-    ASSERT_UBINT(num2_or_num1,num1_or_num2_C,"num2 | num1");
-    ASSERT_UBINT(num3_or_num1,num1_or_num3_C,"num3 | num1");
-    ASSERT_UBINT(num3_or_num2,num2_or_num3_C,"num3 | num2");
+    ASSERT_EQUALITY(num2_or_num1,num1_or_num2_C,"num2 | num1");
+    ASSERT_EQUALITY(num3_or_num1,num1_or_num3_C,"num3 | num1");
+    ASSERT_EQUALITY(num3_or_num2,num2_or_num3_C,"num3 | num2");
 
-    ASSERT_UBINT(num1_xor_num2,num1_xor_num2_C,"num1 ^ num2");
-    ASSERT_UBINT(num1_xor_num3,num1_xor_num3_C,"num1 ^ num3");
-    ASSERT_UBINT(num2_xor_num3,num2_xor_num3_C,"num2 ^ num3");
+    ASSERT_EQUALITY(num1_xor_num2,num1_xor_num2_C,"num1 ^ num2");
+    ASSERT_EQUALITY(num1_xor_num3,num1_xor_num3_C,"num1 ^ num3");
+    ASSERT_EQUALITY(num2_xor_num3,num2_xor_num3_C,"num2 ^ num3");
 
-    ASSERT_UBINT(num2_xor_num1,num1_xor_num2_C,"num2 ^ num1");
-    ASSERT_UBINT(num3_xor_num1,num1_xor_num3_C,"num3 ^ num1");
-    ASSERT_UBINT(num3_xor_num2,num2_xor_num3_C,"num3 ^ num2");
+    ASSERT_EQUALITY(num2_xor_num1,num1_xor_num2_C,"num2 ^ num1");
+    ASSERT_EQUALITY(num3_xor_num1,num1_xor_num3_C,"num3 ^ num1");
+    ASSERT_EQUALITY(num3_xor_num2,num2_xor_num3_C,"num3 ^ num2");
 
-    ASSERT_UBINT(num1_not,num1_not_C,"~num1");
-    ASSERT_UBINT(num2_not,num2_not_C,"~num2");
-    ASSERT_UBINT(num3_not,num3_not_C,"~num3");
+    ASSERT_EQUALITY(num1_not,num1_not_C,"~num1");
+    ASSERT_EQUALITY(num2_not,num2_not_C,"~num2");
+    ASSERT_EQUALITY(num3_not,num3_not_C,"~num3");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 LOGICAL BITWISE OPERATOR");

@@ -105,7 +105,12 @@ namespace apa {
 
             /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
             int compare(const ubint& with) const;
+            bool operator<(const ubint& op) const;
+            bool operator>(const ubint& op) const;
             bool operator==(const ubint& op) const;
+            bool operator!=(const ubint& op) const;
+            bool operator<=(const ubint& op) const;
+            bool operator>=(const ubint& op) const;
 
             // Bit-Wise Logical Operators
             ubint& operator&=(const ubint& op);

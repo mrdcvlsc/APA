@@ -44,15 +44,15 @@ int main() { START_TEST;
         apa::ubint num3dif2 = num3 - dif2;
         apa::ubint num4dif2 = num4 - dif2;
 
-        ASSERT_UBINT(num1dif1,num1dif1_C, "num1 - dif1");
-        ASSERT_UBINT(num2dif1,num2dif1_C, "num2 - dif1");
-        ASSERT_UBINT(num3dif1,num3dif1_C, "num3 - dif1");
-        ASSERT_UBINT(num4dif1,num4dif1_C, "num4 - dif1");
+        ASSERT_EQUALITY(num1dif1,num1dif1_C, "num1 - dif1");
+        ASSERT_EQUALITY(num2dif1,num2dif1_C, "num2 - dif1");
+        ASSERT_EQUALITY(num3dif1,num3dif1_C, "num3 - dif1");
+        ASSERT_EQUALITY(num4dif1,num4dif1_C, "num4 - dif1");
 
-        ASSERT_UBINT(num1dif2,num1dif2_C, "num1 - dif2");
-        ASSERT_UBINT(num2dif2,num2dif2_C, "num2 - dif2");
-        ASSERT_UBINT(num3dif2,num3dif2_C, "num3 - dif2");
-        ASSERT_UBINT(num4dif2,num4dif2_C, "num4 - dif2");
+        ASSERT_EQUALITY(num1dif2,num1dif2_C, "num1 - dif2");
+        ASSERT_EQUALITY(num2dif2,num2dif2_C, "num2 - dif2");
+        ASSERT_EQUALITY(num3dif2,num3dif2_C, "num3 - dif2");
+        ASSERT_EQUALITY(num4dif2,num4dif2_C, "num4 - dif2");
 
         RESULT("UBINT BASE 2^16 SUBTRACTION");
     }
@@ -89,15 +89,15 @@ int main() { START_TEST;
         apa::ubint num3dif2 = num3 - dif2;
         apa::ubint num4dif2 = num4 - dif2;
 
-        ASSERT_UBINT(num1dif1,num1dif1_C, "num1 - dif1");
-        ASSERT_UBINT(num2dif1,num2dif1_C, "num2 - dif1");
-        ASSERT_UBINT(num3dif1,num3dif1_C, "num3 - dif1");
-        ASSERT_UBINT(num4dif1,num4dif1_C, "num4 - dif1");
+        ASSERT_EQUALITY(num1dif1,num1dif1_C, "num1 - dif1");
+        ASSERT_EQUALITY(num2dif1,num2dif1_C, "num2 - dif1");
+        ASSERT_EQUALITY(num3dif1,num3dif1_C, "num3 - dif1");
+        ASSERT_EQUALITY(num4dif1,num4dif1_C, "num4 - dif1");
 
-        ASSERT_UBINT(num1dif2,num1dif2_C, "num1 - dif2");
-        ASSERT_UBINT(num2dif2,num2dif2_C, "num2 - dif2");
-        ASSERT_UBINT(num3dif2,num3dif2_C, "num3 - dif2");
-        ASSERT_UBINT(num4dif2,num4dif2_C, "num4 - dif2");
+        ASSERT_EQUALITY(num1dif2,num1dif2_C, "num1 - dif2");
+        ASSERT_EQUALITY(num2dif2,num2dif2_C, "num2 - dif2");
+        ASSERT_EQUALITY(num3dif2,num3dif2_C, "num3 - dif2");
+        ASSERT_EQUALITY(num4dif2,num4dif2_C, "num4 - dif2");
 
         RESULT("UBINT BASE 2^32 SUBTRACTION");
     }
@@ -134,15 +134,15 @@ int main() { START_TEST;
         apa::ubint num3dif2 = num3 - dif2;
         apa::ubint num4dif2 = num4 - dif2;
 
-        ASSERT_UBINT(num1dif1,num1dif1_C, "num1 - dif1");
-        ASSERT_UBINT(num2dif1,num2dif1_C, "num2 - dif1");
-        ASSERT_UBINT(num3dif1,num3dif1_C, "num3 - dif1");
-        ASSERT_UBINT(num4dif1,num4dif1_C, "num4 - dif1");
+        ASSERT_EQUALITY(num1dif1,num1dif1_C, "num1 - dif1");
+        ASSERT_EQUALITY(num2dif1,num2dif1_C, "num2 - dif1");
+        ASSERT_EQUALITY(num3dif1,num3dif1_C, "num3 - dif1");
+        ASSERT_EQUALITY(num4dif1,num4dif1_C, "num4 - dif1");
 
-        ASSERT_UBINT(num1dif2,num1dif2_C, "num1 - dif2");
-        ASSERT_UBINT(num2dif2,num2dif2_C, "num2 - dif2");
-        ASSERT_UBINT(num3dif2,num3dif2_C, "num3 - dif2");
-        ASSERT_UBINT(num4dif2,num4dif2_C, "num4 - dif2");
+        ASSERT_EQUALITY(num1dif2,num1dif2_C, "num1 - dif2");
+        ASSERT_EQUALITY(num2dif2,num2dif2_C, "num2 - dif2");
+        ASSERT_EQUALITY(num3dif2,num3dif2_C, "num3 - dif2");
+        ASSERT_EQUALITY(num4dif2,num4dif2_C, "num4 - dif2");
 
         RESULT("UBINT BASE 2^64 SUBTRACTION");
     }

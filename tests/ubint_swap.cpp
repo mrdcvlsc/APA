@@ -22,8 +22,8 @@ int main() { START_TEST;
 
         apa::swap(num1,num2);
 
-        ASSERT_UBINT(num1,num2_backup, "SWAP 0:1");
-        ASSERT_UBINT(num2,num1_backup, "SWAP 1:0");
+        ASSERT_EQUALITY(num1,num2_backup, "SWAP 0:1");
+        ASSERT_EQUALITY(num2,num1_backup, "SWAP 1:0");
 
         RESULT("UBINT BASE 2^16 SWAP");
     }
@@ -38,8 +38,8 @@ int main() { START_TEST;
 
         apa::swap(num1,num2);
 
-        ASSERT_UBINT(num1,num2_backup, "SWAP 0:1");
-        ASSERT_UBINT(num2,num1_backup, "SWAP 1:0");
+        ASSERT_EQUALITY(num1,num2_backup, "SWAP 0:1");
+        ASSERT_EQUALITY(num2,num1_backup, "SWAP 1:0");
 
         RESULT("UBINT BASE 2^32 SWAP");
     }
@@ -54,8 +54,8 @@ int main() { START_TEST;
 
         apa::swap(num1,num2);
         
-        ASSERT_UBINT(num1,num2_backup, "SWAP 0:1");
-        ASSERT_UBINT(num2,num1_backup, "SWAP 1:0");
+        ASSERT_EQUALITY(num1,num2_backup, "SWAP 0:1");
+        ASSERT_EQUALITY(num2,num1_backup, "SWAP 1:0");
 
         RESULT("UBINT BASE 2^64 SWAP");
     }
