@@ -140,7 +140,6 @@ namespace apa {
         return *this;
     }
 
-
     ubint::ubint(std::initializer_list<base_t> limbs) {
         capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
@@ -329,6 +328,10 @@ namespace apa {
         return bwn;
     }
 
+    // Logical Operators
+    ubint::operator bool() const noexcept {
+        return (length==1 && limbs[0]==0) ? false : true;
+    }
 
     // Arithmetic Operators
 

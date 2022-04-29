@@ -83,28 +83,27 @@ namespace apa {
             size_t length;
             limb_t *limbs;
 
+            // Constructors
             ubint();
             ubint(limb_t num);
             ubint(std::initializer_list<base_t> limbs);
             ubint(size_t capacity, size_t length, bool AllocateSpace=true);
             ubint(std::string text, bool isHex=true);
 
-            /// copy constructor.
-            ubint(const ubint& src);
-            
-            /// move constructor.
-            ubint(ubint&& src) noexcept;
+            // ubint Constructors.
+            ubint(const ubint& src);     // copy.
+            ubint(ubint&& src) noexcept; // move.
 
-            /// copy assignment.
-            ubint& operator=(const ubint& src);
-
-            /// move assignment.
-            ubint& operator=(ubint&& src) noexcept;
+            // ubint Assignments.
+            ubint& operator=(const ubint& src);     // copy.
+            ubint& operator=(ubint&& src) noexcept; // move.
 
             ~ubint();
 
             /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
             int compare(const ubint& with) const;
+
+            // Relational Operators
             bool operator<(const ubint& op) const;
             bool operator>(const ubint& op) const;
             bool operator==(const ubint& op) const;
@@ -121,19 +120,19 @@ namespace apa {
             ubint operator^(const ubint& op) const;
             ubint operator~() const;
 
-            // Arithmetic Operators
+            // Logical Operators
+            explicit operator bool() const noexcept;
 
+            // Arithmetic Operators
             ubint& operator+=(const ubint& op);
             ubint operator+(const ubint& op) const;
-
             ubint& operator-=(const ubint& op);
             ubint operator-(const ubint& op) const;
-
             ubint& operator*=(const ubint& op);
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
 
-            // print methods
+            // Print Methods
             void printHex() const;
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
