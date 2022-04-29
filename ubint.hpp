@@ -86,9 +86,9 @@ namespace apa {
             // Constructors
             ubint();
             ubint(limb_t num);
+            ubint(std::string text, bool isHex=true);
             ubint(std::initializer_list<base_t> limbs);
             ubint(size_t capacity, size_t length, bool AllocateSpace=true);
-            ubint(std::string text, bool isHex=true);
 
             // ubint Constructors.
             ubint(const ubint& src);     // copy.
@@ -113,24 +113,32 @@ namespace apa {
 
             // Bit-Wise Logical Operators
             ubint& operator&=(const ubint& op);
-            ubint operator&(const ubint& op) const;
             ubint& operator|=(const ubint& op);
-            ubint operator|(const ubint& op) const;
             ubint& operator^=(const ubint& op);
+            ubint operator&(const ubint& op) const;
+            ubint operator|(const ubint& op) const;
             ubint operator^(const ubint& op) const;
             ubint operator~() const;
-
+            
             // Logical Operators
             explicit operator bool() const noexcept;
 
             // Arithmetic Operators
             ubint& operator+=(const ubint& op);
-            ubint operator+(const ubint& op) const;
             ubint& operator-=(const ubint& op);
-            ubint operator-(const ubint& op) const;
             ubint& operator*=(const ubint& op);
+            ubint operator+(const ubint& op) const;
+            ubint operator-(const ubint& op) const;
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
+
+            // Shift Operators
+            ubint& operator<<=(size_t bits);
+            ubint& operator>>=(size_t bits);
+            ubint operator<<(size_t bits) const;
+            ubint operator>>(size_t bits) const;
+            // for left shift (<<) with parameter ubint type use the formula : x*2^k
+            // for right shift (>>) with parameter ubint type use the formula : x/2^k
 
             // Print Methods
             void printHex() const;

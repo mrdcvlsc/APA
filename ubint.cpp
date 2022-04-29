@@ -451,6 +451,57 @@ namespace apa {
         return op;
     }
 
+    // Shift Operators
+    ubint& ubint::operator<<=(size_t bits) {
+        size_t limb_shifts = bits / BASE_BITS;
+        size_t bit_shifts = bits % BASE_BITS;
+
+        size_t new_length = length + limb_shifts + 1;
+        if(new_length>capacity) {
+            capacity = new_length+LIMB_GROWTH;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+        }
+
+        limbs[new_length-1] = 0;
+
+        for(size_t i=0; i<length; ++i) {
+            limbs[length-1-i] <<= bit_shifts;
+            limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
+            limbs[new_length-2-i] = (base_t) limbs[length-1-i];
+        }
+
+        size_t zero_limbs = new_length-length-1;
+        if(zero_limbs)
+            memset(limbs,0x00,zero_limbs*LIMB_BYTES);
+
+        length = new_length;
+        if(!limbs[length-1])
+            length--;
+
+        return *this;
+    }
+
+    // 0x91a 2b3c 4855 e6f7 891a 2800 0000 0000 0000 0000
+    // 0x91a 2b3c 4855 e6f7 891a 2800 0000 0000 0000 0000
+
+    ubint& ubint::operator>>=(size_t bits) {
+        limbs[0] <<= bits;
+        return *this;
+    }
+
+    ubint ubint::operator<<(size_t bits) const {
+        ubint shifted = *this;
+        shifted <<= bits;
+        return shifted;
+    }
+
+    ubint ubint::operator>>(size_t bits) const {
+        ubint shifted = *this;
+        shifted >>= bits;
+        return shifted;
+    }
+
+
     void ubint::printHex() const {
 #ifdef _BASE2_64
         std::cout << "0x";

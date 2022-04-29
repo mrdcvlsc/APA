@@ -39,9 +39,9 @@ This is a C++ Arbitrary Precision Arithmetic library used to compute big integer
 
 **user defined data types/classes**
 
-- ```apa::ubint``` dynamically big unsigned integers.
-- ```apa::bint``` dynamically big signed integers.
-- ```apa::bfloat``` dynamically big floating point numbers (real).
+- ```apa::ubint``` dynamically big unsigned integers (all implementations here a naive).
+- ```apa::bint``` dynamically big signed integers (uses ```ubint``` inside, and will also use faster algorithms like karatsuba).
+- ```apa::bfloat``` dynamically big floating point (real) numbers, will use ```bint``` inside.
 
 The sizes of these data types are dynamic, meaning they are not fix and they can grow in size. There is no max value or range for these data types, and the only limit is the available memory of the device.
 
