@@ -365,6 +365,7 @@ namespace apa {
 
         if(length<=op.length) {
             memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
+            length = op.length+1;
         }
 
         for(size_t i=0; i<op.length; ++i) {
@@ -374,19 +375,19 @@ namespace apa {
         }
 
         for(size_t i=op.length; i<length; ++i) {
-            limb_t carry = limbs[i] >> BASE_BITS;
-            if(carry) {
-                limbs[i] = (base_t) limbs[i];
-                limbs[i+1] += carry;
-            }
-            else {
-                break;
-            }
+            limbs[i+1] += (limbs[i] >> BASE_BITS);
+            limbs[i] = (base_t) limbs[i];
         }
 
-        length = std::max(length,op.length);
+        size_t ms_index = length-1;
+        while(ms_index) {
+            if(limbs[ms_index]) {
+                break;
+            }
+            --ms_index;
+        }
 
-        if(limbs[length]==1) length++;
+        length = ms_index+1;
 
         return *this;
     }
