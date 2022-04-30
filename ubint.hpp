@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstring>
 #include <cmath>
+#include <exception>
 
 // #define _BASE2_64
 
@@ -131,10 +132,13 @@ namespace apa {
             ubint& operator+=(const ubint& op);
             ubint& operator-=(const ubint& op);
             ubint& operator*=(const ubint& op);
+            ubint& operator/=(const ubint& op);
+            ubint& operator%=(const ubint& op);
             ubint operator+(const ubint& op) const;
             ubint operator-(const ubint& op) const;
             ubint operator*(const ubint& op) const;
             ubint operator/(const ubint& op) const;
+            ubint operator%(const ubint& op) const;
 
             // Shift Operators
             ubint& operator<<=(size_t bits);

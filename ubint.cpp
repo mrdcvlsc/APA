@@ -448,8 +448,46 @@ namespace apa {
         return product;
     }
     
+    ubint& ubint::operator/=(const ubint& op) {
+        ubint quotient = *this / op;
+        swap(quotient,*this);
+        return *this;
+    }
+
     ubint ubint::operator/(const ubint& op) const {
-        return op;
+
+        if(!op)
+            throw std::domain_error("apa::ubint - Division By Zero");
+            
+        int special_case = compare(op);
+        switch (special_case)
+        {
+            case EQUAL: return ubint(1);
+            case LESS : return ubint(0);
+        }
+        if(op.length==1 && op.limbs[0]==1) return *this;
+        return bit_division(op);
+    }
+
+    ubint& ubint::operator%=(const ubint& op) {
+        ubint remainder = *this % op;
+        swap(remainder,*this);
+        return *this;
+    }
+
+    ubint ubint::operator%(const ubint& op) const {
+
+        if(!op)
+            throw std::domain_error("apa::ubint - Division By Zero");
+            
+        int special_case = compare(op);
+        switch (special_case)
+        {
+            case EQUAL: return ubint(0);
+            case LESS : return *this;
+        }
+        if(op.length==1 && op.limbs[0]==1) return ubint(0);
+        return bit_modulo(op);
     }
 
     ubint ubint::bit_division(const ubint& op) const {
