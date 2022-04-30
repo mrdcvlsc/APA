@@ -509,8 +509,8 @@ namespace apa {
     ubint ubint::bit_division(const ubint& op) const {
 
         ubint quotient(length,length), remainder(length,length);
-        remainder.limbs[0] = 0, remainder.length = 1;
         memset(quotient.limbs,0x00,length*LIMB_BYTES);
+        remainder.length = 1; remainder.limbs[0] = 0;
 
         base_t bit = 0, current_index, current_shift_val, onebit = 1;
         size_t
@@ -547,7 +547,7 @@ namespace apa {
     ubint ubint::bit_modulo(const ubint& op) const {
         
         ubint remainder(length,length);
-        remainder.limbs[0] = 0, remainder.length = 1;
+        remainder.length = 1; remainder.limbs[0] = 0;
 
         base_t bit = 0, current_index, current_shift_val;
         size_t
@@ -570,16 +570,8 @@ namespace apa {
             }
         }
 
-        for(size_t i=0; i<length; ++i) {
-            if(remainder.limbs[length-1-i]) {
-                remainder.length -= i;
-                break;
-            }
-        }
-
         return remainder;
     }
-
 
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {

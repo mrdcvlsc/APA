@@ -67,6 +67,8 @@ int main() { START_TEST;
             ANSR1 = NUM1.bit_modulo(NUM2),
             ANSR2 = NUM1.bit_modulo(NUM3),
             ANSR3 = NUM2.bit_modulo(NUM3);
+
+            // ANSR1 = NUM1.bit_modulo(NUM2);
             
         ASSERT_EQUALITY(NUM1.bit_division(NUM1),ONE,"1 NUM1.bit_division(NUM1)");
         ASSERT_EQUALITY(NUM2.bit_division(NUM2),ONE,"2 NUM2.bit_division(NUM2)");

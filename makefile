@@ -37,7 +37,7 @@ OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
 test: $(OBJ)
 	@echo OS : $(OS)
-	@echo LIMB : Base2^$(BASE2_RAISED_BY)
+	@echo LIMB : Base2_$(BASE2_RAISED_BY)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out
