@@ -32,7 +32,7 @@ else { \
 
 #define FOURWAY_ASSERT_EQUALITY(A,B,C,D,SPECIFIC_TEST_NAME) \
 std::cout << SPECIFIC_TEST_NAME << " : "; \
-if(A==B && C==D && A==D) { \
+if(((A==B) && (C==D)) && (A==D)) { \
     std::cout << "PASSED\n"; \
     TEST_RESULTS.push_back(true); \
 } \
