@@ -60,17 +60,23 @@ int main() { START_TEST;
 
         apa::ubint A("bacdef1234567890"),
         LS331_A("0x5d66f7891a2b3c4800000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+        apa::ubint LS320_TWO_C("0x200000000000000000000000000000000000000000000000000000000000000000000000000000000");
+        apa::ubint LS0_DEADBEEF_C("deadbeef");
 
         // answers
         apa::ubint
             RS8123_FAC975 = fac(975) >> 8123,
             RS34567_FAC3375 = fac(3375) >> 34567,
             LS1872_num1 = num1 << 1872,
-            LS752_num2 = num2 << 752;
+            LS752_num2 = num2 << 752,
+            LS320_TWO = apa::ubint(2) << 320,
+            LS0_DEADBEEF("deadbeef");
         
         numTest = numTest << 75;
         A = A << 331;
 
+        ASSERT_EQUALITY(LS0_DEADBEEF,LS0_DEADBEEF_C,"0xdeadbeef << 0");
+        ASSERT_EQUALITY(LS320_TWO,LS320_TWO_C,"apa::ubint(2) << 320");
         ASSERT_EQUALITY(A,LS331_A,"A = A << 75");
         ASSERT_EQUALITY(numTest,LS75_numTest_C,"numTest = numTest << 75");
         ASSERT_EQUALITY(RS8123_FAC975,RS8123_FAC975_C,"fac(975) >> 8123");
