@@ -49,6 +49,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_relational.out
 	@./$(SRC)/ubint_logical.out
 	@./$(SRC)/ubint_shifts.out
+	@./$(SRC)/ubint_div.out
 
 # -------------------------- test program compilation ---------------------------
 

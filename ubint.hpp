@@ -68,6 +68,7 @@ namespace apa {
 #endif
 
     constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
+    constexpr static size_t BASE_BITS_MINUS1 = BASE_BITS-1;
     constexpr static size_t BASE_BYTES = BASE_BITS/8;
 
     constexpr static size_t LIMB_BITS = BASE_BITS*2;
@@ -124,6 +125,9 @@ namespace apa {
             explicit operator bool() const noexcept;
 
             // Arithmetic Operators
+            ubint bit_division(const ubint& op) const;
+            ubint bit_modulo(const ubint& op) const;
+
             ubint& operator+=(const ubint& op);
             ubint& operator-=(const ubint& op);
             ubint& operator*=(const ubint& op);

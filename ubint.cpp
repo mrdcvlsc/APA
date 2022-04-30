@@ -426,6 +426,7 @@ namespace apa {
     }
 
     ubint ubint::operator*(const ubint& op) const {
+
         ubint product(length+op.length,length+op.length);
         memset(product.limbs,0x0,product.length*LIMB_BYTES);
         
@@ -450,6 +451,81 @@ namespace apa {
     ubint ubint::operator/(const ubint& op) const {
         return op;
     }
+
+    ubint ubint::bit_division(const ubint& op) const {
+
+        ubint quotient(length,length), remainder(length,length);
+        remainder.limbs[0] = 0, remainder.length = 1;
+        memset(quotient.limbs,0x00,length*LIMB_BYTES);
+
+        base_t bit = 0, current_index, current_shift_val, onebit = 1;
+        size_t
+            total_bits = length*BASE_BITS,
+            ms_limb = length - 1;
+        
+        for(size_t i=0; i<total_bits; ++i) {
+            current_index = ms_limb - i/BASE_BITS;
+            current_shift_val = i % BASE_BITS;
+            
+            remainder <<= 1;
+
+            bit = limbs[current_index] << current_shift_val;
+            bit >>= BASE_BITS_MINUS1;
+
+            remainder.limbs[0] |= bit;
+
+            if(remainder >= op) {
+                remainder -= op;
+                quotient.limbs[current_index] |= (onebit << (BASE_BITS_MINUS1-current_shift_val));
+            }
+        }
+
+        for(size_t i=0; i<length; ++i) {
+            if(quotient.limbs[length-1-i]) {
+                quotient.length -= i;
+                break;
+            }
+        }
+
+        return quotient;
+    }
+
+    ubint ubint::bit_modulo(const ubint& op) const {
+        
+        ubint remainder(length,length);
+        remainder.limbs[0] = 0, remainder.length = 1;
+
+        base_t bit = 0, current_index, current_shift_val;
+        size_t
+            total_bits = length*BASE_BITS,
+            ms_limb = length - 1;
+        
+        for(size_t i=0; i<total_bits; ++i) {
+            current_index = ms_limb - i/BASE_BITS;
+            current_shift_val = i % BASE_BITS;
+            
+            remainder <<= 1;
+
+            bit = limbs[current_index] << current_shift_val;
+            bit >>= BASE_BITS_MINUS1;
+
+            remainder.limbs[0] |= bit;
+
+            if(remainder >= op) {
+                remainder -= op;
+            }
+        }
+
+        for(size_t i=0; i<length; ++i) {
+            if(remainder.limbs[length-1-i]) {
+                remainder.length -= i;
+                break;
+            }
+        }
+
+        return remainder;
+    }
+
 
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
