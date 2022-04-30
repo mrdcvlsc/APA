@@ -329,9 +329,9 @@ namespace apa {
     }
 
     // Logical Operators
-    ubint::operator bool() const noexcept {
-        return (length==1 && limbs[0]==0) ? false : true;
-    }
+    // ubint::operator bool() const noexcept {
+    //     return (length==1 && limbs[0]==0) ? false : true;
+    // }
 
     bool ubint::boolean() const {
         return (length==1 && limbs[0]==0) ? false : true;
@@ -584,7 +584,7 @@ namespace apa {
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
 
-        if(*this) {
+        if(boolean()) {
             size_t limb_shifts = bits / BASE_BITS;
             size_t bit_shifts = bits % BASE_BITS;
 
@@ -616,7 +616,7 @@ namespace apa {
 
     ubint& ubint::operator>>=(size_t bits) {
 
-        if(*this) {
+        if(boolean()) {
             size_t limb_shifts = bits / BASE_BITS;
             
             if(limb_shifts>=length) {
