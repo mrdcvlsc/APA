@@ -62,7 +62,29 @@ int main() { START_TEST;
         LS331_A("0x5d66f7891a2b3c4800000000000000000000000000000000000000000000000000000000000000000000000000000000000");
         apa::ubint LS320_TWO_C("0x200000000000000000000000000000000000000000000000000000000000000000000000000000000");
         apa::ubint LS0_DEADBEEF_C("deadbeef");
+        apa::ubint RANDNUM("abcdef0123456789caffae0feed0dead0beef0cab0bafe80ffff");
+        apa::ubint LS1_RANDNUM_C("0x1579bde02468acf1395ff5c1fdda1bd5a17dde1956175fd01fffe");
 
+        apa::ubint ONE = 1, RS1_ONE_C = 0, RS2_ONE_C = 0, RS16_ONE_C = 0, RS32_ONE_C = 0, RS320_ONE_C = 0;
+        apa::ubint NUM2POW4096MIN1(
+            "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        );
+
+        apa::ubint NUM2POW4096MIN1_RS4095_C = 1;
+        apa::ubint NUM2POW4096MIN1_RS4096_C = 0;
+        apa::ubint NUM2POW4096MIN1_RS4097_C = 0;
+        
         // answers
         apa::ubint
             RS8123_FAC975 = fac(975) >> 8123,
@@ -70,11 +92,32 @@ int main() { START_TEST;
             LS1872_num1 = num1 << 1872,
             LS752_num2 = num2 << 752,
             LS320_TWO = apa::ubint(2) << 320,
-            LS0_DEADBEEF("deadbeef");
+            LS0_DEADBEEF("deadbeef"),
+            LS1_RANDNUM = RANDNUM << 1;
+        
+        apa::ubint
+            RS1_ONE = ONE >> 1,
+            RS2_ONE = ONE >> 2,
+            RS16_ONE = ONE >> 16,
+            RS32_ONE = ONE >> 32,
+            RS320_ONE = ONE >> 320;
+
+        apa::ubint NUM2POW4096MIN1_RS4095 = NUM2POW4096MIN1 >> 4095;
+        apa::ubint NUM2POW4096MIN1_RS4096 = NUM2POW4096MIN1 >> 4096;
+        apa::ubint NUM2POW4096MIN1_RS4097 = NUM2POW4096MIN1 >> 4097;
         
         numTest = numTest << 75;
         A = A << 331;
 
+        ASSERT_EQUALITY(NUM2POW4096MIN1_RS4095,NUM2POW4096MIN1_RS4095_C,"NUM2POW4096MIN1_RS4095,NUM2POW4096MIN1_RS4095_C");
+        ASSERT_EQUALITY(NUM2POW4096MIN1_RS4096,NUM2POW4096MIN1_RS4096_C,"NUM2POW4096MIN1_RS4096,NUM2POW4096MIN1_RS4096_C");
+        ASSERT_EQUALITY(NUM2POW4096MIN1_RS4097,NUM2POW4096MIN1_RS4097_C,"NUM2POW4096MIN1_RS4097,NUM2POW4096MIN1_RS4097_C");
+        ASSERT_EQUALITY(RS1_ONE,RS1_ONE_C,"RS1_ONE,RS1_ONE_C");
+        ASSERT_EQUALITY(RS2_ONE,RS2_ONE_C,"RS2_ONE,RS2_ONE_C");
+        ASSERT_EQUALITY(RS16_ONE,RS16_ONE_C,"RS16_ONE,RS16_ONE_C");
+        ASSERT_EQUALITY(RS32_ONE,RS32_ONE_C,"RS32_ONE,RS32_ONE_C");
+        ASSERT_EQUALITY(RS320_ONE,RS320_ONE_C,"RS320_ONE,RS320_ONE_C");
+        ASSERT_EQUALITY(LS1_RANDNUM,LS1_RANDNUM_C,"LS1_RANDNUM << 1");
         ASSERT_EQUALITY(LS0_DEADBEEF,LS0_DEADBEEF_C,"0xdeadbeef << 0");
         ASSERT_EQUALITY(LS320_TWO,LS320_TWO_C,"apa::ubint(2) << 320");
         ASSERT_EQUALITY(A,LS331_A,"A = A << 75");

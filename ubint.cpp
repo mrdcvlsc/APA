@@ -453,39 +453,66 @@ namespace apa {
 
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
-        size_t limb_shifts = bits / BASE_BITS;
-        size_t bit_shifts = bits % BASE_BITS;
 
-        size_t new_length = length + limb_shifts + 1;
-        if(new_length>capacity) {
-            capacity = new_length+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+        if(*this) {
+            size_t limb_shifts = bits / BASE_BITS;
+            size_t bit_shifts = bits % BASE_BITS;
+
+            size_t new_length = length + limb_shifts + 1;
+            if(new_length>capacity) {
+                capacity = new_length+LIMB_GROWTH;
+                limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            }
+
+            limbs[new_length-1] = 0;
+
+            for(size_t i=0; i<length; ++i) {
+                limbs[length-1-i] <<= bit_shifts;
+                limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
+                limbs[new_length-2-i] = (base_t) limbs[length-1-i];
+            }
+
+            size_t zero_limbs = new_length-length-1;
+            if(zero_limbs)
+                memset(limbs,0x00,zero_limbs*LIMB_BYTES);
+
+            length = new_length;
+            if(!limbs[length-1])
+                length--;
         }
-
-        limbs[new_length-1] = 0;
-
-        for(size_t i=0; i<length; ++i) {
-            limbs[length-1-i] <<= bit_shifts;
-            limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
-            limbs[new_length-2-i] = (base_t) limbs[length-1-i];
-        }
-
-        size_t zero_limbs = new_length-length-1;
-        if(zero_limbs)
-            memset(limbs,0x00,zero_limbs*LIMB_BYTES);
-
-        length = new_length;
-        if(!limbs[length-1])
-            length--;
 
         return *this;
     }
 
-    // 0x91a 2b3c 4855 e6f7 891a 2800 0000 0000 0000 0000
-    // 0x91a 2b3c 4855 e6f7 891a 2800 0000 0000 0000 0000
-
     ubint& ubint::operator>>=(size_t bits) {
-        limbs[0] <<= bits;
+
+        if(*this) {
+            size_t limb_shifts = bits / BASE_BITS;
+            
+            if(limb_shifts>=length) {
+                length = 1;
+                limbs[0] = 0;
+            }
+            else {
+                size_t bit_shifts = bits % BASE_BITS;
+                size_t new_length = length - limb_shifts;
+
+                limbs[new_length-1] = 0;
+                limb_t prev = 0;
+
+                for(size_t i=0; i<new_length; ++i) {
+                    limbs[length-1-i] <<= BASE_BITS - bit_shifts;
+                    limbs[new_length-1-i] = prev;
+                    limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
+                    prev = (base_t) limbs[length-1-i];
+                }
+
+                length = new_length;
+                if(!limbs[length-1] && length!=1)
+                    length--;
+            }
+        }
+
         return *this;
     }
 
