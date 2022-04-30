@@ -353,7 +353,7 @@ namespace apa {
 
     ubint& ubint::operator+=(const ubint& op) {
         
-        if(capacity<=op.length+1) {
+        if(capacity<=op.length) {
             capacity = op.length+LIMB_GROWTH;
             limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
