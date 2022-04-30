@@ -179,15 +179,15 @@ namespace apa {
     // Logical Operators
 
     bool ubint::operator<(const ubint& op) const {
-        return compare(op)==LESS ? true : false;
+        return this->compare(op)==LESS ? true : false;
     }
 
     bool ubint::operator>(const ubint& op) const {
-        return compare(op)==GREAT ? true : false;
+        return this->compare(op)==GREAT ? true : false;
     }
 
     bool ubint::operator==(const ubint& op) const {
-        return compare(op)==EQUAL ? true : false;
+        return this->compare(op)==EQUAL ? true : false;
     }
 
     bool ubint::operator!=(const ubint& op) const {
@@ -195,12 +195,12 @@ namespace apa {
     }
 
     bool ubint::operator<=(const ubint& op) const {
-        int cmp = compare(op);
+        int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==LESS) ? true : false;
     }
 
     bool ubint::operator>=(const ubint& op) const {
-        int cmp = compare(op);
+        int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==GREAT) ? true : false;
     }
 
@@ -338,11 +338,11 @@ namespace apa {
     }
 
     bool ubint::operator&&(const ubint& op) const {
-        return (boolean() && op.boolean());
+        return (this->boolean() && op.boolean());
     }
 
     bool ubint::operator||(const ubint& op) const {
-        return (boolean() || op.boolean());
+        return (this->boolean() || op.boolean());
     }
 
     bool ubint::operator!() const {
@@ -475,7 +475,7 @@ namespace apa {
         if(!op)
             throw std::domain_error("apa::ubint - Division By Zero");
             
-        int special_case = compare(op);
+        int special_case = this->compare(op);
         switch (special_case)
         {
             case EQUAL: return ubint(1);
@@ -496,7 +496,7 @@ namespace apa {
         if(!op)
             throw std::domain_error("apa::ubint - Division By Zero");
             
-        int special_case = compare(op);
+        int special_case = this->compare(op);
         switch (special_case)
         {
             case EQUAL: return ubint(0);
@@ -584,7 +584,7 @@ namespace apa {
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
 
-        if(boolean()) {
+        if(this->boolean()) {
             size_t limb_shifts = bits / BASE_BITS;
             size_t bit_shifts = bits % BASE_BITS;
 
@@ -616,7 +616,7 @@ namespace apa {
 
     ubint& ubint::operator>>=(size_t bits) {
 
-        if(boolean()) {
+        if(this->boolean()) {
             size_t limb_shifts = bits / BASE_BITS;
             
             if(limb_shifts>=length) {
