@@ -333,6 +333,22 @@ namespace apa {
         return (length==1 && limbs[0]==0) ? false : true;
     }
 
+    bool ubint::boolean() const {
+        return (length==1 && limbs[0]==0) ? false : true;
+    }
+
+    bool ubint::operator&&(const ubint& op) const {
+        return (boolean() && op.boolean());
+    }
+
+    bool ubint::operator||(const ubint& op) const {
+        return (boolean() || op.boolean());
+    }
+
+    bool ubint::operator!() const {
+        return !boolean();
+    }
+
     // Arithmetic Operators
 
     ubint& ubint::operator+=(const ubint& op) {
