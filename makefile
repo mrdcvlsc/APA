@@ -50,6 +50,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_logical.out
 	@./$(SRC)/ubint_shifts.out
 	@./$(SRC)/ubint_div.out
+	@./$(SRC)/ubint_base10_print.out
 
 # -------------------------- test program compilation ---------------------------
 

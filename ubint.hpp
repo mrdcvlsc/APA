@@ -156,6 +156,7 @@ namespace apa {
             void printHex() const;
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
+            std::string to_base10_string() const;
     };
 
     void swap(ubint& a, ubint& b);

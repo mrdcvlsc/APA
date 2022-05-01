@@ -695,6 +695,24 @@ namespace apa {
         a = std::move(b);
         b = std::move(temp);
     }
+
+    std::string ubint::to_base10_string() const {
+        std::string Base10 = "";
+        ubint ten(10), quotient = *this;
+
+        if(quotient.boolean()) {
+            while(quotient.boolean()) {
+                ubint remainder = quotient % ten;
+                quotient = quotient / ten;
+                Base10.push_back('0'+remainder.limbs[0]);
+            }
+
+            std::reverse(Base10.begin(),Base10.end());    
+        }
+        else Base10 = "0";
+        
+        return Base10;
+    }
 }
 
 #endif
