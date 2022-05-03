@@ -329,24 +329,8 @@ namespace apa {
     }
 
     // Logical Operators
-    // ubint::operator bool() const noexcept {
-    //     return (length==1 && limbs[0]==0) ? false : true;
-    // }
-
-    bool ubint::boolean() const {
+    ubint::operator bool() const noexcept {
         return (length==1 && limbs[0]==0) ? false : true;
-    }
-
-    bool ubint::operator&&(const ubint& op) const {
-        return (this->boolean() && op.boolean());
-    }
-
-    bool ubint::operator||(const ubint& op) const {
-        return (this->boolean() || op.boolean());
-    }
-
-    bool ubint::operator!() const {
-        return !boolean();
     }
 
     // Arithmetic Operators
@@ -577,7 +561,7 @@ namespace apa {
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
 
-        if(this->boolean()) {
+        if(*this) {
             size_t limb_shifts = bits / BASE_BITS;
             size_t bit_shifts = bits % BASE_BITS;
 
@@ -609,7 +593,7 @@ namespace apa {
 
     ubint& ubint::operator>>=(size_t bits) {
 
-        if(this->boolean()) {
+        if(*this) {
             size_t limb_shifts = bits / BASE_BITS;
             
             if(limb_shifts>=length) {
@@ -700,8 +684,8 @@ namespace apa {
         std::string Base10 = "";
         ubint ten(10), quotient = *this;
 
-        if(quotient.boolean()) {
-            while(quotient.boolean()) {
+        if(quotient) {
+            while(quotient) {
                 ubint remainder = quotient % ten;
                 quotient = quotient / ten;
                 Base10.push_back('0'+remainder.limbs[0]);

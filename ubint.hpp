@@ -123,11 +123,7 @@ namespace apa {
             ubint operator~() const;
             
             // Logical Operators
-            // explicit operator bool() const noexcept;
-            bool boolean() const;
-            bool operator&&(const ubint& op) const;
-            bool operator||(const ubint& op) const;
-            bool operator!() const;
+            explicit operator bool() const noexcept;
 
             // Arithmetic Operators
             ubint bit_division(const ubint& op) const;
