@@ -62,39 +62,44 @@ namespace apa {
             limbs = NULL;
     }
 
-    ubint::ubint(std::string text, bool isHex) {
+    ubint::ubint(std::string text, size_t base) {
 
-        if(isHex) {
-            std::reverse(text.begin(),text.end());
+        switch(base) {
+            case 16: {
+                std::reverse(text.begin(),text.end());
 
-            size_t blocks = text.size()/(LIMB_BYTES);
-            size_t remain = text.size()%(LIMB_BYTES);
+                size_t blocks = text.size()/(LIMB_BYTES);
+                size_t remain = text.size()%(LIMB_BYTES);
 
-            length = blocks;
-            if(remain) length++;
-            capacity = length+LIMB_GROWTH;
-            limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
-            memset(limbs,0x0,capacity*LIMB_BYTES);
+                length = blocks;
+                if(remain) length++;
+                capacity = length+LIMB_GROWTH;
+                limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+                memset(limbs,0x0,capacity*LIMB_BYTES);
 
-            for(size_t i=0; i<text.size(); ++i) {
+                for(size_t i=0; i<text.size(); ++i) {
 
-                unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[i]);
-                if(CharByte==0xff)
-                    break;
+                    unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[i]);
+                    if(CharByte==0xff)
+                        break;
 
-                size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
-                limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+                    size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
+                    limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+                }
+                std::cout << "\n\n";
+
+                size_t cut_length = 0;
+
+                while(!limbs[length-1-cut_length])
+                    cut_length++;
+
+                length -= cut_length;
+                break;
             }
-
-            size_t cut_length = 0;
-
-            while(!limbs[length-1-cut_length])
-                cut_length++;
-
-            length -= cut_length;
-        }
-        else {
-            // base 10
+            case 10:
+                break;
+            default:
+                throw std::invalid_argument("ubint - string constructor : Number bases can only be 10 or 16");
         }
     }
 
