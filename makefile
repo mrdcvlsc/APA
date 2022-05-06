@@ -51,6 +51,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_shifts.out
 	@./$(SRC)/ubint_div.out
 	@./$(SRC)/ubint_base10_print.out
+	@./$(SRC)/ubint_bases.out
 
 # -------------------------- test program compilation ---------------------------
 

@@ -9,10 +9,18 @@
 
 #include "mini-test.hpp"
 
-
 int main() { START_TEST;
 
-    // ASSERT_UBINT(UBINT_A,UBINT_A,"SPECIFIC_TEST_NAME");
+    // test variables
+    
+    
+    // ASSERT_EQUALITY((NUM2%NUM1),NUM2,"30 NUM2%NUM1");
 
-    RESULT("MAIN TEST NAME");
+    #if defined(_BASE2_16)
+        RESULT("UBINT BASE 2^16 base2, base8, base10, base16 constructor");
+    #elif defined(_BASE2_32)
+        RESULT("UBINT BASE 2^32 base2, base8, base10, base16 constructor");
+    #elif defined(_BASE2_64)
+        RESULT("UBINT BASE 2^64 base2, base8, base10, base16 constructor");
+    #endif
 }
