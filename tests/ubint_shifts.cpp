@@ -26,16 +26,16 @@ int main() { START_TEST;
 
         // test variables
         apa::ubint RS8123_FAC975_C(
-            "0x339e0a8ded47f83d27b1b7b4bd45112aa396e491"
+            "0x339e0a8ded47f83d27b1b7b4bd45112aa396e491",16
         );
 
         apa::ubint RS34567_FAC3375_C(
-            "0x14804f42e1dfdce53ca870ef78db19711"
+            "0x14804f42e1dfdce53ca870ef78db19711",16
         );
 
         apa::ubint
-            num1("0xffffffffffffffffff0000000000000000000a8f2d4e6c1f7f66e77dead999beef"),
-            num2("0xabcd54321ffff789000cccedede00124323ffff");
+            num1("0xffffffffffffffffff0000000000000000000a8f2d4e6c1f7f66e77dead999beef",16),
+            num2("0xabcd54321ffff789000cccedede00124323ffff",16);
 
         apa::ubint
             LS1872_num1_C(
@@ -46,24 +46,24 @@ int main() { START_TEST;
                 "00000000000000000000000000000000000000000000000000000000000000000000000"
                 "00000000000000000000000000000000000000000000000000000000000000000000000"
                 "00000000000000000000000000000000000000000000000000000000000000000000000"
-                "000000000000000000000000000000000000000"
+                "000000000000000000000000000000000000000",16
             ),
 
             LS752_num2_C(
                 "0xabcd54321ffff789000cccedede00124323ffff000000000000000000000000000000"
                 "00000000000000000000000000000000000000000000000000000000000000000000000"
                 "00000000000000000000000000000000000000000000000000000000000000000000000"
-                "0000000000000000"
+                "0000000000000000",16
             ),
-            numTest("1234567890abcdef12345"),
-            LS75_numTest_C("0x91a2b3c4855e6f7891a28000000000000000000");
+            numTest("1234567890abcdef12345",16),
+            LS75_numTest_C("0x91a2b3c4855e6f7891a28000000000000000000",16);
 
-        apa::ubint A("bacdef1234567890"),
-        LS331_A("0x5d66f7891a2b3c4800000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-        apa::ubint LS320_TWO_C("0x200000000000000000000000000000000000000000000000000000000000000000000000000000000");
-        apa::ubint LS0_DEADBEEF_C("deadbeef");
-        apa::ubint RANDNUM("abcdef0123456789caffae0feed0dead0beef0cab0bafe80ffff");
-        apa::ubint LS1_RANDNUM_C("0x1579bde02468acf1395ff5c1fdda1bd5a17dde1956175fd01fffe");
+        apa::ubint A("bacdef1234567890",16),
+        LS331_A("0x5d66f7891a2b3c4800000000000000000000000000000000000000000000000000000000000000000000000000000000000",16);
+        apa::ubint LS320_TWO_C("0x200000000000000000000000000000000000000000000000000000000000000000000000000000000",16);
+        apa::ubint LS0_DEADBEEF_C("deadbeef",16);
+        apa::ubint RANDNUM("abcdef0123456789caffae0feed0dead0beef0cab0bafe80ffff",16);
+        apa::ubint LS1_RANDNUM_C("0x1579bde02468acf1395ff5c1fdda1bd5a17dde1956175fd01fffe",16);
 
         apa::ubint ONE = 1, RS1_ONE_C = 0, RS2_ONE_C = 0, RS16_ONE_C = 0, RS32_ONE_C = 0, RS320_ONE_C = 0;
         apa::ubint NUM2POW4096MIN1(
@@ -78,10 +78,10 @@ int main() { START_TEST;
             "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
             "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
             "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",16
         );
 
-        apa::ubint LS0_DEADBEEF("deadbeef");
+        apa::ubint LS0_DEADBEEF("deadbeef",16);
 
         apa::ubint NUM2POW4096MIN1_RS4095_C = 1;
         apa::ubint NUM2POW4096MIN1_RS4096_C = 0;

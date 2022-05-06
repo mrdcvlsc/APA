@@ -2,6 +2,7 @@
 #define UNSIGNED_BIG_INTEGER_HPP
 
 #include <iostream>
+#include <vector>
 #include <algorithm>
 #include <cstring>
 #include <cmath>
@@ -88,7 +89,7 @@ namespace apa {
             // Constructors
             ubint();
             ubint(limb_t num);
-            ubint(std::string text, size_t base=16);
+            ubint(std::string text, size_t base=10);
             ubint(std::initializer_list<base_t> limbs);
             ubint(size_t capacity, size_t length, bool AllocateSpace=true);
 

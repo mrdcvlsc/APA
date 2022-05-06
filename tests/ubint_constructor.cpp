@@ -49,14 +49,14 @@ int main() { START_TEST;
             "761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         apa::ubint num3(
             "0x761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");
@@ -101,14 +101,14 @@ int main() { START_TEST;
             "761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         apa::ubint num3(
             "0x761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");
@@ -151,14 +151,14 @@ int main() { START_TEST;
             "761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         apa::ubint num3(
             "0x761236afcccfff"
             "fffffffffffffffffffff0000000000"
             "000000ffffffffabcdefabcdefabcd1"
-            "a2b3c4d5e6f89af9999999999999999"
+            "a2b3c4d5e6f89af9999999999999999",16
         );
 
         ASSERT_EQUALITY(num1,num2, "initializer_list<base_t> equal string constructor num2");

@@ -12,6 +12,7 @@
 
 namespace apa {
 
+    unsigned char HEX_TO_CHAR[16] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f',};
     unsigned char CHAR_TO_HEX(unsigned char c) {
         switch (c)
         {
@@ -62,45 +63,65 @@ namespace apa {
             limbs = NULL;
     }
 
+    // constructor for conveniece
     ubint::ubint(std::string text, size_t base) {
 
-        switch(base) {
-            case 16: {
-                std::reverse(text.begin(),text.end());
+        if(base>1 && base<16) {
+            std::vector<uint8_t> output(text.size(),0);
 
-                size_t blocks = text.size()/(LIMB_BYTES);
-                size_t remain = text.size()%(LIMB_BYTES);
-
-                length = blocks;
-                if(remain) length++;
-                capacity = length+LIMB_GROWTH;
-                limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
-                memset(limbs,0x0,capacity*LIMB_BYTES);
-
-                for(size_t i=0; i<text.size(); ++i) {
-
-                    unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[i]);
-                    if(CharByte==0xff)
-                        break;
-
-                    size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
-                    limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+            for(size_t i=0; i<text.size(); ++i) {
+                uint8_t carry = text[i] - '0';
+                size_t j=text.size();
+                while(j--) {
+                    uint8_t tmp = output[j] * base + carry;
+                    output[j] = tmp % 16;
+                    carry = tmp / 16;
                 }
-                std::cout << "\n\n";
+            }
 
-                size_t cut_length = 0;
+            size_t leading_zeros = 0;
+            while(output.size()>1 && !output[leading_zeros])
+                leading_zeros++;
 
-                while(!limbs[length-1-cut_length])
-                    cut_length++;
+            output.erase(output.begin(),output.begin()+leading_zeros);
 
-                length -= cut_length;
-            } break;
-            case 10: {
+            std::string stringForm(output.size(),'0');
+            for(size_t i=0; i<stringForm.size(); ++i)
+                stringForm[i] = HEX_TO_CHAR[output[i]];
 
-            } break;
-            default:
-                throw std::invalid_argument("ubint - string constructor : Number bases can only be 10 or 16");
+            text = stringForm;
         }
+        else if(base!=16) {
+            throw std::domain_error(
+                "ubint - string contructor : supported number base range is only from 2 to 16"
+            );
+        }
+
+        size_t blocks = text.size()/(LIMB_BYTES);
+        size_t remain = text.size()%(LIMB_BYTES);
+
+        length = blocks;
+        if(remain) length++;
+        capacity = length+LIMB_GROWTH;
+        limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+        memset(limbs,0x0,capacity*LIMB_BYTES);
+
+        for(size_t i=0; i<text.size(); ++i) {
+
+            unsigned char CharByte = CHAR_TO_HEX((unsigned char)text[text.size()-1-i]);
+            if(CharByte==0xff)
+                break;
+
+            size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
+            limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+        }
+
+        size_t cut_length = 0;
+
+        while(!limbs[length-1-cut_length])
+            cut_length++;
+
+        length -= cut_length;
     }
 
     /// copy constructor.
