@@ -94,10 +94,10 @@ namespace apa {
                     cut_length++;
 
                 length -= cut_length;
-                break;
-            }
-            case 10:
-                break;
+            } break;
+            case 10: {
+
+            } break;
             default:
                 throw std::invalid_argument("ubint - string constructor : Number bases can only be 10 or 16");
         }
