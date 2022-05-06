@@ -41,15 +41,21 @@
 - Bitwise Shifts ; ```<<```, ```>>```, ```<<=```, ```>>=``` (only takes argument of ```size_t```).
 
 ### Other Methods.
-- ```apa::swap(ubint&,ubint&)``` - swap values of to ```ubint``` class.
-- ```.printHex()``` - prints the value of ```ubint``` in hex format.
-- ```.to_base10_string()``` - returns a string that represents the value of ```ubint``` in base 10 (decimal).
+- ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of to ```ubint``` class.
+- ```.printHex()``` - **[ubint public method]** prints the value of ```ubint``` in hex format.
+- ```.to_base10_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 10 (decimal).
 
-### Using static library and ```#include <ubint.hpp>````
+### Compiling with the static library and ```#include <ubint.hpp>``` header.
 - (not implemented yet)
 
-### Using the ```#include "ubint.hpp"``` header guard
+### Compiling with the ```#include "ubint.hpp"``` header.
 - To use the ```ubint``` class just include the header ```ubint.hpp``` to your main source code then use the namespace ```apa``` to access the ```ubint``` class like in the example above.
+- Choose a base during compilation with the following flags.
+    - ```-D_BASE2_16``` - (slowest)
+    - ```-D_BASE2_32```
+    - ```-D_BASE2_64``` - (fastest) might not be supported to some x86 or 32-bit computers.
+    
+        example: **```g++ main.cpp -o main.exe -D_BASE2_32 -O2```**
 
 ### Limitations of ```ubint```.
 - **unsigned big integers** or ```ubint``` for short have the following limitations
