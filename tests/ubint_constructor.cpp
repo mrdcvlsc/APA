@@ -1,4 +1,4 @@
-#include "../ubint.hpp"
+#include "../core.hpp"
 #include "mini-test.hpp"
 
 // #define _BASE2_64

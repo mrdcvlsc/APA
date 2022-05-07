@@ -114,7 +114,3 @@ namespace apa {
     void swap(ubint& a, ubint& b);
 }
 #endif
-
-#ifndef _MAKE_LIB
-#include "ubint.cpp"
-#endif

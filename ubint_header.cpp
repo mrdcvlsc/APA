@@ -3,8 +3,8 @@
 */
 
 #include <iostream>
-#include <ubint.hpp> // static lib compilation
-// #include "core.hpp"  // - header compilation
+// #include <ubint.hpp> // static lib compilation
+#include "core.hpp"  // - header compilation
 
 apa::ubint fibonacci(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
     apa::ubint base0 = b0, base1 = b1;

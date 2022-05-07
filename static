@@ -9,7 +9,7 @@ LIB_HEADER_OUT:=build/include
 LIB_OUTNAME:=lib$(LIB_NAME).a
 
 CXXFLAGS := -Wall -Wextra
-USERFLAGS := -D_MAKE_LIB -D_BASE2_64
+USERFLAGS := -D_MAKE_LIB
 TEST_OPTIMIZATION := -g -Og
 HEADER_PATHS := -I./$(LIB_HEADER_OUT)
 LIB_OPTIMIZATION := -O2
@@ -34,13 +34,14 @@ ifeq ($(OS), Linux)
 	@mkdir $(LIB_OUT)
 	@echo "creating static lib"
 	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION) $(USERFLAGS)
+	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
 else
 	@echo "creating build directory"
 	@mkdir build
@@ -48,13 +49,14 @@ else
 	@mkdir "$(LIB_OUT)"
 	@echo "creating static lib"
 	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION) $(USERFLAGS)
+	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
 	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
 endif
 
 cleanup:
@@ -65,23 +67,6 @@ ifeq ($(OS), Linux)
 else
 	rmdir /S build
 	del *.o *.out *.exe
-endif
-
-build_test:
-ifeq ($(OS), Linux)
-	@echo "==============================="
-	@echo ""
-	@echo "running build test"
-	@cp static-build.cpp  build
-	@$(CC) build/static-build.cpp -o build/static-build.out -I./$(LIB_HEADER_OUT)/ -L./$(LIB_OUT) $(LIBS)
-	@./build/static-build.out
-else
-	@echo "==============================="
-	@echo ""
-	@echo "running build test"
-	@copy static-build.cpp  build
-	@$(CC) build/static-build.cpp -o build/static-build.exe -I./$(LIB_HEADER_OUT)/ -L./$(LIB_OUT) $(LIBS)
-	@build/static-build.exe
 endif
 
 # -------------------------- run test programs ---------------------------
@@ -114,8 +99,9 @@ install:
 ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUT)/$(LIB_OUTNAME) $(INSTALL_PREFIX)lib
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/ubint.hpp $(INSTALL_PREFIX)include
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/apa-base-configs.hpp $(INSTALL_PREFIX)include
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
-	@echo "ubint.hpp now installed to $(INSTALL_PREFIX)include"
+	@echo "ubint.hpp apa-base-configs.hpp now installed to $(INSTALL_PREFIX)include"
 else
 	@echo .
 	@echo For Mingw64 in windows, please specify your mingw64 folder path with the INSTALL_PREFIX
@@ -125,6 +111,7 @@ else
 	@echo .
 	copy build\lib\$(LIB_OUTNAME) "$(INSTALL_PREFIX)\lib"
 	copy build\include\ubint.hpp "$(INSTALL_PREFIX)\include
+	copy build\include\apa-base-configs.hpp "$(INSTALL_PREFIX)\include
 	@echo install success
 endif
 
@@ -132,8 +119,10 @@ uninstall:
 ifeq ($(OS), Linux)
 	@rm $(INSTALL_PREFIX)lib/$(LIB_OUTNAME)
 	@rm $(INSTALL_PREFIX)include/ubint.hpp
+	@rm $(INSTALL_PREFIX)include/apa-base-configs.hpp
 else
 	del "$(INSTALL_PREFIX)\lib\$(LIB_OUTNAME)"
 	del "$(INSTALL_PREFIX)\include\ubint.hpp"
+	del "$(INSTALL_PREFIX)\include\apa-base-configs.hpp"
 	echo uninstall success
 endif

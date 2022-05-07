@@ -14,37 +14,37 @@ jobs:
     
     steps:
 
-    # - name: install clang
-    #   run: sudo apt install clang
+    - name: install clang
+      run: sudo apt install clang
 
     - uses: actions/checkout@v2
     
     - name: message.
       run: echo no builds yet for clang
 
-    # - name: build and compile the static library.
-    #   run: make -f staticlib CC=clang++
+    - name: build and compile the static library.
+      run: make -f staticlib CC=clang++
 
-    # - name: run the tests for the static library.
-    #   run: make -f staticlib static_test CC=clang++
+    - name: run the tests for the static library.
+      run: make -f staticlib static_test CC=clang++
 
-    # - name: clean test executables
-    #   run: make clean
+    - name: clean test executables
+      run: make clean
 
-    # - name: install the static library.
-    #   run: sudo make -f staticlib install CC=clang++
+    - name: install the static library.
+      run: sudo make -f staticlib install CC=clang++
 
-    # - name: compile the static sample program for the library.
-    #   run: clang++ static-build.cpp -o static-build.out -luint320 -fsanitize=address
+    - name: compile the static sample program for the library.
+      run: clang++ ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
 
-    # - name: run the sample program for the library.
-    #   run: ./static-build.out
+    - name: run the sample program for the library.
+      run: ./ubint_build.out
 
-    # - name: uninstall the static library.
-    #   run: sudo make -f staticlib uninstall
+    - name: uninstall the static library.
+      run: sudo make -f staticlib uninstall
 
-    # - name: cleanup
-    #   run: make -f staticlib cleanup
+    - name: cleanup
+      run: make -f staticlib cleanup
 
   static-lib-gcc:
 
@@ -56,26 +56,26 @@ jobs:
     - name: message.
       run: echo no builds yet for gcc
     
-    # - name: build and compile the static library.
-    #   run: make -f staticlib
+    - name: build and compile the static library.
+      run: make -f staticlib
 
-    # - name: run the tests for the static library.
-    #   run: make -f staticlib static_test
+    - name: run the tests for the static library.
+      run: make -f staticlib static_test
 
-    # - name: clean test executables
-    #   run: make clean
+    - name: clean test executables
+      run: make clean
 
-    # - name: install the static library.
-    #   run: sudo make -f staticlib install
+    - name: install the static library.
+      run: sudo make -f staticlib install
 
-    # - name: compile the static sample program for the library.
-    #   run: g++ static-build.cpp -o static-build.out -luint320 -fsanitize=address
+    - name: compile the static sample program for the library.
+      run: g++ ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
 
-    # - name: run the sample program for the library.
-    #   run: ./static-build.out
+    - name: run the sample program for the library.
+      run: ./ubint_build.out
 
-    # - name: uninstall the static library.
-    #   run: sudo make -f staticlib uninstall
+    - name: uninstall the static library.
+      run: sudo make -f staticlib uninstall
 
-    # - name: cleanup
-    #   run: make -f staticlib cleanup
+    - name: cleanup
+      run: make -f staticlib cleanup

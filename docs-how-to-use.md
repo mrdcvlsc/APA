@@ -46,17 +46,65 @@
 - ```.to_base10_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 10 (decimal).
 - ```.to_base16_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 16 (hex).
 
-### Compiling with the static library and ```#include <ubint.hpp>``` header.
-- (not implemented yet)
-
-### Compiling with the ```#include "ubint.hpp"``` header.
-- To use the ```ubint``` class just include the header ```ubint.hpp``` to your main source code then use the namespace ```apa``` to access the ```ubint``` class like in the example above.
-- Choose a base during compilation with the following flags.
-    - ```-D_BASE2_16``` - (slowest)
-    - ```-D_BASE2_32```
-    - ```-D_BASE2_64``` - (fastest) might not be supported to some x86 or 32-bit computers.
+### Compiling with header only.
+- If you don't want to build the library using ```makefiles``` you can directly include the core header instead.
+    ```c++
+    #include "core.hpp"
+    ```
+- You can choose a base during compilation with the following flags.
+    - ```-D_FORCE_BASE2_16``` - (slowest)
+    - ```-D_FORCE_BASE2_32```
+    - ```-D_FORCE_BASE2_64``` - (fastest) might not be supported to some x86 or 32-bit computers.
     
-        example: **```g++ main.cpp -o main.exe -D_BASE2_32 -O2```**
+    example: 
+    ```bash
+    g++ main.cpp -o main.exe -D_FORCE_BASE2_32 -O2
+    ```
+
+    By default if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto decide the best available value for you.
+    
+### Compiling with the static library and ```#include <ubint.hpp>``` header.
+- To build the library run the following command
+    ```bash
+    make -f static
+    ```
+- To install it in your system use the command.
+    ```bash
+    sudo make -f install
+    ```
+
+- If you are compiling the static library with **mingw** on windows, you need to specify where the **mingw** folder is located in the ```INSTALL_PREFIX``` during the install command. eg.
+    ```bash
+    make -f static install INSTALL_PREFIX=C:/User/Downloads/mingw
+    ```
+
+    If you are using **mingw64** you might want to replace ```make``` with ```mingw32-make``` in the command.
+
+- To uninstall library in your system just do a
+    ```bash
+    sudo make -f uninstall
+    ```
+
+    For windows you also need to specify the path of **mingw** using ```INSTALL_PREFIX``` like how you installed it but with the uninstall command.
+
+- If you installed the library after building it then you can just use it right away by including the proper header.
+    ```c++
+    // main.cpp
+    #include <iostream>
+    #include <ubint.hpp>
+    int main() {
+        apa::ubint num("8800918289723498",10);
+        // ...
+    }
+    ```
+    Then compile it with:
+    ```
+    g++ main.cpp -o main.exe -lapa -O2
+    ```
+- If you did not installed it you need to link the **build/include** and **build/lib** folder during compilation.
+    ```
+    g++ main.cpp -o main.exe -I"PATH/APA/build/include" -L"PATH/APA/build/lib" -lapa -O2
+    ```
 
 ### Limitations of ```ubint```.
 - **unsigned big integers** or ```ubint``` for short have the following limitations
