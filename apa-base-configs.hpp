@@ -3,6 +3,18 @@
 
 // #define _BASE2_64
 
+#ifndef _APA_TESTING_PHASE
+    #if defined(__SIZEOF_INT128__) || defined(UINT128MAX) || defined(_FORCE_BASE2_64)
+        #define _BASE2_64
+    #elif defined(UINT64_MAX) || defined(UINT64_WIDTH) || defined(_FORCE_BASE2_32)
+        #define _BASE2_32
+    #elif defined(UINT32_MAX) || defined(UINT32_WIDTH) || defined(_FORCE_BASE2_16)
+        #define _BASE2_16
+    #else
+#error "ubint is not supported in this system."
+    #endif
+#endif
+
 #ifdef _BASE2_64
     #if (__MINGW64__ || __MINGW64)
         #define PRINT_LIMBHEX_NOPAD "%llx"

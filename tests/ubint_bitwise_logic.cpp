@@ -3,7 +3,7 @@
 #include <bitset>
 
 #ifndef _MAKE_LIB
-#include "../ubint.hpp"
+#include "../core.hpp"
 #else
 #include <ubint.hpp>
 #endif
