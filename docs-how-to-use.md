@@ -44,6 +44,7 @@
 - ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of two ```ubint``` class.
 - ```.printHex()``` - **[ubint public method]** prints the value of ```ubint``` in hex format.
 - ```.to_base10_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 10 (decimal).
+- ```.to_base16_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 16 (hex).
 
 ### Compiling with the static library and ```#include <ubint.hpp>``` header.
 - (not implemented yet)
