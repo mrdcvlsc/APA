@@ -1,6 +1,13 @@
 # ubint - unsigned big integers
 
 ### Initializing ```ubint``` numbers
+- from an integral type.
+    ```c++
+    apa::ubint num = 255;
+    // base 10 equivalent = 255
+    ```
+    Make sure that the integral type value you assign to a ```ubint``` will not exceed it's base size. If you compile ```apa``` with a number base of 2<sup>16</sup> the maximum value you can assign using an integral type is **```65535```**, for base of 2<sup>32</sup> it is **```4294967295```**, and for base 2<sup>64</sup> this will be **```18446744073709551615```**.
+
 - from a base2 (binary) number represented by a string.
     ```c++
     apa::ubint base2_bin("11001001110100111110100010101",2);
@@ -53,9 +60,9 @@
     #include "core.hpp"
     ```
 - You can choose a base during compilation with the following flags.
-    - ```-D_FORCE_BASE2_16``` - (slowest)
-    - ```-D_FORCE_BASE2_32```
-    - ```-D_FORCE_BASE2_64``` - (fastest) might not be supported to some x86 or 32-bit computers.
+    - ```-D_FORCE_BASE2_16``` = number base 2<sup>16</sup> (slowest)
+    - ```-D_FORCE_BASE2_32``` = number base 2<sup>32</sup>
+    - ```-D_FORCE_BASE2_64``` = number base 2<sup>64</sup> (fastest) might not be supported to some x86 or 32-bit computers.
     
     example: 
     ```bash

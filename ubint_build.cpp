@@ -20,11 +20,10 @@ apa::ubint fibonacci(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
 apa::ubint factorial(size_t n) {
     apa::ubint factorial(1);
     apa::ubint iter = factorial;
-    apa::ubint one = 1;
 
     for(size_t i=1; i<=n; ++i) {
         factorial *= iter;
-        iter = iter + one;
+        iter++;
     }
 
     return factorial;

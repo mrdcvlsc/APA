@@ -42,16 +42,11 @@ namespace apa {
         limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
-    ubint::ubint(limb_t num) {
+    ubint::ubint(base_t num) {
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
-        limbs[0] = (base_t) num;
-        limb_t high = num >> BASE_BITS;
-        if((base_t)high) {
-            limbs[1] = high;
-            length++;
-        }
+        limbs[0] = num;
     }
 
     ubint::ubint(size_t capacity, size_t length, bool AllocateSpace) {

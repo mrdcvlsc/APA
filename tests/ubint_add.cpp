@@ -9,7 +9,7 @@
 
 #include "mini-test.hpp"
 
-apa::ubint fib(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
+apa::ubint fib(size_t nth, apa::ubint b0 = 0, apa::ubint b1 = 1) {
     apa::ubint base0 = b0, base1 = b1;
     apa::ubint nthfib = 0;
     for(size_t i=2; i<=nth; ++i) {
@@ -45,7 +45,7 @@ int main() { START_TEST;
             0xc340, 0x6855
         };
 
-        apa::ubint fib1000_1_99927737 = fib(1000,1,99927737);
+        apa::ubint fib1000_1_99927737 = fib(1000,1,apa::ubint("99927737",10));
         apa::ubint fib1000_1_99927737_C = {
             0xc998, 0xdee1, 0x8201, 0x1030, 0x7276, 0x9e7e, 0xe803, 0xca11, 0x3a44, 0x6de2, 0x7f3c,
             0x67e4, 0xdd91, 0x6c39, 0x09d9, 0x95b4, 0xd857, 0x794c, 0x412a, 0xcd27, 0xa845, 0x782f, 0x308f,
