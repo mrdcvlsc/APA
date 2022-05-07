@@ -6,8 +6,8 @@
 #ifdef _BASE2_64
     #if (__MINGW64__ || __MINGW64)
         #define PRINT_LIMBHEX_NOPAD "%llx"
-        #define PRINT_LIMBHEX "%16llx"
-        #define PRINT_LIMBHEX_SPACED " %16llx"
+        #define PRINT_LIMBHEX "%016llx"
+        #define PRINT_LIMBHEX_SPACED " %016llx"
     #elif (__clang__ || __GNUC__ || __GNUG__)
         #define PRINT_LIMBHEX_NOPAD "%lx"
         #define PRINT_LIMBHEX "%016lx"
@@ -17,9 +17,9 @@
     #endif
 #elif defined(_BASE2_32)
     #if (__MINGW64__ || __MINGW64)
-        #define PRINT_LIMBHEX_NOPAD "%lx"
-        #define PRINT_LIMBHEX "%08lx"
-        #define PRINT_LIMBHEX_SPACED " %08lx"
+        #define PRINT_LIMBHEX_NOPAD "%x"
+        #define PRINT_LIMBHEX "%08x"
+        #define PRINT_LIMBHEX_SPACED " %08x"
     #elif (__clang__ || __GNUC__ || __GNUG__)
         #define PRINT_LIMBHEX_NOPAD "%x"
         #define PRINT_LIMBHEX "%08x"
