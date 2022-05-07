@@ -6,7 +6,7 @@ A c++ library for big integer and big number computation in general (arbitrary-p
 
 # Version 4 [A WORK IN PROGRESS]
 
-How to use? see : [version 4 - docs](docs-how-to-use.md)
+## How to use? see : [version 4 - docs](docs-how-to-use.md)
 
 This branch **version 4** is an ongoing rewrite of the whole library.
 

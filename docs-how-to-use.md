@@ -47,6 +47,7 @@
 - Logical Operators ; ```!```, ```&&```, ```||```.
 - Bitwise Logical Operators ; ```~```, ```|```, ```&```, ```^```, ```|=```, ```&=```, ```^=```.
 - Bitwise Shifts ; ```<<```, ```>>```, ```<<=```, ```>>=``` (only takes argument of ```size_t```).
+- Standard I/O (console cin and cout) ; ```<<```, ```>>``` (only accepts and output hex format).
 
 ### Other Methods.
 - ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of two ```ubint``` class.
