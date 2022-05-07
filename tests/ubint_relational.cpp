@@ -157,56 +157,56 @@ int main() { START_TEST;
             num1num2_C("0xabcd54321ffff788ff60ff99bbc0012ca93ffa392d75d62af53c61892604980e854930ab6d2847bfb9bede8bee723c57a8d024111",16);
 
         // answers
-        ASSERT_EXPRESSION(num1>num2,"num1>num2");
-        ASSERT_EXPRESSION(num1>=num2,"num1>=num2");
-        ASSERT_EXPRESSION(!(num2>num1),"!(num2>num1");
-        ASSERT_EXPRESSION(!(num2>=num1),"!(num2>=num1)");
-        ASSERT_EXPRESSION(!(num1<num2),"!(num1<num2)");
-        ASSERT_EXPRESSION(!(num1<=num2),"!(num1<=num2)");
-        ASSERT_EXPRESSION((num2<num1),"!(num2<num1");
-        ASSERT_EXPRESSION((num2<=num1),"!(num2<=num1)");
+        ASSERT_EXPRESSION(num1>num2,                "num1>num2             ");
+        ASSERT_EXPRESSION(num1>=num2,               "num1>=num2            ");
+        ASSERT_EXPRESSION(!(num2>num1),             "!(num2>num1           ");
+        ASSERT_EXPRESSION(!(num2>=num1),            "!(num2>=num1)         ");
+        ASSERT_EXPRESSION(!(num1<num2),             "!(num1<num2)          ");
+        ASSERT_EXPRESSION(!(num1<=num2),            "!(num1<=num2)         ");
+        ASSERT_EXPRESSION((num2<num1),              "!(num2<num1           ");
+        ASSERT_EXPRESSION((num2<=num1),             "!(num2<=num1)         ");
 
-        ASSERT_EXPRESSION(FAC975_C>num2,"FAC975_C>num2");
-        ASSERT_EXPRESSION(FAC975_C>=num2,"FAC975_C>=num2");
-        ASSERT_EXPRESSION(!(num2>FAC975_C),"!(num2>FAC975_C");
-        ASSERT_EXPRESSION(!(num2>=FAC975_C),"!(num2>=FAC975_C)");
-        ASSERT_EXPRESSION(!(FAC975_C<num2),"!(FAC975_C<num2)");
-        ASSERT_EXPRESSION(!(FAC975_C<=num2),"!(FAC975_C<=num2)");
-        ASSERT_EXPRESSION((num2<FAC975_C),"!(num2<FAC975_C");
-        ASSERT_EXPRESSION((num2<=FAC975_C),"!(num2<=FAC975_C)");
+        ASSERT_EXPRESSION(FAC975_C>num2,            "FAC975_C>num2         ");
+        ASSERT_EXPRESSION(FAC975_C>=num2,           "FAC975_C>=num2        ");
+        ASSERT_EXPRESSION(!(num2>FAC975_C),         "!(num2>FAC975_C       ");
+        ASSERT_EXPRESSION(!(num2>=FAC975_C),        "!(num2>=FAC975_C)     ");
+        ASSERT_EXPRESSION(!(FAC975_C<num2),         "!(FAC975_C<num2)      ");
+        ASSERT_EXPRESSION(!(FAC975_C<=num2),        "!(FAC975_C<=num2)     ");
+        ASSERT_EXPRESSION((num2<FAC975_C),          "!(num2<FAC975_C       ");
+        ASSERT_EXPRESSION((num2<=FAC975_C),         "!(num2<=FAC975_C)     ");
 
-        ASSERT_EXPRESSION(FAC3375_C>num2,"FAC3375_C>num2");
-        ASSERT_EXPRESSION(FAC3375_C>=num2,"FAC3375_C>=num2");
-        ASSERT_EXPRESSION(!(num2>FAC3375_C),"!(num2>FAC3375_C");
-        ASSERT_EXPRESSION(!(num2>=FAC3375_C),"!(num2>=FAC3375_C)");
-        ASSERT_EXPRESSION(!(FAC3375_C<num2),"!(FAC3375_C<num2)");
-        ASSERT_EXPRESSION(!(FAC3375_C<=num2),"!(FAC3375_C<=num2)");
-        ASSERT_EXPRESSION((num2<FAC3375_C),"!(num2<FAC3375_C");
-        ASSERT_EXPRESSION((num2<=FAC3375_C),"!(num2<=FAC3375_C)");
+        ASSERT_EXPRESSION(FAC3375_C>num2,           "FAC3375_C>num2        ");
+        ASSERT_EXPRESSION(FAC3375_C>=num2,          "FAC3375_C>=num2       ");
+        ASSERT_EXPRESSION(!(num2>FAC3375_C),        "!(num2>FAC3375_C      ");
+        ASSERT_EXPRESSION(!(num2>=FAC3375_C),       "!(num2>=FAC3375_C)    ");
+        ASSERT_EXPRESSION(!(FAC3375_C<num2),        "!(FAC3375_C<num2)     ");
+        ASSERT_EXPRESSION(!(FAC3375_C<=num2),       "!(FAC3375_C<=num2)    ");
+        ASSERT_EXPRESSION((num2<FAC3375_C),         "!(num2<FAC3375_C      ");
+        ASSERT_EXPRESSION((num2<=FAC3375_C),        "!(num2<=FAC3375_C)    ");
 
-        ASSERT_EXPRESSION(FAC3375_C>FAC975_C,"FAC3375_C>FAC975_C");
-        ASSERT_EXPRESSION(FAC3375_C>=FAC975_C,"FAC3375_C>=FAC975_C");
-        ASSERT_EXPRESSION(!(FAC975_C>FAC3375_C),"!(FAC975_C>FAC3375_C");
-        ASSERT_EXPRESSION(!(FAC975_C>=FAC3375_C),"!(FAC975_C>=FAC3375_C)");
-        ASSERT_EXPRESSION(!(FAC3375_C<FAC975_C),"!(FAC3375_C<FAC975_C)");
-        ASSERT_EXPRESSION(!(FAC3375_C<=FAC975_C),"!(FAC3375_C<=FAC975_C)");
-        ASSERT_EXPRESSION((FAC975_C<FAC3375_C),"!(FAC975_C<FAC3375_C");
-        ASSERT_EXPRESSION((FAC975_C<=FAC3375_C),"!(FAC975_C<=FAC3375_C)");
+        ASSERT_EXPRESSION(FAC3375_C>FAC975_C,       "FAC3375_C>FAC975_C    ");
+        ASSERT_EXPRESSION(FAC3375_C>=FAC975_C,      "FAC3375_C>=FAC975_C   ");
+        ASSERT_EXPRESSION(!(FAC975_C>FAC3375_C),    "!(FAC975_C>FAC3375_C  ");
+        ASSERT_EXPRESSION(!(FAC975_C>=FAC3375_C),   "!(FAC975_C>=FAC3375_C)");
+        ASSERT_EXPRESSION(!(FAC3375_C<FAC975_C),    "!(FAC3375_C<FAC975_C) ");
+        ASSERT_EXPRESSION(!(FAC3375_C<=FAC975_C),   "!(FAC3375_C<=FAC975_C)");
+        ASSERT_EXPRESSION((FAC975_C<FAC3375_C),     "!(FAC975_C<FAC3375_C  ");
+        ASSERT_EXPRESSION((FAC975_C<=FAC3375_C),    "!(FAC975_C<=FAC3375_C)");
 
-        ASSERT_EXPRESSION(FAC975_C<=FAC975_C,"FAC975_C<=FAC975_C");
-        ASSERT_EXPRESSION(FAC975_C>=FAC975_C,"FAC975_C>=FAC975_C");
+        ASSERT_EXPRESSION(FAC975_C<=FAC975_C,       "FAC975_C<=FAC975_C    ");
+        ASSERT_EXPRESSION(FAC975_C>=FAC975_C,       "FAC975_C>=FAC975_C    ");
 
-        ASSERT_EXPRESSION(FAC3375_C<=FAC3375_C,"FAC3375_C<=FAC3375_C");
-        ASSERT_EXPRESSION(FAC3375_C>=FAC3375_C,"FAC3375_C>=FAC3375_C");
+        ASSERT_EXPRESSION(FAC3375_C<=FAC3375_C,     "FAC3375_C<=FAC3375_C  ");
+        ASSERT_EXPRESSION(FAC3375_C>=FAC3375_C,     "FAC3375_C>=FAC3375_C  ");
 
-        ASSERT_EXPRESSION(num1num2_C<=num1num2_C,"num1num2_C<=num1num2_C");
-        ASSERT_EXPRESSION(num1num2_C>=num1num2_C,"num1num2_C>=num1num2_C");
+        ASSERT_EXPRESSION(num1num2_C<=num1num2_C,   "num1num2_C<=num1num2_C");
+        ASSERT_EXPRESSION(num1num2_C>=num1num2_C,   "num1num2_C>=num1num2_C");
 
-        ASSERT_EXPRESSION(num1<=num1,"num1<=num1");
-        ASSERT_EXPRESSION(num1>=num1,"num1>=num1");
+        ASSERT_EXPRESSION(num1<=num1,               "num1<=num1            ");
+        ASSERT_EXPRESSION(num1>=num1,               "num1>=num1            ");
 
-        ASSERT_EXPRESSION(num2<=num2,"num2<=num2");
-        ASSERT_EXPRESSION(num2>=num2,"num2>=num2");
+        ASSERT_EXPRESSION(num2<=num2,               "num2<=num2            ");
+        ASSERT_EXPRESSION(num2>=num2,               "num2>=num2            ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 RELATIONAL OPERATOR");

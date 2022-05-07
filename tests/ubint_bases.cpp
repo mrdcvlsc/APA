@@ -35,18 +35,18 @@ int main() { START_TEST;
     apa::ubint base16("e14bc881fff1289855c035ffff01553fffffffffffffd04aa54725e56ae7000000000000000",16);
 
     ASSERT_EQUALITY(base10,base10_default,"base10==base10_default");
-    ASSERT_EQUALITY(base2,base8,"base2==base8");
-    ASSERT_EQUALITY(base2,base10,"base2==base10");
-    ASSERT_EQUALITY(base2,base16,"base2==base16");
-    ASSERT_EQUALITY(base8,base2,"base8==base2");
-    ASSERT_EQUALITY(base8,base10,"base8==base10");
-    ASSERT_EQUALITY(base8,base16,"base8==base16");
-    ASSERT_EQUALITY(base10,base2,"base10==base2");
-    ASSERT_EQUALITY(base10,base8,"base10==base8");
-    ASSERT_EQUALITY(base10,base16,"base10==base16");
-    ASSERT_EQUALITY(base16,base2,"base16==base2");
-    ASSERT_EQUALITY(base16,base8,"base16==base8");
-    ASSERT_EQUALITY(base16,base10,"base16==base10");
+    ASSERT_EQUALITY(base2,base8,          "base2==base8          ");
+    ASSERT_EQUALITY(base2,base10,         "base2==base10         ");
+    ASSERT_EQUALITY(base2,base16,         "base2==base16         ");
+    ASSERT_EQUALITY(base8,base2,          "base8==base2          ");
+    ASSERT_EQUALITY(base8,base10,         "base8==base10         ");
+    ASSERT_EQUALITY(base8,base16,         "base8==base16         ");
+    ASSERT_EQUALITY(base10,base2,         "base10==base2         ");
+    ASSERT_EQUALITY(base10,base8,         "base10==base8         ");
+    ASSERT_EQUALITY(base10,base16,        "base10==base16        ");
+    ASSERT_EQUALITY(base16,base2,         "base16==base2         ");
+    ASSERT_EQUALITY(base16,base8,         "base16==base8         ");
+    ASSERT_EQUALITY(base16,base10,        "base16==base10        ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 base2, base8, base10, base16 constructor");

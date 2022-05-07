@@ -159,7 +159,7 @@ int main() { START_TEST;
         // answers
         ASSERT_EXPRESSION(num1 && num2,"num1 && num2");
         ASSERT_EXPRESSION(num1 || num2,"num1 || num2");
-        ASSERT_EXPRESSION(!!num1,"!!num1");
+        ASSERT_EXPRESSION(!!num1,      "!!num1      ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 LOGICAL OPERATOR");

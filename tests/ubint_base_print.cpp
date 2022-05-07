@@ -25,7 +25,12 @@ apa::ubint fac(size_t n) {
 int main() { START_TEST;
 
     // test variables
+    
+    apa::ubint zero = 0;
+    std::string zero_str = "0";
+    
     apa::ubint fac246 = fac(246), fac531 = fac(531);
+
     std::string fac246_base10(
         "8478097477828534281623856145554841728137163300383932666143068885474833243264585597158958"
         "1923646740532744232968263007178950382481022666893846537522142147850161951901643121125830"
@@ -75,6 +80,8 @@ int main() { START_TEST;
         "000000000000000000000000000000000"
     );
 
+    ASSERT_EQUALITY(zero.to_base10_string(),zero_str,       "ubint zero in base 10    ");
+    ASSERT_EQUALITY(zero.to_base16_string(),zero_str,       "ubint zero in base 16    ");
     ASSERT_EQUALITY(fac246.to_base10_string(),fac246_base10,"factorial(246) in base 10");
     ASSERT_EQUALITY(fac531.to_base10_string(),fac531_base10,"factorial(531) in base 10");
     ASSERT_EQUALITY(fac246.to_base16_string(),fac246_base16,"factorial(246) in base 16");

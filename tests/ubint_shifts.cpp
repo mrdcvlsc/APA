@@ -92,21 +92,21 @@ int main() { START_TEST;
         ASSERT_EQUALITY(NUM2POW4096MIN1 >> 4095,NUM2POW4096MIN1_RS4095_C,"(NUM2POW4096MIN1 >> 4095");
         ASSERT_EQUALITY(NUM2POW4096MIN1 >> 4096,NUM2POW4096MIN1_RS4096_C,"(NUM2POW4096MIN1 >> 4096");
         ASSERT_EQUALITY(NUM2POW4096MIN1 >> 4097,NUM2POW4096MIN1_RS4097_C,"(NUM2POW4096MIN1 >> 4097");
-        ASSERT_EQUALITY(ONE >> 1,RS1_ONE_C,"(ONE >> 1");
-        ASSERT_EQUALITY(ONE >> 2,RS2_ONE_C,"(ONE >> 2");
-        ASSERT_EQUALITY(ONE >> 16,RS16_ONE_C,"(ONE >> 16");
-        ASSERT_EQUALITY(ONE >> 32,RS32_ONE_C,"(ONE >> 32");
-        ASSERT_EQUALITY(ONE >> 320,RS320_ONE_C,"(ONE >> 320");
-        ASSERT_EQUALITY(RANDNUM << 1,LS1_RANDNUM_C,"(RANDNUM << 1");
-        ASSERT_EQUALITY(LS0_DEADBEEF << 0,LS0_DEADBEEF_C,"(LS0_DEADBEEF << 0");
-        ASSERT_EQUALITY(A << 331,LS331_A,"(A << 331");
-        ASSERT_EQUALITY(numTest << 75,LS75_numTest_C,"(numTest << 75");
-        ASSERT_EQUALITY(num1 << 1872,LS1872_num1_C,"(num1 << 1872");
-        ASSERT_EQUALITY(num2 << 752,LS752_num2_C,"(num2 << 752");
+        ASSERT_EQUALITY(ONE >> 1,RS1_ONE_C,                              "(ONE >> 1               ");
+        ASSERT_EQUALITY(ONE >> 2,RS2_ONE_C,                              "(ONE >> 2               ");
+        ASSERT_EQUALITY(ONE >> 16,RS16_ONE_C,                            "(ONE >> 16              ");
+        ASSERT_EQUALITY(ONE >> 32,RS32_ONE_C,                            "(ONE >> 32              ");
+        ASSERT_EQUALITY(ONE >> 320,RS320_ONE_C,                          "(ONE >> 320             ");
+        ASSERT_EQUALITY(RANDNUM << 1,LS1_RANDNUM_C,                      "(RANDNUM << 1           ");
+        ASSERT_EQUALITY(LS0_DEADBEEF << 0,LS0_DEADBEEF_C,                "(LS0_DEADBEEF << 0      ");
+        ASSERT_EQUALITY(A << 331,LS331_A,                                "(A << 331               ");
+        ASSERT_EQUALITY(numTest << 75,LS75_numTest_C,                    "(numTest << 75          ");
+        ASSERT_EQUALITY(num1 << 1872,LS1872_num1_C,                      "(num1 << 1872           ");
+        ASSERT_EQUALITY(num2 << 752,LS752_num2_C,                        "(num2 << 752            ");
 
-        ASSERT_EQUALITY(apa::ubint(2) << 320,LS320_TWO_C,"2 << 320");
-        ASSERT_EQUALITY(fac(975) >> 8123,RS8123_FAC975_C,"fac(975) >> 8123");
-        ASSERT_EQUALITY(fac(3375) >> 34567,RS34567_FAC3375_C,"fac(3375) >> 34567");
+        ASSERT_EQUALITY(apa::ubint(2) << 320,LS320_TWO_C,                "2 << 320                ");
+        ASSERT_EQUALITY(fac(975) >> 8123,RS8123_FAC975_C,                "fac(975) >> 8123        ");
+        ASSERT_EQUALITY(fac(3375) >> 34567,RS34567_FAC3375_C,            "fac(3375) >> 34567      ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 SHIFT OPERATORS");

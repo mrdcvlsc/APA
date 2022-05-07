@@ -55,9 +55,9 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
-        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib250,fib250C,                         "FIB(250)            ");
+        ASSERT_EQUALITY(fib1000,fib1000C,                       "FIB(1000)           ");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,             "FIB(1000,9,9)       ");
         ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
@@ -73,9 +73,9 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        ASSERT_EQUALITY(ans1,ans2,"ans1==ans2");
-        ASSERT_EQUALITY(ans2,fib1000_1_99927737,"ans2==fib1000_1_99927737");
-        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2");
+        ASSERT_EQUALITY(ans1,ans2,                      "ans1==ans2              ");
+        ASSERT_EQUALITY(ans2,fib1000_1_99927737,        "ans2==fib1000_1_99927737");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2              ");
 
         FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
@@ -114,9 +114,9 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
-        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib250,fib250C,                         "FIB(250)            ");
+        ASSERT_EQUALITY(fib1000,fib1000C,                       "FIB(1000)           ");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,             "FIB(1000,9,9)       ");
         ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
@@ -132,9 +132,9 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        ASSERT_EQUALITY(ans1,ans2,"ans1==ans2");
-        ASSERT_EQUALITY(ans2,fib1000_1_99927737,"ans2==fib1000_1_99927737");
-        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2");
+        ASSERT_EQUALITY(ans1,ans2,                      "ans1==ans2              ");
+        ASSERT_EQUALITY(ans2,fib1000_1_99927737,        "ans2==fib1000_1_99927737");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2              ");
 
         FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 
@@ -171,9 +171,9 @@ int main() { START_TEST;
 
         apa::ubint fib1000_b9_9 = fib(1000,9,9);
 
-        ASSERT_EQUALITY(fib250,fib250C,"FIB(250)");
-        ASSERT_EQUALITY(fib1000,fib1000C,"FIB(1000)");
-        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,"FIB(1000,9,9)");
+        ASSERT_EQUALITY(fib250,fib250C,                         "FIB(250)            ");
+        ASSERT_EQUALITY(fib1000,fib1000C,                       "FIB(1000)           ");
+        ASSERT_EQUALITY(fib1000_b9_9,fib1000_b9_9C,             "FIB(1000,9,9)       ");
         ASSERT_EQUALITY(fib1000_1_99927737,fib1000_1_99927737_C,"FIB(1000,1,99927737)");
 
         apa::ubint num1 = {
@@ -189,9 +189,9 @@ int main() { START_TEST;
         apa::ubint ans1 = num1 + num2;
         apa::ubint ans2 = num2 + num1;
 
-        ASSERT_EQUALITY(ans1,ans2,"ans1==ans2");
-        ASSERT_EQUALITY(ans2,fib1000_1_99927737,"ans2==fib1000_1_99927737");
-        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2");
+        ASSERT_EQUALITY(ans1,ans2,                      "ans1==ans2              ");
+        ASSERT_EQUALITY(ans2,fib1000_1_99927737,        "ans2==fib1000_1_99927737");
+        ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,"ans1==ans2              ");
 
         FOURWAY_ASSERT_EQUALITY(fib1000_1_99927737,fib1000_b9_9,ans1,ans2,"4 WAY DIFFERENT ADDITION INITIALIZATION");
 

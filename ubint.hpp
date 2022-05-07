@@ -104,10 +104,10 @@ namespace apa {
             void printHex_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
             
-            /// return a string that represent the value of a ubint number in base 10 form or decimal.
+            /// @return returns a string that represent the value of a ubint number in base 10 form or decimal.
             std::string to_base10_string() const;
 
-            /// return a string that represent the value of a ubint number in base 16 form or hexadecimal.
+            /// @return returns a string that represent the value of a ubint number in base 16 form or hexadecimal.
             std::string to_base16_string() const;
     };
 

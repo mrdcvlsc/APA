@@ -181,11 +181,11 @@ int main() { START_TEST;
             num1num2_C("0xabcd54321ffff788ff60ff99bbc0012ca93ffa392d75d62af53c61892604980e854930ab6d2847bfb9bede8bee723c57a8d024111",16);
 
         // answers
-        ASSERT_EQUALITY(num1*num2,num1num2_C,"num1*num2");
-        ASSERT_EQUALITY(num2*num1,num1num2_C,"num2*num1");
-        ASSERT_EQUALITY(fac(975),FAC975_C,"FACTORIAL(975)");
-        ASSERT_EQUALITY(fac(1000),FAC1000_C,"FACTORIAL(1000)");
-        ASSERT_EQUALITY(fac(3375),FAC3375_C,"FACTORIAL(3375)");
+        ASSERT_EQUALITY(num1*num2,num1num2_C, "num1*num2      ");
+        ASSERT_EQUALITY(num2*num1,num1num2_C, "num2*num1      ");
+        ASSERT_EQUALITY(fac(975),FAC975_C,    "FACTORIAL(975) ");
+        ASSERT_EQUALITY(fac(1000),FAC1000_C,  "FACTORIAL(1000)");
+        ASSERT_EQUALITY(fac(3375),FAC3375_C,  "FACTORIAL(3375)");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 MULTIPLICATION");
