@@ -41,7 +41,7 @@
 - Bitwise Shifts ; ```<<```, ```>>```, ```<<=```, ```>>=``` (only takes argument of ```size_t```).
 
 ### Other Methods.
-- ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of to ```ubint``` class.
+- ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of two ```ubint``` class.
 - ```.printHex()``` - **[ubint public method]** prints the value of ```ubint``` in hex format.
 - ```.to_base10_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 10 (decimal).
 
