@@ -663,33 +663,20 @@ namespace apa {
 
 
     void ubint::printHex() const {
-#ifdef _BASE2_64
+        
         std::cout << "0x";
         printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
         for(size_t i=1; i<length; ++i)
             printf(PRINT_LIMBHEX, (base_t) limbs[length-1-i]);
         std::cout << "\n";
-#else
-        std::cout << "0x";
-        printf(PRINT_LIMBHEX_NOPAD,limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
-            printf(PRINT_LIMBHEX,limbs[length-1-i]);
-        std::cout << "\n";
-#endif
     }
 
     void ubint::printHex_spaced_out() const {
-#ifdef _BASE2_64
+
         printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
         for(size_t i=1; i<length; ++i)
             printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
         std::cout << "\n";
-#else
-        printf(PRINT_LIMBHEX,limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
-            printf(PRINT_LIMBHEX_SPACED,limbs[length-1-i]);
-        std::cout << "\n";
-#endif
     }
 
     void ubint::printStatus(std::string printIdentifier) const {
@@ -722,6 +709,22 @@ namespace apa {
         else Base10 = "0";
         
         return Base10;
+    }
+
+    std::string ubint::to_base16_string() const {
+
+        char buffer[17];
+        std::string hexform = "";
+
+        sprintf(buffer,PRINT_LIMBHEX_NOPAD,(base_t)limbs[length-1]);
+        hexform.append(buffer);
+
+        for(size_t i=1; i<length; ++i) {
+            sprintf(buffer,PRINT_LIMBHEX,(base_t)limbs[length-1-i]);
+            hexform.append(buffer);
+        }
+
+        return hexform;
     }
 }
 
