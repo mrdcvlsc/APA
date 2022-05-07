@@ -124,6 +124,10 @@ namespace apa {
     // functions
     void swap(ubint& a, ubint& b);
 
+    // IO Operators
+    std::ostream& operator<<(std::ostream &out, const ubint &num);
+    std::istream& operator>>(std::istream &in, ubint &num);
+
     // ubint constants
     static const ubint __UBINT_ZERO = 0;
     static const ubint __UBINT_ONE = 1;

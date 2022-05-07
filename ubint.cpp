@@ -746,6 +746,21 @@ namespace apa {
 
         return hexform;
     }
+
+    // IO Operators
+    std::ostream& operator<<(std::ostream &out, const ubint &num)
+    {
+        out << num.to_base16_string();
+        return out;
+    }
+
+    std::istream& operator>>(std::istream &in, ubint &num)
+    {
+        std::string input;
+        in >> input;
+        num = ubint(input,16);
+        return in;
+    }
 }
 
 #endif
