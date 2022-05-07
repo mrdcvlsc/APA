@@ -88,7 +88,7 @@ endif
 
 static_test: $(OBJ)
 	@echo OS : $(OS)
-	@echo LIMB : Base2^$(BASE2_RAISED_BY)
+	@echo LIMB : Base2_$(BASE2_RAISED_BY)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	@./$(SRC)/ubint_constructor.out
@@ -96,6 +96,13 @@ static_test: $(OBJ)
 	@./$(SRC)/ubint_add.out
 	@./$(SRC)/ubint_sub.out
 	@./$(SRC)/ubint_mul.out
+	@./$(SRC)/ubint_bitwise_logic.out
+	@./$(SRC)/ubint_relational.out
+	@./$(SRC)/ubint_logical.out
+	@./$(SRC)/ubint_shifts.out
+	@./$(SRC)/ubint_div.out
+	@./$(SRC)/ubint_base_print.out
+	@./$(SRC)/ubint_bases.out
 
 # -------------------------- test program compilation ---------------------------
 
