@@ -3,22 +3,22 @@
 ### Initializing ```ubint``` numbers
 - from a base2 (binary) number represented by a string.
     ```c++
-    apa::ubint base2("11001001110100111110100010101",2);
+    apa::ubint base2_bin("11001001110100111110100010101",2);
     // base 10 equivalent = 423263509
     ```
 - from a base8 (octal) number represented by a string.
     ```c++
-    apa::ubint base8("122333444455555666666777777700000000",8);
+    apa::ubint base8_oct("122333444455555666666777777700000000",8);
     // base 10 equivalent = 52245490915446306574707453853696
     ```
 - from a base10 (decimal) number represented by a string.
     ```c++
-    apa::ubint base8("1192098127666217730001983712379812737234",10);
+    apa::ubint base10_dec("1192098127666217730001983712379812737234",10);
     ```
 
 - from a base16 (hex) number represented by a string.
     ```c++
-    apa::ubint base8("deed0feed0dead0beef0fac0bae",16);
+    apa::ubint base16_hex("deed0feed0dead0beef0fac0bae",16);
     // base10 equivalent = 282592308594525234095480996891566
     ```
 
