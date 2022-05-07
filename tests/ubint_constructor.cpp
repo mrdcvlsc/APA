@@ -1,8 +1,6 @@
 #include "../core.hpp"
 #include "mini-test.hpp"
 
-// #define _BASE2_64
-
 int main() { START_TEST;
     
     #if defined(_BASE2_16)

@@ -12,11 +12,10 @@
 apa::ubint fac(size_t n) {
     apa::ubint factorial(1);
     apa::ubint iter = factorial;
-    apa::ubint one = 1;
 
     for(size_t i=1; i<=n; ++i) {
         factorial *= iter;
-        iter = iter + one;
+        iter++;
     }
 
     return factorial;

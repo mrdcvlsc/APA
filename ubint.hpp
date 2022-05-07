@@ -19,6 +19,8 @@
 
 namespace apa {
 
+    typedef std::vector<uint8_t> byte_array;
+
     constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
     constexpr static size_t BASE_BITS_MINUS1 = BASE_BITS-1;
     constexpr static size_t BASE_BYTES = BASE_BITS/8;
@@ -91,6 +93,14 @@ namespace apa {
             ubint operator/(const ubint& op) const;
             ubint operator%(const ubint& op) const;
 
+            // pre-fix increment/decrement
+            ubint& operator++();
+            ubint& operator--();
+
+            // post-fix increment/decrement
+            ubint operator++(int);
+            ubint operator--(int);
+
             // Shift Operators
             ubint& operator<<=(size_t bits);
             ubint& operator>>=(size_t bits);
@@ -111,6 +121,12 @@ namespace apa {
             std::string to_base16_string() const;
     };
 
+    // functions
     void swap(ubint& a, ubint& b);
+
+    // ubint constants
+    static const ubint __UBINT_ZERO = 0;
+    static const ubint __UBINT_ONE = 1;
+    static const ubint __UBINT_TWO = 2;
 }
 #endif

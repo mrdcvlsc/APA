@@ -584,6 +584,31 @@ namespace apa {
         return remainder;
     }
 
+    // pre-fix increment/decrement
+    ubint& ubint::operator++() {
+        *this += __UBINT_ONE;
+        return *this;
+    }
+
+    ubint& ubint::operator--() {
+        *this -= __UBINT_ONE;
+        return *this;
+    }
+
+    // post-fix increment/decrement
+    ubint ubint::operator++(int) {
+        ubint prev = *this;
+        ++*this;
+        return prev;
+    }
+
+    ubint ubint::operator--(int) {
+        ubint prev = *this;
+        --*this;
+        return prev;
+    }
+
+
     // Shift Operators
     ubint& ubint::operator<<=(size_t bits) {
 

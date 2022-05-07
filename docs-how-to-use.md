@@ -35,6 +35,7 @@
 
 ### Supported Operators of ```apa::ubint```
 - Arithmetic Operators ; ```+```, ```-```, ```*```, ```/```, ```%```, ```+=```, ```-=```, ```*=```, ```/=```, ```%=```.
+- Increment/Decrement Operators; ```++```, ```--``` (Post-Fix and Pre-Fix).
 - Relational Operators ; ```<```, ```>```, ```==```, ```<=```, ```>=```, ```!=```.
 - Logical Operators ; ```!```, ```&&```, ```||```.
 - Bitwise Logical Operators ; ```~```, ```|```, ```&```, ```^```, ```|=```, ```&=```, ```^=```.
