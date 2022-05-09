@@ -26,7 +26,7 @@ all_test:
 	@make clean
 
 	@echo ===============================
-	@echo       ALL TESTS PASSED
+	@echo       UBINT - ALL TESTS PASSED
 	@echo ===============================
 
 SRC := tests

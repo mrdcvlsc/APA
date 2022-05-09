@@ -77,9 +77,9 @@
     ```bash
     make -f static
     ```
-- To install it in your system use the command.
+- To install it in your system use the command below. the default path for linux installation is ```/usr/local/```, you can change this by specifiying a path using the ```INSTALL_PREFIX="INSTALLATION_PATH"```.
     ```bash
-    sudo make -f install
+    sudo make -f static install
     ```
 
 - If you are compiling the static library with **mingw** on windows, you need to specify where the **mingw** folder is located in the ```INSTALL_PREFIX``` during the install command. eg.
@@ -91,12 +91,12 @@
 
 - To uninstall library in your system just do a
     ```bash
-    sudo make -f uninstall
+    sudo make -f static uninstall
     ```
 
-    For windows you also need to specify the path of **mingw** using ```INSTALL_PREFIX``` like how you installed it but with the uninstall command.
+    For windows uninstallation you also need to specify the path of **mingw** using ```INSTALL_PREFIX``` like how you installed it but with the uninstall command.
 
-- If you installed the library after building it then you can just use it right away by including the proper header.
+- If you installed the library after building it then you can just use it right away by including the ```ubint.hpp```.
     ```c++
     // main.cpp
     #include <iostream>

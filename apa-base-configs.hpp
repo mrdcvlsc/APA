@@ -56,12 +56,15 @@
 namespace apa {
     // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
     #ifdef _BASE2_64
+    typedef int64_t bint_arg_t;
     typedef uint64_t base_t;
     typedef __uint128_t limb_t;
     #elif defined(_BASE2_32)
+    typedef int32_t bint_arg_t;
     typedef uint32_t base_t;
     typedef uint64_t limb_t;
     #elif defined(_BASE2_16)
+    typedef int16_t bint_arg_t;
     typedef uint16_t base_t;
     typedef uint32_t limb_t;
     #endif

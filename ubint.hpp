@@ -33,11 +33,15 @@ namespace apa {
     const static size_t LIMB_GROWTH = 2;
 
     class ubint {
-        public:
+
+        private:
+        
             size_t capacity;
             size_t length;
             limb_t *limbs;
 
+        public:
+            
             // Constructors
             ubint();
             ubint(base_t num);
