@@ -176,6 +176,16 @@ namespace apa {
             free(limbs);
     }
 
+    // Index Operator
+    limb_t& ubint::operator[](size_t i) {
+        return limbs[i];
+    }
+
+    limb_t& ubint::operator[](size_t i) const {
+        return limbs[i];
+    }
+
+
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
     int ubint::compare(const ubint& op) const {
 

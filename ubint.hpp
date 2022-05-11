@@ -59,6 +59,10 @@ namespace apa {
 
             ~ubint();
 
+            // Index Operator
+            limb_t& operator[](size_t i);
+            limb_t& operator[](size_t i) const;
+
             /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
             int compare(const ubint& with) const;
 
