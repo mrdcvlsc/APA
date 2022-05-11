@@ -25,7 +25,7 @@ namespace apa {
             bint();
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
-            bint(std::initializer_list<base_t> limbs);
+            bint(std::initializer_list<base_t> limbs, uint8_t sign=0);
             bint(size_t capacity, size_t length, bool AllocateSpace=true);
 
             // bint Constructors.

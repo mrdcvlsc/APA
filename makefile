@@ -52,6 +52,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_div.out
 	@./$(SRC)/ubint_base_print.out
 	@./$(SRC)/ubint_bases.out
+	@./$(SRC)/ubint_access.out
 
 # -------------------------- test program compilation ---------------------------
 

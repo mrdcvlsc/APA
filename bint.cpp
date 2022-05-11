@@ -73,9 +73,9 @@ namespace apa {
         return *this;
     }
 
-    bint::bint(std::initializer_list<base_t> limbs) {
+    bint::bint(std::initializer_list<base_t> limbs, uint8_t sign) {
         number = ubint(limbs);
-        sign = 0;
+        this->sign = sign;
     }
 
     bint::~bint() {}
@@ -125,104 +125,32 @@ namespace apa {
     }
 
     bint bint::operator&(const bint& op) const {
-
-        bint bitwise_and = *this;
-        bitwise_and &= op;
-        return bitwise_and;
+        return *this;
     }
 
     bint& bint::operator|=(const bint& op) {
-
-        if(length<op.length) {
-            capacity = op.capacity;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            size_t zero_set = length*LIMB_BYTES;
-            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
-            length = op.length;
-        }
-
-        for(size_t i=0; i<op.length; ++i)
-            limbs[i] |= op.limbs[i];
-
-        for(size_t i=op.length; i<length; ++i)
-            limbs[i] |= 0;
-
-        for(size_t i=0; i<length; ++i) {
-            if(limbs[length-1-i]) {
-                length -= i;
-                break;
-            }
-        }
-        
         return *this;
     }
 
     bint bint::operator|(const bint& op) const {
-
-        bint bitwise_and = *this;
-        bitwise_and |= op;
-        return bitwise_and;
+        return *this;
     }
 
     bint& bint::operator^=(const bint& op) {
-
-        if(length<op.length) {
-            capacity = op.capacity;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            size_t zero_set = length*LIMB_BYTES;
-            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
-            length = op.length;
-        }
-
-        for(size_t i=0; i<op.length; ++i)
-            limbs[i] ^= op.limbs[i];
-
-        for(size_t i=op.length; i<length; ++i)
-            limbs[i] ^= 0;
-
-        for(size_t i=0; i<length; ++i) {
-            if(limbs[length-1-i]) {
-                length -= i;
-                break;
-            }
-        }
-        
         return *this;
     }
 
     bint bint::operator^(const bint& op) const {
-
-        bint bitwise_and = *this;
-        bitwise_and ^= op;
-        return bitwise_and;
+        return *this;
     }
 
     bint bint::operator~() const {
-
-        bint bwn = *this;
-        for(size_t i=0; i<bwn.length-1; ++i)
-            bwn.limbs[i] = (base_t)(~bwn.limbs[i]);
-
-        base_t mslimb = bwn.limbs[bwn.length-1];
-        base_t bitmask = mslimb | (mslimb >> 1);
-        for(size_t i=2; i<BASE_BITS; i*=2)
-            bitmask |= bitmask >> i;
-        
-        bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
-
-        for(size_t i=0; i<bwn.length; ++i) {
-            if(bwn.limbs[bwn.length-1-i]) {
-                bwn.length -= i;
-                break;
-            }
-        }
-
-        return bwn;
+        return *this;
     }
 
     // Logical Operators
     bint::operator bool() const noexcept {
-        return (length==1 && limbs[0]==0) ? false : true;
+        return (number.length==1 && number.limbs[0]==0) ? false : true;
     }
 
     // Arithmetic Operators
