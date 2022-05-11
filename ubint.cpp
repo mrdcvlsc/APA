@@ -707,12 +707,6 @@ namespace apa {
         printHex_spaced_out();
     }
 
-    void swap(ubint& a, ubint& b) {
-        ubint temp = std::move(a);
-        a = std::move(b);
-        b = std::move(temp);
-    }
-
     std::string ubint::to_base10_string() const {
         std::string Base10 = "";
         ubint ten(10), quotient = *this;
@@ -745,6 +739,50 @@ namespace apa {
         }
 
         return hexform;
+    }
+
+    // Member Access Methods
+    size_t ubint::capacity_size() const {
+        return capacity;
+    }
+
+    size_t ubint::limb_size() const {
+        return length;
+    }
+
+    size_t ubint::byte_size() const {
+        base_t ms_limb = limbs[length-1];
+        size_t cnt = 0;
+        while(ms_limb) {
+            ms_limb >>= 8;
+            cnt++;
+        }
+        return (length-1)*BASE_BYTES + cnt;
+    }
+
+    size_t ubint::bit_size() const {
+        base_t ms_limb = limbs[length-1];
+        size_t cnt = 0;
+        while(ms_limb) {
+            ms_limb >>= 1;
+            cnt++;
+        }
+        return (length-1)*BASE_BITS + cnt;
+    }
+
+    const limb_t *ubint::limb_view() const {
+        return (const limb_t*) limbs;
+    }
+
+    const uint8_t *ubint::byte_view() const {
+        return (const uint8_t*) limbs;
+    }
+
+
+    void swap(ubint& a, ubint& b) {
+        ubint temp = std::move(a);
+        a = std::move(b);
+        b = std::move(temp);
     }
 
     // IO Operators
