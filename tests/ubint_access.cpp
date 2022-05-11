@@ -27,18 +27,6 @@ int main() { START_TEST;
     size_t sub3_bit_size = 64;
     size_t sub4_bit_size = 32;
 
-    subject1.printHex_spaced_out();
-    std::cout << subject1.to_base16_string() << "\n";
-    std::cout << "subject1.byte_size() = " << subject1.byte_size() << "\n";
-    std::cout << "subject2.byte_size() = " << subject2.byte_size() << "\n";
-    std::cout << "subject3.byte_size() = " << subject3.byte_size() << "\n";
-    std::cout << "subject4.byte_size() = " << subject4.byte_size() << "\n";
-
-    std::cout << "subject1.bit_size() = " << subject1.bit_size() << "\n";
-    std::cout << "subject2.bit_size() = " << subject2.bit_size() << "\n";
-    std::cout << "subject3.bit_size() = " << subject3.bit_size() << "\n";
-    std::cout << "subject4.bit_size() = " << subject4.bit_size() << "\n";
-
     ASSERT_EQUALITY(subject1.byte_size(),sub1_byte_size,"subject1 byte size");
     ASSERT_EQUALITY(subject2.byte_size(),sub2_byte_size,"subject2 byte size");
     ASSERT_EQUALITY(subject3.byte_size(),sub3_byte_size,"subject3 byte size");
