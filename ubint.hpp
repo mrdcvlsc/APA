@@ -129,6 +129,7 @@ namespace apa {
             std::string to_base16_string() const;
 
             // Member Access Methods
+            void set_length(size_t length);
             size_t capacity_size() const;
             size_t limb_size() const;
             size_t byte_size() const;

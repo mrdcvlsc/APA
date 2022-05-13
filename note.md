@@ -8,7 +8,7 @@ In ```bint``` This will be equivalent to subtracting 1 for ```number``` member, 
 
 ### Python's Bitwise Operators &, |, ^
 
-In ```bint``` if a negative ```bint``` is passed to the bitwise operators, it's ```number``` should be **flipped** then add 1 to it before applying the bitwise logical operators.
+In ```bint``` if a negative ```bint``` is passed to the bitwise operators, it's ```number``` should be **RAW flipped** then add 1 to it before applying the bitwise logical operators.
 
 ### Overloading Negation Operator
 ```c++

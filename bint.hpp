@@ -9,17 +9,31 @@
 /// Left Negative - Right Positive.
 #define LNEG_RPOS(SIGN_A,SIGN_B) (SIGN_A>SIGN_B)
 
+// true if sign is positive
 #define SIGN_POSITIVE(SIGN) (!SIGN)
+
+// false if sign is negative
 #define SIGN_NEGATIVE(SIGN) (SIGN)
 
 /// bint::compare -> ubint.compare result sign flip.
 #define CMP_RES_FLIP(CMP_RESULT) (-CMP_RESULT)
 
 namespace apa {
+
+    /// Positive Sign Value Indicator
+    uint8_t POSITIVE = 0;
+
+    /// Negative Sign Value Indicator
+    uint8_t NEGATIVE = 1;
+
     class bint {
-        public:
+
+        private:
+
             ubint number;
             uint8_t sign; // 1 if negative, 0 if positive
+
+        public:
 
             // Constructors
             bint();
@@ -62,9 +76,6 @@ namespace apa {
             explicit operator bool() const noexcept;
 
             // Arithmetic Operators
-            bint bit_division(const bint& op) const;
-            bint bit_modulo(const bint& op) const;
-
             bint& operator+=(const bint& op);
             bint& operator-=(const bint& op);
             bint& operator*=(const bint& op);
@@ -102,6 +113,14 @@ namespace apa {
 
             /// @return returns a string that represent the value of a bint number in base 16 form or hexadecimal.
             std::string to_base16_string() const;
+
+            // Member Access Methods
+            size_t capacity_size() const;
+            size_t limb_size() const;
+            size_t byte_size() const;
+            size_t bit_size() const;
+            const limb_t *limb_view() const;
+            const uint8_t *byte_view() const;
     };
 
     // functions
@@ -112,9 +131,9 @@ namespace apa {
     std::istream& operator>>(std::istream &in, bint &num);
 
     // bint constants
-    // static const bint __bint_ZERO = 0;
-    // static const bint __bint_ONE = 1;
-    // static const bint __bint_TWO = 2;
+    static const bint __bint_ZERO = 0;
+    static const bint __bint_ONE = 1;
+    static const bint __bint_TWO = 2;
 }
 
 #endif

@@ -752,6 +752,10 @@ namespace apa {
     }
 
     // Member Access Methods
+    void ubint::set_length(size_t length) {
+        this->length = length;
+    }
+
     size_t ubint::capacity_size() const {
         return capacity;
     }

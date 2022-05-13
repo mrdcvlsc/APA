@@ -14,33 +14,33 @@ namespace apa {
 
     bint::bint() {
         number = ubint();
-        sign = 0;
+        sign = POSITIVE;
     }
 
     bint::bint(bint_arg_t num) {
         if(num<0) {
-            sign = 1;
+            sign = NEGATIVE;
             num = abs(num);
         }
         else {
-            sign = 0;
+            sign = POSITIVE;
         }
         number = ubint(num);
     }
 
     bint::bint(size_t capacity, size_t length, bool AllocateSpace) {
         number = ubint(capacity,length,AllocateSpace);
-        sign = 0;
+        sign = POSITIVE;
     }
 
     // constructor for conveniece
     bint::bint(std::string text, size_t base) {
         if(text[0]=='-') {
-            sign = 1;
+            sign = NEGATIVE;
             text.erase(text.begin(),text.begin()+1);
         }
         else {
-            sign = 0;
+            sign = POSITIVE;
         }
         number = ubint(text);
     }
@@ -145,54 +145,38 @@ namespace apa {
     }
 
     bint bint::operator~() const {
+        bint bwn = *this;
+        if(SIGN_NEGATIVE(sign)) {
+            bwn -= 1;
+        } else {
+            bwn += 1;
+        }
+        bwn.sign = !bwn.sign;
         return *this;
     }
 
     // Logical Operators
     bint::operator bool() const noexcept {
-        return (number.length==1 && number.limbs[0]==0) ? false : true;
+        return(number.limb_size()==1 && number[0]==0) ? false : true;
     }
 
     // Arithmetic Operators
-
     bint& bint::operator+=(const bint& op) {
-        
-        if(capacity<=op.length+1) {
-            capacity = op.length+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-        }
-        
-        if(length==capacity) {
-            capacity = length+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-        }
-
-        if(length<=op.length) {
-            memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
-            length = op.length+1;
-        }
-
-        for(size_t i=0; i<op.length; ++i) {
-            limbs[i] += op.limbs[i];
-            limbs[i+1] += (limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
-        }
-
-        for(size_t i=op.length; i<length; ++i) {
-            limbs[i+1] += (limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
-        }
-
-        size_t ms_index = length-1;
-        while(ms_index) {
-            if(limbs[ms_index]) {
-                break;
+        int cmp = number.compare(op.number);
+        if(sign!=op.sign) {
+            switch (cmp) {
+                case GREAT: {
+                    number -= op.number;
+                } break;
+                case LESS : {
+                    number = op.number - number;
+                    sign = op.sign;
+                } break;
             }
-            --ms_index;
         }
-
-        length = ms_index+1;
-
+        else {
+            number += op.number;
+        }
         return *this;
     }
 
@@ -203,34 +187,42 @@ namespace apa {
     }
     
     bint& bint::operator-=(const bint& op) {
-        
-        limb_t carry = 0;
-
-        for(size_t i=0; i<op.length; ++i) {
-            limbs[i] -= carry;
-            limbs[i] -= op.limbs[i];
-
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
-            limbs[i] = (base_t) limbs[i];
+        int cmp = compare(op);
+        if(sign!=op.sign) {
+            number += op.number; // correct - final
         }
-
-        for(size_t i=op.length; i<length; ++i) {
-            limbs[i] -= carry;
-
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
-            limbs[i] = (base_t) limbs[i];
-        }
-
-        size_t ms_index = length-1;
-        while(ms_index) {
-            if(limbs[ms_index]) {
-                break;
+        else {
+            if(cmp==EQUAL) {
+                number.set_length(1);
+                number[0] = 0;
             }
-            --ms_index;
+            else if(SIGN_NEGATIVE(sign)) {
+                switch (cmp)
+                {
+                    case GREAT: {
+                        number = op.number - number;
+                        sign = POSITIVE;
+                    } break;
+                    case LESS: {
+                        number -= op.number;
+                        sign = NEGATIVE;
+                    } break;
+                }
+            }
+            else {
+                switch (cmp)
+                {
+                    case GREAT: {
+                        number -= op.number;
+                        sign = POSITIVE;
+                    } break;
+                    case LESS: {
+                        number = op.number - number;
+                        sign = NEGATIVE;
+                    } break;
+                }
+            }
         }
-
-        length = ms_index+1;
-
         return *this;
     }
 
@@ -247,25 +239,9 @@ namespace apa {
     }
 
     bint bint::operator*(const bint& op) const {
-
-        bint product(length+op.length,length+op.length);
-        memset(product.limbs,0x0,product.length*LIMB_BYTES);
-        
-        for(size_t i=0; i<op.length; ++i) {
-            for(size_t j=0; j<length; ++j) {
-                product.limbs[i+j] += limbs[j] * op.limbs[i];
-                limb_t carry = product.limbs[i+j] >> BASE_BITS;
-
-                if(carry) {
-                    product.limbs[i+j] = (base_t) product.limbs[i+j];
-                    product.limbs[i+j+1] += carry;
-                }
-            }
-        }
-
-        if(!product.limbs[product.length-1])
-            product.length--;
-
+        bint product = 0;
+        product.number = number * op.number;
+        product.sign = (sign==op.sign) ? 0 : 1;
         return product;
     }
     
@@ -276,18 +252,10 @@ namespace apa {
     }
 
     bint bint::operator/(const bint& op) const {
-
-        if(!op)
-            throw std::domain_error("apa::bint - Division By Zero");
-            
-        int special_case = this->compare(op);
-        switch (special_case)
-        {
-            case EQUAL: return bint(1);
-            case LESS : return bint(0);
-        }
-        if(op.length==1 && op.limbs[0]==1) return *this;
-        return bit_division(op);
+        bint quotient = 0;
+        quotient.number = number / op.number;
+        quotient.sign = (sign==op.sign) ? 0 : 1;
+        return quotient;
     }
 
     bint& bint::operator%=(const bint& op) {
@@ -297,85 +265,10 @@ namespace apa {
     }
 
     bint bint::operator%(const bint& op) const {
-
-        if(!op)
-            throw std::domain_error("apa::bint - Division By Zero");
-            
-        int special_case = this->compare(op);
-        switch (special_case)
-        {
-            case EQUAL: return bint(0);
-            case LESS : return *this;
-        }
-        if(op.length==1 && op.limbs[0]==1) return bint(0);
-        return bit_modulo(op);
-    }
-
-    bint bint::bit_division(const bint& op) const {
-
-        bint quotient(length,length), remainder(length,length);
-        memset(quotient.limbs,0x00,length*LIMB_BYTES);
-        remainder.length = 1; remainder.limbs[0] = 0;
-
-        base_t bit = 0, current_index, current_shift_val, onebit = 1;
-        size_t
-            total_bits = length*BASE_BITS,
-            ms_limb = length - 1;
-        
-        for(size_t i=0; i<total_bits; ++i) {
-            current_index = ms_limb - i/BASE_BITS;
-            current_shift_val = i % BASE_BITS;
-            
-            remainder <<= 1;
-
-            bit = limbs[current_index] << current_shift_val;
-            bit >>= BASE_BITS_MINUS1;
-
-            remainder.limbs[0] |= bit;
-
-            if(remainder >= op) {
-                remainder -= op;
-                quotient.limbs[current_index] |= (onebit << (BASE_BITS_MINUS1-current_shift_val));
-            }
-        }
-
-        for(size_t i=0; i<length; ++i) {
-            if(quotient.limbs[length-1-i]) {
-                quotient.length -= i;
-                break;
-            }
-        }
-
-        return quotient;
-    }
-
-    bint bint::bit_modulo(const bint& op) const {
-        
-        bint remainder(length,length);
-        remainder.length = 1; remainder.limbs[0] = 0;
-
-        base_t bit = 0, current_index, current_shift_val;
-        size_t
-            total_bits = length*BASE_BITS,
-            ms_limb = length - 1;
-        
-        for(size_t i=0; i<total_bits; ++i) {
-            current_index = ms_limb - i/BASE_BITS;
-            current_shift_val = i % BASE_BITS;
-            
-            remainder <<= 1;
-
-            bit = limbs[current_index] << current_shift_val;
-            bit >>= BASE_BITS_MINUS1;
-
-            remainder.limbs[0] |= bit;
-
-            if(remainder >= op) {
-                remainder -= op;
-            }
-        }
-
-        return remainder;
+        bint modulo = 0;
+        modulo.number = number % op.number;
+        modulo.sign = (sign==op.sign) ? sign : !sign;
+        return modulo;
     }
 
     // pre-fix increment/decrement
@@ -402,69 +295,14 @@ namespace apa {
         return prev;
     }
 
-
     // Shift Operators
     bint& bint::operator<<=(size_t bits) {
-
-        if(*this) {
-            size_t limb_shifts = bits / BASE_BITS;
-            size_t bit_shifts = bits % BASE_BITS;
-
-            size_t new_length = length + limb_shifts + 1;
-            if(new_length>capacity) {
-                capacity = new_length+LIMB_GROWTH;
-                limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            }
-
-            limbs[new_length-1] = 0;
-
-            for(size_t i=0; i<length; ++i) {
-                limbs[length-1-i] <<= bit_shifts;
-                limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
-                limbs[new_length-2-i] = (base_t) limbs[length-1-i];
-            }
-
-            size_t zero_limbs = new_length-length-1;
-            if(zero_limbs)
-                memset(limbs,0x00,zero_limbs*LIMB_BYTES);
-
-            length = new_length;
-            if(!limbs[length-1])
-                length--;
-        }
-
+        if(number) number <<= bits;
         return *this;
     }
 
     bint& bint::operator>>=(size_t bits) {
-
-        if(*this) {
-            size_t limb_shifts = bits / BASE_BITS;
-            
-            if(limb_shifts>=length) {
-                length = 1;
-                limbs[0] = 0;
-            }
-            else {
-                size_t bit_shifts = bits % BASE_BITS;
-                size_t new_length = length - limb_shifts;
-
-                limbs[new_length-1] = 0;
-                limb_t prev = 0;
-
-                for(size_t i=0; i<new_length; ++i) {
-                    limbs[length-1-i] <<= BASE_BITS - bit_shifts;
-                    limbs[new_length-1-i] = prev;
-                    limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
-                    prev = (base_t) limbs[length-1-i];
-                }
-
-                length = new_length;
-                if(!limbs[length-1] && length!=1)
-                    length--;
-            }
-        }
-
+        if(number) number >>= bits;
         return *this;
     }
 
@@ -480,30 +318,58 @@ namespace apa {
         return shifted;
     }
 
-
     void bint::printHex() const {
-        
-        std::cout << "0x";
-        printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
-            printf(PRINT_LIMBHEX, (base_t) limbs[length-1-i]);
-        std::cout << "\n";
+        if(SIGN_NEGATIVE(sign)) std::cout << "-";
+        number.printHex();
     }
 
     void bint::printHex_spaced_out() const {
-
-        printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
-            printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
-        std::cout << "\n";
+        number.printHex_spaced_out();
+        std::cout << (SIGN_NEGATIVE(sign)) ? "\nNegative:" : "\nPositive\n";
     }
 
     void bint::printStatus(std::string printIdentifier) const {
-        std::cout << "\n-----\n";
-        std::cout << printIdentifier << "\n";
-        std::cout << "capacity : " << capacity << "\n";
-        std::cout << "length   : " << length << "\n";
-        printHex_spaced_out();
+        number.printStatus();
+        std::cout << (SIGN_NEGATIVE(sign)) ? "\nNegative:" : "\nPositive\n";
+    }
+
+    std::string bint::to_base10_string() const {
+        std::string Base10 = "";
+        if(SIGN_NEGATIVE(sign)) Base10.push_back('-');
+        Base10.append(number.to_base10_string());
+        return Base10;
+    }
+
+    std::string bint::to_base16_string() const {
+        std::string Base16 = "";
+        if(SIGN_NEGATIVE(sign)) Base16.push_back('-');
+        Base16.append(number.to_base16_string());
+        return Base16;
+    }
+
+    // Member Access Methods
+    size_t bint::capacity_size() const {
+        return number.capacity_size();
+    }
+
+    size_t bint::limb_size() const {
+        return number.limb_size();
+    }
+
+    size_t bint::byte_size() const {
+        return number.byte_size();
+    }
+
+    size_t bint::bit_size() const {
+        return number.bit_size();
+    }
+
+    const limb_t *bint::limb_view() const {
+        return number.limb_view();
+    }
+
+    const uint8_t *bint::byte_view() const {
+        return number.byte_view();
     }
 
     void swap(bint& a, bint& b) {
@@ -512,49 +378,13 @@ namespace apa {
         b = std::move(temp);
     }
 
-    std::string bint::to_base10_string() const {
-        std::string Base10 = "";
-        bint ten(10), quotient = *this;
-
-        if(quotient) {
-            while(quotient) {
-                bint remainder = quotient % ten;
-                quotient = quotient / ten;
-                Base10.push_back('0'+remainder.limbs[0]);
-            }
-
-            std::reverse(Base10.begin(),Base10.end());    
-        }
-        else Base10 = "0";
-        
-        return Base10;
-    }
-
-    std::string bint::to_base16_string() const {
-
-        char buffer[17];
-        std::string hexform = "";
-
-        sprintf(buffer,PRINT_LIMBHEX_NOPAD,(base_t)limbs[length-1]);
-        hexform.append(buffer);
-
-        for(size_t i=1; i<length; ++i) {
-            sprintf(buffer,PRINT_LIMBHEX,(base_t)limbs[length-1-i]);
-            hexform.append(buffer);
-        }
-
-        return hexform;
-    }
-
     // IO Operators
-    std::ostream& operator<<(std::ostream &out, const bint &num)
-    {
+    std::ostream& operator<<(std::ostream &out, const bint &num) {
         out << num.to_base16_string();
         return out;
     }
 
-    std::istream& operator>>(std::istream &in, bint &num)
-    {
+    std::istream& operator>>(std::istream &in, bint &num) {
         std::string input;
         in >> input;
         num = bint(input,16);
