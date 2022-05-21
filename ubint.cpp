@@ -172,8 +172,7 @@ namespace apa {
     }
 
     ubint::~ubint() {
-        if(limbs != NULL)
-            free(limbs);
+        free(limbs);
     }
 
     // Index Operator
@@ -189,19 +188,17 @@ namespace apa {
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
     int ubint::compare(const ubint& op) const {
 
-        if(length<op.length)
-            return -1;
+        if(length<op.length) return LESS;
         
-        if(length>op.length)
-            return 1;
+        if(length>op.length) return GREAT;
 
         for(size_t i=0; i<length; ++i) {
 
             if(limbs[length-1-i]<op.limbs[length-1-i])
-                return -1;
+                return LESS;
                 
             else if(limbs[length-1-i]>op.limbs[length-1-i])
-                return 1;
+                return GREAT;
         }
 
         return 0;
