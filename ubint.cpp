@@ -13,9 +13,10 @@
 namespace apa {
 
     unsigned char HEX_TO_CHAR[16] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f',};
+
     unsigned char CHAR_TO_HEX(unsigned char c) {
-        switch (c)
-        {
+
+        switch (c) {
             case '0': return 0x0;
             case '1': return 0x1;
             case '2': return 0x2;
@@ -33,16 +34,19 @@ namespace apa {
             case 'e': return 0xe;
             case 'f': return 0xf;
         }
+
         return 0xff;
     }
 
     ubint::ubint() {
+
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
     ubint::ubint(base_t num) {
+
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
@@ -50,12 +54,15 @@ namespace apa {
     }
 
     ubint::ubint(size_t capacity, size_t length, bool AllocateSpace) {
+
         this->capacity = capacity;
         this->length = length;
-        if(AllocateSpace)
+
+        if(AllocateSpace) {
             limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
-        else
+        } else {
             limbs = NULL;
+        }
     }
 
     // constructor for conveniece
@@ -75,18 +82,20 @@ namespace apa {
             }
 
             size_t leading_zeros = 0;
-            while(output.size()>1 && !output[leading_zeros])
+            while(output.size()>1 && !output[leading_zeros]) {
                 leading_zeros++;
+            }
 
             output.erase(output.begin(),output.begin()+leading_zeros);
 
             std::string stringForm(output.size(),'0');
-            for(size_t i=0; i<stringForm.size(); ++i)
+            for(size_t i=0; i<stringForm.size(); ++i) {
                 stringForm[i] = HEX_TO_CHAR[output[i]];
+            }
 
             text = stringForm;
-        }
-        else if(base!=16) {
+
+        } else if(base!=16) {
             throw std::domain_error(
                 "ubint - string contructor : supported number base range is only from 2 to 16"
             );
@@ -96,7 +105,10 @@ namespace apa {
         size_t remain = text.size()%(LIMB_BYTES);
 
         length = blocks;
-        if(remain) length++;
+        if(remain) {
+            length++;
+        }
+
         capacity = length+LIMB_GROWTH;
         limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         memset(limbs,0x0,capacity*LIMB_BYTES);
@@ -113,14 +125,16 @@ namespace apa {
 
         size_t cut_length = 0;
 
-        while(!limbs[length-1-cut_length])
+        while(!limbs[length-1-cut_length]) {
             cut_length++;
+        }
 
         length -= cut_length;
     }
 
     /// copy constructor.
     ubint::ubint(const ubint& src) {
+
         capacity = src.capacity;
         length   = src.length;
         limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
@@ -129,6 +143,7 @@ namespace apa {
 
     /// move constructor.
     ubint::ubint(ubint&& src) noexcept {
+
         capacity = src.capacity;
         length   = src.length;
         limbs    = src.limbs;
@@ -137,6 +152,7 @@ namespace apa {
 
     /// copy assignment.
     ubint& ubint::operator=(const ubint& src) {
+
         if(capacity < src.capacity) {
             limbs = (limb_t*) realloc(limbs,src.capacity*LIMB_BYTES);
             capacity = src.capacity;
@@ -164,10 +180,12 @@ namespace apa {
     }
 
     ubint::ubint(std::initializer_list<base_t> limbs) {
+
         capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
         this->limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
         size_t i = 0;
+
         for(auto limb : limbs) {
             this->limbs[length-1-i++] = limb;
         }
@@ -190,17 +208,21 @@ namespace apa {
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
     int ubint::compare(const ubint& op) const {
 
-        if(length<op.length) return LESS;
+        if(length<op.length) {
+            return LESS;
+        }
         
-        if(length>op.length) return GREAT;
+        if(length>op.length) {
+            return GREAT;
+        }
 
         for(size_t i=0; i<length; ++i) {
 
-            if(limbs[length-1-i]<op.limbs[length-1-i])
+            if(limbs[length-1-i]<op.limbs[length-1-i]) {
                 return LESS;
-                
-            else if(limbs[length-1-i]>op.limbs[length-1-i])
+            } else if(limbs[length-1-i]>op.limbs[length-1-i]) {
                 return GREAT;
+            }
         }
 
         return 0;
@@ -225,11 +247,13 @@ namespace apa {
     }
 
     bool ubint::operator<=(const ubint& op) const {
+
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==LESS) ? true : false;
     }
 
     bool ubint::operator>=(const ubint& op) const {
+
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==GREAT) ? true : false;
     }
@@ -246,11 +270,13 @@ namespace apa {
             length = op.length;
         }
 
-        for(size_t i=0; i<op.length; ++i)
+        for(size_t i=0; i<op.length; ++i) {
             limbs[i] &= op.limbs[i];
+        }
 
-        for(size_t i=op.length; i<length; ++i)
+        for(size_t i=op.length; i<length; ++i) {
             limbs[i] &= 0;
+        }
 
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
@@ -265,8 +291,7 @@ namespace apa {
     ubint ubint::operator&(const ubint& op) const {
 
         ubint bitwise_and = *this;
-        bitwise_and &= op;
-        return bitwise_and;
+        return bitwise_and &= op;
     }
 
     ubint& ubint::operator|=(const ubint& op) {
@@ -279,11 +304,13 @@ namespace apa {
             length = op.length;
         }
 
-        for(size_t i=0; i<op.length; ++i)
+        for(size_t i=0; i<op.length; ++i) {
             limbs[i] |= op.limbs[i];
+        }
 
-        for(size_t i=op.length; i<length; ++i)
+        for(size_t i=op.length; i<length; ++i) {
             limbs[i] |= 0;
+        }
 
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
@@ -298,8 +325,7 @@ namespace apa {
     ubint ubint::operator|(const ubint& op) const {
 
         ubint bitwise_and = *this;
-        bitwise_and |= op;
-        return bitwise_and;
+        return bitwise_and |= op;
     }
 
     ubint& ubint::operator^=(const ubint& op) {
@@ -312,11 +338,13 @@ namespace apa {
             length = op.length;
         }
 
-        for(size_t i=0; i<op.length; ++i)
+        for(size_t i=0; i<op.length; ++i) {
             limbs[i] ^= op.limbs[i];
+        }
 
-        for(size_t i=op.length; i<length; ++i)
+        for(size_t i=op.length; i<length; ++i) {
             limbs[i] ^= 0;
+        }
 
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
@@ -338,13 +366,15 @@ namespace apa {
     ubint ubint::operator~() const {
 
         ubint bwn = *this;
-        for(size_t i=0; i<bwn.length-1; ++i)
+        for(size_t i=0; i<bwn.length-1; ++i) {
             bwn.limbs[i] = (base_t)(~bwn.limbs[i]);
+        }
 
         base_t mslimb = bwn.limbs[bwn.length-1];
         base_t bitmask = mslimb | (mslimb >> 1);
-        for(size_t i=2; i<BASE_BITS; i*=2)
+        for(size_t i=2; i<BASE_BITS; i*=2) {
             bitmask |= bitmask >> i;
+        }
         
         bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
 
@@ -408,8 +438,7 @@ namespace apa {
 
     ubint ubint::operator+(const ubint& op) const {
         ubint sum = *this;
-        sum += op;
-        return sum;
+        return sum += op;
     }
     
     ubint& ubint::operator-=(const ubint& op) {
@@ -446,13 +475,14 @@ namespace apa {
 
     ubint ubint::operator-(const ubint& op) const {
         ubint dif = *this;
-        dif -= op;
-        return dif;
+        return dif -= op;
     }
     
     ubint& ubint::operator*=(const ubint& op) {
+
         ubint product = *this * op;
         swap(product,*this);
+
         return *this;
     }
 
@@ -473,51 +503,64 @@ namespace apa {
             }
         }
 
-        if(!product.limbs[product.length-1])
+        if(!product.limbs[product.length-1]) {
             product.length--;
+        }
 
         return product;
     }
     
     ubint& ubint::operator/=(const ubint& op) {
+
         ubint quotient = *this / op;
         swap(quotient,*this);
+
         return *this;
     }
 
     ubint ubint::operator/(const ubint& op) const {
 
-        if(!op)
+        if(!op) {
             throw std::domain_error("apa::ubint - Division By Zero");
+        }
             
         int special_case = this->compare(op);
-        switch (special_case)
-        {
+        switch (special_case) {
             case EQUAL: return ubint(1);
             case LESS : return ubint(0);
         }
-        if(op.length==1 && op.limbs[0]==1) return *this;
+
+        if(op.length==1 && op.limbs[0]==1) {
+            return *this;
+        }
+
         return bit_division(op);
     }
 
     ubint& ubint::operator%=(const ubint& op) {
+
         ubint remainder = *this % op;
         swap(remainder,*this);
+
         return *this;
     }
 
     ubint ubint::operator%(const ubint& op) const {
 
-        if(!op)
+        if(!op) {
             throw std::domain_error("apa::ubint - Division By Zero");
+        }
             
         int special_case = this->compare(op);
-        switch (special_case)
-        {
+        switch (special_case) {
             case EQUAL: return ubint(0);
             case LESS : return *this;
         }
-        if(op.length==1 && op.limbs[0]==1) return ubint(0);
+
+        if(op.length==1 && op.limbs[0]==1) {
+            return ubint(0);
+        }
+        
         return bit_modulo(op);
     }
 
@@ -590,13 +633,11 @@ namespace apa {
 
     // pre-fix increment/decrement
     ubint& ubint::operator++() {
-        *this += __UBINT_ONE;
-        return *this;
+        return *this += __UBINT_ONE;
     }
 
     ubint& ubint::operator--() {
-        *this -= __UBINT_ONE;
-        return *this;
+        return *this -= __UBINT_ONE;
     }
 
     // post-fix increment/decrement
@@ -635,12 +676,14 @@ namespace apa {
             }
 
             size_t zero_limbs = new_length-length-1;
-            if(zero_limbs)
+            if(zero_limbs) {
                 memset(limbs,0x00,zero_limbs*LIMB_BYTES);
+            }
 
             length = new_length;
-            if(!limbs[length-1])
+            if(!limbs[length-1]) {
                 length--;
+            }
         }
 
         return *this;
@@ -654,8 +697,7 @@ namespace apa {
             if(limb_shifts>=length) {
                 length = 1;
                 limbs[0] = 0;
-            }
-            else {
+            } else {
                 size_t bit_shifts = bits % BASE_BITS;
                 size_t new_length = length - limb_shifts;
 
@@ -670,8 +712,9 @@ namespace apa {
                 }
 
                 length = new_length;
-                if(!limbs[length-1] && length!=1)
+                if(!limbs[length-1] && length!=1) {
                     length--;
+                }
             }
         }
 
@@ -679,15 +722,15 @@ namespace apa {
     }
 
     ubint ubint::operator<<(size_t bits) const {
+
         ubint shifted = *this;
-        shifted <<= bits;
-        return shifted;
+        return shifted <<= bits;
     }
 
     ubint ubint::operator>>(size_t bits) const {
+
         ubint shifted = *this;
-        shifted >>= bits;
-        return shifted;
+        return shifted >>= bits;
     }
 
 
@@ -695,20 +738,27 @@ namespace apa {
         
         std::cout << "0x";
         printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
+
+        for(size_t i=1; i<length; ++i) {
             printf(PRINT_LIMBHEX, (base_t) limbs[length-1-i]);
+        }
+
         std::cout << "\n";
     }
 
     void ubint::printHex_spaced_out() const {
 
         printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
-        for(size_t i=1; i<length; ++i)
+
+        for(size_t i=1; i<length; ++i) {
             printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
+        }
+
         std::cout << "\n";
     }
 
     void ubint::printStatus(std::string printIdentifier) const {
+
         std::cout << "\n-----\n";
         std::cout << printIdentifier << "\n";
         std::cout << "capacity : " << capacity << "\n";
@@ -717,6 +767,7 @@ namespace apa {
     }
 
     std::string ubint::to_base10_string() const {
+
         std::string Base10 = "";
         ubint ten(10), quotient = *this;
 
@@ -728,8 +779,9 @@ namespace apa {
             }
 
             std::reverse(Base10.begin(),Base10.end());    
+        } else {
+            Base10 = "0";
         }
-        else Base10 = "0";
         
         return Base10;
     }
@@ -764,22 +816,28 @@ namespace apa {
     }
 
     size_t ubint::byte_size() const {
+
         base_t ms_limb = limbs[length-1];
         size_t cnt = 0;
+
         while(ms_limb) {
             ms_limb >>= 8;
             cnt++;
         }
+
         return (length-1)*BASE_BYTES + cnt;
     }
 
     size_t ubint::bit_size() const {
+
         base_t ms_limb = limbs[length-1];
         size_t cnt = 0;
+
         while(ms_limb) {
             ms_limb >>= 1;
             cnt++;
         }
+
         return (length-1)*BASE_BITS + cnt;
     }
 
@@ -793,23 +851,25 @@ namespace apa {
 
 
     void swap(ubint& a, ubint& b) {
+
         ubint temp = std::move(a);
         a = std::move(b);
         b = std::move(temp);
     }
 
     // IO Operators
-    std::ostream& operator<<(std::ostream &out, const ubint &num)
-    {
+    std::ostream& operator<<(std::ostream &out, const ubint &num) {
+
         out << num.to_base16_string();
         return out;
     }
 
-    std::istream& operator>>(std::istream &in, ubint &num)
-    {
+    std::istream& operator>>(std::istream &in, ubint &num) {
+        
         std::string input;
         in >> input;
         num = ubint(input,16);
+
         return in;
     }
 }
