@@ -150,13 +150,15 @@ namespace apa {
 
     /// move assignment.
     ubint& ubint::operator=(ubint&& src) noexcept {
-        if(limbs != NULL)
+
+        if(this != &src) {
             free(limbs);
 
-        capacity = src.capacity;
-        length   = src.length;
-        limbs    = src.limbs;
-        src.limbs = NULL;
+            capacity = src.capacity;
+            length   = src.length;
+            limbs    = src.limbs;
+            src.limbs = NULL;
+        }
 
         return *this;
     }
