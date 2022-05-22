@@ -7,6 +7,7 @@
 #include <cstring>
 #include <cmath>
 #include <exception>
+#include <limits>
 
 #include "apa-base-configs.hpp"
 
@@ -32,6 +33,8 @@ namespace apa {
     const static size_t INITIAL_LIMB_CAPACITY = 2;
     const static size_t INITIAL_LIMB_LENGTH = 1;
     const static size_t LIMB_GROWTH = 2;
+
+    constexpr static base_t BASE_MAX = std::numeric_limits<base_t>::max();
 
     class ubint {
 
@@ -83,7 +86,7 @@ namespace apa {
             ubint operator|(const ubint& op) const;
             ubint operator^(const ubint& op) const;
             ubint operator~() const;
-            ubint flip() const;
+            ubint flip(size_t padding=0) const;
             
             // Logical Operators
             explicit operator bool() const noexcept;

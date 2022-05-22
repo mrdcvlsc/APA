@@ -365,18 +365,18 @@ namespace apa {
 
     ubint ubint::operator~() const {
 
-        // -----------------------------------------------------------------
+        // ------------------------------------------------------
         // flip all the bits of the limbs.
-        ubint bwn = *this;
-        for(size_t i=0; i<bwn.length-1; ++i) {
-            bwn.limbs[i] = (base_t)(~bwn.limbs[i]);
+        ubint bwn(length,length);
+        for(size_t i=0; i<length-1; ++i) {
+            bwn.limbs[i] = (base_t)(~limbs[i]);
         }
 
-        // -----------------------------------------------------------------
+        // ------------------------------------------------------
         // flip the bits of the most significant limb, from it's
         // least significant bit to it's most significant bit
         // the flip will stop if it reach the last 1 bit value.
-        base_t mslimb = bwn.limbs[bwn.length-1];
+        base_t mslimb = limbs[length-1];
         base_t bitmask = mslimb | (mslimb >> 1);
         for(size_t i=2; i<BASE_BITS; i*=2) {
             bitmask |= bitmask >> i;
@@ -384,7 +384,7 @@ namespace apa {
         
         bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
 
-        // -----------------------------------------------------------------
+        // ------------------------------------------------------
         // remove the leading zeros from the most significant limb
         // to the least significant limb.
         for(size_t i=0; i<bwn.length; ++i) {
@@ -397,11 +397,18 @@ namespace apa {
         return bwn;
     }
 
-    ubint ubint::flip() const {
-        ubint flipped = *this;
-        for(size_t i=0; i<flipped.length-1; ++i) {
-            flipped.limbs[i] = (base_t)(~flipped.limbs[i]);
+    ubint ubint::flip(size_t padding) const {
+
+        ubint flipped(length+padding,length+padding);
+
+        for(size_t i=0; i<length; ++i) {
+            flipped.limbs[i] = (base_t)(~limbs[i]);
         }
+
+        for(size_t i=length; i<flipped.length; ++i) {
+            flipped.limbs[i] = BASE_MAX;
+        }
+
         return flipped;
     }
 
