@@ -9,10 +9,10 @@
 /// Left Negative - Right Positive.
 #define LNEG_RPOS(SIGN_A,SIGN_B) (SIGN_A>SIGN_B)
 
-// true if sign is positive
+/// true if sign is positive.
 #define SIGN_POSITIVE(SIGN) (!SIGN)
 
-// false if sign is negative
+/// false if sign is negative.
 #define SIGN_NEGATIVE(SIGN) (SIGN)
 
 /// bint::compare -> ubint.compare result sign flip.

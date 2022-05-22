@@ -10,16 +10,17 @@
 
 #include "apa-base-configs.hpp"
 
-#define BITS_PER_BYTE 8
-#define LESS -1
-#define EQUAL 0
-#define GREAT 1
-
 #define PADDING(LENGTH,BLOCK) (LENGTH%BLOCK==0) ? 0 : (BLOCK-(LENGTH%BLOCK))
 
 namespace apa {
 
     typedef std::vector<uint8_t> byte_array;
+
+    constexpr static int LESS = -1;
+    constexpr static int EQUAL = 0;
+    constexpr static int GREAT = 1;
+
+    constexpr static int BITS_PER_BYTE = 8;
 
     constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
     constexpr static size_t BASE_BITS_MINUS1 = BASE_BITS-1;
