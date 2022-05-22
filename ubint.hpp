@@ -83,6 +83,7 @@ namespace apa {
             ubint operator|(const ubint& op) const;
             ubint operator^(const ubint& op) const;
             ubint operator~() const;
+            ubint flip() const;
             
             // Logical Operators
             explicit operator bool() const noexcept;
