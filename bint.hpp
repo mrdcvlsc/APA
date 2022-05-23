@@ -12,7 +12,7 @@
 /// true if sign is positive.
 #define SIGN_POSITIVE(SIGN) (!SIGN)
 
-/// false if sign is negative.
+/// true if sign is negative.
 #define SIGN_NEGATIVE(SIGN) (SIGN)
 
 /// bint::compare -> ubint.compare result sign flip.
@@ -20,11 +20,11 @@
 
 namespace apa {
 
-    /// Positive Sign Value Indicator
-    uint8_t POSITIVE = 0;
+    /// Positive Sign Value Indicator.
+    static const uint8_t POSITIVE = 0;
 
-    /// Negative Sign Value Indicator
-    uint8_t NEGATIVE = 1;
+    /// Negative Sign Value Indicator.
+    static const uint8_t NEGATIVE = 1;
 
     class bint {
 
