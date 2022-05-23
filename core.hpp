@@ -3,5 +3,7 @@
 
 #include "ubint.hpp"
 #include "ubint.cpp"
+#include "bint.hpp"
+#include "bint.cpp"
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef UNSIGNED_BIG_INTEGER_CPP
-#define UNSIGNED_BIG_INTEGER_CPP
+#ifndef SIGNED_BIG_INTEGER_CPP
+#define SIGNED_BIG_INTEGER_CPP
 
 #ifdef _MAKE_LIB
 #include "bint.hpp"
@@ -44,7 +44,7 @@ namespace apa {
         } else {
             sign = POSITIVE;
         }
-        number = ubint(text);
+        number = ubint(text,base);
     }
 
     /// copy constructor.
@@ -187,6 +187,11 @@ namespace apa {
                     number = op.number - number;
                     sign = op.sign;
                 } break;
+                default : {
+                    number.set_length(1);
+                    number[0] = 0;
+                    sign = POSITIVE;
+                }
             }
         } else {
             number += op.number;
@@ -288,6 +293,13 @@ namespace apa {
         modulo.number = number % op.number;
         modulo.sign = (sign==op.sign) ? sign : !sign;
         return modulo;
+    }
+
+    bint bint::operator-() const {
+        
+        bint negate = *this;
+        negate.sign = !negate.sign;
+        return negate;
     }
 
     // pre-fix increment/decrement

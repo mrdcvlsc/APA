@@ -1,5 +1,5 @@
-#ifndef APA_BINT_HPP
-#define APA_BINT_HPP
+#ifndef SIGNED_BIG_INTEGER_HPP
+#define SIGNED_BIG_INTEGER_HPP
 
 #include "ubint.hpp"
 
@@ -71,7 +71,7 @@ namespace apa {
             bint operator|(const bint& op) const;
             bint operator^(const bint& op) const;
             bint operator~() const;
-            
+
             // Logical Operators
             explicit operator bool() const noexcept;
 
@@ -86,6 +86,8 @@ namespace apa {
             bint operator*(const bint& op) const;
             bint operator/(const bint& op) const;
             bint operator%(const bint& op) const;
+
+            bint operator-() const;
 
             // pre-fix increment/decrement
             bint& operator++();
