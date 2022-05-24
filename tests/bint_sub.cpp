@@ -91,10 +91,10 @@ int main() { START_TEST;
         num1_P_NEGATIVE_num1,num1_P_NEGATIVE_num6_C,       "num1-(-num6)");
 
     #if defined(_BASE2_16)
-        RESULT("bINT BASE 2^16 access methods");
+        RESULT("BINT BASE 2^16 SUBTRACTION");
     #elif defined(_BASE2_32)
-        RESULT("bINT BASE 2^32 access methods");
+        RESULT("BINT BASE 2^32 SUBTRACTION");
     #elif defined(_BASE2_64)
-        RESULT("bINT BASE 2^64 access methods");
+        RESULT("BINT BASE 2^64 SUBTRACTION");
     #endif
 }

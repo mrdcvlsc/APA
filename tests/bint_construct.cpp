@@ -37,10 +37,10 @@ int main() { START_TEST;
     ASSERT_EQUALITY(subject6.to_base10_string(),subject3_C,"negate value 2nd time   ");
 
     #if defined(_BASE2_16)
-        RESULT("bINT BASE 2^16 access methods");
+        RESULT("BINT BASE 2^16 constructor");
     #elif defined(_BASE2_32)
-        RESULT("bINT BASE 2^32 access methods");
+        RESULT("BINT BASE 2^32 constructor");
     #elif defined(_BASE2_64)
-        RESULT("bINT BASE 2^64 access methods");
+        RESULT("BINT BASE 2^64 constructor");
     #endif
 }

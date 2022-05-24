@@ -57,6 +57,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_add.out
 	@./$(SRC)/bint_sub.out
+	@./$(SRC)/bint_mul.out
 
 # -------------------------- test program compilation ---------------------------
 
