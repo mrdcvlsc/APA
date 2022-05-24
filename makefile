@@ -53,6 +53,10 @@ test: $(OBJ)
 	@./$(SRC)/ubint_base_print.out
 	@./$(SRC)/ubint_bases.out
 	@./$(SRC)/ubint_access.out
+	
+	@./$(SRC)/bint_construct.out
+	@./$(SRC)/bint_add.out
+	@./$(SRC)/bint_sub.out
 
 # -------------------------- test program compilation ---------------------------
 
