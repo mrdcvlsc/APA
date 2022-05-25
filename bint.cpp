@@ -262,6 +262,9 @@ namespace apa {
         bint product = 0;
         product.number = number * op.number;
         product.sign = (sign==op.sign) ? 0 : 1;
+        if(!product.number){
+            product.sign = 0;
+        }
         return product;
     }
     
@@ -277,6 +280,9 @@ namespace apa {
         bint quotient = 0;
         quotient.number = number / op.number;
         quotient.sign = (sign==op.sign) ? 0 : 1;
+        if(!quotient.number){
+            quotient.sign = 0;
+        }
         return quotient;
     }
 
