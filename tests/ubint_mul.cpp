@@ -185,6 +185,8 @@ int main() { START_TEST;
         ASSERT_EQUALITY(fac(975),FAC975_C,    "FACTORIAL(975) ");
         ASSERT_EQUALITY(fac(1000),FAC1000_C,  "FACTORIAL(1000)");
         ASSERT_EQUALITY(fac(3375),FAC3375_C,  "FACTORIAL(3375)");
+        ASSERT_EQUALITY((num1*apa::__UBINT_ZERO),apa::__UBINT_ZERO,"num1*zero      ");
+        ASSERT_EQUALITY((apa::__UBINT_ZERO*num1),apa::__UBINT_ZERO,"zero*num1      ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 MULTIPLICATION");
