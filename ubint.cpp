@@ -414,7 +414,7 @@ namespace apa {
 
     // Logical Operators
     ubint::operator bool() const noexcept {
-        return (length==1 && limbs[0]==0) ? false : true;
+        return !(length==1 && !limbs[0]);
     }
 
     // Arithmetic Operators
