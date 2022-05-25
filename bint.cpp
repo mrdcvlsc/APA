@@ -307,11 +307,8 @@ namespace apa {
     }
 
     bint bint::operator%(const bint& op) const {
-
-        bint modulo = 0;
-        modulo.number = number % op.number;
-        modulo.sign = (sign==op.sign) ? sign : !sign;
-        return modulo;
+        // a mod b = a - b*floor(a/b)
+        return *this - op * (*this / op);
     }
 
     bint bint::operator-() const {
