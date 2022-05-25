@@ -171,7 +171,7 @@ namespace apa {
 
     // Logical Operators
     bint::operator bool() const noexcept {
-        return(number.limb_size()==1 && number[0]==0) ? false : true;
+        return (bool) number;
     }
 
     // Arithmetic Operators

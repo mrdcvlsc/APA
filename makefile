@@ -55,6 +55,7 @@ test: $(OBJ)
 	@./$(SRC)/ubint_access.out
 	
 	@./$(SRC)/bint_construct.out
+	@./$(SRC)/bint_logical.out
 	@./$(SRC)/bint_add.out
 	@./$(SRC)/bint_sub.out
 	@./$(SRC)/bint_mul.out
