@@ -50,6 +50,10 @@ namespace apa {
             bint& operator=(const bint& src);     // copy.
             bint& operator=(bint&& src) noexcept; // move.
 
+            // ubint Constructors
+            bint(uint8_t sign, const ubint& number); // ubint copy.
+            bint(uint8_t sign, ubint&& number) noexcept; // ubint move.
+
             ~bint();
 
             /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.

@@ -79,6 +79,19 @@ namespace apa {
         return *this;
     }
 
+    bint::bint(uint8_t sign, const ubint& number) {
+
+        this->number = number;
+        this->sign = sign;
+    }
+    
+    bint::bint(uint8_t sign, ubint&& number) noexcept {
+
+        this->number = std::move(number);
+        this->sign = sign;
+    }
+    
+
     bint::bint(std::initializer_list<base_t> limbs, uint8_t sign) {
 
         number = ubint(limbs);
@@ -259,12 +272,12 @@ namespace apa {
 
     bint bint::operator*(const bint& op) const {
 
-        bint product = 0;
-        product.number = number * op.number;
-        product.sign = !(sign==op.sign);
+        bint product(!(sign==op.sign), number * op.number);
+        
         if(!product.number){
             product.sign = 0;
         }
+
         return product;
     }
     
@@ -277,12 +290,12 @@ namespace apa {
 
     bint bint::operator/(const bint& op) const {
 
-        bint quotient = 0;
-        quotient.number = number / op.number;
-        quotient.sign = !(sign==op.sign);
+        bint quotient(!(sign==op.sign), number / op.number);
+        
         if(!quotient.number){
             quotient.sign = 0;
         }
+
         return quotient;
     }
 
