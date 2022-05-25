@@ -512,6 +512,10 @@ namespace apa {
 
     ubint ubint::operator*(const ubint& op) const {
 
+        if(!(*this && op)) {
+            return __UBINT_ZERO;
+        }
+
         ubint product(length+op.length,length+op.length);
         memset(product.limbs,0x0,product.length*LIMB_BYTES);
         
