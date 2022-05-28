@@ -153,13 +153,15 @@ namespace apa {
     /// copy assignment.
     ubint& ubint::operator=(const ubint& src) {
 
-        if(capacity < src.capacity) {
-            limbs = (limb_t*) realloc(limbs,src.capacity*LIMB_BYTES);
-            capacity = src.capacity;
-        }
+        if(this != &src) {
+            if(capacity < src.capacity) {
+                limbs = (limb_t*) realloc(limbs,src.capacity*LIMB_BYTES);
+                capacity = src.capacity;
+            }
 
-        length = src.length;
-        memcpy(limbs,src.limbs,src.length*LIMB_BYTES);
+            length = src.length;
+            memcpy(limbs,src.limbs,src.length*LIMB_BYTES);
+        }
 
         return *this;
     }
@@ -260,15 +262,25 @@ namespace apa {
 
     // Bit-Wise Logical Operators
 
-    ubint& ubint::operator&=(const ubint& op) {
+    void ubint::bit_realloc(const ubint& op) {
+        capacity = op.capacity;
+        limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+        size_t zero_set = length*LIMB_BYTES;
+        memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
+        length = op.length;
+    }
 
-        if(length<op.length) {
-            capacity = op.capacity;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            size_t zero_set = length*LIMB_BYTES;
-            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
-            length = op.length;
+    void ubint::remove_leading_zeros() {
+
+        for(size_t i=0; i<length; ++i) {
+            if(limbs[length-1-i]) {
+                length -= i;
+                break;
+            }
         }
+    }
+
+    void ubint::bit_and(const ubint& op) {
 
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] &= op.limbs[i];
@@ -277,13 +289,16 @@ namespace apa {
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] &= 0;
         }
+    }
 
-        for(size_t i=0; i<length; ++i) {
-            if(limbs[length-1-i]) {
-                length -= i;
-                break;
-            }
+    ubint& ubint::operator&=(const ubint& op) {
+
+        if(length<op.length) {
+            bit_realloc(op);
         }
+
+        bit_and(op);
+        remove_leading_zeros();
         
         return *this;
     }
@@ -294,16 +309,8 @@ namespace apa {
         return bitwise_and &= op;
     }
 
-    ubint& ubint::operator|=(const ubint& op) {
-
-        if(length<op.length) {
-            capacity = op.capacity;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            size_t zero_set = length*LIMB_BYTES;
-            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
-            length = op.length;
-        }
-
+    void ubint::bit_or(const ubint& op) {
+        
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] |= op.limbs[i];
         }
@@ -311,13 +318,16 @@ namespace apa {
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] |= 0;
         }
+    }
 
-        for(size_t i=0; i<length; ++i) {
-            if(limbs[length-1-i]) {
-                length -= i;
-                break;
-            }
+    ubint& ubint::operator|=(const ubint& op) {
+
+        if(length<op.length) {
+            bit_realloc(op);
         }
+
+        bit_or(op);
+        remove_leading_zeros();
         
         return *this;
     }
@@ -328,16 +338,8 @@ namespace apa {
         return bitwise_and |= op;
     }
 
-    ubint& ubint::operator^=(const ubint& op) {
-
-        if(length<op.length) {
-            capacity = op.capacity;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
-            size_t zero_set = length*LIMB_BYTES;
-            memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
-            length = op.length;
-        }
-
+    void ubint::bit_xor(const ubint& op) {
+        
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] ^= op.limbs[i];
         }
@@ -345,13 +347,16 @@ namespace apa {
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] ^= 0;
         }
+    }
 
-        for(size_t i=0; i<length; ++i) {
-            if(limbs[length-1-i]) {
-                length -= i;
-                break;
-            }
+    ubint& ubint::operator^=(const ubint& op) {
+
+        if(length<op.length) {
+            bit_realloc(op);
         }
+
+        bit_xor(op);
+        remove_leading_zeros();
         
         return *this;
     }
@@ -383,16 +388,7 @@ namespace apa {
         }
         
         bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
-
-        // ------------------------------------------------------
-        // remove the leading zeros from the most significant limb
-        // to the least significant limb.
-        for(size_t i=0; i<bwn.length; ++i) {
-            if(bwn.limbs[bwn.length-1-i]) {
-                bwn.length -= i;
-                break;
-            }
-        }
+        bwn.remove_leading_zeros();
 
         return bwn;
     }
@@ -447,15 +443,7 @@ namespace apa {
             limbs[i] = (base_t) limbs[i];
         }
 
-        size_t ms_index = length-1;
-        while(ms_index) {
-            if(limbs[ms_index]) {
-                break;
-            }
-            --ms_index;
-        }
-
-        length = ms_index+1;
+        remove_leading_zeros();
 
         return *this;
     }
@@ -620,13 +608,7 @@ namespace apa {
             }
         }
 
-        for(size_t i=0; i<length; ++i) {
-            if(quotient.limbs[length-1-i]) {
-                quotient.length -= i;
-                break;
-            }
-        }
-
+        quotient.remove_leading_zeros();
         return quotient;
     }
 

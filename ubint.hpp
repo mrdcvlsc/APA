@@ -86,7 +86,14 @@ namespace apa {
             ubint operator|(const ubint& op) const;
             ubint operator^(const ubint& op) const;
             ubint operator~() const;
+
+            void bit_realloc(const ubint& op);
+            void remove_leading_zeros();
+
             ubint flip(size_t padding=0) const;
+            void bit_and(const ubint& op);
+            void bit_or(const ubint& op);
+            void bit_xor(const ubint& op);
             
             // Logical Operators
             explicit operator bool() const noexcept;
