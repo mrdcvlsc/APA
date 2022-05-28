@@ -61,14 +61,12 @@ int main() { START_TEST;
         apa::bint NUM2_MOD_NUM3 = 1;
 
         apa::bint
-            ANSQ1 = NUM1/NUM2,
+            ANSQ1 = NUM1/NUM2, ANSQ1_NEG = -NUM1 / NUM2,
             ANSQ2 = NUM1/NUM3,
             ANSQ3 = NUM2/NUM3,
             ANSR1 = NUM1%NUM2,
             ANSR2 = NUM1%NUM3,
             ANSR3 = NUM2%NUM3;
-
-            // ANSR1 = NUM1%NUM2;
             
         ASSERT_EQUALITY((-NUM1)/NUM1,(-ONE),         "1 -NUM1/NUM1  ");
         ASSERT_EQUALITY(NUM2/NUM2,ONE,               "2 NUM2/NUM2   ");
@@ -77,6 +75,7 @@ int main() { START_TEST;
         ASSERT_EQUALITY((NUM2/NUM2),ONE,             "5 NUM2/NUM2   ");
         ASSERT_EQUALITY((NUM3/NUM3),ONE,             "6 NUM3/NUM3   ");
         ASSERT_EQUALITY(ANSQ1,NUM1_DIV_NUM2,         "7 NUM1/NUM2   ");
+        ASSERT_EQUALITY(ANSQ1_NEG,-NUM1_DIV_NUM2,         "7.5 -NUM1/NUM2");
         ASSERT_EQUALITY(ANSQ2,NUM1_DIV_NUM3,         "8 NUM1/NUM3   ");
         ASSERT_EQUALITY(ANSQ3,NUM2_DIV_NUM3,         "9 NUM2/NUM3   ");
         ASSERT_EQUALITY((NUM1/(-NUM2)),(-NUM1_DIV_NUM2),"10 -NUM1/NUM2 ");
@@ -87,7 +86,9 @@ int main() { START_TEST;
         ASSERT_EQUALITY((NUM3/NUM2),ZERO,            "14 NUM3/NUM2  ");
         ASSERT_EQUALITY((NUM2/NUM1),ZERO,            "15 NUM2/NUM1  ");
 
-        ASSERT_EQUALITY((-NUM1)%NUM1,ZERO,           "16 -NUM1%NUM1 ");
+        apa::bint NEGNUM1_MOD_NUM1 = (-NUM1)%NUM1;
+
+        ASSERT_EQUALITY(NEGNUM1_MOD_NUM1,ZERO,           "16 -NUM1%NUM1 ");
         ASSERT_EQUALITY(NUM2%NUM2,ZERO,              "17 NUM2%NUM2  ");
         ASSERT_EQUALITY(NUM3%NUM3,ZERO,              "18 NUM3%NUM13 ");
         ASSERT_EQUALITY((NUM1%NUM1),ZERO,            "19 NUM1%NUM1  ");
@@ -96,13 +97,18 @@ int main() { START_TEST;
         ASSERT_EQUALITY(ANSR1,NUM1_MOD_NUM2,         "22 NUM1%NUM2  ");
         ASSERT_EQUALITY(ANSR2,NUM1_MOD_NUM3,         "23 NUM1%NUM3  ");
         ASSERT_EQUALITY(ANSR3,NUM2_MOD_NUM3,         "24 NUM2%NUM3  ");
-        ASSERT_EQUALITY(((-NUM1)%NUM2),(-NUM1_MOD_NUM2),"25 -NUM1%NUM2 ");
-        ASSERT_EQUALITY((NUM1%(-NUM3)),(-NUM1_MOD_NUM3),"26 NUM1%-NUM3 ");
-        ASSERT_EQUALITY((NUM2%NUM3),NUM2_MOD_NUM3,   "27 NUM2%NUM3  ");
 
-        ASSERT_EQUALITY((NUM3%NUM1),NUM3,            "28 NUM3%NUM1  ");
-        ASSERT_EQUALITY((NUM3%NUM2),NUM3,            "29 NUM3%NUM2  ");
-        ASSERT_EQUALITY((NUM2%NUM1),NUM2,            "30 NUM2%NUM1  ");
+        apa::bint NEG_NUM1_MOD_NUM2 = -NUM1 % NUM2;
+        apa::bint NUM1_MOD_NEG_NUM2 = NUM1 % -NUM2;
+
+        ASSERT_EQUALITY(NEG_NUM1_MOD_NUM2,-NUM1_MOD_NUM2,"25 -NUM1%NUM2 ");
+        ASSERT_EQUALITY(NUM1_MOD_NEG_NUM2,NUM1_MOD_NUM2,"26 NUM1%-NUM2 ");
+        ASSERT_EQUALITY((NUM1%(-NUM3)),(apa::__bint_ZERO),"27 NUM1%-NUM3 ");
+        ASSERT_EQUALITY((NUM2%NUM3),NUM2_MOD_NUM3,   "28 NUM2%NUM3  ");
+
+        ASSERT_EQUALITY((NUM3%NUM1),NUM3,            "29 NUM3%NUM1  ");
+        ASSERT_EQUALITY((NUM3%NUM2),NUM3,            "30 NUM3%NUM2  ");
+        ASSERT_EQUALITY((NUM2%NUM1),NUM2,            "31 NUM2%NUM1  ");
 
     #if defined(_BASE2_16)
         RESULT("BINT BASE 2^16 DIVISION");

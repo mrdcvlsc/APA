@@ -305,10 +305,16 @@ namespace apa {
         swap(remainder,*this);
         return *this;
     }
-
+    
     bint bint::operator%(const bint& op) const {
-        // a mod b = a - b*floor(a/b)
-        return *this - op * (*this / op);
+        
+        bint mod(sign, number % op.number);
+
+        if(!mod.number){
+            mod.sign = 0;
+        }
+
+        return mod;
     }
 
     bint bint::operator-() const {

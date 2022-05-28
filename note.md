@@ -21,3 +21,33 @@ class YourClass {
     }
 };
 ```
+
+### ```bint``` : Division
+
+- The division operator of bint is more similar to C/C++ than in python. ```bint``` don't apply a floor function to the quotient, instead it stops calculating the value after the decimal.
+
+    To show the difference here is an example:
+
+    - **C/C++ & bint division output:**
+
+    $$-9/4 = -2$$
+
+    - **Python3 floor division output:**
+
+    $$-9//4 = -3$$
+
+### ```bint``` : Modulo
+
+- Since the division of bint is more similar to C/C++ the modulo output of ```bint``` in some cases for negative numbers will be different to the output of python's modulo.
+
+    - **C/C++ & bint modulo output:**
+
+    $$-9 \ mod \ 4  = -1$$
+
+    - **Python3 modulo output:**
+
+    $$-9 \ mod \ 4  = 3$$
+
+    This is because python uses the floor division to get the mod: 
+
+    $$remainder = a - b \lfloor a/b\rfloor$$
