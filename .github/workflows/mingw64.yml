@@ -2,9 +2,9 @@ name: mingw64
 
 on:
   push:
-    branches: [ version_4 ]
+    branches: [ version_4, version_4.3, main ]
   pull_request:
-    branches: [ version_4 ]
+    branches: [ version_4, version_4.3, main ]
 
 jobs:
   mingw64-windows-tests-base2_16:
