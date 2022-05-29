@@ -63,19 +63,21 @@ namespace apa {
 
     /// copy assignment.
     bint& bint::operator=(const bint& src) {
-
-        number = src.number;
-        sign = src.sign;
-
+        
+        if(this != &src) {
+            number = src.number;
+            sign = src.sign;
+        }
         return *this;
     }
 
     /// move assignment.
     bint& bint::operator=(bint&& src) noexcept {
 
-        number = std::move(src.number);
-        sign = src.sign;
-
+        if(this != &src) {
+            number = std::move(src.number);
+            sign = src.sign;
+        }
         return *this;
     }
 
