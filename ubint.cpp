@@ -42,14 +42,14 @@ namespace apa {
 
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
-        limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
+        limbs = (limb_t*) std::malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
     ubint::ubint(base_t num) {
 
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
-        limbs = (limb_t*) malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
+        limbs = (limb_t*) std::malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
         limbs[0] = num;
     }
 
@@ -59,7 +59,7 @@ namespace apa {
         this->length = length;
 
         if(AllocateSpace) {
-            limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+            limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
         } else {
             limbs = NULL;
         }
@@ -110,7 +110,7 @@ namespace apa {
         }
 
         capacity = length+LIMB_GROWTH;
-        limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+        limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
         memset(limbs,0x0,capacity*LIMB_BYTES);
 
         for(size_t i=0; i<text.size(); ++i) {
@@ -137,7 +137,7 @@ namespace apa {
 
         capacity = src.capacity;
         length   = src.length;
-        limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+        limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
         memcpy(limbs,src.limbs,length*LIMB_BYTES);
     }
 
@@ -155,7 +155,7 @@ namespace apa {
 
         if(this != &src) {
             if(capacity < src.capacity) {
-                limbs = (limb_t*) realloc(limbs,src.capacity*LIMB_BYTES);
+                limbs = (limb_t*) std::realloc(limbs,src.capacity*LIMB_BYTES);
                 capacity = src.capacity;
             }
 
@@ -170,7 +170,7 @@ namespace apa {
     ubint& ubint::operator=(ubint&& src) noexcept {
 
         if(this != &src) {
-            free(limbs);
+            std::free(limbs);
 
             capacity = src.capacity;
             length   = src.length;
@@ -185,7 +185,7 @@ namespace apa {
 
         capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
-        this->limbs = (limb_t*) malloc(capacity*LIMB_BYTES);
+        this->limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
         size_t i = 0;
 
         for(auto limb : limbs) {
@@ -194,7 +194,7 @@ namespace apa {
     }
 
     ubint::~ubint() {
-        free(limbs);
+        std::free(limbs);
     }
 
     // Index Operator
@@ -264,7 +264,7 @@ namespace apa {
 
     void ubint::bit_realloc(const ubint& op) {
         capacity = op.capacity;
-        limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+        limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         size_t zero_set = length*LIMB_BYTES;
         memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
         length = op.length;
@@ -397,7 +397,7 @@ namespace apa {
 
         if(capacity<length+padding) {
             capacity = length+padding+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         }
 
         size_t prev_length = length;
@@ -423,12 +423,12 @@ namespace apa {
         
         if(capacity<=op.length+1) {
             capacity = op.length+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         }
         
         if(length==capacity) {
             capacity = length+LIMB_GROWTH;
-            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+            limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         }
 
         if(length<=op.length) {
@@ -678,7 +678,7 @@ namespace apa {
             size_t new_length = length + limb_shifts + 1;
             if(new_length>capacity) {
                 capacity = new_length+LIMB_GROWTH;
-                limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
+                limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
             }
 
             limbs[new_length-1] = 0;

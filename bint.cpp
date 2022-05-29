@@ -22,7 +22,7 @@ namespace apa {
 
         if(num<0) {
             sign = NEGATIVE;
-            num = abs(num);
+            num = std::abs(num);
         } else {
             sign = POSITIVE;
         }
