@@ -15,7 +15,7 @@ if(LOGIC) { \
     TEST_RESULTS.push_back(true); \
 } \
 else { \
-    std::cout << "FAILED\n"; \
+    std::cout << "FAILED < !\n"; \
     TEST_RESULTS.push_back(false); \
 }
 
@@ -26,7 +26,7 @@ if(A==B) { \
     TEST_RESULTS.push_back(true); \
 } \
 else { \
-    std::cout << "FAILED\n"; \
+    std::cout << "FAILED < !\n"; \
     TEST_RESULTS.push_back(false); \
 }
 
@@ -37,7 +37,7 @@ if(((A==B) && (C==D)) && (A==D)) { \
     TEST_RESULTS.push_back(true); \
 } \
 else { \
-    std::cout << "FAILED\n"; \
+    std::cout << "FAILED < !\n"; \
     TEST_RESULTS.push_back(false); \
 }
 
