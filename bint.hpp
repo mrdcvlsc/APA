@@ -33,6 +33,8 @@ namespace apa {
             ubint number;
             uint8_t sign; // 1 if negative, 0 if positive
 
+            static void bitwise_prepare(bint& left, bint& right);
+
         public:
 
             // Constructors

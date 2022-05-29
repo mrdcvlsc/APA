@@ -145,37 +145,127 @@ namespace apa {
 
     // Bit-Wise Logical Operators
 
+    void bint::bitwise_prepare(bint& left, bint& right) {
+
+        size_t lpadding = 0, rpadding = 0;
+
+        if(left.limb_size() < right.limb_size()) {
+            lpadding = right.limb_size() - left.limb_size();
+        } else {
+            rpadding = left.limb_size() - right.limb_size();
+        }
+
+        if(SIGN_NEGATIVE(left.sign)) {
+            left.number.bit_flip(lpadding);
+            ++left.number;
+        }
+
+        if(SIGN_NEGATIVE(right.sign)) {
+            right.number.bit_flip(rpadding);
+            ++right.number;
+        }
+
+        if(lpadding) {
+            left.number.bit_realloc(right.number);
+        }
+
+        if(rpadding) {
+            right.number.bit_realloc(left.number);
+        }
+    }
+
     bint& bint::operator&=(const bint& op) {
+
+        if(sign | op.sign) {
+            bint left = *this, right = op;
+            
+            bitwise_prepare(left,right);
+
+            left.number.bit_and(right.number);
+            left.sign &= right.sign;
+
+            if(SIGN_NEGATIVE(left.sign)) {
+                left.number.bit_flip(0);
+                ++left.number;
+            }
+
+            left.number.remove_leading_zeros();
+            swap(*this,left);
+            
+        } else {
+            number &= op.number;
+        }
         return *this;
     }
 
     bint bint::operator&(const bint& op) const {
-        return *this;
+        bint bw = *this;
+        return bw &= op;
     }
 
     bint& bint::operator|=(const bint& op) {
+        if(sign | op.sign) {
+            bint left = *this, right = op;
+            
+            bitwise_prepare(left,right);
+
+            left.number.bit_or(right.number);
+            left.sign |= right.sign;
+
+            if(SIGN_NEGATIVE(left.sign)) {
+                left.number.bit_flip(0);
+                ++left.number;
+            }
+
+            left.number.remove_leading_zeros();
+            swap(*this,left);
+            
+        } else {
+            number |= op.number;
+        }
         return *this;
     }
 
     bint bint::operator|(const bint& op) const {
-        return *this;
+        bint bw = *this;
+        return bw |= op;
     }
 
     bint& bint::operator^=(const bint& op) {
+        if(sign | op.sign) {
+            bint left = *this, right = op;
+            
+            bitwise_prepare(left,right);
+
+            left.number.bit_xor(right.number);
+            left.sign ^= right.sign;
+
+            if(SIGN_NEGATIVE(left.sign)) {
+                left.number.bit_flip(0);
+                ++left.number;
+            }
+
+            left.number.remove_leading_zeros();
+            swap(*this,left);
+            
+        } else {
+            number ^= op.number;
+        }
         return *this;
     }
 
     bint bint::operator^(const bint& op) const {
-        return *this;
+        bint bw = *this;
+        return bw ^= op;
     }
 
     bint bint::operator~() const {
         
         bint bwn = *this;
         if(SIGN_NEGATIVE(sign)) {
-            bwn -= 1;
+            --bwn.number;
         } else {
-            bwn += 1;
+            ++bwn.number;
         }
 
         bwn.sign = !bwn.sign;

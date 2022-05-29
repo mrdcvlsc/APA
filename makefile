@@ -26,7 +26,7 @@ all_test:
 	@make clean
 
 	@echo ===============================
-	@echo       UBINT - ALL TESTS PASSED
+	@echo      APA ALL TESTS PASSED
 	@echo ===============================
 
 SRC := tests
@@ -60,6 +60,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_sub.out
 	@./$(SRC)/bint_mul.out
 	@./$(SRC)/bint_div.out
+	@./$(SRC)/bint_bitwise_logic.out
 
 # -------------------------- test program compilation ---------------------------
 
