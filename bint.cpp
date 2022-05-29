@@ -440,13 +440,21 @@ namespace apa {
 
     // Shift Operators
     bint& bint::operator<<=(size_t bits) {
-        if(number) number <<= bits;
+
+        if(number) {
+            number <<= bits;
+        }
         return *this;
     }
 
     bint& bint::operator>>=(size_t bits) {
 
-        if(number) number >>= bits;
+        if(number) {
+            number >>= bits;
+            if(SIGN_NEGATIVE(sign)) {
+                ++number;
+            }
+        }
         return *this;
     }
 

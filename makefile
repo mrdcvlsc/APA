@@ -61,6 +61,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_mul.out
 	@./$(SRC)/bint_div.out
 	@./$(SRC)/bint_bitwise_logic.out
+	@./$(SRC)/bint_shifts.out
 
 # -------------------------- test program compilation ---------------------------
 
