@@ -8,6 +8,7 @@
 #include <cmath>
 #include <exception>
 #include <limits>
+#include <bitset>
 
 #include "apa-base-configs.hpp"
 
@@ -132,6 +133,7 @@ namespace apa {
             // Print Methods
             void printHex() const;
             void printHex_spaced_out() const;
+            void printBin_spaced_out() const;
             void printStatus(std::string printIdentifier="default") const;
             
             /// @return returns a string that represent the value of a ubint number in base 10 form or decimal.

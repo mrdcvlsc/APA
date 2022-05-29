@@ -714,15 +714,15 @@ namespace apa {
             } else {
                 size_t bit_shifts = bits % BASE_BITS;
                 size_t new_length = length - limb_shifts;
-
-                limbs[new_length-1] = 0;
-                limb_t prev = 0;
+                
+                base_t prev = 0;
+                base_t next = 0;
 
                 for(size_t i=0; i<new_length; ++i) {
-                    limbs[length-1-i] <<= BASE_BITS - bit_shifts;
-                    limbs[new_length-1-i] = prev;
-                    limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
-                    prev = (base_t) limbs[length-1-i];
+                    next = limbs[length-1-i] << (BASE_BITS - bit_shifts);
+                    limbs[new_length-1-i] = limbs[length-1-i] >> bit_shifts;
+                    limbs[new_length-1-i] |= prev;
+                    prev = next;
                 }
 
                 length = new_length;
@@ -766,6 +766,15 @@ namespace apa {
 
         for(size_t i=1; i<length; ++i) {
             printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
+        }
+
+        std::cout << "\n";
+    }
+
+    void ubint::printBin_spaced_out() const {
+
+        for(size_t i=0; i<length; ++i) {
+            std::cout << std::bitset<BASE_BITS>(limbs[length-1-i]) << " "; 
         }
 
         std::cout << "\n";
