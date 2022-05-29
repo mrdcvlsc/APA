@@ -10,18 +10,6 @@
 
 #include "mini-test.hpp"
 
-apa::ubint fac(size_t n) {
-    apa::ubint factorial(1);
-    apa::ubint iter = factorial;
-
-    for(size_t i=1; i<=n; ++i) {
-        factorial *= iter;
-        iter++;
-    }
-
-    return factorial;
-}
-
 int main() { START_TEST;
 
     // test variables
@@ -49,6 +37,7 @@ int main() { START_TEST;
         num3_not_C("0xffffffffffffffeee",16);
 
     // answers
+    
     ASSERT_EQUALITY((num1 & num2),num1_and_num2_C, "num1 & num2");
     ASSERT_EQUALITY((num1 & num3),num1_and_num3_C, "num1 & num3");
     ASSERT_EQUALITY((num2 & num3),num2_and_num3_C, "num2 & num3");
