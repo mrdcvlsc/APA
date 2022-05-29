@@ -85,6 +85,14 @@ int main() { START_TEST;
         apa::ubint NUM2POW4096MIN1_RS4095_C = 1;
         apa::ubint NUM2POW4096MIN1_RS4096_C = 0;
         apa::ubint NUM2POW4096MIN1_RS4097_C = 0;
+
+        apa::ubint SUBJECT_LS1("ffff",16);
+        apa::ubint LS1_C("0x1fffe",16);
+
+        apa::ubint subject_bug("dad0deed1feed2dead3beef4ceed5",16);
+        apa::ubint subject_bug_RS15("1b5a1bdda3fdda5bd5a77dde99",16);
+         
+        apa::ubint subject_bug_ans = subject_bug >> 15;
         
         // answers
 
@@ -102,10 +110,11 @@ int main() { START_TEST;
         ASSERT_EQUALITY(numTest << 75,LS75_numTest_C,                    "(numTest << 75          ");
         ASSERT_EQUALITY(num1 << 1872,LS1872_num1_C,                      "(num1 << 1872           ");
         ASSERT_EQUALITY(num2 << 752,LS752_num2_C,                        "(num2 << 752            ");
-
         ASSERT_EQUALITY(apa::ubint(2) << 320,LS320_TWO_C,                "2 << 320                ");
         ASSERT_EQUALITY(fac(975) >> 8123,RS8123_FAC975_C,                "fac(975) >> 8123        ");
         ASSERT_EQUALITY(fac(3375) >> 34567,RS34567_FAC3375_C,            "fac(3375) >> 34567      ");
+        ASSERT_EQUALITY((SUBJECT_LS1 << 1),LS1_C,                        "(SUBJECT_LS1 << 1)      ");
+        ASSERT_EQUALITY(subject_bug_ans, subject_bug_RS15,               "subject_bug >> 15       ");
 
     #if defined(_BASE2_16)
         RESULT("UBINT BASE 2^16 SHIFT OPERATORS");
