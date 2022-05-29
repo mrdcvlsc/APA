@@ -90,7 +90,7 @@ namespace apa {
             void bit_realloc(const ubint& op);
             void remove_leading_zeros();
 
-            ubint flip(size_t padding=0) const;
+            void bit_flip(size_t padding=0);
             void bit_and(const ubint& op);
             void bit_or(const ubint& op);
             void bit_xor(const ubint& op);

@@ -393,19 +393,23 @@ namespace apa {
         return bwn;
     }
 
-    ubint ubint::flip(size_t padding) const {
+    void ubint::bit_flip(size_t padding) {
 
-        ubint flipped(length+padding,length+padding);
-
-        for(size_t i=0; i<length; ++i) {
-            flipped.limbs[i] = (base_t)(~limbs[i]);
+        if(capacity<length+padding) {
+            capacity = length+padding+LIMB_GROWTH;
+            limbs = (limb_t*) realloc(limbs,capacity*LIMB_BYTES);
         }
 
-        for(size_t i=length; i<flipped.length; ++i) {
-            flipped.limbs[i] = BASE_MAX;
+        size_t prev_length = length;
+        length = length + padding;
+
+        for(size_t i=0; i<prev_length; ++i) {
+            limbs[i] = (base_t)(~limbs[i]);
         }
 
-        return flipped;
+        for(size_t i=prev_length; i<length; ++i) {
+            limbs[i] = BASE_MAX;
+        }
     }
 
     // Logical Operators
