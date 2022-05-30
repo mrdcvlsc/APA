@@ -35,12 +35,15 @@ ifeq ($(OS), Linux)
 	@echo "creating static lib"
 	@echo "compiling ubint..."
 	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling bint..."
+	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o
+	@ar -r $(LIB_OUTNAME) ubint.o bint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
 else
 	@echo "creating build directory"
@@ -50,12 +53,15 @@ else
 	@echo "creating static lib"
 	@echo "compiling ubint..."
 	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling ubint..."
+	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
 	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
 endif
 
@@ -88,6 +94,17 @@ static_test: $(OBJ)
 	@./$(SRC)/ubint_div.out
 	@./$(SRC)/ubint_base_print.out
 	@./$(SRC)/ubint_bases.out
+	@./$(SRC)/ubint_access.out
+	
+	@./$(SRC)/bint_construct.out
+	@./$(SRC)/bint_logical.out
+	@./$(SRC)/bint_add.out
+	@./$(SRC)/bint_sub.out
+	@./$(SRC)/bint_mul.out
+	@./$(SRC)/bint_div.out
+	@./$(SRC)/bint_bitwise_logic.out
+	@./$(SRC)/bint_shifts.out
+	@./$(SRC)/bint_methods.out
 
 # -------------------------- test program compilation ---------------------------
 
@@ -99,6 +116,7 @@ install:
 ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUT)/$(LIB_OUTNAME) $(INSTALL_PREFIX)lib
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/ubint.hpp $(INSTALL_PREFIX)include
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/apa-base-configs.hpp $(INSTALL_PREFIX)include
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
 	@echo "ubint.hpp apa-base-configs.hpp now installed to $(INSTALL_PREFIX)include"
@@ -111,6 +129,7 @@ else
 	@echo .
 	copy build\lib\$(LIB_OUTNAME) "$(INSTALL_PREFIX)\lib"
 	copy build\include\ubint.hpp "$(INSTALL_PREFIX)\include
+	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include
 	copy build\include\apa-base-configs.hpp "$(INSTALL_PREFIX)\include
 	@echo install success
 endif
@@ -119,10 +138,12 @@ uninstall:
 ifeq ($(OS), Linux)
 	@rm $(INSTALL_PREFIX)lib/$(LIB_OUTNAME)
 	@rm $(INSTALL_PREFIX)include/ubint.hpp
+	@rm $(INSTALL_PREFIX)include/bint.hpp
 	@rm $(INSTALL_PREFIX)include/apa-base-configs.hpp
 else
 	del "$(INSTALL_PREFIX)\lib\$(LIB_OUTNAME)"
 	del "$(INSTALL_PREFIX)\include\ubint.hpp"
+	del "$(INSTALL_PREFIX)\include\bint.hpp"
 	del "$(INSTALL_PREFIX)\include\apa-base-configs.hpp"
 	echo uninstall success
 endif
