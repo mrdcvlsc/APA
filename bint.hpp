@@ -82,7 +82,7 @@ namespace apa {
             explicit operator bool() const noexcept;
 
             // Arithmetic Operators
-            bint mul_karatsuba(const bint& op) const;
+            bint mul_karatsuba(const bint& op) const; // <- to be implemented.
 
             bint& operator+=(const bint& op);
             bint& operator-=(const bint& op);
