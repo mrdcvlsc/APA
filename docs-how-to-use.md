@@ -180,7 +180,8 @@
     >    g++ main.cpp -o main.exe -D_FORCE_BASE2_32 -O2
     >    ```
     >
-    >    By default if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto decide the best available value for you.
+    
+    By default if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto decide the best available value for you.
     
 - ### Compiling with the static library.
     - To build the library run the following command
@@ -214,7 +215,7 @@
         #include <bint.hpp>
         int main() {
             apa::ubint num1("8800918289723498",apa::DEC);
-            apa::ubint num2("-8800918289723498",apa::DEC);
+            apa::bint  num2("-8800918289723498",apa::DEC);
             // ...
         }
         ```
@@ -228,7 +229,9 @@
         ```
 
     > **Warning**
-    > You cannot use a specific base using the flags ```-D_FORCE_BASE2_XX``` when compiling a program that uses the static library.
+    > You cannot use a specific base using the flag ```-D_FORCE_BASE2_XX``` when compiling your own program that uses the static library.
+    > this is because the static library will auto decide the best available base value during it's compilation.
+    > so if you define a specific base using the ```D_FORCE_BASE2_XX``` flag, a mismatch might occur throwing an undefined referencce or other errors.
 </details><!-- compilation : end -->
 
 # bfloat - big floating point numbers
