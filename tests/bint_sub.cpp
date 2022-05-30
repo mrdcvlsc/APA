@@ -76,7 +76,7 @@ int main() { START_TEST;
     apa::bint num3num1 = num3 - num1;
     apa::bint num4num5 = num4 - num5;
     apa::bint num5num4 = num5 - num4;
-    apa::bint num6_one = num6 - apa::__bint_ONE;
+    apa::bint num6_one = num6 - apa::__BINT_ONE;
     apa::bint num1_P_NEGATIVE_num1 = num1 - (-num6);
 
     // checks

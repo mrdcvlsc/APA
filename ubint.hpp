@@ -16,6 +16,18 @@
 
 namespace apa {
 
+    /// binary - base2.
+    constexpr static size_t BIN = 2;
+
+    /// octal - base8.
+    constexpr static size_t OCT = 8;
+
+    /// decimal - base10.
+    constexpr static size_t DEC = 10;
+
+    /// decimal - base16.
+    constexpr static size_t HEX = 16;
+
     typedef std::vector<uint8_t> byte_array;
 
     constexpr static int LESS = -1;

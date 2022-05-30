@@ -77,12 +77,12 @@ int main() { START_TEST;
     apa::bint num3num1 = num3 * num1;
     apa::bint num4num5 = num4 * num5;
     apa::bint num5num4 = num5 * num4;
-    apa::bint num6_one = num6 * apa::__bint_ONE;
+    apa::bint num6_one = num6 * apa::__BINT_ONE;
     apa::bint num1_P_NEGATIVE_num1 = num1 * (-num6);
-    apa::bint num1zero = num1 * apa::__bint_ZERO;
-    apa::bint zeronum1 = apa::__bint_ZERO * num1;
-    apa::bint num2zero = num2 * apa::__bint_ZERO;
-    apa::bint zeronum2 = apa::__bint_ZERO * num2;
+    apa::bint num1zero = num1 * apa::__BINT_ZERO;
+    apa::bint zeronum1 = apa::__BINT_ZERO * num1;
+    apa::bint num2zero = num2 * apa::__BINT_ZERO;
+    apa::bint zeronum2 = apa::__BINT_ZERO * num2;
 
     // checks
     ASSERT_EQUALITY(num1num2.to_base16_string(),num1num2_C,"num1 * num2 ");
@@ -94,10 +94,10 @@ int main() { START_TEST;
     ASSERT_EQUALITY(num6_one,num6_one_C,                   "num6 * one  ");
     ASSERT_EQUALITY(
         num1_P_NEGATIVE_num1,num1_M_NEGATIVE_num6_C,       "num1*(-num6)");
-    ASSERT_EQUALITY(num1zero,apa::__bint_ZERO,             "num1 * zero ");
-    ASSERT_EQUALITY(zeronum1,apa::__bint_ZERO,             "zero * num1 ");
-    ASSERT_EQUALITY(num2zero,apa::__bint_ZERO,             "num2 * zero ");
-    ASSERT_EQUALITY(zeronum2,apa::__bint_ZERO,             "zero * num2 ");
+    ASSERT_EQUALITY(num1zero,apa::__BINT_ZERO,             "num1 * zero ");
+    ASSERT_EQUALITY(zeronum1,apa::__BINT_ZERO,             "zero * num1 ");
+    ASSERT_EQUALITY(num2zero,apa::__BINT_ZERO,             "num2 * zero ");
+    ASSERT_EQUALITY(zeronum2,apa::__BINT_ZERO,             "zero * num2 ");
 
     #if defined(_BASE2_16)
         RESULT("BINT BASE 2^16 MULTIPLICATION");

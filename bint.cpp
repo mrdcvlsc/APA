@@ -418,11 +418,11 @@ namespace apa {
 
     // pre-fix increment/decrement
     bint& bint::operator++() {
-        return *this += __bint_ONE;
+        return *this += __BINT_ONE;
     }
 
     bint& bint::operator--() {
-        return *this -= __bint_ONE;
+        return *this -= __BINT_ONE;
     }
 
     // post-fix increment/decrement

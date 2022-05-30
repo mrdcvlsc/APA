@@ -67,14 +67,14 @@ int main() { START_TEST;
     apa::bint num3num1 = num3 + num1;
     apa::bint num4num5 = num4 + num5;
     apa::bint num5num4 = num5 + num4;
-    apa::bint num6_one = num6 + apa::__bint_ONE;
+    apa::bint num6_one = num6 + apa::__BINT_ONE;
     apa::bint num1_P_NEGATIVE_num1 = num1 + (-num6);
 
     // checks
     ASSERT_EQUALITY(num1num2.to_base16_string(),sumnum12,  "num1 + num2 ");
     ASSERT_EQUALITY(num2num1.to_base16_string(),sumnum12,  "num2 + num1 ");
-    ASSERT_EQUALITY(num1num3,apa::__bint_ZERO,             "num1 + num3 ");
-    ASSERT_EQUALITY(num3num1,apa::__bint_ZERO,             "num3 + num1 ");
+    ASSERT_EQUALITY(num1num3,apa::__BINT_ZERO,             "num1 + num3 ");
+    ASSERT_EQUALITY(num3num1,apa::__BINT_ZERO,             "num3 + num1 ");
     ASSERT_EQUALITY(num4num5,num4num5_C,                   "num4 + num5 ");
     ASSERT_EQUALITY(num5num4,num4num5_C,                   "num5 + num4 ");
     ASSERT_EQUALITY(num6_one,num6_one_C,                   "num6 + one  ");

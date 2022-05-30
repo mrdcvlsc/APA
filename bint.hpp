@@ -142,9 +142,9 @@ namespace apa {
     std::istream& operator>>(std::istream &in, bint &num);
 
     // bint constants
-    static const bint __bint_ZERO = 0;
-    static const bint __bint_ONE = 1;
-    static const bint __bint_TWO = 2;
+    static const bint __BINT_ZERO = 0;
+    static const bint __BINT_ONE = 1;
+    static const bint __BINT_TWO = 2;
 }
 
 #endif
