@@ -1,3 +1,4 @@
+
 <details><!-- unsigned big integers : start -->
 
 <summary><b>unsigned big integers</b></summary>
@@ -167,19 +168,21 @@
         ```c++
         #include "core.hpp"
         ```
-    - You can choose a base during compilation with the following flags.
-        - ```-D_FORCE_BASE2_16``` = number base 2<sup>16</sup> (slowest)
-        - ```-D_FORCE_BASE2_32``` = number base 2<sup>32</sup>
-        - ```-D_FORCE_BASE2_64``` = number base 2<sup>64</sup> (fastest) might not be supported to some x86 or 32-bit computers.
-        
-        example: 
-        ```bash
-        g++ main.cpp -o main.exe -D_FORCE_BASE2_32 -O2
-        ```
 
-        By default if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto decide the best available value for you.
+    > **Note**
+    > - You can choose a base during compilation with the following flags, this is optional.
+    >    - ```-D_FORCE_BASE2_16``` = number base 2<sup>16</sup> (slowest)
+    >    - ```-D_FORCE_BASE2_32``` = number base 2<sup>32</sup>
+    >    - ```-D_FORCE_BASE2_64``` = number base 2<sup>64</sup> (fastest) might not be supported to some x86 or 32-bit computers.
+        
+    >    example: 
+    >    ```bash
+    >    g++ main.cpp -o main.exe -D_FORCE_BASE2_32 -O2
+    >    ```
+    >
+    >    By default if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto decide the best available value for you.
     
-- ### Compiling with the static library and ```#include <ubint.hpp>``` header.
+- ### Compiling with the static library.
     - To build the library run the following command
         ```bash
         make -f static
@@ -203,7 +206,7 @@
 
         For windows uninstallation you also need to specify the path of **mingw** using ```INSTALL_PREFIX``` like how you installed it but with the uninstall command.
 
-    - If you installed the library after building it then you can just use it right away by including the ```ubint.hpp```.
+    - If you installed the library after building it then you can just use it right away by including the headers.
         ```c++
         // main.cpp
         #include <iostream>
@@ -223,6 +226,9 @@
         ```
         g++ main.cpp -o main.exe -I"PATH/APA/build/include" -L"PATH/APA/build/lib" -lapa -O2
         ```
+
+    > **Warning**
+    > You cannot use a specific base using the flags ```-D_FORCE_BASE2_XX``` when compiling a program that uses the static library.
 </details><!-- compilation : end -->
 
 # bfloat - big floating point numbers
