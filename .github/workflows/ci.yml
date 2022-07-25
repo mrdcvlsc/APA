@@ -21,4 +21,10 @@ jobs:
     - name: compile and run tests
       env:
         CC: ${{ matrix.compiler }}
-      run: make -j8 all_test
+      run: |
+        make -j8 test BASE2_RAISED_BY=16
+        make clean
+        make -j8 test BASE2_RAISED_BY=32
+        make clean
+        make -j8 test BASE2_RAISED_BY=64
+        make clean
