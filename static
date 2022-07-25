@@ -26,7 +26,7 @@ SRC := tests
 SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
-default:
+all:
 	$(MAKE) build
 	$(MAKE) move_to_build
 	@echo "Build Done"
