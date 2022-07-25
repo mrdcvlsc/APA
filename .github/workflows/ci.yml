@@ -7,7 +7,7 @@ on:
     branches: [ version_4, version_4.3, main ]
 
 jobs:
-  build:
+  ci:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: build library
+    - name: compile and run tests
       env:
         CC: ${{ matrix.compiler }}
-      run: make -f static -j8 compile
+      run: make -j8 all_test

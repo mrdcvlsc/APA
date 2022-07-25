@@ -23,9 +23,7 @@ This version will address the problems in the previous versions.
 **mini-tests:**
 
 ![build](https://github.com/mrdcvlsc/APA/actions/workflows/build.yml/badge.svg)
-![gcc-gnu](https://github.com/mrdcvlsc/APA/actions/workflows/gcc-gnu.yml/badge.svg)
-![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
-![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
+![ci](https://github.com/mrdcvlsc/APA/actions/workflows/ci.yml/badge.svg)
 
 -----
 

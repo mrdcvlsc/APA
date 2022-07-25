@@ -2,17 +2,15 @@ CC := g++
 INSTALL_PREFIX=/usr/local/
 
 LIB_NAME:=apa
-LIB_SRC=ubint.cpp
-LIB_OBJ=ubint.o
 LIB_OUT:=build/lib
 LIB_HEADER_OUT:=build/include
 LIB_OUTNAME:=lib$(LIB_NAME).a
 
-CXXFLAGS := -Wall -Wextra
-USERFLAGS := -D_MAKE_LIB
+CXXFLAGS := -std=c++11 -Wall -Wextra
+TESTFLAGS := -D_MAKE_LIB
 TEST_OPTIMIZATION := -g -Og
 HEADER_PATHS := -I./$(LIB_HEADER_OUT)
-LIB_OPTIMIZATION := -O2
+LIB_OPTIMIZATION := -O3
 LIB_PATHS := -L./$(LIB_OUT)
 LIBS := -l$(LIB_NAME)
 
@@ -26,44 +24,38 @@ SRC := tests
 SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
-default:
+.PHONY: compile move_to_build
+
+move_to_build: compile
 ifeq ($(OS), Linux)
-	@echo "creating build directory"
-	@mkdir build
-	@mkdir $(LIB_HEADER_OUT)
-	@mkdir $(LIB_OUT)
-	@echo "creating static lib"
-	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling bint..."
-	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o bint.o
-	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
 else
-	@echo "creating build directory"
-	@mkdir build
-	@mkdir "$(LIB_HEADER_OUT)"
-	@mkdir "$(LIB_OUT)"
-	@echo "creating static lib"
-	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling ubint..."
-	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o
-	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
 	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
 endif
+
+compile: ubint.hpp ubint.cpp ubint.o bint.hpp bint.cpp bint.o
+	@echo "creating build directory"
+	@mkdir build
+	@mkdir $(LIB_HEADER_OUT)
+	@mkdir $(LIB_OUT)
+	@echo "creating static lib"
+	@echo "compiling ubint..."
+	@$(CC) $(CXXFLAGS) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling bint..."
+	@$(CC) $(CXXFLAGS) -c bint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling $(LIB_OUTNAME)..."
+	@ar -r $(LIB_OUTNAME) ubint.o bint.o
+	@echo "build done : output -> $(LIB_OUTNAME)"
+
+# -------------------------- clean build artifacts -------------------------- 
 
 cleanup:
 ifeq ($(OS), Linux)
@@ -110,7 +102,9 @@ static_test: $(OBJ)
 
 $(SRC)/%.out: $(SRC)/%.cpp
 	@echo "compiling test program (static build) - compiler : $(CC)"
-	@$(CC) $(CXXFLAGS) $(USERFLAGS) $(HEADER_PATHS) -o $@ $< $(LIB_PATHS) $(LIBS) $(TEST_OPTIMIZATION)
+	@$(CC) $(CXXFLAGS) $(TESTFLAGS) $(HEADER_PATHS) -o $@ $< $(LIB_PATHS) $(LIBS) $(TEST_OPTIMIZATION)
+
+# -------------------------- install and uninstall --------------------------
 
 install:
 ifeq ($(OS), Linux)
