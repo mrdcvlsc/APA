@@ -18,7 +18,7 @@ This version will address the problems in the previous versions.
 - Due to using a base that is a power of **2**, the implementation of bitwise and bitwise logical operators will be much easier.
 
 <!-- ![build](https://github.com/mrdcvlsc/uint320/actions/workflows/build.yml/badge.svg) -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 **mini-tests:**
 

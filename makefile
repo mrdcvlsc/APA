@@ -11,7 +11,8 @@ endif
 
 all_test:
 	@echo ===============================
-	@echo OS = $(OS) | compiler = $(CC)
+	@echo Operating System : $(OS)
+	@echo Compiler         : $(CC)
 	@echo ===============================
 	@echo Base 2^16 Test
 	@$(MAKE) test BASE2_RAISED_BY=16
