@@ -27,7 +27,11 @@ SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
 default:
-ifeq ($(OS), Linux)
+	$(MAKE) build
+	$(MAKE) move_to_build
+	@echo "Build Done"
+
+build:
 	@echo "creating build directory"
 	@mkdir build
 	@mkdir $(LIB_HEADER_OUT)
@@ -40,24 +44,15 @@ ifeq ($(OS), Linux)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o bint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
+
+move_to_build:
+ifeq ($(OS), Linux)
 	@echo "moving files to build folder"
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
 else
-	@echo "creating build directory"
-	@mkdir build
-	@mkdir "$(LIB_HEADER_OUT)"
-	@mkdir "$(LIB_OUT)"
-	@echo "creating static lib"
-	@echo "compiling ubint..."
-	@$(CC) -std=c++11 -c ubint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling ubint..."
-	@$(CC) -std=c++11 -c bint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o
-	@echo "build done : output -> $(LIB_OUTNAME)"
 	@echo "moving files to build folder"
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
 	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
