@@ -21,4 +21,4 @@ jobs:
     - name: build library
       env:
         CC: ${{ matrix.compiler }}
-      run: make -f static -j8 compile
+      run: make -f static compile

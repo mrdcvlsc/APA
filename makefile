@@ -1,9 +1,9 @@
 BASE2_RAISED_BY=32
-CC := g++
+CC:=g++
 TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED_BY)
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
-OS := $(shell uname)
+OS:=$(shell uname)
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
