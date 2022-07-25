@@ -23,9 +23,3 @@ jobs:
       env:
         CC: ${{ matrix.compiler }}
       run: make -j2 -f static
-
-    - name: clean test executables
-      run: make -j2 clean
-
-    - name: cleanup
-      run: make -j2 -f static cleanup
