@@ -34,9 +34,9 @@ ifeq ($(OS), Linux)
 	@mkdir $(LIB_OUT)
 	@echo "creating static lib"
 	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@$(CC) -std=c++11 -c ubint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling bint..."
-	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
+	@$(CC) -std=c++11 -c bint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o bint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
@@ -52,9 +52,9 @@ else
 	@mkdir "$(LIB_OUT)"
 	@echo "creating static lib"
 	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@$(CC) -std=c++11 -c ubint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling ubint..."
-	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
+	@$(CC) -std=c++11 -c bint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
