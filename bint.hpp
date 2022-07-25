@@ -83,6 +83,7 @@ namespace apa {
 
             // Arithmetic Operators
             bint mul_karatsuba(const bint& op) const; // <- to be implemented.
+            bint mul_naive(const bint& op) const; // <- to be isolated.
 
             bint& operator+=(const bint& op);
             bint& operator-=(const bint& op);

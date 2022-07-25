@@ -362,8 +362,7 @@ namespace apa {
         return *this;
     }
 
-    bint bint::operator*(const bint& op) const {
-
+    bint bint::mul_naive(const bint& op) const {
         bint product(!(sign==op.sign), number * op.number);
         
         if(!product.number){
@@ -371,6 +370,11 @@ namespace apa {
         }
 
         return product;
+    }
+
+    bint bint::operator*(const bint& op) const {
+
+        return mul_naive(op);
     }
     
     bint& bint::operator/=(const bint& op) {
