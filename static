@@ -27,11 +27,11 @@ SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
 all:
-	$(MAKE) build
-	$(MAKE) move_to_build
+	$(MAKE) -f static compile
+	$(MAKE) -f static move_to_build
 	@echo "Build Done"
 
-build:
+compile:
 	@echo "creating build directory"
 	@mkdir build
 	@mkdir $(LIB_HEADER_OUT)
