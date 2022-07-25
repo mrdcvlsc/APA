@@ -22,7 +22,7 @@ jobs:
     - name: set compiler - ${{ matrix.compiler }}
       env:
         CC: ${{ matrix.compiler }}
-      run: echo compiling with : ${{ matrix.compiler }}
+      run: echo compiling with ${{ matrix.compiler }}
 
     - name: build and compile the static library.
       run: make -j8 -f static
@@ -36,7 +36,7 @@ jobs:
     - name: install the static library.
       run: sudo make -j8 -f static install
 
-    - name: compile the static sample program for the library : ${{ matrix.compiler }}.
+    - name: compile the static sample program for the library  ${{ matrix.compiler }}.
       run: ${{ matrix.compiler }} ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
 
     - name: run the sample program for the library.
