@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        compiler: [gcc, clang]
+        compiler: [g++, clang++]
 
     steps:
 
