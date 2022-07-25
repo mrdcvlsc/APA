@@ -54,10 +54,10 @@ ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
 else
 	@echo "moving files to build folder"
-	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
-	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
+	@move "$(LIB_OUTNAME)" "$(LIB_OUT)"
+	@copy "ubint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "bint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
 endif
 
 cleanup:
