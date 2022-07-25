@@ -76,5 +76,5 @@ ifeq ($(OS), Linux)
 	@rm ./$(SRC)/*.out
 else
 	@echo "deleting compiled test programs"
-	del tests\*.out
+	del ./$(SRC)/*.out
 endif
