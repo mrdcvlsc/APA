@@ -18,9 +18,9 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
-    - name: Compile with ${{ matrix.compiler }}
-      env:
-        CC: ${{ matrix.compiler }}
+    # - name: Compile with ${{ matrix.compiler }}
+    #   env:
+    #     CC: ${{ matrix.compiler }}
 
     - name: build and compile the static library.
       run: make -j8 -f static
@@ -35,6 +35,8 @@ jobs:
       run: sudo make -j8 -f static install
 
     - name: compile the static sample program for the library.
+      env:
+        CC: ${{ matrix.compiler }}
       run: $CC ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
 
     - name: run the sample program for the library.
