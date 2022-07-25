@@ -22,4 +22,4 @@ jobs:
     - name: ${{ matrix.os }} => building with ${{ matrix.compiler }}.
       env:
         CC: ${{ matrix.compiler }}
-      run: make -f static all
+      run: make -f static compile
