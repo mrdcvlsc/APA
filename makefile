@@ -12,18 +12,18 @@ endif
 all_test:
 	@echo ===============================
 	@echo Base 2^16 Test
-	@make test BASE2_RAISED_BY=16
-	@make clean
+	@$(MAKE) test BASE2_RAISED_BY=16
+	@$(MAKE) clean
 
 	@echo ===============================
 	@echo Base 2^32 Test
-	@make test BASE2_RAISED_BY=32
-	@make clean
+	@$(MAKE) test BASE2_RAISED_BY=32
+	@$(MAKE) clean
 
 	@echo ===============================
 	@echo Base 2^64 Test
-	@make test BASE2_RAISED_BY=64
-	@make clean
+	@$(MAKE) test BASE2_RAISED_BY=64
+	@$(MAKE) clean
 
 	@echo ===============================
 	@echo      APA ALL TESTS PASSED
@@ -40,6 +40,7 @@ test: $(OBJ)
 	@echo LIMB : Base2_$(BASE2_RAISED_BY)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
+	
 	@./$(SRC)/ubint_constructor.out
 	@./$(SRC)/ubint_swap.out
 	@./$(SRC)/ubint_add.out

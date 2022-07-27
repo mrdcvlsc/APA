@@ -26,8 +26,21 @@ SRC := tests
 SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
-default:
+build_move: build_compile
+	@echo "moving files to build folder"
 ifeq ($(OS), Linux)
+	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
+else
+	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
+	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
+endif
+
+build_compile:
 	@echo "creating build directory"
 	@mkdir build
 	@mkdir $(LIB_HEADER_OUT)
@@ -40,34 +53,10 @@ ifeq ($(OS), Linux)
 	@echo "compiling $(LIB_OUTNAME)..."
 	@ar -r $(LIB_OUTNAME) ubint.o bint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
-	@echo "moving files to build folder"
-	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
-else
-	@echo "creating build directory"
-	@mkdir build
-	@mkdir "$(LIB_HEADER_OUT)"
-	@mkdir "$(LIB_OUT)"
-	@echo "creating static lib"
-	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling ubint..."
-	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
-	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o
-	@echo "build done : output -> $(LIB_OUTNAME)"
-	@echo "moving files to build folder"
-	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
-	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
-endif
 
 cleanup:
-ifeq ($(OS), Linux)
 	@echo "removing objects..."
+ifeq ($(OS), Linux)
 	@rm -rf build
 	@rm *.o *.out
 else
