@@ -4,11 +4,17 @@
 // #define _BASE2_64
 
 #ifndef _APA_TESTING_PHASE
-    #if defined(__SIZEOF_INT128__) || defined(UINT128MAX) || defined(_FORCE_BASE2_64)
+    #if defined(_FORCE_BASE2_64)
         #define _BASE2_64
-    #elif defined(UINT64_MAX) || defined(UINT64_WIDTH) || defined(_FORCE_BASE2_32)
+    #elif defined(_FORCE_BASE2_32)
         #define _BASE2_32
-    #elif defined(UINT32_MAX) || defined(UINT32_WIDTH) || defined(_FORCE_BASE2_16)
+    #elif defined(_FORCE_BASE2_16) 
+        #define _BASE2_16
+    #elif defined(__SIZEOF_INT128__) || defined(UINT128MAX)
+        #define _BASE2_64
+    #elif defined(UINT64_MAX) || defined(UINT64_WIDTH)
+        #define _BASE2_32
+    #elif defined(UINT32_MAX) || defined(UINT32_WIDTH)
         #define _BASE2_16
     #else
 #error "ubint is not supported in this system."
@@ -56,14 +62,17 @@
 namespace apa {
     // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
     #ifdef _BASE2_64
+    #pragma message("compiling with base2^64 types - fastest performance")
     typedef int64_t bint_arg_t;
     typedef uint64_t base_t;
     typedef __uint128_t limb_t;
     #elif defined(_BASE2_32)
+    #pragma message("compiling with base2^32 - average performance")
     typedef int32_t bint_arg_t;
     typedef uint32_t base_t;
     typedef uint64_t limb_t;
     #elif defined(_BASE2_16)
+    #pragma message("compiling with base2^16 - slowest performance")
     typedef int16_t bint_arg_t;
     typedef uint16_t base_t;
     typedef uint32_t limb_t;
