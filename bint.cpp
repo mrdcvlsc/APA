@@ -293,7 +293,7 @@ namespace apa {
                     sign = op.sign;
                 } break;
                 default : {
-                    number.set_length(1);
+                    number.length = 1;
                     number[0] = 0;
                     sign = POSITIVE;
                 }
@@ -319,7 +319,7 @@ namespace apa {
         }
         else {
             if(cmp==EQUAL) {
-                number.set_length(1);
+                number.length = 1;
                 number[0] = 0;
             } else if(SIGN_NEGATIVE(sign)) {
                 switch(cmp) {
@@ -520,11 +520,11 @@ namespace apa {
 
     // Member Access Methods
     size_t bint::capacity_size() const {
-        return number.capacity_size();
+        return number.capacity;
     }
 
     size_t bint::limb_size() const {
-        return number.limb_size();
+        return number.length;
     }
 
     size_t bint::byte_size() const {
@@ -536,11 +536,11 @@ namespace apa {
     }
 
     const limb_t *bint::limb_view() const {
-        return number.limb_view();
+        return (const limb_t*) number.limbs;
     }
 
     const uint8_t *bint::byte_view() const {
-        return number.byte_view();
+        return (const uint8_t*) number.limbs;
     }
 
     void swap(bint& a, bint& b) {

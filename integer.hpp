@@ -149,14 +149,9 @@ namespace apa {
         /// @return returns a string that represent the value of a integer number in base 16 form or hexadecimal.
         std::string to_base16_string() const;
 
-        // Member Access Methods
-        void set_length(size_t length);
-        size_t capacity_size() const;
-        size_t limb_size() const;
+        // Methods
         size_t byte_size() const;
         size_t bit_size() const;
-        const limb_t *limb_view() const;
-        const uint8_t *byte_view() const;
     };
 
     // functions

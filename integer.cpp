@@ -825,18 +825,7 @@ namespace apa {
         return hexform;
     }
 
-    // Member Access Methods
-    void integer::set_length(size_t length) {
-        this->length = length;
-    }
-
-    size_t integer::capacity_size() const {
-        return capacity;
-    }
-
-    size_t integer::limb_size() const {
-        return length;
-    }
+    // Methods
 
     size_t integer::byte_size() const {
 
@@ -863,15 +852,6 @@ namespace apa {
 
         return (length-1)*BASE_BITS + cnt;
     }
-
-    const limb_t *integer::limb_view() const {
-        return (const limb_t*) limbs;
-    }
-
-    const uint8_t *integer::byte_view() const {
-        return (const uint8_t*) limbs;
-    }
-
 
     void swap(integer& a, integer& b) {
 
