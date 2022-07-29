@@ -42,6 +42,8 @@ namespace apa {
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
             bint(std::initializer_list<base_t> limbs, uint8_t sign=0);
+
+            /// automatically sets the sign to `POSITIVE`.
             bint(size_t capacity, size_t length, bool AllocateSpace=true);
 
             // bint Constructors.
@@ -82,7 +84,16 @@ namespace apa {
             explicit operator bool() const noexcept;
 
             // Arithmetic Operators
-            bint mul_karatsuba(const bint& op) const; // <- to be implemented.
+
+            static bint add_partial(
+                const bint& l, size_t l_len, size_t l_index,
+                const bint& r, size_t r_len, size_t r_index
+            );
+
+            static bint mul_karatsuba(
+                const bint& l, size_t l_len, size_t l_index,
+                const bint& r, size_t r_len, size_t r_index
+            );
             bint mul_naive(const bint& op) const;
 
             bint& operator+=(const bint& op);
