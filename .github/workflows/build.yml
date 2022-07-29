@@ -35,10 +35,10 @@ jobs:
       run: sudo make -f static install CC=clang++
 
     - name: compile the static sample program for the library.
-      run: clang++ ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
+      run: clang++ build.cpp -o build.out -lapa -fsanitize=address
 
     - name: run the sample program for the library.
-      run: ./ubint_build.out
+      run: ./build.out
 
     - name: uninstall the static library.
       run: sudo make -f static uninstall
@@ -69,10 +69,10 @@ jobs:
       run: sudo make -f static install
 
     - name: compile the static sample program for the library.
-      run: g++ ubint_build.cpp -o ubint_build.out -lapa -fsanitize=address
+      run: g++ build.cpp -o build.out -lapa -fsanitize=address
 
     - name: run the sample program for the library.
-      run: ./ubint_build.out
+      run: ./build.out
 
     - name: uninstall the static library.
       run: sudo make -f static uninstall
