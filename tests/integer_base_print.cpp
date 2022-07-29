@@ -4,14 +4,14 @@
 #ifndef _MAKE_LIB
 #include "../core.hpp"
 #else
-#include <ubint.hpp>
+#include <integer.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-apa::ubint fac(size_t n) {
-    apa::ubint factorial(1);
-    apa::ubint iter = factorial;
+apa::integer fac(size_t n) {
+    apa::integer factorial(1);
+    apa::integer iter = factorial;
 
     for(size_t i=1; i<=n; ++i) {
         factorial *= iter;
@@ -25,10 +25,10 @@ int main() { START_TEST;
 
     // test variables
     
-    apa::ubint zero = 0;
+    apa::integer zero = 0;
     std::string zero_str = "0";
     
-    apa::ubint fac246 = fac(246), fac531 = fac(531);
+    apa::integer fac246 = fac(246), fac531 = fac(531);
 
     std::string fac246_base10(
         "8478097477828534281623856145554841728137163300383932666143068885474833243264585597158958"
@@ -79,18 +79,18 @@ int main() { START_TEST;
         "000000000000000000000000000000000"
     );
 
-    ASSERT_EQUALITY(zero.to_base10_string(),zero_str,       "ubint zero in base 10    ");
-    ASSERT_EQUALITY(zero.to_base16_string(),zero_str,       "ubint zero in base 16    ");
+    ASSERT_EQUALITY(zero.to_base10_string(),zero_str,       "integer zero in base 10    ");
+    ASSERT_EQUALITY(zero.to_base16_string(),zero_str,       "integer zero in base 16    ");
     ASSERT_EQUALITY(fac246.to_base10_string(),fac246_base10,"factorial(246) in base 10");
     ASSERT_EQUALITY(fac531.to_base10_string(),fac531_base10,"factorial(531) in base 10");
     ASSERT_EQUALITY(fac246.to_base16_string(),fac246_base16,"factorial(246) in base 16");
     ASSERT_EQUALITY(fac531.to_base16_string(),fac531_base16,"factorial(531) in base 16");
 
     #if defined(_BASE2_16)
-        RESULT("UBINT BASE 2^16 Base10 Print");
+        RESULT("INTEGER BASE 2^16 Base10 Print");
     #elif defined(_BASE2_32)
-        RESULT("UBINT BASE 2^32 Base10 Print");
+        RESULT("INTEGER BASE 2^32 Base10 Print");
     #elif defined(_BASE2_64)
-        RESULT("UBINT BASE 2^64 Base10 Print");
+        RESULT("INTEGER BASE 2^64 Base10 Print");
     #endif
 }

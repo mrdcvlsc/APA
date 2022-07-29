@@ -4,14 +4,14 @@
 #ifndef _MAKE_LIB
 #include "../core.hpp"
 #else
-#include <ubint.hpp>
+#include <integer.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-apa::ubint fac(size_t n) {
-    apa::ubint factorial(1);
-    apa::ubint iter = factorial;
+apa::integer fac(size_t n) {
+    apa::integer factorial(1);
+    apa::integer iter = factorial;
 
     for(size_t i=1; i<=n; ++i) {
         factorial *= iter;
@@ -24,7 +24,7 @@ apa::ubint fac(size_t n) {
 int main() { START_TEST;
 
         // test variables
-        apa::ubint FAC975_C(
+        apa::integer FAC975_C(
             "0x19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456703c3"
             "39c96f18bed4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22ccf76553d1c38"
             "deb692820ac53f361c2a2e0b0dc6e6b77810b15d656775b37fc2afb2200632008419c0555"
@@ -56,7 +56,31 @@ int main() { START_TEST;
             "00000000000000000000000000000",16
         );
 
-        apa::ubint FAC3375_C(
+        apa::integer FAC1000_C(
+            "2a2a773338969b740de6e2b291fd8dd6ee62a2b41525ab61cbe52489b6cf344c23231711b6d9f34e0f13ab50eaf1ad3dd9"
+            "2771ec26b4b9ea80411c866b1ccbd855f8326edab10832755e1682d3e7a91335e3670329bc1571b5208d72f7d6be81483a"
+            "6e6708abf913b789f41838e9a73c1ba82e3a956570405a660a17e1125838bc810c8d2c63915481914ea202867a563a41b6"
+            "aefef5feac300a78803a30eb995208842ebeba8729397a8cd9087e28fb155a3de0f18dd90e64a9293af6487a5aabdab855"
+            "fa254fcbdc9f1116060bc2e2b4410e55e7368b844d9bf0aeca92deb017def69af777e8d4edb1f1b926ae01df3366abb9e4"
+            "568fc08fe255b68bca0e48382a8e6df1c7b0ba33bc2225cc512b39176a26b13098e733e51417224be36fbd933a8a7d98a0"
+            "8f356cf010f0fc59b9f1e32d3fb43209a82fa0e7f69e302fcb0f20362b86cbbeb08b81b1ba07f08ab119ce5e092d09996b"
+            "710588779327d91ee80eb679a99f0fdca7eb4a50ef174295e94d590e3cf8bf37d23e5b22dcd79a4ac2c1ea7d1d55170789"
+            "fcd2fcbb3ea52ead4f7116f862578f5e22421c90cd0a7ee095903150631f27305191429a54cace66dd076c51a94034b31b"
+            "ebec406ee460181225e03a9a22c51e6a2a8db4a94fd352605115caf251b14df0cec523c48b79b58b0fc0676792d38a0d61"
+            "523eb75f5cbc33ebda1b19933878ce7050356bd228ce9327a9916f9ff3bb5b6beedfe5382b861d6c4da52a9754b6feec8a"
+            "99372b43afa7808836d281c5b2cdf791cf76d6c737aad32c5ed7475855fc15c3f45c4705dd0d6b4078656d027cfee6f377"
+            "72e03c35c0dcbbdaa25ea64d6865c87cac0a9a999eb88d7a16515811a77192071189c353c1e72242a4f3106cef2bad1075"
+            "549b4efd6885690f3f58c1f4686951cc543118428ec653e3c6fbdb427930f624680672c1e70c25db7e7b67016a95b30dba"
+            "56d0083759eac93a8e4d0c54853aa43f197b96fd70696ae5750d7d1f0427b8dbcfafc8b9924d51340fbf71bc22780fba76"
+            "525f5e5b91a2461983b60bf087dfdd89dcbc6f7892d9e4c5d55d106d45f77e4fc1c44a376d693bfb8b160f12ed1bdf5f4f"
+            "1127e61d9dec2dc1bba43a6ff47d294de7a67cdf3ef90937667092517e985642d195031c6f5339c1cea607a699c55e75c5"
+            "479cbd30ddaccab307472aa67a6a9a547d7e1eba123144193e6d2933556ddeb516151eacf0b48ce08892236abfb74bf0ce"
+            "e3a0e45997301027f2a53990697694f14de4fac0c908eeaeedf3dbb45c4ce9f744fef88ec1068c52056b16da099e1fb620"
+            "bd90de25534b5e820b367a4000000000000000000000000000000000000000000000000000000000000000000000000000"
+            "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            "000000000000000000000000000000000000000000000000000000000000000000000000000",16);
+
+        apa::integer FAC3375_C(
             "0xa4027a170efee729e543877bc6d8cb88c00810d0b3f18c77f9755907f470a1a94f4ab26af658c7790aae17ac3b584181"
             "825e763265c216490f5a93c0426485cc2bfc99ed1fd883aa983759e4662f26cdd96cf3289aa1a5ef67e48a36188c3e8f1b"
             "d634c6da63e4dc21f9110a33ff84dcc11b29972edc143fabb1b75ef93799f283e767bec1a3c5a5cbdc3d4a47e1679a5b37"
@@ -148,23 +172,27 @@ int main() { START_TEST;
             "0000000000000000000000000000000000000000000000000000",16
         );
 
-        apa::ubint
+        apa::integer
             num1("0xffffffffffffffffff0000000000000000000a8f2d4e6c1f7f66e77dead999beef",16),
             num2("0xabcd54321ffff789000cccedede00124323ffff",16);
 
-        apa::ubint
+        apa::integer
             num1num2_C("0xabcd54321ffff788ff60ff99bbc0012ca93ffa392d75d62af53c61892604980e854930ab6d2847bfb9bede8bee723c57a8d024111",16);
 
         // answers
-        ASSERT_EXPRESSION(num1 && num2,"num1 && num2");
-        ASSERT_EXPRESSION(num1 || num2,"num1 || num2");
-        ASSERT_EXPRESSION(!!num1,      "!!num1      ");
+        ASSERT_EQUALITY(num1*num2,num1num2_C, "num1*num2      ");
+        ASSERT_EQUALITY(num2*num1,num1num2_C, "num2*num1      ");
+        ASSERT_EQUALITY(fac(975),FAC975_C,    "FACTORIAL(975) ");
+        ASSERT_EQUALITY(fac(1000),FAC1000_C,  "FACTORIAL(1000)");
+        ASSERT_EQUALITY(fac(3375),FAC3375_C,  "FACTORIAL(3375)");
+        ASSERT_EQUALITY((num1*apa::__INTEGER_ZERO),apa::__INTEGER_ZERO,"num1*zero      ");
+        ASSERT_EQUALITY((apa::__INTEGER_ZERO*num1),apa::__INTEGER_ZERO,"zero*num1      ");
 
     #if defined(_BASE2_16)
-        RESULT("UBINT BASE 2^16 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^16 MULTIPLICATION");
     #elif defined(_BASE2_32)
-        RESULT("UBINT BASE 2^32 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^32 MULTIPLICATION");
     #elif defined(_BASE2_64)
-        RESULT("UBINT BASE 2^64 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^64 MULTIPLICATION");
     #endif
 }

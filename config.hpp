@@ -1,5 +1,5 @@
-#ifndef APA_BASE_CONFIGS_HPP
-#define APA_BASE_CONFIGS_HPP
+#ifndef APA_CONFIG_HPP
+#define APA_CONFIG_HPP
 
 // #define _BASE2_64
 

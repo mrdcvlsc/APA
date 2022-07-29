@@ -14,7 +14,7 @@ namespace apa {
 
     bint::bint() {
 
-        number = ubint();
+        number = integer();
         sign = POSITIVE;
     }
 
@@ -26,12 +26,12 @@ namespace apa {
         } else {
             sign = POSITIVE;
         }
-        number = ubint(num);
+        number = integer(num);
     }
 
     bint::bint(size_t capacity, size_t length, bool AllocateSpace) {
 
-        number = ubint(capacity,length,AllocateSpace);
+        number = integer(capacity,length,AllocateSpace);
         sign = POSITIVE;
     }
 
@@ -44,7 +44,7 @@ namespace apa {
         } else {
             sign = POSITIVE;
         }
-        number = ubint(text,base);
+        number = integer(text,base);
     }
 
     /// copy constructor.
@@ -81,13 +81,13 @@ namespace apa {
         return *this;
     }
 
-    bint::bint(uint8_t sign, const ubint& number) {
+    bint::bint(uint8_t sign, const integer& number) {
 
         this->number = number;
         this->sign = sign;
     }
     
-    bint::bint(uint8_t sign, ubint&& number) noexcept {
+    bint::bint(uint8_t sign, integer&& number) noexcept {
 
         this->number = std::move(number);
         this->sign = sign;
@@ -96,7 +96,7 @@ namespace apa {
 
     bint::bint(std::initializer_list<base_t> limbs, uint8_t sign) {
 
-        number = ubint(limbs);
+        number = integer(limbs);
         this->sign = sign;
     }
 

@@ -3,7 +3,7 @@
 */
 
 #include <iostream>
-#include <ubint.hpp> // static lib compilation
+#include <integer.hpp> // static lib compilation
 #include <bint.hpp>
 // #include "core.hpp"  // - header compilation
 

@@ -10,8 +10,8 @@
 #ifndef APA_CORE_HPP
 #define APA_CORE_HPP
 
-#include "ubint.hpp"
-#include "ubint.cpp"
+#include "integer.hpp"
+#include "integer.cpp"
 #include "bint.hpp"
 #include "bint.cpp"
 

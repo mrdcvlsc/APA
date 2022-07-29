@@ -15,7 +15,7 @@ int main() { START_TEST;
         apa::bint subject("dad0deed1feed2dead3beef4ceed5",16);
         apa::bint negate = -subject;
 
-        apa::ubint test("dad0deed1feed2dead3beef4ceed5",16);
+        apa::integer test("dad0deed1feed2dead3beef4ceed5",16);
         
         // answers
         apa::bint subject_LS15("6d686f768ff7696f569df77a6776a8000",16);

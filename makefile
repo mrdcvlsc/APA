@@ -41,19 +41,19 @@ test: $(OBJ)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	
-	@./$(SRC)/ubint_constructor.out
-	@./$(SRC)/ubint_swap.out
-	@./$(SRC)/ubint_add.out
-	@./$(SRC)/ubint_sub.out
-	@./$(SRC)/ubint_mul.out
-	@./$(SRC)/ubint_bitwise_logic.out
-	@./$(SRC)/ubint_relational.out
-	@./$(SRC)/ubint_logical.out
-	@./$(SRC)/ubint_shifts.out
-	@./$(SRC)/ubint_div.out
-	@./$(SRC)/ubint_base_print.out
-	@./$(SRC)/ubint_bases.out
-	@./$(SRC)/ubint_access.out
+	@./$(SRC)/integer_constructor.out
+	@./$(SRC)/integer_swap.out
+	@./$(SRC)/integer_add.out
+	@./$(SRC)/integer_sub.out
+	@./$(SRC)/integer_mul.out
+	@./$(SRC)/integer_bitwise_logic.out
+	@./$(SRC)/integer_relational.out
+	@./$(SRC)/integer_logical.out
+	@./$(SRC)/integer_shifts.out
+	@./$(SRC)/integer_div.out
+	@./$(SRC)/integer_base_print.out
+	@./$(SRC)/integer_bases.out
+	@./$(SRC)/integer_access.out
 	
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out

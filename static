@@ -2,8 +2,8 @@ CC := g++
 INSTALL_PREFIX=/usr/local/
 
 LIB_NAME:=apa
-LIB_SRC=ubint.cpp
-LIB_OBJ=ubint.o
+LIB_SRC=integer.cpp
+LIB_OBJ=integer.o
 LIB_OUT:=build/lib
 LIB_HEADER_OUT:=build/include
 LIB_OUTNAME:=lib$(LIB_NAME).a
@@ -30,14 +30,14 @@ build_move: build_compile
 	@echo "moving files to build folder"
 ifeq ($(OS), Linux)
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))ubint.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))integer.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))apa-base-configs.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))config.hpp ./$(LIB_HEADER_OUT)/
 else
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
-	@copy "./ubint.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./integer.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./apa-base-configs.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./config.hpp" "$(LIB_HEADER_OUT)"
 endif
 
 build_compile:
@@ -46,12 +46,12 @@ build_compile:
 	@mkdir $(LIB_HEADER_OUT)
 	@mkdir $(LIB_OUT)
 	@echo "creating static lib"
-	@echo "compiling ubint..."
-	@$(CC) -c ubint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling integer..."
+	@$(CC) -c integer.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling bint..."
 	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) ubint.o bint.o
+	@ar -r $(LIB_OUTNAME) integer.o bint.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 
 cleanup:
@@ -71,19 +71,19 @@ static_test: $(OBJ)
 	@echo LIMB : Base2_$(BASE2_RAISED_BY)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
-	@./$(SRC)/ubint_constructor.out
-	@./$(SRC)/ubint_swap.out
-	@./$(SRC)/ubint_add.out
-	@./$(SRC)/ubint_sub.out
-	@./$(SRC)/ubint_mul.out
-	@./$(SRC)/ubint_bitwise_logic.out
-	@./$(SRC)/ubint_relational.out
-	@./$(SRC)/ubint_logical.out
-	@./$(SRC)/ubint_shifts.out
-	@./$(SRC)/ubint_div.out
-	@./$(SRC)/ubint_base_print.out
-	@./$(SRC)/ubint_bases.out
-	@./$(SRC)/ubint_access.out
+	@./$(SRC)/integer_constructor.out
+	@./$(SRC)/integer_swap.out
+	@./$(SRC)/integer_add.out
+	@./$(SRC)/integer_sub.out
+	@./$(SRC)/integer_mul.out
+	@./$(SRC)/integer_bitwise_logic.out
+	@./$(SRC)/integer_relational.out
+	@./$(SRC)/integer_logical.out
+	@./$(SRC)/integer_shifts.out
+	@./$(SRC)/integer_div.out
+	@./$(SRC)/integer_base_print.out
+	@./$(SRC)/integer_bases.out
+	@./$(SRC)/integer_access.out
 	
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out
@@ -104,11 +104,11 @@ $(SRC)/%.out: $(SRC)/%.cpp
 install:
 ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUT)/$(LIB_OUTNAME) $(INSTALL_PREFIX)lib
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/ubint.hpp $(INSTALL_PREFIX)include
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/integer.hpp $(INSTALL_PREFIX)include
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/apa-base-configs.hpp $(INSTALL_PREFIX)include
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/config.hpp $(INSTALL_PREFIX)include
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
-	@echo "ubint.hpp apa-base-configs.hpp now installed to $(INSTALL_PREFIX)include"
+	@echo "integer.hpp config.hpp now installed to $(INSTALL_PREFIX)include"
 else
 	@echo .
 	@echo For Mingw64 in windows, please specify your mingw64 folder path with the INSTALL_PREFIX
@@ -117,22 +117,22 @@ else
 	@echo mingw32-make -f staticlib install INSTALL_PREFIX=PATH\mingw64
 	@echo .
 	copy build\lib\$(LIB_OUTNAME) "$(INSTALL_PREFIX)\lib"
-	copy build\include\ubint.hpp "$(INSTALL_PREFIX)\include
+	copy build\include\integer.hpp "$(INSTALL_PREFIX)\include
 	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include
-	copy build\include\apa-base-configs.hpp "$(INSTALL_PREFIX)\include
+	copy build\include\config.hpp "$(INSTALL_PREFIX)\include
 	@echo install success
 endif
 
 uninstall:
 ifeq ($(OS), Linux)
 	@rm $(INSTALL_PREFIX)lib/$(LIB_OUTNAME)
-	@rm $(INSTALL_PREFIX)include/ubint.hpp
+	@rm $(INSTALL_PREFIX)include/integer.hpp
 	@rm $(INSTALL_PREFIX)include/bint.hpp
-	@rm $(INSTALL_PREFIX)include/apa-base-configs.hpp
+	@rm $(INSTALL_PREFIX)include/config.hpp
 else
 	del "$(INSTALL_PREFIX)\lib\$(LIB_OUTNAME)"
-	del "$(INSTALL_PREFIX)\include\ubint.hpp"
+	del "$(INSTALL_PREFIX)\include\integer.hpp"
 	del "$(INSTALL_PREFIX)\include\bint.hpp"
-	del "$(INSTALL_PREFIX)\include\apa-base-configs.hpp"
+	del "$(INSTALL_PREFIX)\include\config.hpp"
 	echo uninstall success
 endif

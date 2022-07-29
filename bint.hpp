@@ -1,7 +1,7 @@
 #ifndef SIGNED_BIG_INTEGER_HPP
 #define SIGNED_BIG_INTEGER_HPP
 
-#include "ubint.hpp"
+#include "integer.hpp"
 
 /// Left Positive - Right Negative.
 #define LPOS_RNEG(SIGN_A,SIGN_B) (SIGN_A<SIGN_B)
@@ -15,7 +15,7 @@
 /// true if sign is negative.
 #define SIGN_NEGATIVE(SIGN) (SIGN)
 
-/// bint::compare -> ubint.compare result sign flip.
+/// bint::compare -> integer.compare result sign flip.
 #define CMP_RES_FLIP(CMP_RESULT) (-CMP_RESULT)
 
 namespace apa {
@@ -30,7 +30,7 @@ namespace apa {
 
         private:
 
-            ubint number;
+            integer number;
             uint8_t sign; // 1 if negative, 0 if positive
 
             static void bitwise_prepare(bint& left, bint& right);
@@ -52,9 +52,9 @@ namespace apa {
             bint& operator=(const bint& src);     // copy.
             bint& operator=(bint&& src) noexcept; // move.
 
-            // ubint Constructors
-            bint(uint8_t sign, const ubint& number); // ubint copy.
-            bint(uint8_t sign, ubint&& number) noexcept; // ubint move.
+            // integer Constructors
+            bint(uint8_t sign, const integer& number); // integer copy.
+            bint(uint8_t sign, integer&& number) noexcept; // integer move.
 
             ~bint();
 
