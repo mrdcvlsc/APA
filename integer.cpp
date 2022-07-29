@@ -111,7 +111,7 @@ namespace apa {
 
         capacity = length+LIMB_GROWTH;
         limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
-        memset(limbs,0x0,capacity*LIMB_BYTES);
+        memset(limbs,0x00,capacity*LIMB_BYTES);
 
         for(size_t i=0; i<text.size(); ++i) {
 
@@ -432,7 +432,7 @@ namespace apa {
         }
 
         if(length<=op.length) {
-            memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
+            memset(limbs+length, 0x00, ((op.length+1)-length)*LIMB_BYTES);
             length = op.length+1;
         }
 
@@ -509,7 +509,7 @@ namespace apa {
         }
 
         integer product(length+op.length,length+op.length);
-        memset(product.limbs,0x0,product.length*LIMB_BYTES);
+        memset(product.limbs,0x00,product.length*LIMB_BYTES);
         
         for(size_t i=0; i<op.length; ++i) {
             for(size_t j=0; j<length; ++j) {
