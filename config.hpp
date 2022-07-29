@@ -1,8 +1,6 @@
 #ifndef APA_CONFIG_HPP
 #define APA_CONFIG_HPP
 
-// #define _BASE2_64
-
 #ifndef _APA_TESTING_PHASE
     #if defined(_FORCE_BASE2_64)
         #define _BASE2_64
@@ -55,28 +53,34 @@
         #define PRINT_LIMBHEX "%04x"
         #define PRINT_LIMBHEX_SPACED " %04x"
     #else
-        #error not supported
+#error not supported in this system
     #endif
 #endif
 
 namespace apa {
     // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
-    #ifdef _BASE2_64
-    #pragma message("compiling with base2^64 types - fastest performance")
+#ifdef _BASE2_64
+    #ifndef _APA_TESTING_PHASE
+        #pragma message("compiling with base2^64 types - fastest performance")
+    #endif
     typedef int64_t bint_arg_t;
     typedef uint64_t base_t;
     typedef __uint128_t limb_t;
-    #elif defined(_BASE2_32)
-    #pragma message("compiling with base2^32 - average performance")
+#elif defined(_BASE2_32)
+    #ifndef _APA_TESTING_PHASE
+        #pragma message("compiling with base2^32 - average performance")
+    #endif
     typedef int32_t bint_arg_t;
     typedef uint32_t base_t;
     typedef uint64_t limb_t;
-    #elif defined(_BASE2_16)
-    #pragma message("compiling with base2^16 - slowest performance")
+#elif defined(_BASE2_16)
+    #ifndef _APA_TESTING_PHASE
+        #pragma message("compiling with base2^16 - slowest performance")
+    #endif
     typedef int16_t bint_arg_t;
     typedef uint16_t base_t;
     typedef uint32_t limb_t;
-    #endif
+#endif
 }
 
 #endif
