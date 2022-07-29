@@ -137,6 +137,14 @@ int main() { START_TEST;
     apa::bint num7num8 = num7 * num8;
     apa::bint num8num7 = num8 * num7;
 
+    std::cout << "num7num8 = " << num7num8 << "\n\n";
+    std::cout << "num8num7 = " << num8num7 << "\n\n";
+    std::cout << "num7num8C= " << num7num8_C << "\n\n";
+
+    std::cout << "limb size = " << sizeof(apa::limb_t) << "\n";
+    std::cout << "base size = " << sizeof(apa::base_t) << "\n";
+    std::cout << "limb 7 & 8 = " << num7.limb_size() << " & " << num8.limb_size() << "\n\n";
+
     // checks
     ASSERT_EQUALITY(num1num2.to_base16_string(),num1num2_C,"num1 * num2 ");
     ASSERT_EQUALITY(num2num1.to_base16_string(),num1num2_C,"num2 * num1 ");
