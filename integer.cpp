@@ -1,13 +1,13 @@
-#ifndef UNSIGNED_BIG_INTEGER_CPP
-#define UNSIGNED_BIG_INTEGER_CPP
+#ifndef APA_INTEGER_CPP
+#define APA_INTEGER_CPP
 
 #ifdef _MAKE_LIB
-#include "ubint.hpp"
+#include "integer.hpp"
 #endif
 
 #define DEVMODE
 #ifdef DEVMODE
-#include "ubint.hpp"
+#include "integer.hpp"
 #endif
 
 namespace apa {
@@ -38,14 +38,14 @@ namespace apa {
         return 0xff;
     }
 
-    ubint::ubint() {
+    integer::integer() {
 
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) std::malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
-    ubint::ubint(base_t num) {
+    integer::integer(base_t num) {
 
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
@@ -53,7 +53,7 @@ namespace apa {
         limbs[0] = num;
     }
 
-    ubint::ubint(size_t capacity, size_t length, bool AllocateSpace) {
+    integer::integer(size_t capacity, size_t length, bool AllocateSpace) {
 
         this->capacity = capacity;
         this->length = length;
@@ -66,7 +66,7 @@ namespace apa {
     }
 
     // constructor for conveniece
-    ubint::ubint(std::string text, size_t base) {
+    integer::integer(std::string text, size_t base) {
 
         if(base>1 && base<16) {
             std::vector<uint8_t> output(text.size(),0);
@@ -97,7 +97,7 @@ namespace apa {
 
         } else if(base!=16) {
             throw std::domain_error(
-                "ubint - string contructor : supported number base range is only from 2 to 16"
+                "integer - string contructor : supported number base range is only from 2 to 16"
             );
         }
 
@@ -111,7 +111,7 @@ namespace apa {
 
         capacity = length+LIMB_GROWTH;
         limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
-        memset(limbs,0x0,capacity*LIMB_BYTES);
+        memset(limbs,0x00,capacity*LIMB_BYTES);
 
         for(size_t i=0; i<text.size(); ++i) {
 
@@ -133,7 +133,7 @@ namespace apa {
     }
 
     /// copy constructor.
-    ubint::ubint(const ubint& src) {
+    integer::integer(const integer& src) {
 
         capacity = src.capacity;
         length   = src.length;
@@ -142,7 +142,7 @@ namespace apa {
     }
 
     /// move constructor.
-    ubint::ubint(ubint&& src) noexcept {
+    integer::integer(integer&& src) noexcept {
 
         capacity = src.capacity;
         length   = src.length;
@@ -151,7 +151,7 @@ namespace apa {
     }
 
     /// copy assignment.
-    ubint& ubint::operator=(const ubint& src) {
+    integer& integer::operator=(const integer& src) {
 
         if(this != &src) {
             if(capacity < src.capacity) {
@@ -167,7 +167,7 @@ namespace apa {
     }
 
     /// move assignment.
-    ubint& ubint::operator=(ubint&& src) noexcept {
+    integer& integer::operator=(integer&& src) noexcept {
 
         if(this != &src) {
             std::free(limbs);
@@ -181,7 +181,7 @@ namespace apa {
         return *this;
     }
 
-    ubint::ubint(std::initializer_list<base_t> limbs) {
+    integer::integer(std::initializer_list<base_t> limbs) {
 
         capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
@@ -193,22 +193,22 @@ namespace apa {
         }
     }
 
-    ubint::~ubint() {
+    integer::~integer() {
         std::free(limbs);
     }
 
     // Index Operator
-    limb_t& ubint::operator[](size_t i) {
+    limb_t& integer::operator[](size_t i) {
         return limbs[i];
     }
 
-    limb_t& ubint::operator[](size_t i) const {
+    limb_t& integer::operator[](size_t i) const {
         return limbs[i];
     }
 
 
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
-    int ubint::compare(const ubint& op) const {
+    int integer::compare(const integer& op) const {
 
         if(length<op.length) {
             return LESS;
@@ -232,29 +232,29 @@ namespace apa {
 
     // Logical Operators
 
-    bool ubint::operator<(const ubint& op) const {
+    bool integer::operator<(const integer& op) const {
         return this->compare(op)==LESS ? true : false;
     }
 
-    bool ubint::operator>(const ubint& op) const {
+    bool integer::operator>(const integer& op) const {
         return this->compare(op)==GREAT ? true : false;
     }
 
-    bool ubint::operator==(const ubint& op) const {
+    bool integer::operator==(const integer& op) const {
         return this->compare(op)==EQUAL ? true : false;
     }
 
-    bool ubint::operator!=(const ubint& op) const {
+    bool integer::operator!=(const integer& op) const {
         return !(*this==op);
     }
 
-    bool ubint::operator<=(const ubint& op) const {
+    bool integer::operator<=(const integer& op) const {
 
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==LESS) ? true : false;
     }
 
-    bool ubint::operator>=(const ubint& op) const {
+    bool integer::operator>=(const integer& op) const {
 
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==GREAT) ? true : false;
@@ -262,7 +262,7 @@ namespace apa {
 
     // Bit-Wise Logical Operators
 
-    void ubint::bit_realloc(const ubint& op) {
+    void integer::bit_realloc(const integer& op) {
         capacity = op.capacity;
         limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         size_t zero_set = length*LIMB_BYTES;
@@ -270,17 +270,18 @@ namespace apa {
         length = op.length;
     }
 
-    void ubint::remove_leading_zeros() {
+    void integer::remove_leading_zeros() {
 
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
                 length -= i;
-                break;
+                return;
             }
         }
+        length = 1;
     }
 
-    void ubint::bit_and(const ubint& op) {
+    void integer::bit_and(const integer& op) {
 
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] &= op.limbs[i];
@@ -291,7 +292,7 @@ namespace apa {
         }
     }
 
-    ubint& ubint::operator&=(const ubint& op) {
+    integer& integer::operator&=(const integer& op) {
 
         if(length<op.length) {
             bit_realloc(op);
@@ -303,13 +304,13 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator&(const ubint& op) const {
+    integer integer::operator&(const integer& op) const {
 
-        ubint bitwise_and = *this;
+        integer bitwise_and = *this;
         return bitwise_and &= op;
     }
 
-    void ubint::bit_or(const ubint& op) {
+    void integer::bit_or(const integer& op) {
         
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] |= op.limbs[i];
@@ -320,7 +321,7 @@ namespace apa {
         }
     }
 
-    ubint& ubint::operator|=(const ubint& op) {
+    integer& integer::operator|=(const integer& op) {
 
         if(length<op.length) {
             bit_realloc(op);
@@ -332,13 +333,13 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator|(const ubint& op) const {
+    integer integer::operator|(const integer& op) const {
 
-        ubint bitwise_and = *this;
+        integer bitwise_and = *this;
         return bitwise_and |= op;
     }
 
-    void ubint::bit_xor(const ubint& op) {
+    void integer::bit_xor(const integer& op) {
         
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] ^= op.limbs[i];
@@ -349,7 +350,7 @@ namespace apa {
         }
     }
 
-    ubint& ubint::operator^=(const ubint& op) {
+    integer& integer::operator^=(const integer& op) {
 
         if(length<op.length) {
             bit_realloc(op);
@@ -361,18 +362,18 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator^(const ubint& op) const {
+    integer integer::operator^(const integer& op) const {
 
-        ubint bitwise_and = *this;
+        integer bitwise_and = *this;
         bitwise_and ^= op;
         return bitwise_and;
     }
 
-    ubint ubint::operator~() const {
+    integer integer::operator~() const {
 
         // ------------------------------------------------------
         // flip all the bits of the limbs.
-        ubint bwn(length,length);
+        integer bwn(length,length);
         for(size_t i=0; i<length-1; ++i) {
             bwn.limbs[i] = (base_t)(~limbs[i]);
         }
@@ -393,7 +394,7 @@ namespace apa {
         return bwn;
     }
 
-    void ubint::bit_flip(size_t padding) {
+    void integer::bit_flip(size_t padding) {
 
         if(capacity<length+padding) {
             capacity = length+padding+LIMB_GROWTH;
@@ -413,13 +414,13 @@ namespace apa {
     }
 
     // Logical Operators
-    ubint::operator bool() const noexcept {
+    integer::operator bool() const noexcept {
         return !(length==1 && !limbs[0]);
     }
 
     // Arithmetic Operators
 
-    ubint& ubint::operator+=(const ubint& op) {
+    integer& integer::operator+=(const integer& op) {
         
         if(capacity<=op.length+1) {
             capacity = op.length+LIMB_GROWTH;
@@ -432,7 +433,7 @@ namespace apa {
         }
 
         if(length<=op.length) {
-            memset(limbs+length, 0x0, ((op.length+1)-length)*LIMB_BYTES);
+            memset(limbs+length, 0x00, ((op.length+1)-length)*LIMB_BYTES);
             length = op.length+1;
         }
 
@@ -452,12 +453,12 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator+(const ubint& op) const {
-        ubint sum = *this;
+    integer integer::operator+(const integer& op) const {
+        integer sum = *this;
         return sum += op;
     }
     
-    ubint& ubint::operator-=(const ubint& op) {
+    integer& integer::operator-=(const integer& op) {
         
         limb_t carry = 0;
 
@@ -489,27 +490,27 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator-(const ubint& op) const {
-        ubint dif = *this;
+    integer integer::operator-(const integer& op) const {
+        integer dif = *this;
         return dif -= op;
     }
     
-    ubint& ubint::operator*=(const ubint& op) {
+    integer& integer::operator*=(const integer& op) {
 
-        ubint product = *this * op;
+        integer product = *this * op;
         swap(product,*this);
 
         return *this;
     }
 
-    ubint ubint::operator*(const ubint& op) const {
+    integer integer::operator*(const integer& op) const {
 
         if(!(*this && op)) {
-            return __UBINT_ZERO;
+            return __INTEGER_ZERO;
         }
 
-        ubint product(length+op.length,length+op.length);
-        memset(product.limbs,0x0,product.length*LIMB_BYTES);
+        integer product(length+op.length,length+op.length);
+        memset(product.limbs,0x00,product.length*LIMB_BYTES);
         
         for(size_t i=0; i<op.length; ++i) {
             for(size_t j=0; j<length; ++j) {
@@ -530,24 +531,24 @@ namespace apa {
         return product;
     }
     
-    ubint& ubint::operator/=(const ubint& op) {
+    integer& integer::operator/=(const integer& op) {
 
-        ubint quotient = *this / op;
+        integer quotient = *this / op;
         swap(quotient,*this);
 
         return *this;
     }
 
-    ubint ubint::operator/(const ubint& op) const {
+    integer integer::operator/(const integer& op) const {
 
         if(!op) {
-            throw std::domain_error("apa::ubint - Division By Zero");
+            throw std::domain_error("apa::integer - Division By Zero");
         }
             
         int special_case = this->compare(op);
         switch (special_case) {
-            case EQUAL: return ubint(1);
-            case LESS : return ubint(0);
+            case EQUAL: return integer(1);
+            case LESS : return integer(0);
         }
 
         if(op.length==1 && op.limbs[0]==1) {
@@ -557,36 +558,36 @@ namespace apa {
         return bit_division(op);
     }
 
-    ubint& ubint::operator%=(const ubint& op) {
+    integer& integer::operator%=(const integer& op) {
 
-        ubint remainder = *this % op;
+        integer remainder = *this % op;
         swap(remainder,*this);
 
         return *this;
     }
 
-    ubint ubint::operator%(const ubint& op) const {
+    integer integer::operator%(const integer& op) const {
 
         if(!op) {
-            throw std::domain_error("apa::ubint - Division By Zero");
+            throw std::domain_error("apa::integer - Division By Zero");
         }
             
         int special_case = this->compare(op);
         switch (special_case) {
-            case EQUAL: return ubint(0);
+            case EQUAL: return integer(0);
             case LESS : return *this;
         }
 
         if(op.length==1 && op.limbs[0]==1) {
-            return ubint(0);
+            return integer(0);
         }
         
         return bit_modulo(op);
     }
 
-    ubint ubint::bit_division(const ubint& op) const {
+    integer integer::bit_division(const integer& op) const {
 
-        ubint quotient(length,length), remainder(length,length);
+        integer quotient(length,length), remainder(length,length);
         memset(quotient.limbs,0x00,length*LIMB_BYTES);
         remainder.length = 1; remainder.limbs[0] = 0;
 
@@ -616,9 +617,9 @@ namespace apa {
         return quotient;
     }
 
-    ubint ubint::bit_modulo(const ubint& op) const {
+    integer integer::bit_modulo(const integer& op) const {
         
-        ubint remainder(length,length);
+        integer remainder(length,length);
         remainder.length = 1; remainder.limbs[0] = 0;
 
         base_t bit = 0, current_index, current_shift_val;
@@ -646,30 +647,30 @@ namespace apa {
     }
 
     // pre-fix increment/decrement
-    ubint& ubint::operator++() {
-        return *this += __UBINT_ONE;
+    integer& integer::operator++() {
+        return *this += __INTEGER_ONE;
     }
 
-    ubint& ubint::operator--() {
-        return *this -= __UBINT_ONE;
+    integer& integer::operator--() {
+        return *this -= __INTEGER_ONE;
     }
 
     // post-fix increment/decrement
-    ubint ubint::operator++(int) {
-        ubint prev = *this;
+    integer integer::operator++(int) {
+        integer prev = *this;
         ++*this;
         return prev;
     }
 
-    ubint ubint::operator--(int) {
-        ubint prev = *this;
+    integer integer::operator--(int) {
+        integer prev = *this;
         --*this;
         return prev;
     }
 
 
     // Shift Operators
-    ubint& ubint::operator<<=(size_t bits) {
+    integer& integer::operator<<=(size_t bits) {
 
         if(*this) {
             size_t limb_shifts = bits / BASE_BITS;
@@ -703,7 +704,7 @@ namespace apa {
         return *this;
     }
 
-    ubint& ubint::operator>>=(size_t bits) {
+    integer& integer::operator>>=(size_t bits) {
 
         if(*this) {
             size_t limb_shifts = bits / BASE_BITS;
@@ -735,20 +736,20 @@ namespace apa {
         return *this;
     }
 
-    ubint ubint::operator<<(size_t bits) const {
+    integer integer::operator<<(size_t bits) const {
 
-        ubint shifted = *this;
+        integer shifted = *this;
         return shifted <<= bits;
     }
 
-    ubint ubint::operator>>(size_t bits) const {
+    integer integer::operator>>(size_t bits) const {
 
-        ubint shifted = *this;
+        integer shifted = *this;
         return shifted >>= bits;
     }
 
 
-    void ubint::printHex() const {
+    void integer::printHex() const {
         
         std::cout << "0x";
         printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
@@ -760,7 +761,7 @@ namespace apa {
         std::cout << "\n";
     }
 
-    void ubint::printHex_spaced_out() const {
+    void integer::printHex_spaced_out() const {
 
         printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
 
@@ -771,7 +772,7 @@ namespace apa {
         std::cout << "\n";
     }
 
-    void ubint::printBin_spaced_out() const {
+    void integer::printBin_spaced_out() const {
 
         for(size_t i=0; i<length; ++i) {
             std::cout << std::bitset<BASE_BITS>(limbs[length-1-i]) << " "; 
@@ -780,7 +781,7 @@ namespace apa {
         std::cout << "\n";
     }
 
-    void ubint::printStatus(std::string printIdentifier) const {
+    void integer::printStatus(std::string printIdentifier) const {
 
         std::cout << "\n-----\n";
         std::cout << printIdentifier << "\n";
@@ -789,14 +790,14 @@ namespace apa {
         printHex_spaced_out();
     }
 
-    std::string ubint::to_base10_string() const {
+    std::string integer::to_base10_string() const {
 
         std::string Base10 = "";
-        ubint ten(10), quotient = *this;
+        integer ten(10), quotient = *this;
 
         if(quotient) {
             while(quotient) {
-                ubint remainder = quotient % ten;
+                integer remainder = quotient % ten;
                 quotient = quotient / ten;
                 Base10.push_back('0'+remainder.limbs[0]);
             }
@@ -809,7 +810,7 @@ namespace apa {
         return Base10;
     }
 
-    std::string ubint::to_base16_string() const {
+    std::string integer::to_base16_string() const {
 
         char buffer[17];
         std::string hexform = "";
@@ -825,20 +826,9 @@ namespace apa {
         return hexform;
     }
 
-    // Member Access Methods
-    void ubint::set_length(size_t length) {
-        this->length = length;
-    }
+    // Methods
 
-    size_t ubint::capacity_size() const {
-        return capacity;
-    }
-
-    size_t ubint::limb_size() const {
-        return length;
-    }
-
-    size_t ubint::byte_size() const {
+    size_t integer::byte_size() const {
 
         base_t ms_limb = limbs[length-1];
         size_t cnt = 0;
@@ -851,7 +841,7 @@ namespace apa {
         return (length-1)*BASE_BYTES + cnt;
     }
 
-    size_t ubint::bit_size() const {
+    size_t integer::bit_size() const {
 
         base_t ms_limb = limbs[length-1];
         size_t cnt = 0;
@@ -864,34 +854,25 @@ namespace apa {
         return (length-1)*BASE_BITS + cnt;
     }
 
-    const limb_t *ubint::limb_view() const {
-        return (const limb_t*) limbs;
-    }
+    void swap(integer& a, integer& b) {
 
-    const uint8_t *ubint::byte_view() const {
-        return (const uint8_t*) limbs;
-    }
-
-
-    void swap(ubint& a, ubint& b) {
-
-        ubint temp = std::move(a);
+        integer temp = std::move(a);
         a = std::move(b);
         b = std::move(temp);
     }
 
     // IO Operators
-    std::ostream& operator<<(std::ostream &out, const ubint &num) {
+    std::ostream& operator<<(std::ostream &out, const integer &num) {
 
         out << num.to_base16_string();
         return out;
     }
 
-    std::istream& operator>>(std::istream &in, ubint &num) {
+    std::istream& operator>>(std::istream &in, integer &num) {
         
         std::string input;
         in >> input;
-        num = ubint(input,16);
+        num = integer(input,16);
 
         return in;
     }

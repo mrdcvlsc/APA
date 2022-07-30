@@ -4,14 +4,14 @@
 #ifndef _MAKE_LIB
 #include "../core.hpp"
 #else
-#include <ubint.hpp>
+#include <integer.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-apa::ubint fac(size_t n) {
-    apa::ubint factorial(1);
-    apa::ubint iter = factorial;
+apa::integer fac(size_t n) {
+    apa::integer factorial(1);
+    apa::integer iter = factorial;
 
     for(size_t i=1; i<=n; ++i) {
         factorial *= iter;
@@ -24,7 +24,7 @@ apa::ubint fac(size_t n) {
 int main() { START_TEST;
 
         // test variables
-        apa::ubint FAC975_C(
+        apa::integer FAC975_C(
             "0x19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456703c3"
             "39c96f18bed4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22ccf76553d1c38"
             "deb692820ac53f361c2a2e0b0dc6e6b77810b15d656775b37fc2afb2200632008419c0555"
@@ -56,7 +56,7 @@ int main() { START_TEST;
             "00000000000000000000000000000",16
         );
 
-        apa::ubint FAC3375_C(
+        apa::integer FAC3375_C(
             "0xa4027a170efee729e543877bc6d8cb88c00810d0b3f18c77f9755907f470a1a94f4ab26af658c7790aae17ac3b584181"
             "825e763265c216490f5a93c0426485cc2bfc99ed1fd883aa983759e4662f26cdd96cf3289aa1a5ef67e48a36188c3e8f1b"
             "d634c6da63e4dc21f9110a33ff84dcc11b29972edc143fabb1b75ef93799f283e767bec1a3c5a5cbdc3d4a47e1679a5b37"
@@ -148,11 +148,11 @@ int main() { START_TEST;
             "0000000000000000000000000000000000000000000000000000",16
         );
 
-        apa::ubint
+        apa::integer
             num1("0xffffffffffffffffff0000000000000000000a8f2d4e6c1f7f66e77dead999beef",16),
             num2("0xabcd54321ffff789000cccedede00124323ffff",16);
 
-        apa::ubint
+        apa::integer
             num1num2_C("0xabcd54321ffff788ff60ff99bbc0012ca93ffa392d75d62af53c61892604980e854930ab6d2847bfb9bede8bee723c57a8d024111",16);
 
         // answers
@@ -161,10 +161,10 @@ int main() { START_TEST;
         ASSERT_EXPRESSION(!!num1,      "!!num1      ");
 
     #if defined(_BASE2_16)
-        RESULT("UBINT BASE 2^16 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^16 LOGICAL OPERATOR");
     #elif defined(_BASE2_32)
-        RESULT("UBINT BASE 2^32 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^32 LOGICAL OPERATOR");
     #elif defined(_BASE2_64)
-        RESULT("UBINT BASE 2^64 LOGICAL OPERATOR");
+        RESULT("INTEGER BASE 2^64 LOGICAL OPERATOR");
     #endif
 }

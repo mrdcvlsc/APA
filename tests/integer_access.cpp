@@ -4,7 +4,7 @@
 #ifndef _MAKE_LIB
 #include "../core.hpp"
 #else
-#include <ubint.hpp>
+#include <integer.hpp>
 #endif
 
 #include "mini-test.hpp"
@@ -12,10 +12,10 @@
 int main() { START_TEST;
 
     // test variables
-    apa::ubint subject1("4ff0dec3d875aafff",16);
-    apa::ubint subject2("fffffff",16);
-    apa::ubint subject3("ffffffffffffffff",16);
-    apa::ubint subject4("ffffffff",16);
+    apa::integer subject1("4ff0dec3d875aafff",16);
+    apa::integer subject2("fffffff",16);
+    apa::integer subject3("ffffffffffffffff",16);
+    apa::integer subject4("ffffffff",16);
 
     size_t sub1_byte_size = 9;
     size_t sub2_byte_size = 4;
@@ -38,10 +38,10 @@ int main() { START_TEST;
     ASSERT_EQUALITY(subject4.bit_size(),sub4_bit_size,  "subject4 bit size ");
 
     #if defined(_BASE2_16)
-        RESULT("UBINT BASE 2^16 access methods");
+        RESULT("INTEGER BASE 2^16 access methods");
     #elif defined(_BASE2_32)
-        RESULT("UBINT BASE 2^32 access methods");
+        RESULT("INTEGER BASE 2^32 access methods");
     #elif defined(_BASE2_64)
-        RESULT("UBINT BASE 2^64 access methods");
+        RESULT("INTEGER BASE 2^64 access methods");
     #endif
 }

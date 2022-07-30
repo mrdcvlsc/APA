@@ -1,83 +1,6 @@
+<details><!-- big integers : start -->
 
-<details><!-- unsigned big integers : start -->
-
-<summary><b>unsigned big integers</b></summary>
-
------
-
-- ### Initializing ```ubint``` numbers
-    - Initializing from an integral type.
-        ```c++
-        apa::ubint num = 255;
-        // base 10 equivalent = 255
-        ```
-        Make sure that the integral type value you assign to a ```ubint``` will not exceed it's base size. If you compile ```apa``` with a number base of 2<sup>16</sup> the maximum value you can assign using an integral type is **```65535```**, for base of 2<sup>32</sup> it is **```4294967295```**, and for base 2<sup>64</sup> this will be **```18446744073709551615```**.
-
-    - Initializing from a base2 (binary) number represented by a string.
-        ```c++
-        apa::ubint base2_bin("11001001110100111110100010101",apa::BIN);
-        // base 10 equivalent = 423263509
-        ```
-    - Initializing from a base8 (octal) number represented by a string.
-        ```c++
-        apa::ubint base8_oct("122333444455555666666777777700000000",apa::OCT);
-        // base 10 equivalent = 52245490915446306574707453853696
-        ```
-    - Initializing from a base10 (decimal) number represented by a string.
-        ```c++
-        apa::ubint base10_dec("1192098127666217730001983712379812737234",apa::DEC);
-        ```
-
-    - Initializing from a base16 (hex) number represented by a string.
-        ```c++
-        apa::ubint base16_hex("deed0feed0dead0beef0fac0bae",apa::HEX);
-        // base10 equivalent = 282592308594525234095480996891566
-        ```
-
-    - initializing with specific limb values
-        ```c++
-        apa::ubint num = { 0xfeed, 0xdead, 0xbeef };
-        ```
-        The values ```0xfeed```, ```0xdead``` and ```0xbeef``` values will be assigned to each limbs of the ```ubint``` instance.
-
-        Each element in the initializer list can only hold a max value of the base size (depending on the base size you choose during compilation).
-        - base2<sup>16</sup> max value = ```0xffff```
-        - base2<sup>32</sup> max value = ```0xffffffff```
-        - base2<sup>64</sup> max value = ```0xffffffffffffffff```
-
------
-
-- ### Supported Operators of ```apa::ubint```
-    - Arithmetic Operators ; ```+```, ```-```, ```*```, ```/```, ```%```, ```+=```, ```-=```, ```*=```, ```/=```, ```%=```.
-    - Increment/Decrement Operators; ```++```, ```--``` (Post-Fix and Pre-Fix).
-    - Relational Operators ; ```<```, ```>```, ```==```, ```<=```, ```>=```, ```!=```.
-    - Logical Operators ; ```!```, ```&&```, ```||```.
-    - Bitwise Logical Operators ; ```~```, ```|```, ```&```, ```^```, ```|=```, ```&=```, ```^=```.
-    - Bitwise Shifts ; ```<<```, ```>>```, ```<<=```, ```>>=``` (only takes argument of ```size_t```).
-    - Standard I/O (console cin and cout) ; ```<<```, ```>>``` (only accepts and output hex format).
-
-- ### Other Methods.
-    - ```apa::swap(ubint&,ubint&)``` - **[apa namespace function]** swap values of two ```ubint``` class.
-    - ```.printHex()``` - **[ubint public method]** prints the value of ```ubint``` in hex format.
-    - ```.to_base10_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 10 (decimal).
-    - ```.to_base16_string()``` - **[ubint public method]** returns a string that represents the value of ```ubint``` in base 16 (hex).
-    - ```.capacity_size()``` - returns the total allocated number of limbs of a ```bint``` variable;
-    - ```.limb_size()``` - returns the number of limbs currently used by a ```bint``` variable;
-    - ```.byte_size()``` - returns the total number of bytes;
-    - ```.bit_size()``` - returns the total number of bits;
-    - ```*limb_view()``` - returns a ```const *limb_t``` pointer array;
-    - ```*byte_view()``` - returns a ```const *uint8_t``` pointer array;
-
-- ### Limitations of ```ubint```.
-    - **unsigned big integers** or ```ubint``` for short have the following limitations
-        - subtracting a larger ```ubint``` value from a smaller ```ubint```, or subtractions that will result to negative values is not possible (use ```bint``` for this case).
-        - right shifting a ```ubint``` with a value greater than it's current bit count is not supported.
-
-</details><!-- unsigned big integers : end -->
-
-<details><!-- unsigned big integers : start -->
-
-<summary><b>signed big integers</b></summary>
+<summary><b>big integers</b></summary>
 
 -----
 
@@ -158,7 +81,35 @@
     - ```*limb_view()``` - **[bint public method]** returns a ```const *limb_t``` pointer array;
     - ```*byte_view()``` - **[bint public method]** returns a ```const *uint8_t``` pointer array;
 
-</details><!-- unsigned big integers : end -->
+</details><!-- big integers : end -->
+
+
+
+
+
+
+
+
+<details><!-- big floating point : start -->
+
+<summary><b>big floating points</b></summary>
+
+- **bfloat - big floating point numbers**
+
+    - ***Not Yet Available in version 4.***
+    
+    - **Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) for the latest previous working version of `bfloat`.**
+
+
+</details><!-- big floating point : end -->
+
+
+
+
+
+
+
+
 
 <details><!-- compilation : start -->
 <summary><b>compilation</b></summary>
@@ -234,5 +185,4 @@
     > so if you define a specific base using the ```D_FORCE_BASE2_XX``` flag, a mismatch might occur throwing an undefined referencce or other errors.
 </details><!-- compilation : end -->
 
-# bfloat - big floating point numbers
-- Not Yet Available in version 4.
+
