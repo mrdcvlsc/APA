@@ -85,13 +85,14 @@ namespace apa {
             // Arithmetic Operators
 
             static bint add_partial(
-                const bint& l, size_t l_len, size_t l_index,
-                const bint& r, size_t r_len, size_t r_index
+                const limb_t* l, size_t l_len, size_t l_index,
+                const limb_t* r, size_t r_len, size_t r_index
             );
 
-            static bint mul_karatsuba(
-                const bint& l, size_t l_len, size_t l_index,
-                const bint& r, size_t r_len, size_t r_index
+            static void mul_karatsuba(
+                limb_t* output,
+                const limb_t* l, size_t l_len, size_t l_index,
+                const limb_t* r, size_t r_len, size_t r_index
             );
             bint mul_naive(const bint& op) const;
 

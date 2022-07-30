@@ -374,19 +374,19 @@ namespace apa {
     }
 
     bint bint::add_partial(
-        const bint& l, size_t l_len, size_t l_index,
-        const bint& r, size_t r_len, size_t r_index
+        const limb_t* l, size_t l_len, size_t l_index,
+        const limb_t* r, size_t r_len, size_t r_index
     ) {
         size_t len = std::max(l_len, r_len) + 1;
         bint sum(len + 1, len);
         std::memset(sum.number.limbs, 0x00, LIMB_BYTES*sum.number.capacity);
 
         for(size_t i=0; i<l_len; ++i) {
-            sum.number.limbs[i] += l.number.limbs[l_index+i];
+            sum.number.limbs[i] += l[l_index+i];
         }
 
         for(size_t i=0; i<r_len; ++i) {
-            sum.number.limbs[i] += r.number.limbs[r_index+i];
+            sum.number.limbs[i] += r[r_index+i];
         }
 
         // carry
@@ -399,28 +399,24 @@ namespace apa {
         return sum;
     }
 
-    bint bint::mul_karatsuba(
-        const bint& l, size_t l_len, size_t l_index,
-        const bint& r, size_t r_len, size_t r_index
+    void bint::mul_karatsuba(
+        limb_t* output,
+        const limb_t* l, size_t l_len, size_t l_index,
+        const limb_t* r, size_t r_len, size_t r_index
     ) {
-        if(r_len < KARATSUBA_SIZE || l_len < KARATSUBA_SIZE) {
-
-            bint product(l_len + r_len + 1, l_len + r_len);
-            memset(product.number.limbs,0x00,product.number.capacity*LIMB_BYTES);
-            
+        if(r_len < KARATSUBA_SIZE || l_len < KARATSUBA_SIZE) {           
             for(size_t i=0; i<r_len; ++i) {
                 for(size_t j=0; j<l_len; ++j) {
-                    product.number.limbs[i+j] += l.number.limbs[j+l_index] * r.number.limbs[i+r_index];
-                    limb_t carry = product.number.limbs[i+j] >> BASE_BITS;
+                    output[i+j] += l[j+l_index] * r[i+r_index];
+                    limb_t carry = output[i+j] >> BASE_BITS;
 
                     if(carry) {
-                        product.number.limbs[i+j] = (base_t) product.number.limbs[i+j];
-                        product.number.limbs[i+j+1] += carry;
+                        output[i+j] = (base_t) output[i+j];
+                        output[i+j+1] += carry;
                     }
                 }
             }
-            product.number.remove_leading_zeros();
-            return product;
+            return;
         }
 
         size_t max_len = std::max(l_len, r_len);
@@ -448,58 +444,69 @@ namespace apa {
         }
 
         // karatsuba
-        bint z0 = (a_len && c_len) ? mul_karatsuba(
-            l, a_len, split_len + l_index,
-            r, c_len, split_len + r_index
-        ) : __BINT_ZERO;
+        bint z0(a_len + c_len + 1, a_len + c_len);
+        std::memset(z0.number.limbs, 0x00, z0.number.capacity * LIMB_BYTES);
+        if (a_len && c_len) {
+            mul_karatsuba(
+                z0.number.limbs,
+                l, a_len, split_len + l_index,
+                r, c_len, split_len + r_index
+            );
+            z0.number.remove_leading_zeros();
+        } else {
+            z0 = __BINT_ZERO;;
+        };
 
-        bint z1 = mul_karatsuba(l, b_len, l_index, r, d_len, r_index);
+        bint z1(b_len + d_len + 1, b_len + d_len);
+        std::memset(z1.number.limbs, 0x00, z1.number.capacity * LIMB_BYTES);
+        mul_karatsuba(z1.number.limbs, l, b_len, l_index, r, d_len, r_index);
+        z1.number.remove_leading_zeros();
 
         bint lsplit_add, rsplit_add;
 
         if(a_len) {
             lsplit_add = add_partial(l, a_len, split_len + l_index, l, b_len, l_index);
         } else {
-            lsplit_add = add_partial(__BINT_ZERO, 1, 0, l, b_len, l_index);
+            lsplit_add = add_partial(__BINT_ZERO.number.limbs, 1, 0, l, b_len, l_index);
         }
 
         if(c_len) {
             rsplit_add = add_partial(r, c_len, split_len + r_index, r, d_len, r_index);
         } else {
-            rsplit_add = add_partial(__BINT_ZERO, 1, 0, r, d_len, r_index);
+            rsplit_add = add_partial(__BINT_ZERO.number.limbs, 1, 0, r, d_len, r_index);
         }
-    
-        bint z2 = mul_karatsuba(
-            lsplit_add, lsplit_add.number.length, 0,
-            rsplit_add, rsplit_add.number.length, 0
-        );
 
-        bint z3 = z2 - z1 - z0;
+        bint z2(lsplit_add.number.length + rsplit_add.number.length + 1, lsplit_add.number.length + rsplit_add.number.length);
+        std::memset(z2.number.limbs, 0x00, z2.number.capacity * LIMB_BYTES);
+        mul_karatsuba(
+            z2.number.limbs,
+            lsplit_add.number.limbs, lsplit_add.number.length, 0,
+            rsplit_add.number.limbs, rsplit_add.number.length, 0
+        );
+        z2.number.remove_leading_zeros();
+
+        bint z3 = std::move(z2);
+        z3 -= z1;
+        z3 -= z0;
 
         // z4 addition
-        size_t z4_len = l_len + r_len;
-        bint z4(z4_len + 1, z4_len);
-        std::memset(z4.number.limbs, 0x00, LIMB_BYTES*z4.number.capacity);
 
         for(size_t i=0; i<z1.number.length; ++i) {
-            z4.number.limbs[i] = z1.number.limbs[i];
+            output[i] = z1.number.limbs[i];
         }
 
         for(size_t i=0; i<z3.number.length; ++i) {
-            z4.number.limbs[i+split_len] += z3.number.limbs[i];
-            z4.number.limbs[i+1+split_len] += (z4.number.limbs[i+split_len] >> BASE_BITS);
-            z4.number.limbs[i+split_len] = (base_t) z4.number.limbs[i+split_len];
+            output[i+split_len] += z3.number.limbs[i];
+            output[i+1+split_len] += (output[i+split_len] >> BASE_BITS);
+            output[i+split_len] = (base_t) output[i+split_len];
         }
 
         size_t z3_padding = split_len*2;
         for(size_t i=0; i<z0.number.length; ++i) {
-            z4.number.limbs[i+z3_padding] += z0.number.limbs[i];
-            z4.number.limbs[i+1+z3_padding] += (z4.number.limbs[i+z3_padding] >> BASE_BITS);
-            z4.number.limbs[i+z3_padding] = (base_t) z4.number.limbs[i+z3_padding];
+            output[i+z3_padding] += z0.number.limbs[i];
+            output[i+1+z3_padding] += (output[i+z3_padding] >> BASE_BITS);
+            output[i+z3_padding] = (base_t) output[i+z3_padding];
         }
-
-        z4.number.remove_leading_zeros();
-        return z4;
     }
 
     bint bint::operator*(const bint& op) const {
@@ -508,10 +515,15 @@ namespace apa {
             return mul_naive(op);
         }
 
-        bint product =  mul_karatsuba(
-            *this, number.length, 0,
-            op, op.number.length, 0
+        size_t len = number.length + op.number.length;
+        bint product(len + 1, len);
+        std::memset(product.number.limbs, 0x00, product.number.capacity * LIMB_BYTES);
+        mul_karatsuba(
+            product.number.limbs,
+            number.limbs, number.length, 0,
+            op.number.limbs, op.number.length, 0
         );
+        product.number.remove_leading_zeros();
         product.sign = (sign == op.sign) ? POSITIVE : NEGATIVE;
         return product;
     }
