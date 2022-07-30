@@ -377,61 +377,25 @@ namespace apa {
         const bint& l, size_t l_len, size_t l_index,
         const bint& r, size_t r_len, size_t r_index
     ) {
-
-        std::cout << "add_partial : call\n";
-
         size_t len = std::max(l_len, r_len) + 1;
         bint sum(len + 1, len);
         std::memset(sum.number.limbs, 0x00, LIMB_BYTES*sum.number.capacity);
 
-        std::cout << "\n\nadd_partial : raw display start\n";
-        for(size_t i=0; i<sum.number.length;++i) {
-            std::cout << (base_t) sum.number[sum.number.length-1-i] << " ";
-        }
-
-        std::cout << "\nadd_partial : left addition\n";
         for(size_t i=0; i<l_len; ++i) {
             sum.number.limbs[i] += l.number.limbs[l_index+i];
-            std::cout << (base_t)l.number.limbs[l_index+i] << " ";
         }
 
-        std::cout << "\n\nadd_partial : display first add\n";
-        for(size_t i=0; i<sum.number.length;++i) {
-            std::cout << (base_t) sum.number[sum.number.length-1-i] << " ";
-        }
-
-        std::cout << "\nadd_partial : right addition\n";
         for(size_t i=0; i<r_len; ++i) {
             sum.number.limbs[i] += r.number.limbs[r_index+i];
-            std::cout << (base_t)r.number.limbs[r_index+i] << " ";
         }
 
-        std::cout << "\n\nadd_partial : display second add\n";
-        for(size_t i=0; i<sum.number.length;++i) {
-            std::cout << (base_t) sum.number[sum.number.length-1-i] << " ";
-        }
-
-        std::cout << "\nadd_partial : carry\n";
         // carry
         for(size_t i=0; i<sum.number.length; ++i) {
             sum.number.limbs[i+1] += (sum.number.limbs[i] >> BASE_BITS);
             sum.number.limbs[i] = (base_t) sum.number.limbs[i];
         }
 
-        std::cout << "\n\nadd_partial : raw display before leading\n";
-        for(size_t i=0; i<sum.number.length;++i) {
-            std::cout << (base_t) sum.number[sum.number.length-1-i] << " ";
-        }
-
-        std::cout << "add_partial : remove leading\n";
         sum.number.remove_leading_zeros();
-
-        std::cout << "\n\nadd_partial : raw display end\n";
-        for(size_t i=0; i<sum.number.length;++i) {
-            std::cout << (base_t) sum.number[sum.number.length-1-i] << " ";
-        }
-
-        std::cout << "\n\nadd partial : return\n";
         return sum;
     }
 
@@ -439,15 +403,11 @@ namespace apa {
         const bint& l, size_t l_len, size_t l_index,
         const bint& r, size_t r_len, size_t r_index
     ) {
-        std::cout << "mul_karatsuba call\n";
         if(r_len < KARATSUBA_SIZE || l_len < KARATSUBA_SIZE) {
-
-            std::cout << "mul_karatsuba : naive case\n";
 
             bint product(l_len + r_len + 1, l_len + r_len);
             memset(product.number.limbs,0x00,product.number.capacity*LIMB_BYTES);
             
-            std::cout << "mul_karatsuba : naive case - multiply\n";
             for(size_t i=0; i<r_len; ++i) {
                 for(size_t j=0; j<l_len; ++j) {
                     product.number.limbs[i+j] += l.number.limbs[j+l_index] * r.number.limbs[i+r_index];
@@ -459,12 +419,7 @@ namespace apa {
                     }
                 }
             }
-
-            std::cout << "mul_karatsuba : naive case - remove leading\n";
-            if(!product.number.limbs[product.number.length-1]) {
-                product.number.length--;
-            }
-
+            product.number.remove_leading_zeros();
             return product;
         }
 
@@ -493,69 +448,49 @@ namespace apa {
         }
 
         // karatsuba
+        bint z0 = (a_len && c_len) ? mul_karatsuba(
+            l, a_len, split_len + l_index,
+            r, c_len, split_len + r_index
+        ) : __BINT_ZERO;
 
-        std::cout << "mul_karatsuba : z0\n";
-        bint z0 = (a_len && c_len) ? mul_karatsuba(l, a_len, split_len, r, c_len, split_len) : __BINT_ZERO;
-
-        std::cout << "mul_karatsuba : z1\n";
         bint z1 = mul_karatsuba(l, b_len, l_index, r, d_len, r_index);
 
         bint lsplit_add, rsplit_add;
 
-        std::cout << "mul_karatsuba : split add a+b\n";
         if(a_len) {
-            lsplit_add = add_partial(l, a_len, split_len, l, b_len, l_index);
+            lsplit_add = add_partial(l, a_len, split_len + l_index, l, b_len, l_index);
         } else {
             lsplit_add = add_partial(__BINT_ZERO, 1, 0, l, b_len, l_index);
         }
 
-        std::cout << "mul_karatsuba : split add c+d\n";
         if(c_len) {
-            rsplit_add = add_partial(r, c_len, split_len, r, d_len, r_index);
+            rsplit_add = add_partial(r, c_len, split_len + r_index, r, d_len, r_index);
         } else {
             rsplit_add = add_partial(__BINT_ZERO, 1, 0, r, d_len, r_index);
         }
     
-        std::cout << "mul_karatsuba : z2\n";
         bint z2 = mul_karatsuba(
             lsplit_add, lsplit_add.number.length, 0,
             rsplit_add, rsplit_add.number.length, 0
         );
 
-        std::cout << "\n\na_len | a_index = " << a_len << " | " << split_len << "\n";
-        std::cout << "b_len | b_index = " << b_len << " | " << l_index << "\n";
-        std::cout << "\nc_len | c_index = " << c_len << " | " << split_len << "\n";
-        std::cout << "d_len | d_index = " << d_len << " | " << r_index << "\n\n";
-        std::cout << "add_partial : a+b = " << lsplit_add.to_base16_string() << "\n";
-        std::cout << "add_partial : c+d = " << rsplit_add.to_base16_string() << "\n";
-
-        lsplit_add.printHex_spaced_out();
-        rsplit_add.printHex_spaced_out();
-        std::cout << "lsa * rsa = " << lsplit_add.mul_naive(rsplit_add) << "\n\n";
-
-        std::cout << "\n\nmul_karatsuba : z3\n";
         bint z3 = z2 - z1 - z0;
 
         // z4 addition
-        
-        std::cout << "mul_karatsuba : z4\n";
         size_t z4_len = l_len + r_len;
         bint z4(z4_len + 1, z4_len);
         std::memset(z4.number.limbs, 0x00, LIMB_BYTES*z4.number.capacity);
 
-        std::cout << "mul_karatsuba : z4 + z1\n";
         for(size_t i=0; i<z1.number.length; ++i) {
             z4.number.limbs[i] = z1.number.limbs[i];
         }
 
-        std::cout << "mul_karatsuba : z4 + z3\n";
         for(size_t i=0; i<z3.number.length; ++i) {
             z4.number.limbs[i+split_len] += z3.number.limbs[i];
             z4.number.limbs[i+1+split_len] += (z4.number.limbs[i+split_len] >> BASE_BITS);
             z4.number.limbs[i+split_len] = (base_t) z4.number.limbs[i+split_len];
         }
 
-        std::cout << "mul_karatsuba : z4 + z0\n";
         size_t z3_padding = split_len*2;
         for(size_t i=0; i<z0.number.length; ++i) {
             z4.number.limbs[i+z3_padding] += z0.number.limbs[i];
@@ -563,19 +498,7 @@ namespace apa {
             z4.number.limbs[i+z3_padding] = (base_t) z4.number.limbs[i+z3_padding];
         }
 
-        std::cout << "mul_karatsuba : z4 remove leading\n";
         z4.number.remove_leading_zeros();
-
-        std::cout << "\nz0 = " << z0.to_base16_string() << "\n";
-        std::cout << "z1 = " << z1.to_base16_string() << "\n";
-        std::cout << "z2 = " << z2.to_base16_string() << "\n";
-        std::cout << "z3 = " << z3.to_base16_string() << "\n";
-        std::cout << "z4 = " << z4.to_base16_string() << "\n";
-
-        std::cout << "mul_karatsuba : return\n";
-
-        std::cout << "\nmax_len   = " << max_len << "\n";
-        std::cout << "split_len = " << split_len << "\n";
         return z4;
     }
 
@@ -585,10 +508,12 @@ namespace apa {
             return mul_naive(op);
         }
 
-        return mul_karatsuba(
+        bint product =  mul_karatsuba(
             *this, number.length, 0,
             op, op.number.length, 0
         );
+        product.sign = (sign == op.sign) ? POSITIVE : NEGATIVE;
+        return product;
     }
     
     bint& bint::operator/=(const bint& op) {
