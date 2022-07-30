@@ -19,9 +19,6 @@
 #define CMP_RES_FLIP(CMP_RESULT) (-CMP_RESULT)
 
 namespace apa {
-    // most efficient limb size where karatsuba should activate.
-    static const size_t KARATSUBA_SIZE = 64;
-
     /// Positive Sign Value Indicator.
     static const uint8_t POSITIVE = 0;
 

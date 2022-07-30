@@ -118,9 +118,6 @@ int main() { START_TEST;
         apa::HEX
     );
 
-    std::cout << "num7 = " << num7 << "\n\n";
-    std::cout << "num8 = " << num8 << "\n\n";
-
     // solution
     apa::bint num1num2 = num1 * num2;
     apa::bint num2num1 = num2 * num1;
@@ -136,14 +133,6 @@ int main() { START_TEST;
     apa::bint zeronum2 = apa::__BINT_ZERO * num2;
     apa::bint num7num8 = num7 * num8;
     apa::bint num8num7 = num8 * num7;
-
-    std::cout << "num7num8 = " << num7num8 << "\n\n";
-    std::cout << "num8num7 = " << num8num7 << "\n\n";
-    std::cout << "num7num8C= " << num7num8_C << "\n\n";
-
-    std::cout << "limb size = " << sizeof(apa::limb_t) << "\n";
-    std::cout << "base size = " << sizeof(apa::base_t) << "\n";
-    std::cout << "limb 7 & 8 = " << num7.limb_size() << " & " << num8.limb_size() << "\n\n";
 
     // checks
     ASSERT_EQUALITY(num1num2.to_base16_string(),num1num2_C,"num1 * num2 ");
@@ -161,6 +150,8 @@ int main() { START_TEST;
     ASSERT_EQUALITY(zeronum2,apa::__BINT_ZERO,             "zero * num2 ");
     ASSERT_EQUALITY(num7num8,num7num8_C,                   "num7 * num8 ");
     ASSERT_EQUALITY(num8num7,num7num8_C,                   "num8 * num7 ");
+
+    std::cout << "karatsuba size treshold : " << apa::KARATSUBA_SIZE << "\n\n";
 
     #if defined(_BASE2_16)
         RESULT("BINT BASE 2^16 MULTIPLICATION");

@@ -58,6 +58,14 @@
 #endif
 
 namespace apa {
+
+#ifdef _APA_TESTING_PHASE
+    static const size_t KARATSUBA_SIZE = 4;
+#else
+    // most efficient limb size where karatsuba should activate.
+    static const size_t KARATSUBA_SIZE = 64;
+#endif
+
     // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
 #ifdef _BASE2_64
     #ifndef _APA_TESTING_PHASE

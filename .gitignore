@@ -3,12 +3,8 @@ build/
 *.o
 *.out
 *.exe
-uint320.cpp
-ChaCha20-Poly1305.hpp
 static
-*.py
-.txt
-# test.cpp
+test.cpp
 test
 main
 main.cpp
