@@ -275,9 +275,10 @@ namespace apa {
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
                 length -= i;
-                break;
+                return;
             }
         }
+        length = 1;
     }
 
     void integer::bit_and(const integer& op) {
