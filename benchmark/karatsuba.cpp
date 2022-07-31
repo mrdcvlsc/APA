@@ -18,7 +18,7 @@ apa::bint bintFactorial(size_t n) {
 }
 
 int main() {
-    apa::bint fac0 = bintFactorial(100);
+    apa::bint fac0 = bintFactorial(300);
     apa::bint fac1 = bintFactorial(3217);
     apa::bint fac2 = bintFactorial(3195);
     apa::bint fac3 = bintFactorial(1595);
