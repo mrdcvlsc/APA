@@ -457,10 +457,19 @@ namespace apa {
             z0 = __BINT_ZERO;;
         };
 
+        size_t z0_padding = split_len*2;
+        mul_karatsuba(
+            output + z0_padding,
+            l, a_len, split_len + l_index,
+            r, c_len, split_len + r_index
+        );
+
         bint z1(b_len + d_len + 1, b_len + d_len);
         std::memset(z1.number.limbs, 0x00, z1.number.capacity * LIMB_BYTES);
         mul_karatsuba(z1.number.limbs, l, b_len, l_index, r, d_len, r_index);
         z1.number.remove_leading_zeros();
+
+        mul_karatsuba(output, l, b_len, l_index, r, d_len, r_index);
 
         bint lsplit_add, rsplit_add;
 
@@ -490,22 +499,10 @@ namespace apa {
         z3 -= z0;
 
         // z4 addition
-
-        for(size_t i=0; i<z1.number.length; ++i) {
-            output[i] = z1.number.limbs[i];
-        }
-
         for(size_t i=0; i<z3.number.length; ++i) {
             output[i+split_len] += z3.number.limbs[i];
             output[i+1+split_len] += (output[i+split_len] >> BASE_BITS);
             output[i+split_len] = (base_t) output[i+split_len];
-        }
-
-        size_t z3_padding = split_len*2;
-        for(size_t i=0; i<z0.number.length; ++i) {
-            output[i+z3_padding] += z0.number.limbs[i];
-            output[i+1+z3_padding] += (output[i+z3_padding] >> BASE_BITS);
-            output[i+z3_padding] = (base_t) output[i+z3_padding];
         }
     }
 
