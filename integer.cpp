@@ -233,15 +233,15 @@ namespace apa {
     // Logical Operators
 
     bool integer::operator<(const integer& op) const {
-        return this->compare(op)==LESS ? true : false;
+        return this->compare(op)==LESS;
     }
 
     bool integer::operator>(const integer& op) const {
-        return this->compare(op)==GREAT ? true : false;
+        return this->compare(op)==GREAT;
     }
 
     bool integer::operator==(const integer& op) const {
-        return this->compare(op)==EQUAL ? true : false;
+        return this->compare(op)==EQUAL;
     }
 
     bool integer::operator!=(const integer& op) const {
@@ -251,13 +251,13 @@ namespace apa {
     bool integer::operator<=(const integer& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==LESS) ? true : false;
+        return (cmp==EQUAL || cmp==LESS);
     }
 
     bool integer::operator>=(const integer& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==GREAT) ? true : false;
+        return (cmp==EQUAL || cmp==GREAT);
     }
 
     // Bit-Wise Logical Operators
@@ -466,14 +466,14 @@ namespace apa {
             limbs[i] -= carry;
             limbs[i] -= op.limbs[i];
 
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            carry = (base_t)!!(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] -= carry;
 
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            carry = (base_t)!!(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 
