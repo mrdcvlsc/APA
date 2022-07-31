@@ -118,15 +118,15 @@ namespace apa {
     // Logical Operators
 
     bool bint::operator<(const bint& op) const {
-        return this->compare(op)==LESS ? true : false;
+        return this->compare(op)==LESS;
     }
 
     bool bint::operator>(const bint& op) const {
-        return this->compare(op)==GREAT ? true : false;
+        return this->compare(op)==GREAT;
     }
 
     bool bint::operator==(const bint& op) const {
-        return this->compare(op)==EQUAL ? true : false;
+        return this->compare(op)==EQUAL;
     }
 
     bool bint::operator!=(const bint& op) const {
@@ -136,13 +136,13 @@ namespace apa {
     bool bint::operator<=(const bint& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==LESS) ? true : false;
+        return (cmp==EQUAL || cmp==LESS);
     }
 
     bool bint::operator>=(const bint& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==GREAT) ? true : false;
+        return (cmp==EQUAL || cmp==GREAT);
     }
 
     // Bit-Wise Logical Operators
@@ -526,7 +526,7 @@ namespace apa {
             op.number.limbs, op.number.length, 0
         );
         product.number.remove_leading_zeros();
-        product.sign = (sign == op.sign) ? POSITIVE : NEGATIVE;
+        product.sign = !(sign == op.sign);
         return product;
     }
     
