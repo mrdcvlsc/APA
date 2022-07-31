@@ -18,10 +18,11 @@ apa::bint bintFactorial(size_t n) {
 }
 
 int main() {
+    apa::bint fac0 = bintFactorial(100);
     apa::bint fac1 = bintFactorial(3217);
     apa::bint fac2 = bintFactorial(3195);
     apa::bint fac3 = bintFactorial(1595);
-    apa::bint case1, case2;
+    apa::bint case1, case2, case3;
     apa::bint correct_case1(
         "2e175727cf925ff80b4a3bde937c44cc95353d61635958033d8bc20989d364e411b141bcf467db53c3989d3e50e87e81881321dc84d477f7375cb47e0b"
         "a59b1db1b90e927d72bfd40a3633b8afc146a1a45ff9d6be33d23f62ef80603ad50b488b9d29929d3950a52b38045fdaac4f4e545ee22b6957e354b419"
@@ -267,7 +268,7 @@ int main() {
         fac2 * fac3;
     }
 
-    size_t case1_total = 0, case2_total = 0;;
+    size_t case1_total = 0, case2_total = 0, case3_total = 0;
     for(size_t i=0; i<RUNS; ++i) {
         auto start1 = std::chrono::high_resolution_clock::now();
         case1 = fac1 * fac2;
@@ -280,6 +281,12 @@ int main() {
         auto end2 = std::chrono::high_resolution_clock::now();
         auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2-start2);
         case2_total += duration2.count();
+
+        auto start3 = std::chrono::high_resolution_clock::now();
+        case3 = fac0 * fac2;
+        auto end3 = std::chrono::high_resolution_clock::now();
+        auto duration3 = std::chrono::duration_cast<std::chrono::microseconds>(end3-start3);
+        case3_total += duration3.count();
     }
 
     std::cout <<
@@ -287,11 +294,9 @@ int main() {
     "| cases | limb dimension | microseconds |\n"
     "| ----- | ----------- | -------------------- |\n"
     "| case 1 | " << fac1.limb_size() << "x" << fac2.limb_size() << " | " << case1_total/RUNS << " μs |\n"
-    "| case 2 | " << fac1.limb_size() << "x" << fac3.limb_size() << " | " << case2_total/RUNS << " μs |\n" 
+    "| case 2 | " << fac1.limb_size() << "x" << fac3.limb_size() << " | " << case2_total/RUNS << " μs |\n"
+    "| case 2 | " << fac0.limb_size() << "x" << fac2.limb_size() << " | " << case2_total/RUNS << " μs |\n"
     "\n";
 
-    // std::cout << "## Correctness Test\n\n";
-    // std::cout << "- case1 - **" << ((case1 == correct_case1) ? "PASSED" : "FAILED") << "**\n";
-    // std::cout << "- case2 - **" << ((case2 == correct_case2) ? "PASSED" : "FAILED") << "**\n";
     return !((case1 == correct_case1) | (case2 == correct_case2));
 }
