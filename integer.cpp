@@ -110,8 +110,7 @@ namespace apa {
         }
 
         capacity = length+LIMB_GROWTH;
-        limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
-        memset(limbs,0x00,capacity*LIMB_BYTES);
+        limbs = (limb_t*) std::calloc(capacity, sizeof(limb_t));
 
         for(size_t i=0; i<text.size(); ++i) {
 
@@ -130,6 +129,13 @@ namespace apa {
         }
 
         length -= cut_length;
+    }
+
+    // a read only constructor
+    integer::integer(limb_t* arr, size_t capacity, size_t length) {
+        this->capacity = capacity;
+        this->length = length;
+        this->limbs = arr;
     }
 
     /// copy constructor.
@@ -233,15 +239,15 @@ namespace apa {
     // Logical Operators
 
     bool integer::operator<(const integer& op) const {
-        return this->compare(op)==LESS ? true : false;
+        return this->compare(op)==LESS;
     }
 
     bool integer::operator>(const integer& op) const {
-        return this->compare(op)==GREAT ? true : false;
+        return this->compare(op)==GREAT;
     }
 
     bool integer::operator==(const integer& op) const {
-        return this->compare(op)==EQUAL ? true : false;
+        return this->compare(op)==EQUAL;
     }
 
     bool integer::operator!=(const integer& op) const {
@@ -251,13 +257,13 @@ namespace apa {
     bool integer::operator<=(const integer& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==LESS) ? true : false;
+        return (cmp==EQUAL || cmp==LESS);
     }
 
     bool integer::operator>=(const integer& op) const {
 
         int cmp = this->compare(op);
-        return (cmp==EQUAL || cmp==GREAT) ? true : false;
+        return (cmp==EQUAL || cmp==GREAT);
     }
 
     // Bit-Wise Logical Operators
@@ -466,14 +472,14 @@ namespace apa {
             limbs[i] -= carry;
             limbs[i] -= op.limbs[i];
 
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            carry = !!(base_t)(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] -= carry;
 
-            carry = ((base_t)(limbs[i] >> BASE_BITS)) ? 1 : 0;
+            carry = !!(base_t)(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 
@@ -852,6 +858,14 @@ namespace apa {
         }
 
         return (length-1)*BASE_BITS + cnt;
+    }
+
+    limb_t* integer::detach() {
+        limb_t* detached = limbs;
+        limbs = NULL;
+        capacity = 0;
+        length = 0;
+        return detached;
     }
 
     void swap(integer& a, integer& b) {

@@ -41,6 +41,7 @@ namespace apa {
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
             bint(std::initializer_list<base_t> limbs, uint8_t sign=0);
+            bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign);
 
             /// automatically sets the sign to `POSITIVE`.
             bint(size_t capacity, size_t length, bool AllocateSpace=true);
@@ -85,13 +86,19 @@ namespace apa {
             // Arithmetic Operators
 
             static bint add_partial(
-                const bint& l, size_t l_len, size_t l_index,
-                const bint& r, size_t r_len, size_t r_index
+                const limb_t* l, size_t l_len, size_t l_index,
+                const limb_t* r, size_t r_len, size_t r_index
             );
 
-            static bint mul_karatsuba(
-                const bint& l, size_t l_len, size_t l_index,
-                const bint& r, size_t r_len, size_t r_index
+            static void sub_partial(
+                limb_t* output, size_t out_len, size_t out_index,
+                const limb_t* m, size_t m_len, size_t m_index
+            );
+
+            static void mul_karatsuba(
+                limb_t* output,
+                const limb_t* l, size_t l_len, size_t l_index,
+                const limb_t* r, size_t r_len, size_t r_index
             );
             bint mul_naive(const bint& op) const;
 
@@ -143,6 +150,7 @@ namespace apa {
             size_t bit_size() const;
             const limb_t *limb_view() const;
             const uint8_t *byte_view() const;
+            limb_t* detach();
     };
 
     // functions

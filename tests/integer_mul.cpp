@@ -9,17 +9,17 @@
 
 #include "mini-test.hpp"
 
-apa::integer fac(size_t n) {
-    apa::integer factorial(1);
-    apa::integer iter = factorial;
+// apa::integer apa::factorial_integer(size_t n) {
+//     apa::integer factorial(1);
+//     apa::integer iter = factorial;
 
-    for(size_t i=1; i<=n; ++i) {
-        factorial *= iter;
-        iter++;
-    }
+//     for(size_t i=1; i<=n; ++i) {
+//         factorial *= iter;
+//         iter++;
+//     }
 
-    return factorial;
-}
+//     return factorial;
+// }
 
 int main() { START_TEST;
 
@@ -182,9 +182,9 @@ int main() { START_TEST;
     // answers
     ASSERT_EQUALITY(num1*num2,num1num2_C, "num1*num2      ");
     ASSERT_EQUALITY(num2*num1,num1num2_C, "num2*num1      ");
-    ASSERT_EQUALITY(fac(975),FAC975_C,    "FACTORIAL(975) ");
-    ASSERT_EQUALITY(fac(1000),FAC1000_C,  "FACTORIAL(1000)");
-    ASSERT_EQUALITY(fac(3375),FAC3375_C,  "FACTORIAL(3375)");
+    ASSERT_EQUALITY(apa::factorial_integer(975),FAC975_C,    "FACTORIAL(975) ");
+    ASSERT_EQUALITY(apa::factorial_integer(1000),FAC1000_C,  "FACTORIAL(1000)");
+    ASSERT_EQUALITY(apa::factorial_integer(3375),FAC3375_C,  "FACTORIAL(3375)");
     ASSERT_EQUALITY((num1*apa::__INTEGER_ZERO),apa::__INTEGER_ZERO,"num1*zero      ");
     ASSERT_EQUALITY((apa::__INTEGER_ZERO*num1),apa::__INTEGER_ZERO,"zero*num1      ");
 
