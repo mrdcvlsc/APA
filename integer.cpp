@@ -132,6 +132,13 @@ namespace apa {
         length -= cut_length;
     }
 
+    // a read only constructor
+    integer::integer(limb_t* arr, size_t capacity, size_t length) {
+        this->capacity = capacity;
+        this->length = length;
+        this->limbs = arr;
+    }
+
     /// copy constructor.
     integer::integer(const integer& src) {
 
@@ -852,6 +859,14 @@ namespace apa {
         }
 
         return (length-1)*BASE_BITS + cnt;
+    }
+
+    limb_t* integer::detach() {
+        limb_t* detached = limbs;
+        limbs = NULL;
+        capacity = 0;
+        length = 0;
+        return detached;
     }
 
     void swap(integer& a, integer& b) {

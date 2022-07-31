@@ -41,6 +41,7 @@ namespace apa {
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
             bint(std::initializer_list<base_t> limbs, uint8_t sign=0);
+            bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign);
 
             /// automatically sets the sign to `POSITIVE`.
             bint(size_t capacity, size_t length, bool AllocateSpace=true);
@@ -149,6 +150,7 @@ namespace apa {
             size_t bit_size() const;
             const limb_t *limb_view() const;
             const uint8_t *byte_view() const;
+            limb_t* detach();
     };
 
     // functions

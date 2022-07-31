@@ -47,6 +47,12 @@ namespace apa {
         number = integer(text,base);
     }
 
+    // read only constuctor
+    bint::bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign) {
+        number = integer(arr, capacity, length);
+        sign = sign;
+    }
+
     /// copy constructor.
     bint::bint(const bint& src) {
 
@@ -478,7 +484,7 @@ namespace apa {
             );
             z0.number.remove_leading_zeros();
         } else {
-            z0 = __BINT_ZERO;;
+            z0 = __BINT_ZERO;
         };
 
         size_t z0_padding = split_len*2;
@@ -716,6 +722,11 @@ namespace apa {
 
     const uint8_t *bint::byte_view() const {
         return (const uint8_t*) number.limbs;
+    }
+
+    limb_t* bint::detach() {
+        sign = 0;
+        return number.detach();
     }
 
     void swap(bint& a, bint& b) {

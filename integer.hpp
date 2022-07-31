@@ -60,6 +60,7 @@ namespace apa {
         integer(std::string text, size_t base=10);
         integer(std::initializer_list<base_t> limbs);
         integer(size_t capacity, size_t length, bool AllocateSpace=true);
+        integer(limb_t* arr, size_t capacity, size_t length);
 
         // integer Constructors.
         integer(const integer& src);     // copy.
@@ -152,6 +153,7 @@ namespace apa {
         // Methods
         size_t byte_size() const;
         size_t bit_size() const;
+        limb_t* detach();
     };
 
     // functions
