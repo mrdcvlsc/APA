@@ -50,8 +50,10 @@ build_compile:
 	@$(CC) -c integer.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling bint..."
 	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling math..."
+	@$(CC) -c math.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) integer.o bint.o
+	@ar -r $(LIB_OUTNAME) integer.o bint. math.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 
 cleanup:
