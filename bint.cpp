@@ -50,7 +50,7 @@ namespace apa {
     // read only constuctor
     bint::bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign) {
         number = integer(arr, capacity, length);
-        sign = sign;
+        this->sign = sign;
     }
 
     /// copy constructor.
