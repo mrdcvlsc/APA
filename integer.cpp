@@ -110,8 +110,7 @@ namespace apa {
         }
 
         capacity = length+LIMB_GROWTH;
-        limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
-        memset(limbs,0x00,capacity*LIMB_BYTES);
+        limbs = (limb_t*) std::calloc(capacity, sizeof(limb_t));
 
         for(size_t i=0; i<text.size(); ++i) {
 
