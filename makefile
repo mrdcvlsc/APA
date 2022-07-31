@@ -55,7 +55,6 @@ test: $(OBJ)
 	@./$(SRC)/integer_base_print.out
 	@./$(SRC)/integer_bases.out
 	@./$(SRC)/integer_access.out
-	
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out
 	@./$(SRC)/bint_add.out
@@ -65,6 +64,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_bitwise_logic.out
 	@./$(SRC)/bint_shifts.out
 	@./$(SRC)/bint_methods.out
+	@./$(SRC)/bint_karatsuba.out
 
 # -------------------------- test program compilation ---------------------------
 
