@@ -14,5 +14,6 @@
 #include "integer.cpp"
 #include "bint.hpp"
 #include "bint.cpp"
+#include "math.hpp"
 
 #endif
