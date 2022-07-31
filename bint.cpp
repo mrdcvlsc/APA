@@ -399,6 +399,28 @@ namespace apa {
         return sum;
     }
 
+    void bint::sub_partial(
+        limb_t* output, size_t out_len, size_t out_index,
+        const limb_t* m, size_t m_len, size_t m_index
+    ) {
+        limb_t carry = 0;
+
+        for(size_t i=0; i<m_len; ++i) {
+            output[i+out_index] -= carry;
+            output[i+out_index] -= m[i+m_index];
+
+            carry = !!(base_t)(output[i+out_index] >> BASE_BITS);
+            output[i+out_index] = (base_t) output[i+out_index];
+        }
+
+        for(size_t i=m_len; i<out_len; ++i) {
+            output[i+out_index] -= carry;
+
+            carry = !!(base_t)(output[i+out_index] >> BASE_BITS);
+            output[i+out_index] = (base_t) output[i+out_index];
+        }
+    }
+
     void bint::mul_karatsuba(
         limb_t* output,
         const limb_t* l, size_t l_len, size_t l_index,

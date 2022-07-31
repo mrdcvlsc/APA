@@ -466,14 +466,14 @@ namespace apa {
             limbs[i] -= carry;
             limbs[i] -= op.limbs[i];
 
-            carry = (base_t)!!(limbs[i] >> BASE_BITS);
+            carry = !!(base_t)(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 
         for(size_t i=op.length; i<length; ++i) {
             limbs[i] -= carry;
 
-            carry = (base_t)!!(limbs[i] >> BASE_BITS);
+            carry = !!(base_t)(limbs[i] >> BASE_BITS);
             limbs[i] = (base_t) limbs[i];
         }
 

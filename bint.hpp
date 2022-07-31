@@ -89,6 +89,11 @@ namespace apa {
                 const limb_t* r, size_t r_len, size_t r_index
             );
 
+            static void sub_partial(
+                limb_t* output, size_t out_len, size_t out_index,
+                const limb_t* m, size_t m_len, size_t m_index
+            );
+
             static void mul_karatsuba(
                 limb_t* output,
                 const limb_t* l, size_t l_len, size_t l_index,
