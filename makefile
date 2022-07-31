@@ -4,6 +4,7 @@ TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
+.PHONY: benchmark karatsuba
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
@@ -54,7 +55,6 @@ test: $(OBJ)
 	@./$(SRC)/integer_base_print.out
 	@./$(SRC)/integer_bases.out
 	@./$(SRC)/integer_access.out
-	
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out
 	@./$(SRC)/bint_add.out
@@ -64,6 +64,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_bitwise_logic.out
 	@./$(SRC)/bint_shifts.out
 	@./$(SRC)/bint_methods.out
+	@./$(SRC)/bint_karatsuba.out
 
 # -------------------------- test program compilation ---------------------------
 
@@ -79,3 +80,24 @@ else
 	@echo "deleting compiled test programs"
 	del tests\*.out
 endif
+
+benchmark: karatsuba
+
+karatsuba:
+	@echo "# Karatsuba Multiplication" > benchmark/karatsuba.md
+	@echo "" >> benchmark/karatsuba.md
+	@echo "Average performance of APA's karatsuba implementation (microseconds)" >> benchmark/karatsuba.md
+	@echo "" >> benchmark/karatsuba.md
+	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_16
+	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
+	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_32
+	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
+	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_64
+	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
+	@rm benchmark/karatsuba.out
+	@echo "" >> benchmark/karatsuba.md
+	@echo "### System Runner" >> benchmark/karatsuba.md
+	@echo "" >> benchmark/karatsuba.md
+	@echo "\`\`\`" >> benchmark/karatsuba.md
+	@lscpu >> benchmark/karatsuba.md
+	@echo "\`\`\`" >> benchmark/karatsuba.md

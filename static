@@ -33,11 +33,13 @@ ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))integer.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))config.hpp ./$(LIB_HEADER_OUT)/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))math.hpp ./$(LIB_HEADER_OUT)/
 else
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
 	@copy "./integer.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
 	@copy "./config.hpp" "$(LIB_HEADER_OUT)"
+	@copy "./math.hpp" "$(LIB_HEADER_OUT)"
 endif
 
 build_compile:
@@ -50,8 +52,10 @@ build_compile:
 	@$(CC) -c integer.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling bint..."
 	@$(CC) -c bint.cpp $(LIB_OPTIMIZATION)
+	@echo "compiling math..."
+	@$(CC) -c math.cpp $(LIB_OPTIMIZATION)
 	@echo "compiling $(LIB_OUTNAME)..."
-	@ar -r $(LIB_OUTNAME) integer.o bint.o
+	@ar -r $(LIB_OUTNAME) integer.o bint.o math.o
 	@echo "build done : output -> $(LIB_OUTNAME)"
 
 cleanup:
@@ -84,7 +88,6 @@ static_test: $(OBJ)
 	@./$(SRC)/integer_base_print.out
 	@./$(SRC)/integer_bases.out
 	@./$(SRC)/integer_access.out
-	
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out
 	@./$(SRC)/bint_add.out
@@ -94,6 +97,7 @@ static_test: $(OBJ)
 	@./$(SRC)/bint_bitwise_logic.out
 	@./$(SRC)/bint_shifts.out
 	@./$(SRC)/bint_methods.out
+	@./$(SRC)/bint_karatsuba.out
 
 # -------------------------- test program compilation ---------------------------
 
@@ -107,6 +111,7 @@ ifeq ($(OS), Linux)
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/integer.hpp $(INSTALL_PREFIX)include
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/config.hpp $(INSTALL_PREFIX)include
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/math.hpp $(INSTALL_PREFIX)include
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
 	@echo "integer.hpp config.hpp now installed to $(INSTALL_PREFIX)include"
 else
@@ -120,6 +125,7 @@ else
 	copy build\include\integer.hpp "$(INSTALL_PREFIX)\include
 	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include
 	copy build\include\config.hpp "$(INSTALL_PREFIX)\include
+	copy build\include\math.hpp "$(INSTALL_PREFIX)\include
 	@echo install success
 endif
 
@@ -129,10 +135,12 @@ ifeq ($(OS), Linux)
 	@rm $(INSTALL_PREFIX)include/integer.hpp
 	@rm $(INSTALL_PREFIX)include/bint.hpp
 	@rm $(INSTALL_PREFIX)include/config.hpp
+	@rm $(INSTALL_PREFIX)include/math.hpp
 else
 	del "$(INSTALL_PREFIX)\lib\$(LIB_OUTNAME)"
 	del "$(INSTALL_PREFIX)\include\integer.hpp"
 	del "$(INSTALL_PREFIX)\include\bint.hpp"
 	del "$(INSTALL_PREFIX)\include\config.hpp"
+	del "$(INSTALL_PREFIX)\include\math.hpp"
 	echo uninstall success
 endif

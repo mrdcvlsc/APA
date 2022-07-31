@@ -4,6 +4,11 @@
 #include <iostream>
 #include <vector>
 
+#ifdef _MAKE_LIB
+#include <math.hpp>
+#endif
+
+
 std::vector<bool> TEST_RESULTS;
 
 #define START_TEST std::cout << "-------------------------------\n";
