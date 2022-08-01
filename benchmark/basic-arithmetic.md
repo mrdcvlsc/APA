@@ -1,30 +1,42 @@
-# Karatsuba Multiplication
+# Basic Arithmetic
 
-Average performance of APA's karatsuba implementation (microseconds)
+Average performance (nanoseconds)
 
 ### Using base 2<sup>16</sup> number system representation.
 
-| cases | limb dimension | microseconds |
-| ----- | ----------- | -------------------- |
-| case 1 | 2054x2038 | 4160 μs |
-| case 2 | 2054x918 | 2682 μs |
-| case 3 | 128x2038 | 826 μs |
+- a limb size = 2075
+- b limb size = 1629
+
+| cases | nanoseconds |
+| ----- | ----------- |
+| add (a + b) | 9939 ns |
+| sub (a - b) | 8082 ns |
+| mul (a * b) | 3917794 ns |
+| div (a / b) | 122277622 ns |
 
 ### Using base 2<sup>32</sup> number system representation.
 
-| cases | limb dimension | microseconds |
-| ----- | ----------- | -------------------- |
-| case 1 | 1027x1019 | 1432 μs |
-| case 2 | 1027x459 | 923 μs |
-| case 3 | 64x1019 | 306 μs |
+- a limb size = 1038
+- b limb size = 815
+
+| cases | nanoseconds |
+| ----- | ----------- |
+| add (a + b) | 7232 ns |
+| sub (a - b) | 5102 ns |
+| mul (a * b) | 1321380 ns |
+| div (a / b) | 129885941 ns |
 
 ### Using base 2<sup>64</sup> number system representation.
 
-| cases | limb dimension | microseconds |
-| ----- | ----------- | -------------------- |
-| case 1 | 514x510 | 790 μs |
-| case 2 | 514x230 | 508 μs |
-| case 3 | 32x510 | 127 μs |
+- a limb size = 519
+- b limb size = 408
+
+| cases | nanoseconds |
+| ----- | ----------- |
+| add (a + b) | 5718 ns |
+| sub (a - b) | 4049 ns |
+| mul (a * b) | 740979 ns |
+| div (a / b) | 73814189 ns |
 
 
 ### System Runner

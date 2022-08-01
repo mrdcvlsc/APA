@@ -4,7 +4,7 @@ TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
-.PHONY: benchmark karatsuba
+.PHONY: test all_test benchmark karatsuba arithmetic
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
@@ -81,7 +81,7 @@ else
 	del tests\*.out
 endif
 
-benchmark: karatsuba
+benchmark: karatsuba arithmetic
 
 karatsuba:
 	@echo "# Karatsuba Multiplication" > benchmark/karatsuba.md
@@ -101,3 +101,22 @@ karatsuba:
 	@echo "\`\`\`" >> benchmark/karatsuba.md
 	@lscpu >> benchmark/karatsuba.md
 	@echo "\`\`\`" >> benchmark/karatsuba.md
+
+arithmetic:
+	@echo "# Basic Arithmetic" > benchmark/basic-arithmetic.md
+	@echo "" >> benchmark/basic-arithmetic.md
+	@echo "Average performance (nanoseconds)" >> benchmark/basic-arithmetic.md
+	@echo "" >> benchmark/basic-arithmetic.md
+	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_16
+	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
+	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_32
+	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
+	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_64
+	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
+	@rm benchmark/basic-arithmetic.out
+	@echo "" >> benchmark/basic-arithmetic.md
+	@echo "### System Runner" >> benchmark/basic-arithmetic.md
+	@echo "" >> benchmark/basic-arithmetic.md
+	@echo "\`\`\`" >> benchmark/basic-arithmetic.md
+	@lscpu >> benchmark/basic-arithmetic.md
+	@echo "\`\`\`" >> benchmark/basic-arithmetic.md

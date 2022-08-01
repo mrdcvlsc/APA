@@ -295,7 +295,7 @@ int main() {
     "| ----- | ----------- | -------------------- |\n"
     "| case 1 | " << fac1.limb_size() << "x" << fac2.limb_size() << " | " << case1_total/RUNS << " μs |\n"
     "| case 2 | " << fac1.limb_size() << "x" << fac3.limb_size() << " | " << case2_total/RUNS << " μs |\n"
-    "| case 2 | " << fac0.limb_size() << "x" << fac2.limb_size() << " | " << case2_total/RUNS << " μs |\n"
+    "| case 3 | " << fac0.limb_size() << "x" << fac2.limb_size() << " | " << case3_total/RUNS << " μs |\n"
     "\n";
 
     return !((case1 == correct_case1) | (case2 == correct_case2));
