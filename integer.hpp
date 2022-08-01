@@ -36,29 +36,32 @@ namespace apa {
 
     constexpr static int BITS_PER_BYTE = 8;
 
-    constexpr static size_t BASE_BITS = (sizeof(base_t)*8);
+    constexpr static size_t BASE_BITS = (sizeof(limb_t)*8);
     constexpr static size_t BASE_BITS_MINUS1 = BASE_BITS-1;
     constexpr static size_t BASE_BYTES = BASE_BITS/8;
 
-    constexpr static size_t LIMB_BITS = BASE_BITS*2;
-    constexpr static size_t LIMB_BYTES = BASE_BYTES*2;
+    constexpr static size_t LIMB_BITS = BASE_BITS;
+    constexpr static size_t LIMB_BYTES = BASE_BYTES;
+
+    constexpr static size_t CAST_BITS = BASE_BITS*2;
+    constexpr static size_t CAST_BYTES = BASE_BYTES*2;
 
     const static size_t INITIAL_LIMB_CAPACITY = 2;
     const static size_t INITIAL_LIMB_LENGTH = 1;
     const static size_t LIMB_GROWTH = 2;
 
-    constexpr static base_t BASE_MAX = std::numeric_limits<base_t>::max();
+    constexpr static limb_t BASE_MAX = std::numeric_limits<limb_t>::max();
 
     struct integer {
         size_t capacity;
         size_t length;
-        limb_t *limbs;
+        limb_t* limbs;
 
         // Constructors
         integer();
-        integer(base_t num);
+        integer(limb_t num);
         integer(std::string text, size_t base=10);
-        integer(std::initializer_list<base_t> limbs);
+        integer(std::initializer_list<limb_t> limbs);
         integer(size_t capacity, size_t length, bool AllocateSpace=true);
         integer(limb_t* arr, size_t capacity, size_t length);
 

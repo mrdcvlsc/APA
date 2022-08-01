@@ -66,28 +66,28 @@ namespace apa {
     static const size_t KARATSUBA_SIZE = 64;
 #endif
 
-    // 'limb_t' should always be double the size of 'base_t', this is to avoid overflows.
+    // 'cast_t' should always be double the size of 'limb_t', this is to avoid overflows.
 #ifdef _BASE2_64
     #ifndef _APA_TESTING_PHASE
         #pragma message("compiling with base2^64 types - fastest performance")
     #endif
     typedef int64_t bint_arg_t;
-    typedef uint64_t base_t;
-    typedef __uint128_t limb_t;
+    typedef uint64_t limb_t;
+    typedef __uint128_t cast_t;
 #elif defined(_BASE2_32)
     #ifndef _APA_TESTING_PHASE
         #pragma message("compiling with base2^32 - average performance")
     #endif
     typedef int32_t bint_arg_t;
-    typedef uint32_t base_t;
-    typedef uint64_t limb_t;
+    typedef uint32_t limb_t;
+    typedef uint64_t cast_t;
 #elif defined(_BASE2_16)
     #ifndef _APA_TESTING_PHASE
         #pragma message("compiling with base2^16 - slowest performance")
     #endif
     typedef int16_t bint_arg_t;
-    typedef uint16_t base_t;
-    typedef uint32_t limb_t;
+    typedef uint16_t limb_t;
+    typedef uint32_t cast_t;
 #endif
 }
 

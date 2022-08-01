@@ -116,6 +116,9 @@ int main() { START_TEST;
         ASSERT_EQUALITY((SUBJECT_LS1 << 1),LS1_C,                        "(SUBJECT_LS1 << 1)      ");
         ASSERT_EQUALITY(subject_bug_ans, subject_bug_RS15,               "subject_bug >> 15       ");
 
+        std::cout << "2 << 323    = " << (apa::integer(2) << 320) << "\n\n";
+        std::cout << "LS320_TWO_C = " << LS320_TWO_C << "\n";
+
     #if defined(_BASE2_16)
         RESULT("INTEGER BASE 2^16 SHIFT OPERATORS");
     #elif defined(_BASE2_32)

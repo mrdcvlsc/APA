@@ -40,7 +40,7 @@ namespace apa {
             bint();
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
-            bint(std::initializer_list<base_t> limbs, uint8_t sign=0);
+            bint(std::initializer_list<limb_t> limbs, uint8_t sign=0);
             bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign);
 
             /// automatically sets the sign to `POSITIVE`.
