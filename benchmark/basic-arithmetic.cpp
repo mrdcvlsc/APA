@@ -37,7 +37,7 @@ int main() {
     }
 
     std::cout <<
-    "### Using base 2<sup>" << sizeof(apa::base_t)*8 << "</sup> number system representation.\n\n"
+    "### Using base 2<sup>" << sizeof(apa::limb_t)*8 << "</sup> number system representation.\n\n"
     "- a limb size = " << a.limb_size() << "\n"
     "- b limb size = " << b.limb_size() << "\n\n"
     "| cases | nanoseconds |\n"
