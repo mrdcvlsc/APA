@@ -15,33 +15,23 @@
 #endif
 
 namespace apa {
-
     bint::bint() {
-
         number = integer();
         sign = POSITIVE;
     }
 
     bint::bint(bint_arg_t num) {
-
-        if(num<0) {
-            sign = NEGATIVE;
-            num = std::abs(num);
-        } else {
-            sign = POSITIVE;
-        }
-        number = integer(num);
+        sign = (num < 0); // 1 if negative, 0 if positive.        
+        number = integer(std::abs(num));
     }
 
     bint::bint(size_t capacity, size_t length, bool AllocateSpace) {
-
         number = integer(capacity,length,AllocateSpace);
         sign = POSITIVE;
     }
 
     // constructor for conveniece
     bint::bint(std::string text, size_t base) {
-
         if(text[0]=='-') {
             sign = NEGATIVE;
             text.erase(text.begin(),text.begin()+1);
@@ -59,21 +49,18 @@ namespace apa {
 
     /// copy constructor.
     bint::bint(const bint& src) {
-
         number = src.number;
         sign = src.sign;
     }
 
     /// move constructor.
     bint::bint(bint&& src) noexcept {
-
         number = std::move(src.number);
         sign = src.sign;
     }
 
     /// copy assignment.
     bint& bint::operator=(const bint& src) {
-        
         if(this != &src) {
             number = src.number;
             sign = src.sign;
@@ -83,7 +70,6 @@ namespace apa {
 
     /// move assignment.
     bint& bint::operator=(bint&& src) noexcept {
-
         if(this != &src) {
             number = std::move(src.number);
             sign = src.sign;
@@ -92,20 +78,17 @@ namespace apa {
     }
 
     bint::bint(uint8_t sign, const integer& number) {
-
         this->number = number;
         this->sign = sign;
     }
     
     bint::bint(uint8_t sign, integer&& number) noexcept {
-
         this->number = std::move(number);
         this->sign = sign;
     }
     
 
     bint::bint(std::initializer_list<limb_t> limbs, uint8_t sign) {
-
         number = integer(limbs);
         this->sign = sign;
     }
@@ -113,7 +96,6 @@ namespace apa {
     bint::~bint() {}
 
     int bint::compare(const bint& op) const {
-
         if(LPOS_RNEG(sign,op.sign)) {
             return  GREAT;
         } else if(LNEG_RPOS(sign,op.sign)) {
@@ -121,7 +103,6 @@ namespace apa {
         } else if(SIGN_NEGATIVE(sign)) {
             return CMP_RES_FLIP(number.compare(op.number));
         }
-
         return number.compare(op.number);
     }
 
@@ -144,13 +125,11 @@ namespace apa {
     }
 
     bool bint::operator<=(const bint& op) const {
-
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==LESS);
     }
 
     bool bint::operator>=(const bint& op) const {
-
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==GREAT);
     }
@@ -158,7 +137,6 @@ namespace apa {
     // Bit-Wise Logical Operators
 
     void bint::bitwise_prepare(bint& left, bint& right) {
-
         size_t lpadding = 0, rpadding = 0;
 
         if(left.limb_size() < right.limb_size()) {
@@ -187,7 +165,6 @@ namespace apa {
     }
 
     bint& bint::operator&=(const bint& op) {
-
         if(sign | op.sign) {
             bint left = *this, right = op;
             
@@ -272,7 +249,6 @@ namespace apa {
     }
 
     bint bint::operator~() const {
-        
         bint bwn = *this;
         if(SIGN_NEGATIVE(sign)) {
             --bwn.number;
@@ -291,7 +267,6 @@ namespace apa {
 
     // Arithmetic Operators
     bint& bint::operator+=(const bint& op) {
-
         int cmp = number.compare(op.number);
         if(sign!=op.sign) {
             switch (cmp) {
@@ -311,24 +286,21 @@ namespace apa {
         } else {
             number += op.number;
         }
-
         return *this;
     }
 
     bint bint::operator+(const bint& op) const {
-        
         bint sum = *this;
         return sum += op;
     }
     
     bint& bint::operator-=(const bint& op) {
-
         int cmp = compare(op);
-        if(sign!=op.sign) {
+        if(sign != op.sign) {
             number += op.number; // correct - final
         }
         else {
-            if(cmp==EQUAL) {
+            if(cmp == EQUAL) {
                 number.length = 1;
                 number[0] = 0;
             } else if(SIGN_NEGATIVE(sign)) {
@@ -355,31 +327,25 @@ namespace apa {
                 }
             }
         }
-
         return *this;
     }
 
     bint bint::operator-(const bint& op) const {
-
         bint dif = *this;
         return dif -= op;
     }
     
     bint& bint::operator*=(const bint& op) {
-
         bint product = *this * op;
         swap(product,*this);
         return *this;
     }
 
     bint bint::mul_naive(const bint& op) const {
-        
-        bint product(!(sign==op.sign), number * op.number);
-        
+        bint product(!(sign == op.sign), number * op.number);
         if(!product.number){
             product.sign = 0;
         }
-
         return product;
     }
 
@@ -527,12 +493,10 @@ namespace apa {
             out[i] = sum_index;
             carry = sum_index >> BASE_BITS;
         }
-        
         out[out_index+split_len+z3.number.length] += carry;
     }
 
     bint bint::operator*(const bint& op) const {
-
         if(number.length < KARATSUBA_SIZE || op.number.length < KARATSUBA_SIZE) {
             return mul_naive(op);
         }
@@ -551,43 +515,34 @@ namespace apa {
     }
     
     bint& bint::operator/=(const bint& op) {
-
         bint quotient = *this / op;
         swap(quotient,*this);
         return *this;
     }
 
     bint bint::operator/(const bint& op) const {
-
         bint quotient(!(sign==op.sign), number / op.number);
-        
         if(!quotient.number){
             quotient.sign = 0;
         }
-
         return quotient;
     }
 
     bint& bint::operator%=(const bint& op) {
-
         bint remainder = *this % op;
         swap(remainder,*this);
         return *this;
     }
     
     bint bint::operator%(const bint& op) const {
-        
         bint mod(sign, number % op.number);
-
         if(!mod.number){
             mod.sign = 0;
         }
-
         return mod;
     }
 
     bint bint::operator-() const {
-        
         bint negate = *this;
         negate.sign = !negate.sign;
         return negate;
@@ -604,14 +559,12 @@ namespace apa {
 
     // post-fix increment/decrement
     bint bint::operator++(int) {
-
         bint prev = *this;
         ++*this;
         return prev;
     }
 
     bint bint::operator--(int) {
-
         bint prev = *this;
         --*this;
         return prev;
@@ -619,38 +572,29 @@ namespace apa {
 
     // Shift Operators
     bint& bint::operator<<=(size_t bits) {
-
-        if(number) {
-            number <<= bits;
-        }
+        number <<= bits;
         return *this;
     }
 
     bint& bint::operator>>=(size_t bits) {
-
-        if(number) {
-            number >>= bits;
-            if(SIGN_NEGATIVE(sign)) {
-                ++number;
-            }
+        number >>= bits;
+        if(SIGN_NEGATIVE(sign)) {
+            ++number;
         }
         return *this;
     }
 
     bint bint::operator<<(size_t bits) const {
-
         bint shifted = *this;
         return shifted <<= bits;
     }
 
     bint bint::operator>>(size_t bits) const {
-
         bint shifted = *this;
         return shifted >>= bits;
     }
 
     void bint::printHex() const {
-
         if(SIGN_NEGATIVE(sign)) {
             std::cout << "-";
         }
@@ -658,19 +602,16 @@ namespace apa {
     }
 
     void bint::printHex_spaced_out() const {
-
         number.printHex_spaced_out();
         std::cout << ((SIGN_NEGATIVE(sign)) ? "\nNegative:" : "\nPositive\n");
     }
 
     void bint::printStatus(std::string printIdentifier) const {
-
         number.printStatus(printIdentifier);
         std::cout << ((SIGN_NEGATIVE(sign)) ? "\nNegative:" : "\nPositive\n");
     }
 
     std::string bint::to_base10_string() const {
-
         std::string Base10 = "";
         if(SIGN_NEGATIVE(sign)) {
             Base10.push_back('-');
@@ -681,7 +622,6 @@ namespace apa {
     }
 
     std::string bint::to_base16_string() const {
-
         std::string Base16 = "";
         if(SIGN_NEGATIVE(sign)) {
             Base16.push_back('-');
@@ -722,7 +662,6 @@ namespace apa {
     }
 
     void swap(bint& a, bint& b) {
-
         bint temp = std::move(a);
         a = std::move(b);
         b = std::move(temp);
@@ -730,13 +669,11 @@ namespace apa {
 
     // IO Operators
     std::ostream& operator<<(std::ostream &out, const bint &num) {
-
         out << num.to_base16_string();
         return out;
     }
 
     std::istream& operator>>(std::istream &in, bint &num) {
-        
         std::string input;
         in >> input;
         num = bint(input,16);
