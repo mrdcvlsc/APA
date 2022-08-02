@@ -63,7 +63,7 @@ namespace apa {
     static const size_t KARATSUBA_SIZE = 4;
 #else
     // most efficient limb size where karatsuba should activate.
-    static const size_t KARATSUBA_SIZE = 64;
+    static const size_t KARATSUBA_SIZE = 50;
 #endif
 
     // 'cast_t' should always be double the size of 'limb_t', this is to avoid overflows.

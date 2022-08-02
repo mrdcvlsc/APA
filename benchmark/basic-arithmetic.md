@@ -11,17 +11,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 15380 ns |
-| sub (a - b) | 15109 ns |
-| mul (a * b) | 10587549 ns |
-| div (a / b) | 429742784 ns |
+| add (a + b) | 13889 ns |
+| sub (a - b) | 15058 ns |
+| mul (a * b) | 10623918 ns |
+| div (a / b) | 429996319 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 304283 μs |
-| apa::factorial(6321) | 47585 μs |
+| apa::fibonacci(71421) | 305011 μs |
+| apa::factorial(6321) | 41824 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
@@ -32,17 +32,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 9404 ns |
-| sub (a - b) | 8430 ns |
-| mul (a * b) | 3411971 ns |
-| div (a / b) | 303007096 ns |
+| add (a + b) | 8491 ns |
+| sub (a - b) | 8250 ns |
+| mul (a * b) | 3408822 ns |
+| div (a / b) | 302495478 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 186637 μs |
-| apa::factorial(6321) | 29460 μs |
+| apa::fibonacci(71421) | 186362 μs |
+| apa::factorial(6321) | 31449 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
@@ -53,17 +53,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 9989 ns |
-| sub (a - b) | 7232 ns |
-| mul (a * b) | 1941847 ns |
-| div (a / b) | 357658909 ns |
+| add (a + b) | 8817 ns |
+| sub (a - b) | 7239 ns |
+| mul (a * b) | 1941431 ns |
+| div (a / b) | 358457575 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 187595 μs |
-| apa::factorial(6321) | 25904 μs |
+| apa::fibonacci(71421) | 186240 μs |
+| apa::factorial(6321) | 26954 μs |
 
 
 ### System Runner
