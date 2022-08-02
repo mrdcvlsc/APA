@@ -419,20 +419,6 @@ namespace apa {
         const limb_t* r, size_t r_len, size_t r_index
     ) {
         if(r_len < KARATSUBA_SIZE || l_len < KARATSUBA_SIZE) {
-            std::cout << "naive case\n";
-            
-            std::cout << "l = ";
-            // for(size_t i=0; i<l_len; ++i) {
-            //     printf("%04x ", l[l_len-1-i]);
-            // }
-            std::cout << " - size " << l_len << "\n";
-
-            std::cout << "r = ";
-            // for(size_t i=0; i<r_len; ++i) {
-            //     printf("%04x ", r[r_len-1-i]);
-            // }
-            std::cout << " - size " << r_len << "\n\n";
-
             for(size_t i=0; i<r_len; ++i) {
                 limb_t carry = 0;
                 for(size_t j=0; j<l_len; ++j) {
@@ -444,22 +430,6 @@ namespace apa {
             }
             return;
         }
-
-        std::cout << "karatsuba case\n";
-
-        ///
-        std::cout << "l = ";
-        // for(size_t i=0; i<l_len; ++i) {
-        //     printf("%04x ", l[l_len-1-i]);
-        // }
-        std::cout << " - size " << l_len << "\n";
-
-        std::cout << "r = ";
-        // for(size_t i=0; i<r_len; ++i) {
-        //     printf("%04x ", r[r_len-1-i]);
-        // }
-        std::cout << " - size " << r_len << "\n\n";
-        ///
 
         size_t max_len = std::max(l_len, r_len);
         size_t split_len = max_len - (max_len / 2);
@@ -488,12 +458,6 @@ namespace apa {
         // karatsuba
 
         // z0 --------------------------------------------------------------
-        std::cout << "z0: start\n";
-        std::cout << "l_len = " << l_len << "\n";
-        std::cout << "r_len = " << r_len << "\n";
-        std::cout << "a_len = " << a_len << "\n";
-        std::cout << "c_len = " << c_len << "\n";
-        std::cout << "split_len = " << split_len << "\n";
         size_t z0_padding = split_len*2;
         if(a_len && c_len) {
             mul_karatsuba(
@@ -502,7 +466,6 @@ namespace apa {
                 r, c_len, split_len + r_index
             );
         }
-        std::cout << "z0: done\n";
         bint z0;
         if (a_len && c_len) {
             z0 = bint(output + z0_padding, a_len + c_len + 1, a_len + c_len, 0);
@@ -512,7 +475,6 @@ namespace apa {
         z0.number.remove_leading_zeros();
 
         // z1 --------------------------------------------------------------
-        std::cout << "z1:\n";
         mul_karatsuba(output, l, b_len, l_index, r, d_len, r_index);
         bint z1 = bint(output, b_len + d_len + 1, b_len + d_len, 0);
         z1.number.remove_leading_zeros();
@@ -534,7 +496,6 @@ namespace apa {
 
         bint z2(lsplit_add.number.length + rsplit_add.number.length + 1, lsplit_add.number.length + rsplit_add.number.length);
         std::memset(z2.number.limbs, 0x00, z2.number.capacity * LIMB_BYTES);
-        std::cout << "z2:\n";
         mul_karatsuba(
             z2.number.limbs,
             lsplit_add.number.limbs, lsplit_add.number.length, 0,
@@ -542,33 +503,21 @@ namespace apa {
         );
         z2.number.remove_leading_zeros();
 
-        std::cout << "z1 = " << z1 << "\n";
-        std::cout << "z2 = " << z2 << "\n";
-
         // z3 --------------------------------------------------------------
-        std::cout << "z3:\n";
         bint z3 = std::move(z2);
         z3 -= z1;
         z3 -= z0;
         z0.detach();
         z1.detach();
 
-        std::cout << "z3 = " << z3 << "\n\n";
-
         // z4 --------------------------------------------------------------
         limb_t carry = 0;
-        std::cout << "z4:\n";
         for(size_t i=0; i<z3.number.length; ++i) {
             cast_t sum_index = (cast_t) output[i+split_len] + z3.number.limbs[i] + carry;
             output[i+split_len] = sum_index;
             carry = sum_index >> BASE_BITS;
         }
         output[z3.number.length+split_len] += carry;
-        // for(size_t i=z3.number.length; i< (l_len + r_len); ++i) {
-        //     cast_t sum_index = (cast_t) output[i+split_len] + carry;
-        //     output[i+split_len] = sum_index;
-        //     carry = sum_index >> BASE_BITS;
-        // }
     }
 
     bint bint::operator*(const bint& op) const {
