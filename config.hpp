@@ -60,7 +60,8 @@
 namespace apa {
 
 #ifdef _APA_TESTING_PHASE
-    static const size_t KARATSUBA_SIZE = 4;
+    // static const size_t KARATSUBA_SIZE = 4;
+    static const size_t KARATSUBA_SIZE = 2; // for tests
 #else
     // most efficient limb size where karatsuba should activate.
     static const size_t KARATSUBA_SIZE = 64;

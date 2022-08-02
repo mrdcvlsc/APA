@@ -153,6 +153,10 @@ int main() { START_TEST;
 
     std::cout << "karatsuba size treshold : " << apa::KARATSUBA_SIZE << "\n\n";
 
+    std::cout << "\nnum4num5 = " << num4num5 << "\n\n";
+    std::cout << "\nnum5num4 = " << num5num4 << "\n\n";
+    std::cout << "\nnum4num5_C = " << num4num5_C << "\n\n";
+
     #if defined(_BASE2_16)
         RESULT("BINT BASE 2^16 MULTIPLICATION");
     #elif defined(_BASE2_32)

@@ -1,0 +1,1440 @@
+
+a = fffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000fffffffffff
+
+b = a1b2c3d4e5f60007700000000000000000000000000000000000000000000000000fffffffffffffffffffffffffffffffffffffffffffffffff
+
+karatsuba case
+l =  - size 12
+r =  - size 15
+
+z0: start
+l_len = 12
+r_len = 15
+a_len = 4
+c_len = 7
+split_len = 8
+karatsuba case
+l =  - size 4
+r =  - size 7
+
+z0: start
+l_len = 4
+r_len = 7
+a_len = 0
+c_len = 3
+split_len = 4
+z0: done
+z1:
+karatsuba case
+l =  - size 4
+r =  - size 4
+
+z0: start
+l_len = 4
+r_len = 4
+a_len = 2
+c_len = 2
+split_len = 2
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z2:
+naive case
+l =  - size 3
+r =  - size 1
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z2:
+karatsuba case
+l =  - size 4
+r =  - size 3
+
+z0: start
+l_len = 4
+r_len = 3
+a_len = 2
+c_len = 1
+split_len = 2
+naive case
+l =  - size 2
+r =  - size 1
+
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = fff89000
+z2 = 87b8abea78475414
+z3:
+z3 = 87b8abe93c23aa0a
+
+z4:
+z2:
+karatsuba case
+l =  - size 3
+r =  - size 2
+
+z0: start
+l_len = 3
+r_len = 2
+a_len = 1
+c_len = 0
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = ffefdc9c
+z2 = c3dd03e383e39908
+z3:
+z3 = c3dd03e1f9694262
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = fff7ee4e
+z2 = c3dd03e447c090b0
+z3:
+z3 = c3dd03e2bd3e2858
+
+z4:
+z1 = 14e677debf9694262ffefdc9c
+z2 = 14e677decbd3e2858fff7ee4e
+z3:
+z3 = c3d4e5f6000811b2
+
+z4:
+z1 = c3e3c5f33c23aa0afff89000
+z2 = c3d4e5f74e6f8f9df9694262ffefdc9c
+z3:
+z3 = c3d4e5f68a8bc9aab32a7857fff7ee4e
+
+z4:
+z1 = 0
+z2 = cdf005f68a8b27f8b32a7858c3dbb4413c23aa0afff89000
+z3:
+z3 = cdf005f68a8b27f8b32a7858c3dbb4413c23aa0afff89000
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 8
+r =  - size 8
+
+z0: start
+l_len = 8
+r_len = 8
+a_len = 4
+c_len = 4
+split_len = 4
+karatsuba case
+l =  - size 4
+r =  - size 4
+
+z0: start
+l_len = 4
+r_len = 4
+a_len = 2
+c_len = 2
+split_len = 2
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 0
+z2 = f1000000
+z3:
+z3 = f1000000
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 2
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 0
+z2 = f2000000
+z3:
+z3 = f2000000
+
+z4:
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = f200000000000000
+z2 = f100000000000000
+z3:
+z3 = -100000000000000
+
+z4:
+z1 = 0
+z2 = 100000000000000f200000000000000
+z3:
+z3 = 1000000000000000100000000000000
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 4
+r =  - size 4
+
+z0: start
+l_len = 4
+r_len = 4
+a_len = 2
+c_len = 2
+split_len = 2
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 2
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffe004
+z2 = fffff001
+z3:
+z3 = ffc
+
+z4:
+z1 = 1
+z2 = 100000ffcffffe004
+z3:
+z3 = 100000ffbfffff002
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffd006
+z2 = ffffe002
+z3:
+z3 = ffb
+
+z4:
+z1 = 2
+z2 = 100000ffbffffd006
+z3:
+z3 = 100000ffaffffe003
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffe004
+z2 = fffff001
+z3:
+z3 = ffc
+
+z4:
+z1 = 1
+z2 = 100000ffcffffe004
+z3:
+z3 = 100000ffbfffff002
+
+z4:
+z1 = 1fffffffbffffe00300000002
+z2 = 1fffffffcfffff00200000001
+z3:
+z3 = 100000ffeffffffff
+
+z4:
+z1 = 1fffffffcfffff00200000001
+z2 = 100001000fffffffaffffe00300000002
+z3:
+z3 = 100000ffefffffffdfffff00100000001
+
+z4:
+z2:
+karatsuba case
+l =  - size 4
+r =  - size 5
+
+z0: start
+l_len = 4
+r_len = 5
+a_len = 1
+c_len = 2
+split_len = 3
+naive case
+l =  - size 1
+r =  - size 2
+
+z0: done
+z1:
+karatsuba case
+l =  - size 3
+r =  - size 3
+
+z0: start
+l_len = 3
+r_len = 3
+a_len = 1
+c_len = 1
+split_len = 2
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffd006
+z2 = ffffe002
+z3:
+z3 = ffb
+
+z4:
+z1 = 2
+z2 = 100000ffbffffd006
+z3:
+z3 = 100000ffaffffe003
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = fffffff3
+z2 = d0000cfe6
+z3:
+z3 = c0000cff3
+
+z4:
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = c0000cff3fffffff3
+z2 = dffffffffff2
+z3:
+z3 = -bffffeff400000001
+
+z4:
+z1 = 1fffffffbffffe00300000002
+z2 = bffffeff40000000d0000cff3fffffff3
+z3:
+z3 = bffffeff2000000110000eff0fffffff1
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 2000002
+z2 = 1ffe002
+z3:
+z3 = -2000
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = f1fffff2
+z2 = f100eff1
+z3:
+z3 = -ff2001
+
+z4:
+z1 = 200002000002
+z2 = 100000ff2001f1fffff2
+z3:
+z3 = 100000ff0001effffff0
+
+z4:
+z1 = ffffeff2000000110000eff2ffffffecffffe00300000002
+z2 = 100000ff0001effffff00000200002000002
+z3:
+z3 = -ffffeff1fffff010ff01eff10ffffffdfeffc002fe00000b
+
+z4:
+z1 = 100000ffefffffffdfffff002fffffffdfffff00200000001
+z2 = ffffeff2fefff010ff01effd0fffefeffeffc013fe00effdffffffecffffe00300000002
+z3:
+z3 = ffffeff2fefff010ff01effb1dffdff0feffc015fd00fffaffffffeefffff00100000001
+
+z4:
+z2:
+karatsuba case
+l =  - size 8
+r =  - size 7
+
+z0: start
+l_len = 8
+r_len = 7
+a_len = 4
+c_len = 3
+split_len = 4
+karatsuba case
+l =  - size 4
+r =  - size 3
+
+z0: start
+l_len = 4
+r_len = 3
+a_len = 2
+c_len = 1
+split_len = 2
+naive case
+l =  - size 2
+r =  - size 1
+
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 0
+z2 = 0
+z3:
+z3 = 0
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 0
+z2 = 49000000
+z3:
+z3 = 3f000000
+
+z4:
+z1 = 0
+z2 = a0000003f00000000000000
+z3:
+z3 = a0000000100000000000000
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 4
+r =  - size 4
+
+z0: start
+l_len = 4
+r_len = 4
+a_len = 2
+c_len = 2
+split_len = 2
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 2
+
+z1 = 0
+z2 = 1000ffffe000
+z3:
+z3 = ffffffff000
+
+z4:
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffe006
+z2 = fffff002
+z3:
+z3 = ffb
+
+z4:
+z1 = 2
+z2 = 100000ffbffffe006
+z3:
+z3 = 100000ffafffff003
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffa009
+z2 = ffffc004
+z3:
+z3 = 1ffa
+
+z4:
+z1 = 4
+z2 = 100001ffaffffa009
+z3:
+z3 = 100001ff9ffffc004
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = ffffc006
+z2 = ffffe002
+z3:
+z3 = 1ffb
+
+z4:
+z1 = 2
+z2 = 100001ffbffffc006
+z3:
+z3 = 100001ffaffffe003
+
+z4:
+z1 = 1fffffffaffffc00400000004
+z2 = 1fffffffbffffe00300000002
+z3:
+z3 = 100001ffefffffffe
+
+z4:
+z1 = 1fffffffbfffff00300000002
+z2 = 100002000fffffff8ffffc00400000004
+z3:
+z3 = 100001ffdfffffffcffffe00100000002
+
+z4:
+z2:
+karatsuba case
+l =  - size 4
+r =  - size 5
+
+z0: start
+l_len = 4
+r_len = 5
+a_len = 1
+c_len = 2
+split_len = 3
+naive case
+l =  - size 1
+r =  - size 2
+
+z0: done
+z1:
+karatsuba case
+l =  - size 3
+r =  - size 3
+
+z0: start
+l_len = 3
+r_len = 3
+a_len = 1
+c_len = 1
+split_len = 2
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = fff12004
+z2 = c3dc622f79ca3e24
+z3:
+z3 = c3dc622def4ea416
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 2
+r =  - size 1
+
+z1 = ffefdc80
+z2 = c3dd03f183e478de
+z3:
+z3 = c3dd03eff96a2254
+
+z4:
+z1 = 14e66dc37ef4ea416fff12004
+z2 = 14e677df9f96a2254ffefdc80
+z3:
+z3 = a1c20a1b7e3dfffebc7c
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 3
+
+z0: start
+l_len = 2
+r_len = 3
+a_len = 0
+c_len = 1
+split_len = 2
+z0: done
+z1:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = 78f10004
+z2 = e05f416
+z3:
+z3 = -b94a7bee
+
+z4:
+z2:
+karatsuba case
+l =  - size 2
+r =  - size 2
+
+z0: start
+l_len = 2
+r_len = 2
+a_len = 1
+c_len = 1
+split_len = 1
+naive case
+l =  - size 1
+r =  - size 1
+
+z0: done
+z1:
+naive case
+l =  - size 1
+r =  - size 1
+
+z2:
+naive case
+l =  - size 1
+r =  - size 1
+
+z1 = c10bdc80
+z2 = 603cf092
+z3:
+z3 = -af2e5bee
+
+z4:
+z1 = 4e5f7000b94a7bee78f10004
+z2 = 4e5f7000af2e5beec10bdc80
+z3:
+z3 = -a1c1fffb7e52384
+
+z4:
+z1 = a1c20a1b7e3f4e6598b3ef4ea416fff12004
+z2 = a1c200006449384b94a7bee78f10004
+z3:
+z3 = -a1c1ffff5e3f482105303504382887002000
+
+z4:
+z1 = 10000000100000ffdfffffffcffffe002fffffffdfffff00300000002
+z2 = ff00b1c1ffff5e3f482105303504d9ea911b9e3f4e6598b3ef4ea416fff12004
+z3:
+z3 = ff00b1c0ffff5e3e0a20f5322b04d9ed901bbe3c4e6598b5ef4eb413fff12002
+
+z4:
+z1 = f2000000ffffeff2fffff010ff01effb1dffdff0feffc015fd00fffaffffffeffffffffffffffffefffff002fffffffdfffff00200000001
+z2 = 3e0000000a0000010000b1c0ffff5e3e0a20f5322b04d9ed901bbe3d4e6598b6ef4ec411fff11ffeffffe002fffffffdfffff00300000002
+z3:
+z3 = -b4000000f5ffeff1ffff3e4fff0291bde1cef0b55e860e21200fba1675761b7a4cd4e5f90007700000000ffffffffffffffffffeffffffff
+
+z4:
+c       = cdf005f68a8b27f8b32a7858c3dbb441f023aa0bf5f87ff1ffff3e4fff0291bde1cef0b55e860e21200fba1675761b7b3ed4e5fa00075ff300000010ff01effb1dffdfeffeffc014fd00fffaffffffeffffffffffffffffefffff002fffffffdfffff00200000001
+
+correct = a1b2c3d4e5f600076ffffffffffff5e4d3c2b1a09fff890000000000000000000010000000000000a1b2c3d4e5ebe4da32b1a09fff88ffffffff0000000000000000000000000000100ffffffffffeffffffffffffffffffffffffffffffffffffff00000000001
+
+FAILED
