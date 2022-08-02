@@ -2,11 +2,18 @@
 #include <chrono>
 #include "../core.hpp"
 
-#define RUNS 300
+#define RUNS 200
 
 int main() {
-    apa::bint a = apa::factorial(3246);
-    apa::bint b = apa::fibonacci(37531);
+    auto factorial_start = std::chrono::high_resolution_clock::now();
+    apa::bint a = apa::factorial(6321);
+    auto factorial_end = std::chrono::high_resolution_clock::now();
+    size_t factorial_dur = std::chrono::duration_cast<std::chrono::microseconds>(factorial_end-factorial_start).count();
+
+    auto fibonacci_start = std::chrono::high_resolution_clock::now();
+    apa::bint b = apa::fibonacci(71421);
+    auto fibonacci_end = std::chrono::high_resolution_clock::now();
+    size_t fibonacci_dur = std::chrono::duration_cast<std::chrono::microseconds>(fibonacci_end-fibonacci_start).count();
 
     size_t case1_total = 0, case2_total = 0, case3_total = 0, case4_total = 0;
 
@@ -40,12 +47,18 @@ int main() {
     "### Using base 2<sup>" << sizeof(apa::limb_t)*8 << "</sup> number system representation.\n\n"
     "- a limb size = " << a.limb_size() << "\n"
     "- b limb size = " << b.limb_size() << "\n\n"
+    "**basic arithmetic average**\n\n"
     "| cases | nanoseconds |\n"
     "| ----- | ----------- |\n"
     "| add (a + b) | " << case1_total/RUNS << " ns |\n"
     "| sub (a - b) | " << case2_total/RUNS << " ns |\n"
     "| mul (a * b) | " << case3_total/RUNS << " ns |\n"
-    "| div (a / b) | " << case4_total/RUNS << " ns |\n"
+    "| div (a / b) | " << case4_total/RUNS << " ns |\n\n"
+    "**functions**\n\n"
+    "| name | microseconds |\n"
+    "| ---- | ------------ |\n"
+    "| apa::fibonacci(71421) | " << fibonacci_dur << " μs |\n"
+    "| apa::factorial(6321) | " << factorial_dur << " μs |\n"
     "\n";
 
     return 0;
