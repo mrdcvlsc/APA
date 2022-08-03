@@ -488,12 +488,13 @@ namespace apa {
             carry = sum_index >> BASE_BITS;
         }
 
-        for(size_t i=out_index+split_len+z3.number.length; i < out_len; ++i) {
+        // for(size_t i=out_index+split_len+z3.number.length; i < out_len; ++i) {
+        for(size_t i=out_index+split_len+z3.number.length; carry; ++i) {
             cast_t sum_index = (cast_t) out[i] + carry;
             out[i] = sum_index;
             carry = sum_index >> BASE_BITS;
         }
-        out[out_index+split_len+z3.number.length] += carry;
+        // out[out_index+split_len+z3.number.length] += carry;
     }
 
     bint bint::operator*(const bint& op) const {
