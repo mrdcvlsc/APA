@@ -34,7 +34,7 @@ for the latest previous working version.**
 | **Architecture** | x86, x64, x86-64 |
 
 If your system does not have these requirements, it **might** produce wrong
-results (on other system it this could still work, the chances of the tests
+results (on other system this could still work, but the chances of the tests
 failing will be higher).
 
 -----
