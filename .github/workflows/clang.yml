@@ -2,9 +2,9 @@ name: clang
 
 on:
   push:
-    branches: [ version_4, version_4.4, main ]
+    branches: [ main ]
   pull_request:
-    branches: [ version_4, version_4.4, main ]
+    branches: [ main ]
 
 jobs:
   header-mode-tests:
@@ -19,4 +19,4 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: compile and run tests in header mode
-      run: make -j all_test CC=clang++
+      run: make -j CC=clang++
