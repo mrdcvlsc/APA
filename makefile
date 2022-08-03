@@ -4,7 +4,7 @@ TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
-.PHONY: test all_test benchmark karatsuba arithmetic
+.PHONY: test all_test benchmark karatsuba arithmetic style
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
@@ -39,6 +39,7 @@ OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 test: $(OBJ)
 	@echo OS : $(OS)
 	@echo LIMB : Base2_$(BASE2_RAISED_BY)
+	@echo CPP_COMPILER : $(CC)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	
@@ -80,6 +81,9 @@ else
 	@echo "deleting compiled test programs"
 	del tests\*.out
 endif
+
+# style:
+# 	@echo clang-format -i -style=Mozilla *.cpp *.hpp tests/*.hpp tests/*.cpp benchmark/*.cpp
 
 benchmark: karatsuba arithmetic
 
