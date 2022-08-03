@@ -4,7 +4,7 @@ In this section, I will share my knowledge about big number implementations,
 this is not a tutorial for using the library, go to the [docs.md](docs.md)
 if that is what you are trying to find.
 
-If you want to know gain a little knowledge about big number
+If you want to gain a little knowledge about big number
 implementations, continue reading this section.
 
 ## **Representing Big Numbers**
