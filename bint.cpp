@@ -579,9 +579,7 @@ namespace apa {
 
     bint& bint::operator>>=(size_t bits) {
         number >>= bits;
-        if(SIGN_NEGATIVE(sign)) {
-            ++number;
-        }
+        number += sign;
         return *this;
     }
 

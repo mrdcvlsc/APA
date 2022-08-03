@@ -97,9 +97,7 @@ namespace apa {
         size_t remain = text.size()%(CAST_BYTES);
 
         length = blocks;
-        if(remain) {
-            length++;
-        }
+        length += !!remain;
 
         capacity = length+LIMB_GROWTH;
         limbs = (limb_t*) std::calloc(capacity, sizeof(limb_t));
@@ -431,7 +429,6 @@ namespace apa {
     
     integer& integer::operator-=(const integer& op) {
         limb_t carry = 0;
-
         for(size_t i=0; i<op.length; ++i) {
             cast_t diff_index = (cast_t) limbs[i] - carry;
             diff_index -= op.limbs[i];
@@ -473,8 +470,8 @@ namespace apa {
             return __INTEGER_ZERO;
         }
 
-        integer product(length+op.length,length+op.length);
-        memset(product.limbs,0x00,product.length*LIMB_BYTES);
+        limb_t *arr = (limb_t*) std::calloc(length+op.length, sizeof(limb_t));
+        integer product(arr, length+op.length, length+op.length);
         
         for(size_t i=0; i<op.length; ++i) {
             limb_t carry = 0;
@@ -486,9 +483,7 @@ namespace apa {
             product.limbs[i+length] += carry;
         }
 
-        if(!product.limbs[product.length-1]) {
-            product.length--;
-        }
+        product.length -= !product.limbs[product.length-1];
         return product;
     }
     
@@ -541,8 +536,8 @@ namespace apa {
     }
 
     integer integer::bit_division(const integer& op) const {
-        integer quotient(length,length), remainder(length,length);
-        std::memset(quotient.limbs,0x00,length*LIMB_BYTES);
+        limb_t *arr = (limb_t*) std::calloc(length, sizeof(limb_t));
+        integer quotient(arr, length, length), remainder(length, length);
         remainder.length = 1; remainder.limbs[0] = 0;
         limb_t bit = 0, current_index, current_shift_val, onebit = 1;
         size_t
@@ -648,9 +643,7 @@ namespace apa {
             }
 
             length = new_length;
-            if(!limbs[length-1]) {
-                length--;
-            }
+            length -= !limbs[length-1];
         }
         return *this;
     }
@@ -676,9 +669,7 @@ namespace apa {
                 }
 
                 length = new_length;
-                if(!limbs[length-1] && length!=1) {
-                    length--;
-                }
+                length -= !limbs[length-1] && length!=1;
             }
         }
         return *this;
