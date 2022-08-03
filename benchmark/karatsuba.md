@@ -6,25 +6,25 @@ Average performance of APA's karatsuba implementation (microseconds)
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 2054x2038 | 4160 μs |
-| case 2 | 2054x918 | 2682 μs |
-| case 3 | 128x2038 | 826 μs |
+| case 1 | 2054x2038 | 3074 μs |
+| case 2 | 2054x918 | 1987 μs |
+| case 3 | 128x2038 | 618 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 1027x1019 | 1432 μs |
-| case 2 | 1027x459 | 923 μs |
-| case 3 | 64x1019 | 306 μs |
+| case 1 | 1027x1019 | 1040 μs |
+| case 2 | 1027x459 | 677 μs |
+| case 3 | 64x1019 | 220 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 514x510 | 790 μs |
-| case 2 | 514x230 | 508 μs |
-| case 3 | 32x510 | 127 μs |
+| case 1 | 514x510 | 613 μs |
+| case 2 | 514x230 | 395 μs |
+| case 3 | 32x510 | 91 μs |
 
 
 ### System Runner

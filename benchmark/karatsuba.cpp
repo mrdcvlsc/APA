@@ -290,7 +290,7 @@ int main() {
     }
 
     std::cout <<
-    "### Using base 2<sup>" << sizeof(apa::base_t)*8 << "</sup> number system representation.\n\n"
+    "### Using base 2<sup>" << sizeof(apa::limb_t)*8 << "</sup> number system representation.\n\n"
     "| cases | limb dimension | microseconds |\n"
     "| ----- | ----------- | -------------------- |\n"
     "| case 1 | " << fac1.limb_size() << "x" << fac2.limb_size() << " | " << case1_total/RUNS << " μs |\n"

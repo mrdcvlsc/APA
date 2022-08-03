@@ -11,11 +11,8 @@
 #endif
 
 namespace apa {
-
     unsigned char HEX_TO_CHAR[16] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f',};
-
     unsigned char CHAR_TO_HEX(unsigned char c) {
-
         switch (c) {
             case '0': return 0x0;
             case '1': return 0x1;
@@ -34,19 +31,16 @@ namespace apa {
             case 'e': return 0xe;
             case 'f': return 0xf;
         }
-
         return 0xff;
     }
 
     integer::integer() {
-
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) std::malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
     }
 
-    integer::integer(base_t num) {
-
+    integer::integer(limb_t num) {
         capacity = INITIAL_LIMB_CAPACITY;
         length = INITIAL_LIMB_LENGTH;
         limbs = (limb_t*) std::malloc(INITIAL_LIMB_CAPACITY*LIMB_BYTES);
@@ -54,7 +48,6 @@ namespace apa {
     }
 
     integer::integer(size_t capacity, size_t length, bool AllocateSpace) {
-
         this->capacity = capacity;
         this->length = length;
 
@@ -67,7 +60,6 @@ namespace apa {
 
     // constructor for conveniece
     integer::integer(std::string text, size_t base) {
-
         if(base>1 && base<16) {
             std::vector<uint8_t> output(text.size(),0);
 
@@ -101,8 +93,8 @@ namespace apa {
             );
         }
 
-        size_t blocks = text.size()/(LIMB_BYTES);
-        size_t remain = text.size()%(LIMB_BYTES);
+        size_t blocks = text.size()/(CAST_BYTES);
+        size_t remain = text.size()%(CAST_BYTES);
 
         length = blocks;
         if(remain) {
@@ -118,8 +110,8 @@ namespace apa {
             if(CharByte==0xff)
                 break;
 
-            size_t multiplier = std::pow(0x10,i%LIMB_BYTES);
-            limbs[i/LIMB_BYTES] |= CharByte * multiplier;
+            size_t multiplier = std::pow(0x10,i%CAST_BYTES);
+            limbs[i/CAST_BYTES] |= CharByte * multiplier;
         }
 
         size_t cut_length = 0;
@@ -127,7 +119,6 @@ namespace apa {
         while(!limbs[length-1-cut_length]) {
             cut_length++;
         }
-
         length -= cut_length;
     }
 
@@ -140,7 +131,6 @@ namespace apa {
 
     /// copy constructor.
     integer::integer(const integer& src) {
-
         capacity = src.capacity;
         length   = src.length;
         limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
@@ -149,7 +139,6 @@ namespace apa {
 
     /// move constructor.
     integer::integer(integer&& src) noexcept {
-
         capacity = src.capacity;
         length   = src.length;
         limbs    = src.limbs;
@@ -158,23 +147,20 @@ namespace apa {
 
     /// copy assignment.
     integer& integer::operator=(const integer& src) {
-
         if(this != &src) {
             if(capacity < src.capacity) {
-                limbs = (limb_t*) std::realloc(limbs,src.capacity*LIMB_BYTES);
+                limbs = (limb_t*) std::realloc(limbs, src.capacity*LIMB_BYTES);
                 capacity = src.capacity;
             }
 
             length = src.length;
-            memcpy(limbs,src.limbs,src.length*LIMB_BYTES);
+            std::memcpy(limbs, src.limbs, src.length*LIMB_BYTES);
         }
-
         return *this;
     }
 
     /// move assignment.
     integer& integer::operator=(integer&& src) noexcept {
-
         if(this != &src) {
             std::free(limbs);
 
@@ -183,12 +169,10 @@ namespace apa {
             limbs    = src.limbs;
             src.limbs = NULL;
         }
-
         return *this;
     }
 
-    integer::integer(std::initializer_list<base_t> limbs) {
-
+    integer::integer(std::initializer_list<limb_t> limbs) {
         capacity = limbs.size()+LIMB_GROWTH;
         length = limbs.size();
         this->limbs = (limb_t*) std::malloc(capacity*LIMB_BYTES);
@@ -215,7 +199,6 @@ namespace apa {
 
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
     int integer::compare(const integer& op) const {
-
         if(length<op.length) {
             return LESS;
         }
@@ -255,13 +238,11 @@ namespace apa {
     }
 
     bool integer::operator<=(const integer& op) const {
-
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==LESS);
     }
 
     bool integer::operator>=(const integer& op) const {
-
         int cmp = this->compare(op);
         return (cmp==EQUAL || cmp==GREAT);
     }
@@ -272,12 +253,11 @@ namespace apa {
         capacity = op.capacity;
         limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
         size_t zero_set = length*LIMB_BYTES;
-        memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
+        std::memset(limbs+length,0x00,(op.length*LIMB_BYTES)-zero_set);
         length = op.length;
     }
 
     void integer::remove_leading_zeros() {
-
         for(size_t i=0; i<length; ++i) {
             if(limbs[length-1-i]) {
                 length -= i;
@@ -288,7 +268,6 @@ namespace apa {
     }
 
     void integer::bit_and(const integer& op) {
-
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] &= op.limbs[i];
         }
@@ -299,25 +278,21 @@ namespace apa {
     }
 
     integer& integer::operator&=(const integer& op) {
-
         if(length<op.length) {
             bit_realloc(op);
         }
 
         bit_and(op);
         remove_leading_zeros();
-        
         return *this;
     }
 
     integer integer::operator&(const integer& op) const {
-
         integer bitwise_and = *this;
         return bitwise_and &= op;
     }
 
     void integer::bit_or(const integer& op) {
-        
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] |= op.limbs[i];
         }
@@ -328,25 +303,21 @@ namespace apa {
     }
 
     integer& integer::operator|=(const integer& op) {
-
         if(length<op.length) {
             bit_realloc(op);
         }
 
         bit_or(op);
         remove_leading_zeros();
-        
         return *this;
     }
 
     integer integer::operator|(const integer& op) const {
-
         integer bitwise_and = *this;
         return bitwise_and |= op;
     }
 
     void integer::bit_xor(const integer& op) {
-        
         for(size_t i=0; i<op.length; ++i) {
             limbs[i] ^= op.limbs[i];
         }
@@ -357,51 +328,45 @@ namespace apa {
     }
 
     integer& integer::operator^=(const integer& op) {
-
         if(length<op.length) {
             bit_realloc(op);
         }
 
         bit_xor(op);
         remove_leading_zeros();
-        
         return *this;
     }
 
     integer integer::operator^(const integer& op) const {
-
         integer bitwise_and = *this;
         bitwise_and ^= op;
         return bitwise_and;
     }
 
     integer integer::operator~() const {
-
         // ------------------------------------------------------
         // flip all the bits of the limbs.
         integer bwn(length,length);
         for(size_t i=0; i<length-1; ++i) {
-            bwn.limbs[i] = (base_t)(~limbs[i]);
+            bwn.limbs[i] = (~limbs[i]);
         }
 
         // ------------------------------------------------------
         // flip the bits of the most significant limb, from it's
         // least significant bit to it's most significant bit
         // the flip will stop if it reach the last 1 bit value.
-        base_t mslimb = limbs[length-1];
-        base_t bitmask = mslimb | (mslimb >> 1);
+        limb_t mslimb = limbs[length-1];
+        limb_t bitmask = mslimb | (mslimb >> 1);
         for(size_t i=2; i<BASE_BITS; i*=2) {
             bitmask |= bitmask >> i;
         }
         
         bwn.limbs[bwn.length-1] = bitmask ^ mslimb;
         bwn.remove_leading_zeros();
-
         return bwn;
     }
 
     void integer::bit_flip(size_t padding) {
-
         if(capacity<length+padding) {
             capacity = length+padding+LIMB_GROWTH;
             limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
@@ -411,7 +376,7 @@ namespace apa {
         length = length + padding;
 
         for(size_t i=0; i<prev_length; ++i) {
-            limbs[i] = (base_t)(~limbs[i]);
+            limbs[i] = (~limbs[i]);
         }
 
         for(size_t i=prev_length; i<length; ++i) {
@@ -427,7 +392,6 @@ namespace apa {
     // Arithmetic Operators
 
     integer& integer::operator+=(const integer& op) {
-        
         if(capacity<=op.length+1) {
             capacity = op.length+LIMB_GROWTH;
             limbs = (limb_t*) std::realloc(limbs,capacity*LIMB_BYTES);
@@ -443,19 +407,20 @@ namespace apa {
             length = op.length+1;
         }
 
+        limb_t carry = 0;
         for(size_t i=0; i<op.length; ++i) {
-            limbs[i] += op.limbs[i];
-            limbs[i+1] += (limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
+            cast_t sum = (cast_t) limbs[i] + op.limbs[i] + carry;
+            limbs[i] = sum;
+            carry = sum >> BASE_BITS;
         }
 
         for(size_t i=op.length; i<length; ++i) {
-            limbs[i+1] += (limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
+            cast_t sum = (cast_t) limbs[i] + carry;
+            limbs[i] = sum;
+            carry = sum >> BASE_BITS;
         }
 
         remove_leading_zeros();
-
         return *this;
     }
 
@@ -465,22 +430,19 @@ namespace apa {
     }
     
     integer& integer::operator-=(const integer& op) {
-        
         limb_t carry = 0;
 
         for(size_t i=0; i<op.length; ++i) {
-            limbs[i] -= carry;
-            limbs[i] -= op.limbs[i];
-
-            carry = !!(base_t)(limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
+            cast_t diff_index = (cast_t) limbs[i] - carry;
+            diff_index -= op.limbs[i];
+            limbs[i] = diff_index;
+            carry = !!(diff_index >> BASE_BITS);
         }
 
         for(size_t i=op.length; i<length; ++i) {
-            limbs[i] -= carry;
-
-            carry = !!(base_t)(limbs[i] >> BASE_BITS);
-            limbs[i] = (base_t) limbs[i];
+            cast_t diff_index = (cast_t) limbs[i] - carry;
+            limbs[i] = diff_index;
+            carry = !!(diff_index >> BASE_BITS);
         }
 
         size_t ms_index = length-1;
@@ -492,7 +454,6 @@ namespace apa {
         }
 
         length = ms_index+1;
-
         return *this;
     }
 
@@ -502,15 +463,12 @@ namespace apa {
     }
     
     integer& integer::operator*=(const integer& op) {
-
         integer product = *this * op;
         swap(product,*this);
-
         return *this;
     }
 
     integer integer::operator*(const integer& op) const {
-
         if(!(*this && op)) {
             return __INTEGER_ZERO;
         }
@@ -519,34 +477,28 @@ namespace apa {
         memset(product.limbs,0x00,product.length*LIMB_BYTES);
         
         for(size_t i=0; i<op.length; ++i) {
+            limb_t carry = 0;
             for(size_t j=0; j<length; ++j) {
-                product.limbs[i+j] += limbs[j] * op.limbs[i];
-                limb_t carry = product.limbs[i+j] >> BASE_BITS;
-
-                if(carry) {
-                    product.limbs[i+j] = (base_t) product.limbs[i+j];
-                    product.limbs[i+j+1] += carry;
-                }
+                cast_t index_product = (cast_t) limbs[j] * op.limbs[i] + product.limbs[i+j] + carry;
+                product.limbs[i+j] = index_product;
+                carry = (index_product >> BASE_BITS);
             }
+            product.limbs[i+length] += carry;
         }
 
         if(!product.limbs[product.length-1]) {
             product.length--;
         }
-
         return product;
     }
     
     integer& integer::operator/=(const integer& op) {
-
         integer quotient = *this / op;
         swap(quotient,*this);
-
         return *this;
     }
 
     integer integer::operator/(const integer& op) const {
-
         if(!op) {
             throw std::domain_error("apa::integer - Division By Zero");
         }
@@ -565,19 +517,16 @@ namespace apa {
     }
 
     integer& integer::operator%=(const integer& op) {
-
         integer remainder = *this % op;
         swap(remainder,*this);
-
         return *this;
     }
 
     integer integer::operator%(const integer& op) const {
-
         if(!op) {
             throw std::domain_error("apa::integer - Division By Zero");
         }
-            
+
         int special_case = this->compare(op);
         switch (special_case) {
             case EQUAL: return integer(0);
@@ -592,12 +541,10 @@ namespace apa {
     }
 
     integer integer::bit_division(const integer& op) const {
-
         integer quotient(length,length), remainder(length,length);
-        memset(quotient.limbs,0x00,length*LIMB_BYTES);
+        std::memset(quotient.limbs,0x00,length*LIMB_BYTES);
         remainder.length = 1; remainder.limbs[0] = 0;
-
-        base_t bit = 0, current_index, current_shift_val, onebit = 1;
+        limb_t bit = 0, current_index, current_shift_val, onebit = 1;
         size_t
             total_bits = length*BASE_BITS,
             ms_limb = length - 1;
@@ -624,11 +571,10 @@ namespace apa {
     }
 
     integer integer::bit_modulo(const integer& op) const {
-        
         integer remainder(length,length);
         remainder.length = 1; remainder.limbs[0] = 0;
 
-        base_t bit = 0, current_index, current_shift_val;
+        limb_t bit = 0, current_index, current_shift_val;
         size_t
             total_bits = length*BASE_BITS,
             ms_limb = length - 1;
@@ -677,8 +623,7 @@ namespace apa {
 
     // Shift Operators
     integer& integer::operator<<=(size_t bits) {
-
-        if(*this) {
+        if(*this && bits) {
             size_t limb_shifts = bits / BASE_BITS;
             size_t bit_shifts = bits % BASE_BITS;
 
@@ -691,14 +636,15 @@ namespace apa {
             limbs[new_length-1] = 0;
 
             for(size_t i=0; i<length; ++i) {
-                limbs[length-1-i] <<= bit_shifts;
-                limbs[new_length-1-i] |= limbs[length-1-i] >> BASE_BITS;
-                limbs[new_length-2-i] = (base_t) limbs[length-1-i];
+                cast_t old_msl = limbs[length - 1 - i];
+                old_msl <<= bit_shifts;
+                limbs[new_length-1-i] |= old_msl >> BASE_BITS;
+                limbs[new_length-2-i] = old_msl;
             }
 
             size_t zero_limbs = new_length-length-1;
             if(zero_limbs) {
-                memset(limbs,0x00,zero_limbs*LIMB_BYTES);
+                std::memset(limbs,0x00,zero_limbs*LIMB_BYTES);
             }
 
             length = new_length;
@@ -706,15 +652,12 @@ namespace apa {
                 length--;
             }
         }
-
         return *this;
     }
 
     integer& integer::operator>>=(size_t bits) {
-
-        if(*this) {
+        if(*this && bits) {
             size_t limb_shifts = bits / BASE_BITS;
-            
             if(limb_shifts>=length) {
                 length = 1;
                 limbs[0] = 0;
@@ -722,8 +665,8 @@ namespace apa {
                 size_t bit_shifts = bits % BASE_BITS;
                 size_t new_length = length - limb_shifts;
                 
-                base_t prev = 0;
-                base_t next = 0;
+                limb_t prev = 0;
+                limb_t next = 0;
 
                 for(size_t i=0; i<new_length; ++i) {
                     next = limbs[length-1-i] << (BASE_BITS - bit_shifts);
@@ -738,57 +681,45 @@ namespace apa {
                 }
             }
         }
-
         return *this;
     }
 
     integer integer::operator<<(size_t bits) const {
-
         integer shifted = *this;
         return shifted <<= bits;
     }
 
     integer integer::operator>>(size_t bits) const {
-
         integer shifted = *this;
         return shifted >>= bits;
     }
 
 
     void integer::printHex() const {
-        
         std::cout << "0x";
-        printf(PRINT_LIMBHEX_NOPAD, (base_t) limbs[length-1]);
-
+        printf(PRINT_LIMBHEX_NOPAD, (limb_t) limbs[length-1]);
         for(size_t i=1; i<length; ++i) {
-            printf(PRINT_LIMBHEX, (base_t) limbs[length-1-i]);
+            printf(PRINT_LIMBHEX, (limb_t) limbs[length-1-i]);
         }
-
         std::cout << "\n";
     }
 
     void integer::printHex_spaced_out() const {
-
-        printf(PRINT_LIMBHEX, (base_t) limbs[length-1]);
-
+        printf(PRINT_LIMBHEX, (limb_t) limbs[length-1]);
         for(size_t i=1; i<length; ++i) {
-            printf(PRINT_LIMBHEX_SPACED, (base_t) limbs[length-1-i]);
+            printf(PRINT_LIMBHEX_SPACED, (limb_t) limbs[length-1-i]);
         }
-
         std::cout << "\n";
     }
 
     void integer::printBin_spaced_out() const {
-
         for(size_t i=0; i<length; ++i) {
             std::cout << std::bitset<BASE_BITS>(limbs[length-1-i]) << " "; 
         }
-
         std::cout << "\n";
     }
 
     void integer::printStatus(std::string printIdentifier) const {
-
         std::cout << "\n-----\n";
         std::cout << printIdentifier << "\n";
         std::cout << "capacity : " << capacity << "\n";
@@ -797,10 +728,8 @@ namespace apa {
     }
 
     std::string integer::to_base10_string() const {
-
         std::string Base10 = "";
         integer ten(10), quotient = *this;
-
         if(quotient) {
             while(quotient) {
                 integer remainder = quotient % ten;
@@ -812,51 +741,40 @@ namespace apa {
         } else {
             Base10 = "0";
         }
-        
         return Base10;
     }
 
     std::string integer::to_base16_string() const {
-
         char buffer[17];
         std::string hexform = "";
-
-        sprintf(buffer,PRINT_LIMBHEX_NOPAD,(base_t)limbs[length-1]);
+        sprintf(buffer,PRINT_LIMBHEX_NOPAD,(limb_t)limbs[length-1]);
         hexform.append(buffer);
-
         for(size_t i=1; i<length; ++i) {
-            sprintf(buffer,PRINT_LIMBHEX,(base_t)limbs[length-1-i]);
+            sprintf(buffer,PRINT_LIMBHEX,(limb_t)limbs[length-1-i]);
             hexform.append(buffer);
         }
-
         return hexform;
     }
 
     // Methods
 
     size_t integer::byte_size() const {
-
-        base_t ms_limb = limbs[length-1];
+        limb_t ms_limb = limbs[length-1];
         size_t cnt = 0;
-
         while(ms_limb) {
             ms_limb >>= 8;
             cnt++;
         }
-
         return (length-1)*BASE_BYTES + cnt;
     }
 
     size_t integer::bit_size() const {
-
-        base_t ms_limb = limbs[length-1];
+        limb_t ms_limb = limbs[length-1];
         size_t cnt = 0;
-
         while(ms_limb) {
             ms_limb >>= 1;
             cnt++;
         }
-
         return (length-1)*BASE_BITS + cnt;
     }
 
@@ -869,7 +787,6 @@ namespace apa {
     }
 
     void swap(integer& a, integer& b) {
-
         integer temp = std::move(a);
         a = std::move(b);
         b = std::move(temp);
@@ -877,17 +794,14 @@ namespace apa {
 
     // IO Operators
     std::ostream& operator<<(std::ostream &out, const integer &num) {
-
         out << num.to_base16_string();
         return out;
     }
 
     std::istream& operator>>(std::istream &in, integer &num) {
-        
         std::string input;
         in >> input;
         num = integer(input,16);
-
         return in;
     }
 }

@@ -1,55 +1,58 @@
-# APA - Arbitrary Precision Arithmetic
+# APA : *Arbitrary Precision Arithmetic*
 
-**Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) for the latest previous working version.**
-
-A c++ library for big integer and big number computation in general (arbitrary-precision arithmetic).
-
-# Version 4 [A WORK IN PROGRESS]
-
-## How to use? see : [version 4 - docs](docs.md)
-
-This branch **version 4** is an ongoing rewrite of the whole library.
-
-This version will address the problems in the previous versions.
-
-- This version will be able to use a larger number base to further increase the performance... either base **2<sup>16</sup>**, **2<sup>32</sup>** or **2<sup>64</sup>** for each digit limbs (the user can choose one of the three bases during compilation), the older versions (2-3) only used number base of **10<sup>8</sup>** which is faster than the very first version. version 1 uses a ```string``` of base 10 character digits to implement big numbers which is very slow.
-- The total size of each limbs is doubled by it's base size, so for bases **2<sup>16</sup>**, **2<sup>32</sup>** and **2<sup>64</sup>**, their limb would be **```uint32_t```**, **```uint64_t```**, and **```__uint128_t```**. (This would also mean that using **base 2<sup>64</sup>** on 32-bit computers is not supported).
-- More effecient memory reallocation for ```--```, ```++```, ```+=``` and ```-=``` operators, kinda how ```std::vector```'s work when adding an element, wherin it implements a ```capacity()``` and ```size()``` and only reallocation the ```size()``` when the ```capacity()``` is reached.
-- Due to using a base that is a power of **2**, the implementation of bitwise and bitwise logical operators will be much easier.
-
-<!-- ![build](https://github.com/mrdcvlsc/uint320/actions/workflows/build.yml/badge.svg) -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-
-**mini-tests:**
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 ![build](https://github.com/mrdcvlsc/APA/actions/workflows/build.yml/badge.svg)
 ![gcc-gnu](https://github.com/mrdcvlsc/APA/actions/workflows/gcc-gnu.yml/badge.svg)
 ![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
 ![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
 
------
+A c++ library for big integers and big number computation.
 
-# Environment Requirements
-- little endian system
+**Version 4 Status : [WIP - Work In Progress]**
 
-If your system does not have these requirements, it might produce wrong results.
+This branch (**version 4**) is an ongoing rewrite of the whole library.
 
------
-
-# Description
-
-This is a C++ Arbitrary Precision Arithmetic library used to compute big integers & big floating point numbers, used on big numbers (bignum) that usually cannot fit in the standard C++ primitive data types.
-
-**user defined data types/classes**
-
-- ```apa::integer``` dynamically big unsigned integers (all implementations here a naive, serves as a backend type for `bint`).
-- ```apa::bint``` dynamically big signed integers (uses ```integer``` inside, and will also use faster algorithms like karatsuba).
-- ```apa::bfloat``` dynamically big floating point (real) numbers, will use ```bint``` inside.
-
-The sizes of these data types are dynamic, meaning they are not fix and they can grow in size. There is no max value or range for these data types, and the only limit is the available memory of the device.
+**Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) 
+for the latest previous working version.**
 
 -----
 
-**About**
+### **Documentation**
 
-This repository started as a personal hobby project not intended to replace big number libraries like [boost multiprecision](https://www.boost.org/doc/libs/1_72_0/libs/multiprecision/doc/html/index.html) and [gmplib](https://gmplib.org/) and is only for didactic purposes. Though performance is still a priority, meaning this library will... as much as possible, use the fastest and the most effecient algorithms and implementations THAT THE AUTHOR(s) KNOW OF.
+- [**docs.md**](docs.md) - learn how to use the library.
+
+- [**quick-tutorial**](quick-tutorial.md) - learn how this library works internally.
+
+-----
+
+### **Environment Requirements**
+
+|                  |                  |
+| ---------------- | ---------------- |
+| **Byte Order**   | little-endian    |
+| **OS**           | Windows, Linux   |
+| **Architecture** | x86, x86, x86-86 |
+
+If your system does not have these requirements, it **might** produce wrong
+results (on other system it this could still work, the chances of the tests
+failing will be higher).
+
+-----
+
+### **Description**
+
+This is a mini C++ Arbitrary Precision Arithmetic library. Used to compute
+big integers & big floating point numbers. If you need to compute numbers that
+is greater than the max value of `unsigned long long int`, `uint64_t` or
+`__uint128_t` this library can do it for you.
+
+-----
+
+### **About**
+
+This repository started as a personal hobby project **not intended** to
+replace big number libraries like [boost multiprecision](https://www.boost.org/)
+and [gmplib](https://gmplib.org/) and is **only for didactic purposes**.
+Though performance is still a priority, meaning this library will... as much
+as possible, use the fastest and the most efficient algorithms and
+implementations THAT THE AUTHOR(s) KNOW OF.

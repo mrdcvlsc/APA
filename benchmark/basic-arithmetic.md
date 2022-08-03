@@ -4,39 +4,66 @@ Average performance (nanoseconds)
 
 ### Using base 2<sup>16</sup> number system representation.
 
-- a limb size = 2075
-- b limb size = 1629
+- a limb size = 4419
+- b limb size = 3099
+
+**basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 9939 ns |
-| sub (a - b) | 8082 ns |
-| mul (a * b) | 3917794 ns |
-| div (a / b) | 122277622 ns |
+| add (a + b) | 15519 ns |
+| sub (a - b) | 15238 ns |
+| mul (a * b) | 9164498 ns |
+| div (a / b) | 429631876 ns |
+
+**functions**
+
+| name | microseconds |
+| ---- | ------------ |
+| apa::fibonacci(71421) | 304189 μs |
+| apa::factorial(6321) | 40268 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
-- a limb size = 1038
-- b limb size = 815
+- a limb size = 2210
+- b limb size = 1550
+
+**basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 7232 ns |
-| sub (a - b) | 5102 ns |
-| mul (a * b) | 1321380 ns |
-| div (a / b) | 129885941 ns |
+| add (a + b) | 10433 ns |
+| sub (a - b) | 8370 ns |
+| mul (a * b) | 3083822 ns |
+| div (a / b) | 303165377 ns |
+
+**functions**
+
+| name | microseconds |
+| ---- | ------------ |
+| apa::fibonacci(71421) | 186169 μs |
+| apa::factorial(6321) | 30863 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
-- a limb size = 519
-- b limb size = 408
+- a limb size = 1105
+- b limb size = 775
+
+**basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 5718 ns |
-| sub (a - b) | 4049 ns |
-| mul (a * b) | 740979 ns |
-| div (a / b) | 73814189 ns |
+| add (a + b) | 10199 ns |
+| sub (a - b) | 7316 ns |
+| mul (a * b) | 1836244 ns |
+| div (a / b) | 357682873 ns |
+
+**functions**
+
+| name | microseconds |
+| ---- | ------------ |
+| apa::fibonacci(71421) | 185874 μs |
+| apa::factorial(6321) | 22050 μs |
 
 
 ### System Runner
