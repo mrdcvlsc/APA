@@ -166,8 +166,7 @@ of aiming for number bases **2<sup>16</sup>**, **2<sup>32</sup>**, **2<sup>64</s
 we choose a somehow near full bases **2<sup>15</sup>**, **2<sup>31</sup>**,
 **2<sup>63</sup>**, this representation is beneficial when used in some
 cases (see [Poly1305-donna](https://github.com/floodyberry/poly1305-donna), 
-[Karatsuba Multiplication](https://eprint.iacr.org/2015/1247.pdf),
-and [Goldilocks Numbers](https://www.mail-archive.com/curves@moderncrypto.org/msg00310.html))
+[Karatsuba Multiplication](https://eprint.iacr.org/2015/1247.pdf))
 and might outperform the **Packed Radix Representations** in other cases
 (maybe even in most cases), this is due to the reduction of immediate carries and
 casting, or even complete avoidance of using or casting to a larger data type.
