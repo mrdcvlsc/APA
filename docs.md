@@ -70,48 +70,45 @@
 
 -----
 
-- **Supported Operators of ```apa::bint```**.
-    - Negation Operator ```-```
-    - Arithmetic Operators ```+```, ```-```,
-    ```*```, ```/```, ```%```, ```+=```, ```-=```,
-    ```*=```, ```/=```, ```%=```
+- **Supported Operators of `apa::bint`**.
+    - Negation Operator `-`
+    - Arithmetic Operators `+`, `-`,
+    `*`, `/`, `%`, `+=`, `-=`,
+    `*=`, `/=`, `%=`
     - Increment/Decrement Operators
-    ```++```, ```--``` (Post-Fix and Pre-Fix)
+    `++`, `--` (Post-Fix and Pre-Fix)
     - Relational Operators
-    ```<```, ```>```, ```==```, ```<=```, ```>=```, ```!=```
-    - Logical Operators ```!```, ```&&```, ```||```
-    - Bitwise Logical Operators ```~```, ```|```, ```&```, ```^```,
-    ```|=```, ```&=```, ```^=```
-    - Bitwise Shifts ```<<```, ```>>```, ```<<=```, ```>>=```
-    (only takes argument of ```size_t```)
-    - Standard I/O (console cin and cout) ```<<```, ```>>```
+    `<`, `>`, `==`, `<=`, `>=`, `!=`
+    - Logical Operators `!`, `&&`, `||`
+    - Bitwise Logical Operators `~`, `|`, `&`, `^`,
+    `|=`, `&=`, `^=`
+    - Bitwise Shifts `<<`, `>>`, `<<=`, `>>=`
+    (only takes argument of `size_t`)
+    - Standard I/O (console cin and cout) `<<`, `>>`
     (only accepts and output hex format)
 
-- **Other Methods**.
-    - ```apa::swap(bint&,bint&)``` -
-    **[apa namespace function]** swap values of two ```bint``` class.
-    - ```.printHex()``` -
-    **[bint public method]** prints the value of ```bint``` in hex format.
-    - ```.to_base10_string()``` -
-    **[bint public method]** returns a string that represents the value of
-    ```bint``` in base 10 (decimal).
-    - ```.to_base16_string()``` -
-    **[bint public method]** returns a string that represents the value of
-    ```bint``` in base 16 (hex).
-    - ```.capacity_size()``` -
-    **[bint public method]** returns the total allocated number of limbs of
-    a ```bint``` variable;
-    - ```.limb_size()``` -
-    **[bint public method]** returns the number of limbs currently used by
-    a ```bint``` variable;
-    - ```.byte_size()``` -
-    **[bint public method]** returns the total number of bytes;
-    - ```.bit_size()``` -
-    **[bint public method]** returns the total number of bits;
-    - ```*limb_view()``` -
-    **[bint public method]** returns a ```const *limb_t``` pointer array;
-    - ```*byte_view()``` -
-    **[bint public method]** returns a ```const *uint8_t``` pointer array;
+- **`bint` methods**.
+    - `.printHex()` - prints the value of `bint` in hex format
+    - `.to_base10_string()` - returns a string that represents the value of
+    `bint` in base 10 (decimal)
+    - `.to_base16_string()` - returns a string that represents the value of
+    `bint` in base 16 (hex)
+    - `.capacity_size()` - returns the total allocated number of limbs of
+    a `bint` variable
+    - `.limb_size()` - returns the number of limbs currently used by
+    a `bint` variable
+    - `.byte_size()` - returns the total number of bytes
+    - `.bit_size()` - returns the total number of bits
+    - `.limb_view()` - returns a `const *limb_t` pointer array
+    - `.byte_view()` - returns a `const *uint8_t` pointer array
+    - `.detach()` - returns a pointer that points to the `limbs` array of `bint`
+    instance, while setting the `limbs` of the `bint` instance to `NULL`
+
+- **`apa` namespace functions**.
+    - `swap(bint& a, bint& b)` - swap values of two `bint` class.
+    - `factorial(size_t n)` - returns `bint` factorial
+    - `fibonacci(size_t nth)` - returns `bint` fibonacci
+    - `power(const bint& base, const bint& exponent)` - returns `bint` power
 
 </details><!-- big integers : end -->
 

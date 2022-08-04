@@ -57,6 +57,41 @@ namespace apa {
     bint factorial(size_t n) {
         return factorial_template<bint>(n);
     }
+
+    integer power_integer(const integer& base, const integer& exponent) {
+        if(exponent==__INTEGER_ZERO) {
+            return __INTEGER_ONE;
+        }
+        else if(exponent==__INTEGER_ONE) {
+            return base;
+        }
+
+        integer sub_power = power_integer(base,exponent/__INTEGER_TWO);
+
+        if((exponent%__INTEGER_TWO)==__INTEGER_ZERO) {
+            return sub_power*sub_power;
+        } else {
+            return base*sub_power*sub_power;
+        }
+    }
+
+    bint power(const bint& base, const bint& exponent) {
+        if(exponent==__BINT_ZERO) {
+            return __BINT_ONE;
+        }
+        else if(exponent==__BINT_ONE) {
+            return base;
+        }
+
+        bint sub_power = power(base,exponent/__BINT_TWO);
+
+        if((exponent%__BINT_TWO)==__BINT_ZERO) {
+            return sub_power*sub_power;
+        } else {
+            return base*sub_power*sub_power;
+        }
+    }
+
 }
 
 #endif
