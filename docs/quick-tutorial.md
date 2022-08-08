@@ -1,11 +1,12 @@
 # Quick Tutorial
 
 In this section, I will share my knowledge about big number implementations,
-this is not a tutorial for using the library, go to the [docs.md](docs.md)
-if that is what you are trying to find.
+this is not a tutorial for the library itself, please go to the [docs.md](docs.md)
+if you want to learn how to use the library.
 
-If you want to gain a little knowledge about big number
-implementations, continue reading this section.
+On the other hand, if you want to gain a little knowledge about big number
+implementations, and how to implement them slightly faster,
+continue reading this section.
 
 ## **Representing Big Numbers**
 
@@ -66,9 +67,9 @@ arrays on a reverse order, this is just a preference.
 Well that's easy, though there is only one problem with this approach,
 **IT IS VERY SLOW!!!**, since we are only operating on one digit at a
 time, a very big number that have thousands of digits would require a
-very large array with the same exact thousands of elements, this will
-require more loop iterations, more instructions, resulting to a very
-slow running time.
+very large array with the same exact thousands of elements just to store
+those digits in, this will require more loop iterations, more instructions,
+resulting to a very slow running time.
 
 <br>
 
@@ -133,38 +134,38 @@ to store at maximum 32 bits inside one of its register.
 
 With higher level languages like C and C++ we don't deal with the registers
 on a direct way anymore, these languages provides abstractions, and have given
-us data types that can hold certain sizes.
+us **data types** that can hold certain sizes.
 
 [(*More About Max Values*)](values.md)
 
-If you notice those max values, they are in actually a **(power of 2) - 1**,
-this is advantageous for us, meaning we can use a base that is a **power of
+If you notice, those **data types** have max values that belongs to a **power of
+2**, this is advantageous for us, meaning we can use a base that is a **power of
 2** at maximum.
 
-For example, if we have an array of `uint32_t`, and if we are going to use a
+For comparison, if we have an array of `uint32_t`, and if we are going to use a
 base that is a **power of 10** to represent our big integer, the maximum base
-we can use would be **base 1,000,000,000** or (**base 10<sup>9</sup>**), any
-higher bases that is a power 10 would not fit in the max value of `uint32_t`
-which is **4,294,967,295**.
+we can use would be **base 1,000,000,000** (1 billion) or (**base 10<sup>9</sup>**),
+and any higher bases that is a power 10 would not fit in the max value of `uint32_t`
+which is **4,294,967,295** (4 billion+).
 
-By using a base that is a **power of 2** we can further increase the base
-without getting over the `uint32_t` max value limit, for example the max base
-that is a power of 2 that we can use with `uint32_t` is **4,294,967,296** or
-**base 2<sup>32</sup>** which is just **+1** higher than the `uint32_t` max
-value limit, hence the name **packed radix representation**. We packed the
-base tightly, filling up all the bits in the register, and leaving no space
-in our data type yet not overflowing.
+On the other hand, by using a base that is a **power of 2** we can further increase
+the base's max value without getting over the `uint32_t` value limit, for example
+the **highest base** that is a **power of 2** that we can use with `uint32_t` is
+**4,294,967,296** or **base 2<sup>32</sup>** which is just **+1** higher than the
+`uint32_t` max value limit, hence the name **packed radix representation**.
+We packed the base tightly, filling up all the bits in the register, and leaving no
+space in our data type yet not overflowing.
 
 Usually we aim for bases with the power of 2, this library supports bases
 **2<sup>16</sup>**, **2<sup>32</sup>**, **2<sup>64</sup>**.
 
 ### **Reduce Radix Representation**
 
-There are other representations that is also significantly faster than base 10
-representations, but don't use the whole bits/size of a data type like in packed
-radix representations. It is called the reduced radix representation where instead
-of aiming for number bases **2<sup>16</sup>**, **2<sup>32</sup>**, **2<sup>64</sup>**,
-we choose a somehow near full bases **2<sup>15</sup>**, **2<sup>31</sup>**,
+There is another representation that is also significantly faster than base of powers
+of 10, Though this representation **does not use the whole bits/size** of a **data type**
+unlike in *packed radix representation*. It is called the **reduced radix representation**
+where instead of aiming for number bases **2<sup>16</sup>**, **2<sup>32</sup>**,
+**2<sup>64</sup>**, we choose a somehow near full bases **2<sup>15</sup>**, **2<sup>31</sup>**,
 **2<sup>63</sup>**, this representation is beneficial when used in some
 cases (see [Poly1305-donna](https://github.com/floodyberry/poly1305-donna), 
 [Karatsuba Multiplication](https://eprint.iacr.org/2015/1247.pdf))
