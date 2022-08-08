@@ -20,17 +20,17 @@
 
 namespace apa {
     /// Positive Sign Value Indicator.
-    static const uint8_t POSITIVE = 0;
+    static const limb_t POSITIVE = 0;
 
     /// Negative Sign Value Indicator.
-    static const uint8_t NEGATIVE = 1;
+    static const limb_t NEGATIVE = 1;
 
     class bint {
 
         private:
 
             integer number;
-            uint8_t sign; // 1 if negative, 0 if positive
+            limb_t sign; // 1 if negative, 0 if positive
 
             static void bitwise_prepare(bint& left, bint& right);
 
@@ -40,8 +40,8 @@ namespace apa {
             bint();
             bint(bint_arg_t num);
             bint(std::string text, size_t base=10);
-            bint(std::initializer_list<limb_t> limbs, uint8_t sign=0);
-            bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign);
+            bint(std::initializer_list<limb_t> limbs, limb_t sign=0);
+            bint(limb_t* arr, size_t capacity, size_t length, limb_t sign);
 
             /// automatically sets the sign to `POSITIVE`.
             bint(size_t capacity, size_t length, bool AllocateSpace=true);
@@ -55,8 +55,8 @@ namespace apa {
             bint& operator=(bint&& src) noexcept; // move.
 
             // integer Constructors
-            bint(uint8_t sign, const integer& number); // integer copy.
-            bint(uint8_t sign, integer&& number) noexcept; // integer move.
+            bint(limb_t sign, const integer& number); // integer copy.
+            bint(limb_t sign, integer&& number) noexcept; // integer move.
 
             ~bint();
 
@@ -153,7 +153,7 @@ namespace apa {
             size_t byte_size() const;
             size_t bit_size() const;
             const limb_t *limb_view() const;
-            const uint8_t *byte_view() const;
+            const limb_t *byte_view() const;
             limb_t* detach();
     };
 

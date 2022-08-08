@@ -42,7 +42,7 @@ namespace apa {
     }
 
     // read only constuctor
-    bint::bint(limb_t* arr, size_t capacity, size_t length, uint8_t sign) {
+    bint::bint(limb_t* arr, size_t capacity, size_t length, limb_t sign) {
         number = integer(arr, capacity, length);
         this->sign = sign;
     }
@@ -77,18 +77,18 @@ namespace apa {
         return *this;
     }
 
-    bint::bint(uint8_t sign, const integer& number) {
+    bint::bint(limb_t sign, const integer& number) {
         this->number = number;
         this->sign = sign;
     }
     
-    bint::bint(uint8_t sign, integer&& number) noexcept {
+    bint::bint(limb_t sign, integer&& number) noexcept {
         this->number = std::move(number);
         this->sign = sign;
     }
     
 
-    bint::bint(std::initializer_list<limb_t> limbs, uint8_t sign) {
+    bint::bint(std::initializer_list<limb_t> limbs, limb_t sign) {
         number = integer(limbs);
         this->sign = sign;
     }
@@ -651,8 +651,8 @@ namespace apa {
         return (const limb_t*) number.limbs;
     }
 
-    const uint8_t *bint::byte_view() const {
-        return (const uint8_t*) number.limbs;
+    const limb_t *bint::byte_view() const {
+        return (const limb_t*) number.limbs;
     }
 
     limb_t* bint::detach() {
