@@ -1,18 +1,10 @@
 ## **Big Integers**
 
-<br>
-
------
-
-<br>
-
 ### **Headers**
 
 - **Header Mode :** `include "APA/core.hpp"`
 
 - **Static Lib :** `include <APA/bint.hpp>`
-
-<br>
 
 -----
 
@@ -21,8 +13,6 @@
 ### **Namespace**
 
 - **`apa::bint`**
-
-<br>
 
 -----
 
@@ -42,8 +32,6 @@ type is **```65535```**, for base of 2<sup>32</sup> it is
 **```4294967295```**, and for base 2<sup>64</sup> this will be
 **```18446744073709551615```**.
 
-<br>
-
 -----
 
 <br>
@@ -55,8 +43,6 @@ apa::bint num1( "11001001110100111110100010101",apa::BIN);
 apa::bint num2("-11001001110100111110100010101",apa::BIN);
 // base 10 equivalent = 423263509 and -423263509
 ```
-
-<br>
 
 -----
 
@@ -71,8 +57,6 @@ apa::bint num2("-122333444455555666666777777700000000",apa::OCT);
 // num2 = -52245490915446306574707453853696
 ```
 
-<br>
-
 -----
 
 <br>
@@ -86,8 +70,6 @@ apa::bint num2("-1192098127666217730001983712379812737234",apa::DEC);
 // num2 = -1192098127666217730001983712379812737234
 ```
 
-<br>
-
 -----
 
 <br>
@@ -100,8 +82,6 @@ apa::bint num2("-deed0feed0dead0beef0fac0bae",apa::HEX);
 // num1 =  282592308594525234095480996891566
 // num2 = -282592308594525234095480996891566
 ```
-
-<br>
 
 -----
 
@@ -120,8 +100,6 @@ base size (depending on the base size you choose during compilation).
 - Base 2<sup>16</sup> max value = ```0xffff```
 - Base 2<sup>32</sup> max value = ```0xffffffff```
 - Base 2<sup>64</sup> max value = ```0xffffffffffffffff```
-
-<br>
 
 -----
 
@@ -144,8 +122,6 @@ base size (depending on the base size you choose during compilation).
 - Standard I/O (console cin and cout) `<<`, `>>`
 (only accepts and output hex format)
 
-<br>
-
 -----
 
 <br>
@@ -166,8 +142,6 @@ a `bint` variable
 - `.byte_view()` - returns a `const *uint8_t` pointer array
 - `.detach()` - returns a pointer that points to the `limbs` array of `bint`
 instance, while setting the `limbs` of the `bint` instance to `NULL`
-
-<br>
 
 -----
 

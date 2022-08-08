@@ -1,11 +1,5 @@
 ## **Compilation**
 
-<br>
-
------
-
-<br>
-
 ### **Compiling with Header only**.
 
 - If you don't want to build the library using ```makefiles``` you can directly
@@ -31,8 +25,6 @@ include the core header instead, then compile right away with your main program.
 
 By default, if a ```-D_FORCE_BASE2_XX``` flag is not specified, the code will auto
 decide the best available value for you.
-
-<br>
 
 -----
 
@@ -85,8 +77,8 @@ by including the headers.
     ```
     g++ main.cpp -o main.exe -lapa -O2
     ```
-- If you did not installed it you need to link the **build/include** and **build/lib**
-folder during compilation.
+- If you did not install it, you need to link the **build/include** and **build/lib**
+directory during compilation.
     ```
     g++ main.cpp -o main.exe -I"PATH/APA/build/include" -L"PATH/APA/build/lib" -lapa -O2
     ```

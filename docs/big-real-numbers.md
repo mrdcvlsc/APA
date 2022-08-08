@@ -1,18 +1,10 @@
 ## **Big Real Numbers**
 
-<br>
-
------
-
-<br>
-
 ### **Headers**
 
 - **Header Mode :** `include "APA/core.hpp"`
 
 - **Static Lib :** `include <APA/bfloat.hpp>`
-
-<br>
 
 -----
 
@@ -22,9 +14,10 @@
 
 - **`apa::bfloat`**
 
+-----
+
 <br>
 
------
 
 - ***Not Yet Available in version 4.***
 
