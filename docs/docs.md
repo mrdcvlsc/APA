@@ -7,7 +7,7 @@ APA mini documentation
     For values that cannot fit the integral types.
     e.g. `int`, `long long int`, `uint64_t` & etc.
 
-- ### **[Big Real Numbers](./big-real-numbers.md.md)**
+- ### **[Big Real Numbers](./big-real-numbers.md)**
 
     For values that cannot fit the real types.
     e.g. `float` & `double`.
