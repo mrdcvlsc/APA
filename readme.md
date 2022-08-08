@@ -19,9 +19,9 @@ for the latest previous working version.**
 
 ### **Documentation**
 
-- [**docs.md**](docs.md) - learn how to use the library.
+- [**docs.md**](docs/docs.md) - learn how to use the library.
 
-- [**quick-tutorial**](quick-tutorial.md) - learn how this library works internally.
+- [**quick-tutorial.md**](docs/quick-tutorial.md) - learn how this library works internally.
 
 -----
 

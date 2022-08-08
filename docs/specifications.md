@@ -1,4 +1,4 @@
-### ```bint``` : Bitwise Not (~)
+### **```apa::bint``` : Bitwise Not (~)**
 
 - The bitwise not (~) of ```bint``` is the same as Python's not operator, or in general it performs a 2's complement conversion.
 
@@ -6,7 +6,7 @@
 
     In ```bint``` This will be equivalent to adding 1 for the ```number``` member, then flipping the ```sign``` member to negative.
 
-### ```bint```'s bitwise logical &, |, ^ operators
+### **```apa::bint```'s bitwise logical &, |, ^ operators**
 - The other bitwise logical operators of ```bint``` (&, |, ^) applies a special 2's complement conversion to negative ```bint``` parameters before applying the operators.
 
     If the output is negative we then again applies a special 2's complement conversion.
@@ -15,7 +15,7 @@
 
     In general the output of this operators should be the same as python3's bitwise logical operators.
 
-### ```bint``` : Division
+### **```apa::bint``` : **Division**
 
 - The division operator of bint is more similar to C/C++ than in python. ```bint``` don't apply a floor function to the quotient, instead it stops calculating the value after the decimal.
 
@@ -29,7 +29,7 @@
 
         $-9//4 = -3$
 
-### ```bint``` : Modulo
+### **```apa::bint``` : Modulo**
 
 - Since the division of bint is more similar to C/C++ the modulo output of ```bint``` in some cases for negative numbers will be different to the output of python's modulo.
 
