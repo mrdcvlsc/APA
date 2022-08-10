@@ -70,8 +70,22 @@ int main() { START_TEST;
 
             // ANSR1 = NUM1.bit_modulo(NUM2);
             
-        ASSERT_EQUALITY(NUM1.bit_division(NUM1),ONE, "1 NUM1.bit_division(NUM1)");
-        ASSERT_EQUALITY(NUM2.bit_division(NUM2),ONE, "2 NUM2.bit_division(NUM2)");
+        apa::integer dbans1 = NUM1.bit_division(NUM1);
+        apa::integer dbans2 = NUM2.bit_division(NUM2);
+        apa::integer dbans3 = NUM1 / NUM2;
+        // ANSQ1
+
+        std::cout << "dbans1 = " << dbans1 << "\n\n";
+        std::cout << "   ONE = " << ONE << "\n\n";
+
+        std::cout << "dbans2 = " << dbans2 << "\n\n";
+        std::cout << "   ONE = " << ONE << "\n\n";
+
+        std::cout << "        ANSQ1 = " << ANSQ1 << "\n\n";
+        std::cout << "NUM1_DIV_NUM2 = " << NUM1_DIV_NUM2 << "\n\n";
+
+        ASSERT_EQUALITY(dbans1,ONE, "1 NUM1.bit_division(NUM1)");
+        ASSERT_EQUALITY(dbans2,ONE, "2 NUM2.bit_division(NUM2)");
         ASSERT_EQUALITY(NUM3.bit_division(NUM3),ONE, "3 NUM3.bit_division(NUM3)");
         ASSERT_EQUALITY((NUM1/NUM1),ONE,             "4 NUM1/NUM1              ");
         ASSERT_EQUALITY((NUM2/NUM2),ONE,             "5 NUM2/NUM2              ");
@@ -79,7 +93,7 @@ int main() { START_TEST;
         ASSERT_EQUALITY(ANSQ1,NUM1_DIV_NUM2,         "7 NUM1.bit_division(NUM2)");
         ASSERT_EQUALITY(ANSQ2,NUM1_DIV_NUM3,         "8 NUM1.bit_division(NUM3)");
         ASSERT_EQUALITY(ANSQ3,NUM2_DIV_NUM3,         "9 NUM2.bit_division(NUM3)");
-        ASSERT_EQUALITY((NUM1/NUM2),NUM1_DIV_NUM2,   "10 NUM1/NUM2             ");
+        ASSERT_EQUALITY(dbans3,NUM1_DIV_NUM2,   "10 NUM1/NUM2             ");
         ASSERT_EQUALITY((NUM1/NUM3),NUM1_DIV_NUM3,   "11 NUM1/NUM3             ");
         ASSERT_EQUALITY((NUM2/NUM3),NUM2_DIV_NUM3,   "12 NUM2/NUM3             ");
 

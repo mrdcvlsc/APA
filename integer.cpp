@@ -536,7 +536,7 @@ namespace apa {
             total_bits = length*BASE_BITS,
             ms_limb = length - 1;
         
-        for(size_t i=0; i<total_bits; ++i) {
+        for(size_t i = 0; i < total_bits; ++i) {
             current_index = ms_limb - i/BASE_BITS;
             current_shift_val = i % BASE_BITS;
             
@@ -652,14 +652,14 @@ namespace apa {
                 size_t bit_shifts = bits % BASE_BITS;
                 size_t new_length = length - limb_shifts;
                 
-                limb_t prev = 0;
-                limb_t next = 0;
+                // initial limb shift
+                limbs[0] = limbs[limb_shifts] >> bit_shifts;
 
-                for(size_t i=0; i<new_length; ++i) {
-                    next = limbs[length-1-i] << (BASE_BITS - bit_shifts);
-                    limbs[new_length-1-i] = limbs[length-1-i] >> bit_shifts;
-                    limbs[new_length-1-i] |= prev;
-                    prev = next;
+                // looped shifts
+                for(size_t i = 1; i < new_length; ++i) {
+                    limb_t bit_catch = ((bit_shifts) ? (limbs[i + limb_shifts] << (BASE_BITS - bit_shifts)) : 0); 
+                    limbs[i] = limbs[i + limb_shifts] >> bit_shifts;
+                    limbs[i - 1] |= bit_catch;
                 }
 
                 length = new_length;
