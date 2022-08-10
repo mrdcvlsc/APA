@@ -93,6 +93,35 @@ int main() { START_TEST;
         apa::integer subject_bug_RS15("1b5a1bdda3fdda5bd5a77dde99",16);
          
         apa::integer subject_bug_ans = subject_bug >> 15;
+
+        apa::integer ver4_5test(
+            "19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456703c339c"
+            "96f18bed4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22ccf76553d1c38deb6",
+            apa::HEX
+        );
+
+        apa::integer ver4_5bug_ras = ver4_5test >> 64;
+
+        apa::integer ver4_5bug_ras_C(
+            "19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456"
+            "703c339c96f18bed4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22c",
+            apa::HEX
+        );
+
+
+        apa::integer ver4_5_p2_test(
+            "19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456703c339c"
+            "96f18bed4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22ccf76553d1c38deb6",
+            apa::HEX
+        );
+
+        apa::integer ver4_5_p2_bug_ras = ver4_5_p2_test << 64;
+
+        apa::integer ver4_5_p2_bug_ras_C(
+            "19cf0546f6a3fc1e93d8dbda5ea2889551cb7248d21125fbf60f3c622a4ab01456703c339c96f18bed"
+            "4ce4fa268983f97dcb83ae847f8ecf19f81870578c41ede22ccf76553d1c38deb60000000000000000",
+            apa::HEX
+        );
         
         // answers
 
@@ -115,9 +144,8 @@ int main() { START_TEST;
         ASSERT_EQUALITY(fac(3375) >> 34567,RS34567_FAC3375_C,            "fac(3375) >> 34567      ");
         ASSERT_EQUALITY((SUBJECT_LS1 << 1),LS1_C,                        "(SUBJECT_LS1 << 1)      ");
         ASSERT_EQUALITY(subject_bug_ans, subject_bug_RS15,               "subject_bug >> 15       ");
-
-        std::cout << "2 << 323    = " << (apa::integer(2) << 320) << "\n\n";
-        std::cout << "LS320_TWO_C = " << LS320_TWO_C << "\n";
+        ASSERT_EQUALITY(ver4_5bug_ras, ver4_5bug_ras_C,                  "ver4_5_bug >> 64        ");
+        ASSERT_EQUALITY(ver4_5_p2_bug_ras, ver4_5_p2_bug_ras_C,          "ver4_5_p2_bug << 64     ");
 
     #if defined(_BASE2_16)
         RESULT("INTEGER BASE 2^16 SHIFT OPERATORS");
