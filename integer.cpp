@@ -595,20 +595,48 @@ namespace apa {
         size_t
             total_bits = length*BASE_BITS,
             ms_limb = length - 1;
-        
-        for(size_t i=0; i<total_bits; ++i) {
-            current_index = ms_limb - i/BASE_BITS;
-            current_shift_val = i % BASE_BITS;
-            
-            remainder <<= 1;
 
-            bit = limbs[current_index] << current_shift_val;
-            bit >>= BASE_BITS_MINUS1;
+        if(op.length == 1) {
+            for(size_t i = 0; i < total_bits; ++i) {
+                current_index = ms_limb - i/BASE_BITS;
+                current_shift_val = i % BASE_BITS;
+                
+                remainder <<= 1;
 
-            remainder.limbs[0] |= bit;
+                bit = limbs[current_index] << current_shift_val;
+                bit >>= BASE_BITS_MINUS1;
 
-            if(remainder >= op) {
-                remainder -= op;
+                remainder.limbs[0] |= bit;
+
+                if(remainder >= op) {
+                    remainder -= op;
+                }
+            }
+        } else {
+            for(size_t h = 0; h < total_bits; h += BASE_BITS) {
+                current_index = ms_limb - h / BASE_BITS;
+                remainder <<= BASE_BITS;
+                remainder.limbs[0] |= limbs[current_index];
+
+                if(remainder >= op) {
+                    remainder >>= BASE_BITS;
+
+                    for(size_t i = 0; i < BASE_BITS; ++i) {
+                        current_index = ms_limb - (h + i)/BASE_BITS;
+                        current_shift_val = (h + i) % BASE_BITS;
+                        
+                        remainder <<= 1;
+
+                        bit = limbs[current_index] << current_shift_val;
+                        bit >>= BASE_BITS_MINUS1;
+
+                        remainder.limbs[0] |= bit;
+
+                        if(remainder >= op) {
+                            remainder -= op;
+                        }
+                    }
+                }
             }
         }
 
