@@ -152,3 +152,7 @@ instance, while setting the `limbs` of the `bint` instance to `NULL`
 - `factorial(size_t n)` - returns `bint` factorial
 - `fibonacci(size_t nth)` - returns `bint` fibonacci
 - `power(const bint& base, const bint& exponent)` - returns `bint` power
+
+-----
+
+[**Go Back to Docs**](./docs.md)

@@ -27,3 +27,6 @@ but rather a **dynamic precision floating point**.
 - **Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9)
 for the latest previous working version of `bfloat`.**
 
+-----
+
+[**Go Back to Docs**](./docs.md)

@@ -271,3 +271,7 @@ for(int i=0; i<C_LEN; ++i) {
 On the code above we use the larger type `uint32_t` to get each `product`,
 this would avoid overflows and carry loss in the multiplication algorithm,
 hence getting the correct product **12,345,638,665,849,965,762**.
+
+-----
+
+[**Go Back to Docs**](./docs.md)
