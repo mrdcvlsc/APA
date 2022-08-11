@@ -21,10 +21,13 @@ APA mini documentation
 
     Some rules or designs followed by this library.
 
+- ### **[Big Integer Representations](./quick-tutorial.md)**
+
+    Learn how this library represent big numbers.
+
 - ### **Benchmarks**
+
+    Basic benchmarks
+
     - [basic-arithmetic](./../benchmark/basic-arithmetic.md).
     - [karatsuba](./../benchmark/karatsuba.md).
-
-<br>
-
-- ### **[Big Integer Representations](./quick-tutorial.md)**
