@@ -81,7 +81,7 @@ resulting to a very slow running time.
 How can we solve this slow performance? Well **using a larger base**
 would speed up our implementation, most intermediate implementations
 would use a larger base that is a power of **10**, let us implement
-our previous example using a slightly larger base, let us use **base 100**.
+our previous example using a slightly larger **base 100** representation.
 
 ```c++
 const int BASE = 100;
@@ -114,10 +114,10 @@ further speed up the performance, something crazy like **base 1,000,000,000**
 where you can perform **one** operation per **nine** digits at a **single** time.
 
 The term **limb** might come up often when reading about big integers,
-To give a simplfied definition; A **digit** is a single numbers,
+To give a simplfied definition; A **digit** is a single number,
 while a **limb** is a **set** of **multiple digits** treated as a **single digit**
 in a big integer array, In our example above since we are operating on 2 digits at a time,
-instead of calling each element of the array a ***digit**, we call it a **limb** instead.
+instead of calling each element of the array a **digit**, we call it a **limb** instead.
 
 <br>
 
