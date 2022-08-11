@@ -20,3 +20,10 @@ APA mini documentation
 - ### **[Specification](./specifications.md)**
 
     Some rules or designs followed by this library.
+
+- ### **Benchmarks**
+
+    - [basic-arithmetic](./../benchmark/basic-arithmetic.md).
+    - [karatsuba](./../benchmark/karatsuba.md).
+
+- ### **[Big Integer Representations](./quick-tutorial.md)**

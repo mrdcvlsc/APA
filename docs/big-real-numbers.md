@@ -1,5 +1,8 @@
 ## **Big Real Numbers**
 
+This is not an **extended fixed precision floating point** type
+but rather a **dynamic precision floating point**.
+
 ### **Headers**
 
 - **Header Mode :** `include "APA/core.hpp"`

@@ -1,5 +1,7 @@
 # **APA** : C++ big integers and dynamic precision floating points.
 
+https://mrdcvlsc.github.io/APA
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 ![build](https://github.com/mrdcvlsc/APA/actions/workflows/build.yml/badge.svg)
 ![gcc-gnu](https://github.com/mrdcvlsc/APA/actions/workflows/gcc-gnu.yml/badge.svg)
@@ -19,7 +21,7 @@ for the latest previous working version.**
 
 ### **Documentation**
 
-- [**docs.md**](docs/docs.md) - learn how to use the library.
+- [**Docs**](https://mrdcvlsc.github.io/APA/docs/docs.html) - learn how to use the library.
 
 - [**quick-tutorial.md**](docs/quick-tutorial.md) - learn how this library works internally.
 
@@ -32,6 +34,7 @@ for the latest previous working version.**
 | **Byte Order**   | little-endian    |
 | **OS**           | Windows, Linux   |
 | **Architecture** | x86, x64, x86-64 |
+| **Compilers**    | clang, GCC       |
 
 If your system does not have these requirements, it **might** produce wrong
 results (on other system this could still work, but the chances of the tests
@@ -41,7 +44,7 @@ failing will be higher).
 
 ### **Description**
 
-This is a mini C++ **A**rbitrary **P**recision **A**rithmetic library. Used to compute
+This is a C++ **A**rbitrary **P**recision **A**rithmetic library. Used to compute
 big integers and real numbers/floating point numbers. If you need to compute numbers that
 is greater than the max value of `unsigned long long int`, `uint64_t` or
 `__uint128_t` this library can do it for you.
