@@ -22,9 +22,9 @@ To understand how this work, let's look at the basics.
 *Note: In number base systems, `0` is always the minimum digit, but the
 maximum digit is computed by subtracting `1` to the base.*
 
-$min = 0$
+$$min = 0$$
 
-$max = base - 1$
+$$max = base - 1$$
 
 ### **Using a Base 10 Representation**
 
