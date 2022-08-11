@@ -22,8 +22,9 @@ APA mini documentation
     Some rules or designs followed by this library.
 
 - ### **Benchmarks**
-
     - [basic-arithmetic](./../benchmark/basic-arithmetic.md).
     - [karatsuba](./../benchmark/karatsuba.md).
+
+<br>
 
 - ### **[Big Integer Representations](./quick-tutorial.md)**
