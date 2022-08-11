@@ -1,32 +1,34 @@
 # Quick Tutorial
 
 In this section, I will share my knowledge about big number implementations,
-this is not a tutorial for the library itself, please go to the [docs.md](docs.md)
-if you want to learn how to use the library.
+this is not a tutorial on how to use the library itself, go to [docs.md](docs.md)
+to learn how to use the library.
 
-On the other hand, if you want to gain a little knowledge about big number
-implementations, and how to implement them slightly faster,
-continue reading this section.
+On the other hand, if you have no clue about big numbers in general, and if you want
+to gain a little knowledge about big number implementations, and how to implement
+them with slight faster performance, then continue reading this section.
 
 ## **Representing Big Numbers**
 
-This library uses a **packed radix** representation to represent big numbers.
+This library uses a **packed radix** representation to represent big numbers,
+more on that later.
 
 To understand how this work, let's look at the basics.
 
 <br>
 
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 *Note: In number base systems, `0` is always the minimum digit, but the
 maximum digit is computed by subtracting `1` to the base.*
 
-- $min = 0$
-
-- $max = base - 1$
+$$min = 0\\
+max = base - 1$$
 
 ### **Using a Base 10 Representation**
 
 The most beginner-friendly way to represent big integers is to use an
-array of number or string where each element contains a one-digit number
+array of number or string where each element contains a **one-digit** number
 from **0 to 9**.
 
 This representation is called the **base 10** number system, this is
@@ -108,19 +110,25 @@ This would require less space, less loop iterations, and fewer instructions.
 
 You might also realize by now that you can extend to an even larger base to
 further speed up the performance, something crazy like **base 1,000,000,000**
-where you can perform **one** operation per **9** digits at a **single** time.
+where you can perform **one** operation per **nine** digits at a **single** time.
+
+The term **limb** might come up often when reading about big integers,
+To give a simplfied definition; A **digit** is a single numbers,
+while a **limb** is a **set** of **multiple digits** treated as a **single digit**
+in a big integer array, In our example above since we are operating on 2 digits at a time,
+instead of calling each element of the array a ***digit**, we call it a **limb** instead.
 
 <br>
 
 ### **Packed Radix Representation**
 
 So far we've been using **bases** that are a power of **10** in our examples,
-but we can further optimize the representation of a big number using a packed
+but we can further optimize the representation of a big integers using a packed
 radix implementation.
 
 As we can see in our previous examples, ***the higher our base is, the less
-element our array would have, meaning less loop iterations, fewer instructions
-etc. which can lead to a faster running time of our program***.
+element (limb) our array would have, meaning less loop iterations, fewer instructions,
+which can lead to faster performance***.
 
 In **packed radix implementation** we can further take advantage of this
 knowledge and instead of using a base that is a power of 10, we would use a

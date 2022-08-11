@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
 title: APA
-description: A C++ big number library that provides big integers, big floating-point type, and arbitrary precision arithmetic operations.
+description: C++ big integers and dynamic precision floating points.
 github_username: mrdcvlsc
 github_repo: "APA"
 

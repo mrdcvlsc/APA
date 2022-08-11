@@ -1,4 +1,4 @@
-# APA : *Arbitrary Precision Arithmetic*
+# **APA** : C++ big integers and dynamic precision floating points.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 ![build](https://github.com/mrdcvlsc/APA/actions/workflows/build.yml/badge.svg)
@@ -6,7 +6,7 @@
 ![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
 ![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
 
-A c++ library for big integers and big number computation.
+A c++ library for big integers and dynamic precision floating points (big numbers).
 
 **Version 4 Status : [WIP - Work In Progress]**
 
@@ -41,8 +41,8 @@ failing will be higher).
 
 ### **Description**
 
-This is a mini C++ Arbitrary Precision Arithmetic library. Used to compute
-big integers & big floating point numbers. If you need to compute numbers that
+This is a mini C++ **A**rbitrary **P**recision **A**rithmetic library. Used to compute
+big integers and real numbers/floating point numbers. If you need to compute numbers that
 is greater than the max value of `unsigned long long int`, `uint64_t` or
 `__uint128_t` this library can do it for you.
 
