@@ -8,7 +8,8 @@ https://mrdcvlsc.github.io/APA
 ![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
 ![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
 
-A c++ library for big integers and dynamic precision floating points (big numbers).
+A C++ library for big integers and dynamic precision floating points (big numbers),
+This is a pure simple c/c++ implementation, no hand-written inline-assembly.
 
 **Version 4 Status : [WIP - Work In Progress]**
 
@@ -19,11 +20,14 @@ for the latest previous working version.**
 
 -----
 
-### **Documentation**
+### **Links**
 
 - [**Docs**](https://mrdcvlsc.github.io/APA/docs/docs.html) - learn how to use the library.
 
 - [**quick-tutorial.md**](docs/quick-tutorial.md) - learn how this library works internally.
+
+- [**performance comparison**](benchmark/comparison.md) - performance was compared with
+other light-weight popular C++ big integer libraries.
 
 -----
 

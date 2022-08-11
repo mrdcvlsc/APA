@@ -4,7 +4,7 @@ TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
-.PHONY: test all_test benchmark karatsuba arithmetic style
+.PHONY: test all_test benchmark karatsuba arithmetic style compare
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
