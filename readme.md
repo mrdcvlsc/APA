@@ -24,9 +24,9 @@ for the latest previous working version.**
 
 - [**Docs**](https://mrdcvlsc.github.io/APA/docs/docs.html) - learn how to use the library.
 
-- [**quick-tutorial.md**](docs/quick-tutorial.md) - learn how this library works internally.
+- [**quick-tutorial.md**](https://mrdcvlsc.github.io/APA/docs/quick-tutorial.html) - learn how this library works internally.
 
-- [**performance comparison**](benchmark/comparison.md) - performance was compared with
+- [**performance comparison**](https://mrdcvlsc.github.io/APA/benchmark/comparison.html) - performance was compared with
 other light-weight popular C++ big integer libraries.
 
 -----

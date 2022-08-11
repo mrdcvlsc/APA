@@ -19,6 +19,8 @@ To understand how this work, let's look at the basics.
 
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<br>
+
 *Note: In number base systems, `0` is always the minimum digit, but the
 maximum digit is computed by subtracting `1` to the base.*
 
