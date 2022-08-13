@@ -12,9 +12,9 @@
 int main() { START_TEST;
 
         // test variables
-        apa::bint bits("11110011001110101001111",2); // 23 bits
-        apa::bint bytes1("ffaabbccdd",16); // 5
-        apa::bint bytes2("faabb",16); // 3
+        apa::bint bits = "0b11110011001110101001111"; // 23 bits
+        apa::bint bytes1 = "0xffaabbccdd"; // 5
+        apa::bint bytes2 = "0xfaabb"; // 3
         
         // answers
         ASSERT_EQUALITY(bits.bit_size(), 23,   "bitsize   ");

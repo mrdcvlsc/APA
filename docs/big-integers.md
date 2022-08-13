@@ -39,8 +39,8 @@ type is **```65535```**, for base of 2<sup>32</sup> it is
 ### **Initializing from a base2 (binary) number represented by a string**.
 
 ```c++
-apa::bint num1( "11001001110100111110100010101",apa::BIN);
-apa::bint num2("-11001001110100111110100010101",apa::BIN);
+apa::bint num1 = "0b11001001110100111110100010101";
+apa::bint num2 = "-0b11001001110100111110100010101";
 // base 10 equivalent = 423263509 and -423263509
 ```
 
@@ -50,8 +50,8 @@ apa::bint num2("-11001001110100111110100010101",apa::BIN);
 
 ### **Initializing from a base8 (octal) number represented by a string**.
 ```c++
-apa::bint num1( "122333444455555666666777777700000000",apa::OCT);
-apa::bint num2("-122333444455555666666777777700000000",apa::OCT);
+apa::bint num1 = "0o122333444455555666666777777700000000";
+apa::bint num2 = "-0o122333444455555666666777777700000000";
 // base 10 equivalent
 // num1 =  52245490915446306574707453853696
 // num2 = -52245490915446306574707453853696
@@ -63,8 +63,8 @@ apa::bint num2("-122333444455555666666777777700000000",apa::OCT);
 
 ### **Initializing from a base10 (decimal) number represented by a string**.
 ```c++
-apa::bint num1( "1192098127666217730001983712379812737234",apa::DEC);
-apa::bint num2("-1192098127666217730001983712379812737234",apa::DEC);
+apa::bint num1 = "1192098127666217730001983712379812737234";
+apa::bint num2 = "-1192098127666217730001983712379812737234";
 // base10 equivalent
 // num1 =  1192098127666217730001983712379812737234
 // num2 = -1192098127666217730001983712379812737234
@@ -76,8 +76,8 @@ apa::bint num2("-1192098127666217730001983712379812737234",apa::DEC);
 
 ### **Initializing from a base16 (hex) number represented by a string**.
 ```c++
-apa::bint num1( "deed0feed0dead0beef0fac0bae",apa::HEX);
-apa::bint num2("-deed0feed0dead0beef0fac0bae",apa::HEX);
+apa::bint num1 = "0xdeed0feed0dead0beef0fac0bae";
+apa::bint num2 = "-0xdeed0feed0dead0beef0fac0bae";
 // base10 equivalent
 // num1 =  282592308594525234095480996891566
 // num2 = -282592308594525234095480996891566

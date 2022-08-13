@@ -15,14 +15,39 @@
 #endif
 
 namespace apa {
+    // bint exception class methods
+    bint_error::bint_error (unsigned int error_code) : error_code(error_code) {
+        switch(error_code) {
+            case 1:
+                error_message = "assignment of an empty string literal to a bint is not allowed";
+                break;
+            case BIN:
+                error_message = "invalid digit found in assigned \"binary\" number";
+                break;
+            case OCT:
+                error_message = "invalid digit found in assigned \"octal\" number";
+                break;
+            case DEC:
+                error_message = "invalid digit found in assigned \"decimal\" number";
+                break;
+            case HEX:
+                error_message = "invalid digit found in assigned \"hex\" number";
+                break;
+        }
+    }
+
+    unsigned int bint_error::get_error_code() const {
+        return this->error_code;
+    }
+
+    const char * bint_error::what() const throw () {
+        return error_message.c_str();
+    }
+
+    // bint class methods
     bint::bint() {
         number = integer();
         sign = POSITIVE;
-    }
-
-    bint::bint(bint_arg_t num) {
-        sign = (num < 0); // 1 if negative, 0 if positive.        
-        number = integer(std::abs(num));
     }
 
     bint::bint(size_t capacity, size_t length, bool AllocateSpace) {
@@ -30,15 +55,72 @@ namespace apa {
         sign = POSITIVE;
     }
 
-    // constructor for conveniece
-    bint::bint(std::string text, size_t base) {
-        if(text[0]=='-') {
+    /**
+     * @brief constructor for conveniece, check if the input string is a valid integral.
+     * 
+     * @param input the string representation of an integral type,
+     * it could be in binary, octal, hex, and decimal format.
+     * @return int value 0 if is a valid type, 1 if string is empty
+     * , 2 if invalid binary, 8 if invalid octal, 10 if invalid dec,
+     * 16 if invalid hex, 20 if invalid number format.
+     */
+    bint::bint(const std::string& input) {
+
+        if(input.empty()) throw bint_error(EMPTY); // empty
+
+        size_t start_index = input[0] == '-';
+        size_t base = 0;
+
+        // could be bin, oct, or hex.
+        if(input[start_index] == '0') {
+            start_index++;
+            if(input[start_index] == 'b') { // check if valid binary
+                start_index++;
+                for(size_t i = start_index; i < input.size(); ++i) {
+                    if((input[i] < '0') ^ (input[i] > '1')) {
+                        throw bint_error(BIN);
+                    }
+                }
+                base = BIN;
+            } else if(input[start_index] == 'o') { // check if valid octal
+                start_index++;
+                for(size_t i = start_index; i < input.size(); ++i) {
+                    if((input[i] < '0') ^ (input[i] > '7')) {
+                        throw bint_error(OCT);
+                    }
+                }
+                base = OCT;
+            } else if(input[start_index] == 'x') { // check if valid hex
+                start_index++;
+                for(size_t i = start_index; i < input.size(); ++i) {
+                    if(CHAR_TO_HEX[(size_t)input[i]] == 0xff) {
+                        throw bint_error(HEX);
+                    }
+                }
+                base = HEX;
+            } else {
+                throw bint_error(INVALID);
+            }
+        } else { // should be dec
+            for(size_t i = start_index; i < input.size(); ++i) {
+                if((input[i] < '0') ^ (input[i] > '9')) {
+                    throw bint_error(DEC);
+                }
+                base = DEC;
+            }
+        }
+
+        if(input[0] == '-') {
             sign = NEGATIVE;
-            text.erase(text.begin(),text.begin()+1);
         } else {
             sign = POSITIVE;
         }
-        number = integer(text,base);
+        number = integer(std::string(input.begin() + start_index, input.end()), base);
+        number.remove_leading_zeros();
+    }
+
+    bint::bint(const char* input) {
+        *this = bint(std::string(input));
     }
 
     // read only constuctor
@@ -675,7 +757,7 @@ namespace apa {
     std::istream& operator>>(std::istream &in, bint &num) {
         std::string input;
         in >> input;
-        num = bint(input,16);
+        num = bint(input);
         return in;
     }
 }

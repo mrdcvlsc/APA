@@ -13,10 +13,10 @@ int main() { START_TEST;
 
     // test variables
     apa::bint subject0 = -254;
-    apa::bint subject1("182379807482704987138971389471980478123748657105182347086873",16); // hex
-    apa::bint subject2("-abcdeffedabbdeffccfeddeccddeeeeeffffeeeeeccffeeeeeeeeeeeeefffeddaaacccccccddfabcdef",16); // hex
-    apa::bint subject3("-77271637711129192000019281928989382938298198818273712893712881728378818923",10); // base 10 - dec
-    apa::bint subject4("-1100100101000010101010001000001111101010001010100100010011110100010011001000111",2); // base 2 - binary
+    apa::bint subject1 = "0x182379807482704987138971389471980478123748657105182347086873"; // hex
+    apa::bint subject2 = "-0xabcdeffedabbdeffccfeddeccddeeeeeffffeeeeeccffeeeeeeeeeeeeefffeddaaacccccccddfabcdef"; // hex
+    apa::bint subject3 = "-77271637711129192000019281928989382938298198818273712893712881728378818923"; // base 10 - dec
+    apa::bint subject4 = "-0b1100100101000010101010001000001111101010001010100100010011110100010011001000111"; // base 2 - binary
     apa::bint subject5 = -subject3;
     apa::bint subject6 = -subject5;
 

@@ -9,18 +9,6 @@
 
 #include "mini-test.hpp"
 
-// apa::integer apa::factorial_integer(size_t n) {
-//     apa::integer factorial(1);
-//     apa::integer iter = factorial;
-
-//     for(size_t i=1; i<=n; ++i) {
-//         factorial *= iter;
-//         iter++;
-//     }
-
-//     return factorial;
-// }
-
 int main() { START_TEST;
 
     // test variables
@@ -187,10 +175,6 @@ int main() { START_TEST;
     ASSERT_EQUALITY(apa::factorial_integer(3375),FAC3375_C,  "FACTORIAL(3375)");
     ASSERT_EQUALITY((num1*apa::__INTEGER_ZERO),apa::__INTEGER_ZERO,"num1*zero      ");
     ASSERT_EQUALITY((apa::__INTEGER_ZERO*num1),apa::__INTEGER_ZERO,"zero*num1      ");
-
-    std::cout << "num1 * num2 = " << num1 * num2 << "\n\n";
-
-    std::cout << "num1num2_C  = " << num1num2_C << "\n"; 
 
     #if defined(_BASE2_16)
         RESULT("INTEGER BASE 2^16 MULTIPLICATION");

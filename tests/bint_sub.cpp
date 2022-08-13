@@ -12,62 +12,55 @@
 int main() { START_TEST;
 
     // test variables
-    apa::bint num1("182379807482704987138971389471980478123748657105182347086873",16);
-    apa::bint num2("-abcdeffedabbdeffccfeddeccddeeeeeffffeeeeeccffeeeeeeeeeeeeefffeddaaacccccccddfabcdef",16);
+    apa::bint num1 = "0x182379807482704987138971389471980478123748657105182347086873";
+    apa::bint num2 = "-0xabcdeffedabbdeffccfeddeccddeeeeeffffeeeeeccffeeeeeeeeeeeeefffeddaaacccccccddfabcdef";
     apa::bint num3 = -num1;
 
-    apa::bint num4(
-        "a1b2c3d4e5f60007700000000000000000000000000000000000000000"
-        "000000000fffffffffffffffffffffffffffffffffffffffffffffffff"
-    ,16);
+    apa::bint num4 =
+        "0xa1b2c3d4e5f60007700000000000000000000000000000000000000000"
+        "000000000fffffffffffffffffffffffffffffffffffffffffffffffff";
 
-    apa::bint num5(
+    apa::bint num5 =
         // negative sign
-        "-fffffffffffffffffffffffffffff0000000000000000"
-        "00000000000000000000000000000000000fffffffffff"
-    ,16);
+        "-0xfffffffffffffffffffffffffffff0000000000000000"
+        "00000000000000000000000000000000000fffffffffff";
 
-    apa::bint num6(
+    apa::bint num6 =
+        "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"  
-        ,16
-    );
+        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
     // correct answers
     std::string num1num2_C =  "abcdeffedabbdeffccfeddee501686f64826f3875e0896027836086f368122523103dd1e4f126b43662";
     std::string num2num1_C = "-abcdeffedabbdeffccfeddee501686f64826f3875e0896027836086f368122523103dd1e4f126b43662";
 
     std::string num1num3_C = "3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6";
-    apa::bint   num3num1_C("-3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6",16);
+    apa::bint   num3num1_C ="-0x3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6";
 
-    apa::bint num4num5_C(
-        "a1b2c3d4e5f60007700000000fffffffffffffffffffffffffffff000000"
-        "000000100000000000000000000000000000000000000ffffffffffe",16
-    );
+    apa::bint num4num5_C =
+        "0xa1b2c3d4e5f60007700000000fffffffffffffffffffffffffffff000000"
+        "000000100000000000000000000000000000000000000ffffffffffe";
 
     apa::bint num5num4_C = -num4num5_C;
 
-    apa::bint num6_one_C(
+    apa::bint num6_one_C =
+        "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",16
-    );
+        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe";
 
-    apa::bint num1_P_NEGATIVE_num6_C(
-        "10000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    apa::bint num1_P_NEGATIVE_num6_C =
+        "0x10000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000001823798074827049871389713894719804781237486571051823"
-        "47086872",16
-    );
+        "47086872";
 
     // solution
     apa::bint num1num2 = num1 - num2;

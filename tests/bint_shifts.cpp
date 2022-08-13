@@ -12,17 +12,15 @@
 int main() { START_TEST;
 
         // test variables
-        apa::bint subject("dad0deed1feed2dead3beef4ceed5",16);
+        apa::bint subject = "0xdad0deed1feed2dead3beef4ceed5";
         apa::bint negate = -subject;
-
-        apa::integer test("dad0deed1feed2dead3beef4ceed5",16);
         
         // answers
-        apa::bint subject_LS15("6d686f768ff7696f569df77a6776a8000",16);
-        apa::bint negate_LS15("-6d686f768ff7696f569df77a6776a8000",16);
+        apa::bint subject_LS15 = "0x6d686f768ff7696f569df77a6776a8000";
+        apa::bint negate_LS15 = "-0x6d686f768ff7696f569df77a6776a8000";
 
-        apa::bint subject_RS15("1b5a1bdda3fdda5bd5a77dde99",16);
-        apa::bint negate_RS15("-1b5a1bdda3fdda5bd5a77dde9a",16);
+        apa::bint subject_RS15 = "0x1b5a1bdda3fdda5bd5a77dde99";
+        apa::bint negate_RS15 = "-0x1b5a1bdda3fdda5bd5a77dde9a";
 
         ASSERT_EQUALITY((subject << 15), subject_LS15,"subject << 15");
         ASSERT_EQUALITY((negate << 15), negate_LS15,  "negate  << 15");

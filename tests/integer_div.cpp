@@ -75,15 +75,6 @@ int main() { START_TEST;
         apa::integer dbans3 = NUM1 / NUM2;
         // ANSQ1
 
-        std::cout << "dbans1 = " << dbans1 << "\n\n";
-        std::cout << "   ONE = " << ONE << "\n\n";
-
-        std::cout << "dbans2 = " << dbans2 << "\n\n";
-        std::cout << "   ONE = " << ONE << "\n\n";
-
-        std::cout << "        ANSQ1 = " << ANSQ1 << "\n\n";
-        std::cout << "NUM1_DIV_NUM2 = " << NUM1_DIV_NUM2 << "\n\n";
-
         ASSERT_EQUALITY(dbans1,ONE, "1 NUM1.bit_division(NUM1)");
         ASSERT_EQUALITY(dbans2,ONE, "2 NUM2.bit_division(NUM2)");
         ASSERT_EQUALITY(NUM3.bit_division(NUM3),ONE, "3 NUM3.bit_division(NUM3)");

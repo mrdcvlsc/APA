@@ -25,6 +25,16 @@ namespace apa {
     /// Negative Sign Value Indicator.
     static const limb_t NEGATIVE = 1;
 
+    class bint_error : public std::exception {
+        private:
+            unsigned int error_code;
+            std::string error_message;
+        public:
+            bint_error (unsigned int error_code);
+            unsigned int get_error_code() const;
+            const char * what() const throw ();
+    };
+
     class bint {
 
         private:
@@ -32,14 +42,23 @@ namespace apa {
             integer number;
             limb_t sign; // 1 if negative, 0 if positive
 
+            /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
+            int compare(const bint& with) const;
             static void bitwise_prepare(bint& left, bint& right);
 
         public:
 
             // Constructors
+
+            template<typename T>
+            bint(T num) {
+                sign = (num < 0); // 1 if negative, 0 if positive.        
+                number = integer(std::abs(num));
+            }
+
             bint();
-            bint(bint_arg_t num);
-            bint(std::string text, size_t base=10);
+            bint(const std::string& input);
+            bint(const char *input);
             bint(std::initializer_list<limb_t> limbs, limb_t sign=0);
             bint(limb_t* arr, size_t capacity, size_t length, limb_t sign);
 
@@ -59,9 +78,6 @@ namespace apa {
             bint(limb_t sign, integer&& number) noexcept; // integer move.
 
             ~bint();
-
-            /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
-            int compare(const bint& with) const;
 
             // Relational Operators
             bool operator<(const bint& op) const;
