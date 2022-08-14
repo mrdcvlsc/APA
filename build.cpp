@@ -3,41 +3,15 @@
  */
 
 #include <bint.hpp>
-#include <integer.hpp> // static lib compilation
 #include <iostream>
 // #include "core.hpp"  // - header compilation
 
-apa::bint fibonacci(size_t nth, uint64_t b0 = 0, uint64_t b1 = 1) {
-    apa::bint base0 = b0, base1 = b1;
-    apa::bint nthfib = 0;
-    for (size_t i = 2; i <= nth; ++i) {
-        nthfib = base0 + base1;
-        base0 = base1;
-        base1 = nthfib;
-    }
-    return nthfib;
-}
-
-apa::bint factorial(size_t n) {
-    apa::bint factorial(1);
-    apa::bint iter = factorial;
-
-    for (size_t i = 1; i <= n; ++i) {
-        factorial *= iter;
-        iter++;
-    }
-
-    return factorial;
-}
-
 int main() {
-    apa::bint FIBONACCI_OF_1000(
+    apa::bint FIBONACCI_OF_1000 =
         "21d8cb07b572c25732bb116f2c33bab0e83d0c699bad1a727a736a7e42ca93b697ad224d55398373062f18ff62b99c28068131a3fab0c1"
-        "2e3510283c1d60b00930b7e8803c312b4c8e6d5286805fc70b594dc75cc0604b",
-        16
-    );
+        "2e3510283c1d60b00930b7e8803c312b4c8e6d5286805fc70b594dc75cc0604b";
 
-    apa::bint FACTORIAL_OF_3375(
+    apa::bint FACTORIAL_OF_3375 =
         "0xa4027a170efee729e543877bc6d8cb88c00810d0b3f18c77f9755907f470a1a94f4ab26af658c7790aae17ac3b584181825e763265c2"
         "16490f5a93c0426485cc2bfc99ed1fd883aa983759e4662f26cdd96cf3289aa1a5ef67e48a36188c3e8f1bd634c6da63e4dc21f9110a33"
         "ff84dcc11b29972edc143fabb1b75ef93799f283e767bec1a3c5a5cbdc3d4a47e1679a5b377f436ab98816451804a290907884e44029e3"
@@ -116,14 +90,12 @@ int main() {
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        16
-    );
+        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
     apa::bint ZERO = 0;
 
-    apa::bint FIB1000 = fibonacci(1000);
-    apa::bint FAC3375 = factorial(3375);
+    apa::bint FIB1000 = apa::fibonacci(1000);
+    apa::bint FAC3375 = apa::factorial(3375);
     apa::bint ZERO__A = FIB1000 - FIBONACCI_OF_1000;
     apa::bint ZERO__B = FACTORIAL_OF_3375 - FAC3375;
 
