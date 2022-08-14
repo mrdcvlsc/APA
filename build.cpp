@@ -2,14 +2,15 @@
  * STATIC LIB BUILD
  */
 
-#include <bint.hpp>
+#include <APA/bint.hpp>
+#include <APA/math.hpp>
 #include <iostream>
 // #include "core.hpp"  // - header compilation
 
 int main() {
     apa::bint FIBONACCI_OF_1000 =
-        "21d8cb07b572c25732bb116f2c33bab0e83d0c699bad1a727a736a7e42ca93b697ad224d55398373062f18ff62b99c28068131a3fab0c1"
-        "2e3510283c1d60b00930b7e8803c312b4c8e6d5286805fc70b594dc75cc0604b";
+        "0x21d8cb07b572c25732bb116f2c33bab0e83d0c699bad1a727a736a7e42ca93b697ad224d55398373062f18ff62b99c28068131a3fab0"
+        "c12e3510283c1d60b00930b7e8803c312b4c8e6d5286805fc70b594dc75cc0604b";
 
     apa::bint FACTORIAL_OF_3375 =
         "0xa4027a170efee729e543877bc6d8cb88c00810d0b3f18c77f9755907f470a1a94f4ab26af658c7790aae17ac3b584181825e763265c2"

@@ -109,11 +109,12 @@ $(SRC)/%.out: $(SRC)/%.cpp
 
 install:
 ifeq ($(OS), Linux)
+	@mkdir $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/integer.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/config.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/math.hpp $(INSTALL_PREFIX)include/APA
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUT)/$(LIB_OUTNAME) $(INSTALL_PREFIX)lib
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/integer.hpp $(INSTALL_PREFIX)include
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/config.hpp $(INSTALL_PREFIX)include
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/math.hpp $(INSTALL_PREFIX)include
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
 	@echo "integer.hpp config.hpp now installed to $(INSTALL_PREFIX)include"
 else
@@ -123,26 +124,29 @@ else
 	@echo .
 	@echo mingw32-make -f staticlib install INSTALL_PREFIX=PATH\mingw64
 	@echo .
+	mkdir $(INSTALL_PREFIX)\include\APA
+	copy build\include\integer.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\config.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\math.hpp "$(INSTALL_PREFIX)\include\APA
 	copy build\lib\$(LIB_OUTNAME) "$(INSTALL_PREFIX)\lib"
-	copy build\include\integer.hpp "$(INSTALL_PREFIX)\include
-	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include
-	copy build\include\config.hpp "$(INSTALL_PREFIX)\include
-	copy build\include\math.hpp "$(INSTALL_PREFIX)\include
 	@echo install success
 endif
 
 uninstall:
 ifeq ($(OS), Linux)
 	@rm $(INSTALL_PREFIX)lib/$(LIB_OUTNAME)
-	@rm $(INSTALL_PREFIX)include/integer.hpp
-	@rm $(INSTALL_PREFIX)include/bint.hpp
-	@rm $(INSTALL_PREFIX)include/config.hpp
-	@rm $(INSTALL_PREFIX)include/math.hpp
+	@rm $(INSTALL_PREFIX)include/APA/integer.hpp
+	@rm $(INSTALL_PREFIX)include/APA/bint.hpp
+	@rm $(INSTALL_PREFIX)include/APA/config.hpp
+	@rm $(INSTALL_PREFIX)include/APA/math.hpp
+	@rm -r $(INSTALL_PREFIX)include/APA
 else
 	del "$(INSTALL_PREFIX)\lib\$(LIB_OUTNAME)"
-	del "$(INSTALL_PREFIX)\include\integer.hpp"
-	del "$(INSTALL_PREFIX)\include\bint.hpp"
-	del "$(INSTALL_PREFIX)\include\config.hpp"
-	del "$(INSTALL_PREFIX)\include\math.hpp"
+	del "$(INSTALL_PREFIX)\include\APA\integer.hpp"
+	del "$(INSTALL_PREFIX)\include\APA\bint.hpp"
+	del "$(INSTALL_PREFIX)\include\APA\config.hpp"
+	del "$(INSTALL_PREFIX)\include\APA\math.hpp"
+	rmdir $(INSTALL_PREFIX)\include\APA
 	echo uninstall success
 endif

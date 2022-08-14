@@ -152,10 +152,21 @@ instance, while setting the `limbs` of the `bint` instance to `NULL`
 
 <br>
 
+Available using the header:
+
+```c++
+// for static library users only.
+#include <APA/math.hpp>
+```
+
+If you are **not** using the static library and just compiling
+directly using the core header file: `#include "APA/core.hpp"`,
+there is **no need** to include the `math.hpp` header.
+
 ### **`apa` namespace functions**.
 - `swap(bint& a, bint& b)` - swap values of two `bint` class.
 - `factorial(size_t n)` - returns `bint` factorial
-- `fibonacci(size_t nth)` - returns `bint` fibonacci
+- `fibonacci(size_t nth)` - returns `bint` Fibonacci
 - `power(const bint& base, const bint& exponent)` - returns `bint` power
 
 -----
