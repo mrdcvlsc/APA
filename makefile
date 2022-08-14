@@ -67,6 +67,7 @@ test: $(OBJ)
 	@./$(SRC)/bint_methods.out
 	@./$(SRC)/bint_karatsuba.out
 	@./$(SRC)/bint_error_handling.out
+	@./$(SRC)/bint_literal_assign.out
 
 # -------------------------- test program compilation ---------------------------
 

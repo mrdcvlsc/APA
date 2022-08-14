@@ -21,22 +21,18 @@
 ### **Initializing from an integral type**.
 
 ```c++
-apa::bint num1 = 255, num2 = -128;
+apa::bint num1 = 255;
+apa::bint num2 = -128;
 // base 10 equivalent = 255 and -128
 ```
-
-Make sure that the integral type value you assign to a ```bint``` will
-not exceed its base size. If you compile ```apa``` with a number base
-of 2<sup>16</sup> the maximum value you can assign using an integral
-type is **```65535```**, for base of 2<sup>32</sup> it is
-**```4294967295```**, and for base 2<sup>64</sup> this will be
-**```18446744073709551615```**.
 
 -----
 
 <br>
 
 ### **Initializing from a base2 (binary) number represented by a string**.
+
+Binary formatter **`0b`**
 
 ```c++
 apa::bint num1 = "0b11001001110100111110100010101";
@@ -49,6 +45,9 @@ apa::bint num2 = "-0b11001001110100111110100010101";
 <br>
 
 ### **Initializing from a base8 (octal) number represented by a string**.
+
+Octal formatter **`0o`**
+
 ```c++
 apa::bint num1 = "0o122333444455555666666777777700000000";
 apa::bint num2 = "-0o122333444455555666666777777700000000";
@@ -62,6 +61,9 @@ apa::bint num2 = "-0o122333444455555666666777777700000000";
 <br>
 
 ### **Initializing from a base10 (decimal) number represented by a string**.
+
+Decimal numbers don't need a formatter.
+
 ```c++
 apa::bint num1 = "1192098127666217730001983712379812737234";
 apa::bint num2 = "-1192098127666217730001983712379812737234";
@@ -75,6 +77,9 @@ apa::bint num2 = "-1192098127666217730001983712379812737234";
 <br>
 
 ### **Initializing from a base16 (hex) number represented by a string**.
+
+Hex formatter **`0x`**
+
 ```c++
 apa::bint num1 = "0xdeed0feed0dead0beef0fac0bae";
 apa::bint num2 = "-0xdeed0feed0dead0beef0fac0bae";

@@ -39,35 +39,60 @@ namespace apa {
     class bint {
       private:
         integer number;
-        limb_t sign; // 1 if negative, 0 if positive
+
+        /// 1 if negative, 0 if positive.
+        limb_t sign;
 
         /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
         int compare(const bint &with) const;
+
         static void bitwise_prepare(bint &left, bint &right);
+
+        static bint add_partial(
+            const limb_t *l, size_t l_len, size_t l_index, const limb_t *r, size_t r_len, size_t r_index
+        );
+
+        static void sub_partial(
+            limb_t *output, size_t out_len, size_t out_index, const limb_t *m, size_t m_len, size_t m_index
+        );
+
+        static void mul_karatsuba(
+            limb_t *output, size_t out_len, size_t out_index, const limb_t *l, size_t l_len, size_t l_index,
+            const limb_t *r, size_t r_len, size_t r_index
+        );
 
       public:
         // Constructors
-
-        template <typename T>
-        bint(T num) {
-            sign = (num < 0); // 1 if negative, 0 if positive.
-            number = integer(std::abs(num));
-        }
-
         bint();
+
+        // Literal Constructors
+        bint(char num);
+        bint(unsigned char num);
+        bint(short num);
+        bint(unsigned short num);
+        bint(int num);
+        bint(unsigned int num);
+        bint(long num);
+        bint(unsigned long num);
+        bint(long long num);
+        bint(unsigned long long num);
+
+        // String Literal Constructors
         bint(const std::string &input);
         bint(const char *input);
+
+        // Array Constructors
         bint(std::initializer_list<limb_t> limbs, limb_t sign = 0);
         bint(limb_t *arr, size_t capacity, size_t length, limb_t sign);
 
         /// automatically sets the sign to `POSITIVE`.
         bint(size_t capacity, size_t length, bool AllocateSpace = true);
 
-        // bint Constructors.
+        // Special Constructors.
         bint(const bint &src);     // copy.
         bint(bint &&src) noexcept; // move.
 
-        // bint Assignments.
+        // Special Assignments.
         bint &operator=(const bint &src);     // copy.
         bint &operator=(bint &&src) noexcept; // move.
 
@@ -98,25 +123,6 @@ namespace apa {
         explicit operator bool() const noexcept;
 
         // Arithmetic Operators
-
-        static bint add_partial(
-            const limb_t *l, size_t l_len, size_t l_index, const limb_t *r, size_t r_len, size_t r_index
-        );
-
-        static void sub_partial(
-            limb_t *output, size_t out_len, size_t out_index, const limb_t *m, size_t m_len, size_t m_index
-        );
-
-        /**
-         * mul_karatsuba.
-         * @param limb_t* test.
-         * */
-        static void mul_karatsuba(
-            limb_t *output, size_t out_len, size_t out_index, const limb_t *l, size_t l_len, size_t l_index,
-            const limb_t *r, size_t r_len, size_t r_index
-        );
-        bint mul_naive(const bint &op) const;
-
         bint &operator+=(const bint &op);
         bint &operator-=(const bint &op);
         bint &operator*=(const bint &op);
@@ -130,6 +136,8 @@ namespace apa {
         bint operator%(const bint &op) const;
 
         bint operator-() const;
+
+        bint mul_naive(const bint &op) const;
 
         // pre-fix increment/decrement
         bint &operator++();

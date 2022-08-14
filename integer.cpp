@@ -17,11 +17,12 @@ namespace apa {
         limbs = (limb_t *) std::malloc(INITIAL_LIMB_CAPACITY * LIMB_BYTES);
     }
 
-    integer::integer(limb_t num) {
-        capacity = INITIAL_LIMB_CAPACITY;
-        length = INITIAL_LIMB_LENGTH;
-        limbs = (limb_t *) std::malloc(INITIAL_LIMB_CAPACITY * LIMB_BYTES);
-        limbs[0] = num;
+    integer::integer(size_t num) {
+        capacity = sizeof(size_t) / sizeof(limb_t);
+        length = capacity;
+        limbs = (limb_t *) std::calloc(capacity, sizeof(limb_t));
+        std::memcpy(limbs, &num, sizeof(num));
+        remove_leading_zeros();
     }
 
     integer::integer(size_t capacity, size_t length, bool AllocateSpace) {

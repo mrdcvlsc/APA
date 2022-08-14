@@ -77,7 +77,7 @@ namespace apa {
 
         // Constructors
         integer();
-        integer(limb_t num);
+        integer(size_t num);
         integer(std::string text, size_t base = 10);
         integer(std::initializer_list<limb_t> limbs);
         integer(size_t capacity, size_t length, bool AllocateSpace = true);

@@ -15,7 +15,7 @@
 #endif
 
 namespace apa {
-    // bint exception class methods
+    // ####################### bint exception class methods #######################
     bint_error::bint_error(unsigned int error_code) : error_code(error_code) {
         switch (error_code) {
             case 1:
@@ -44,7 +44,88 @@ namespace apa {
         return error_message.c_str();
     }
 
-    // bint class methods
+    // ####################### bint class methods #######################
+
+    bint::bint(char num) {
+        sign = (num < 0);
+        if (num == std::numeric_limits<char>::min()) {
+            char new_num = num + 1;
+            number = integer((size_t) std::abs(new_num));
+            number++;
+        } else {
+            number = integer((size_t) std::abs(num));
+        }
+    }
+
+    bint::bint(unsigned char num) {
+        sign = POSITIVE;
+        number = integer((size_t) num);
+    }
+
+    bint::bint(short num) {
+        sign = (num < 0);
+        if (num == std::numeric_limits<short>::min()) {
+            short new_num = num + 1;
+            number = integer((size_t) std::abs(new_num));
+            number++;
+        } else {
+            number = integer((size_t) std::abs(num));
+        }
+    }
+
+    bint::bint(unsigned short num) {
+        sign = POSITIVE;
+        number = integer((size_t) num);
+    }
+
+    bint::bint(int num) {
+        sign = (num < 0);
+        if (num == std::numeric_limits<int>::min()) {
+            int new_num = num + 1;
+            number = integer((size_t) std::abs(new_num));
+            number++;
+        } else {
+            number = integer((size_t) std::abs(num));
+        }
+    }
+
+    bint::bint(unsigned int num) {
+        sign = POSITIVE;
+        number = integer((size_t) num);
+    }
+
+    bint::bint(long num) {
+        sign = (num < 0);
+        if (num == std::numeric_limits<long>::min()) {
+            long new_num = num + 1;
+            number = integer((size_t) std::abs(new_num));
+            number++;
+        } else {
+            number = integer((size_t) std::abs(num));
+        }
+    }
+
+    bint::bint(unsigned long num) {
+        sign = POSITIVE;
+        number = integer((size_t) num);
+    }
+
+    bint::bint(long long num) {
+        sign = (num < 0);
+        if (num == std::numeric_limits<long long>::min()) {
+            long long new_num = num + 1;
+            number = integer((size_t) std::abs(new_num));
+            number++;
+        } else {
+            number = integer((size_t) std::abs(num));
+        }
+    }
+
+    bint::bint(unsigned long long num) {
+        sign = POSITIVE;
+        number = integer((size_t) num);
+    }
+
     bint::bint() {
         number = integer();
         sign = POSITIVE;
