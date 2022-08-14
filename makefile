@@ -83,8 +83,8 @@ else
 	del tests\*.out
 endif
 
-# style:
-# 	@echo clang-format -i -style=Mozilla *.cpp *.hpp tests/*.hpp tests/*.cpp benchmark/*.cpp
+style:
+	@clang-format -i -style=file *.cpp *.hpp tests/*.hpp tests/*.cpp benchmark/*.cpp
 
 benchmark: karatsuba arithmetic
 

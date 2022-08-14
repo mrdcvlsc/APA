@@ -2,14 +2,15 @@
 #include <vector>
 
 #ifndef _MAKE_LIB
-#include "../core.hpp"
+    #include "../core.hpp"
 #else
-#include <bint.hpp>
+    #include <bint.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-int main() { START_TEST;
+int main() {
+    START_TEST;
 
     // test variables
     apa::bint num1 = "0x182379807482704987138971389471980478123748657105182347086873";
@@ -122,27 +123,26 @@ int main() { START_TEST;
     apa::bint num8num7 = num8 * num7;
 
     // checks
-    ASSERT_EQUALITY(num1num2.to_base16_string(),num1num2_C,"num1 * num2 ");
-    ASSERT_EQUALITY(num2num1.to_base16_string(),num1num2_C,"num2 * num1 ");
-    ASSERT_EQUALITY(num1num3.to_base16_string(),num1num3_C,"num1 * num3 ");
-    ASSERT_EQUALITY(num3num1.to_base16_string(),num1num3_C,"num3 * num1 ");
-    ASSERT_EQUALITY(num4num5,num4num5_C,                   "num4 * num5 ");
-    ASSERT_EQUALITY(num5num4,num4num5_C,                   "num5 * num4 ");
-    ASSERT_EQUALITY(num6_one,num6_one_C,                   "num6 * one  ");
-    ASSERT_EQUALITY(
-        num1_P_NEGATIVE_num1,num1_M_NEGATIVE_num6_C,       "num1*(-num6)");
-    ASSERT_EQUALITY(num1zero,apa::__BINT_ZERO,             "num1 * zero ");
-    ASSERT_EQUALITY(zeronum1,apa::__BINT_ZERO,             "zero * num1 ");
-    ASSERT_EQUALITY(num2zero,apa::__BINT_ZERO,             "num2 * zero ");
-    ASSERT_EQUALITY(zeronum2,apa::__BINT_ZERO,             "zero * num2 ");
-    ASSERT_EQUALITY(num7num8,num7num8_C,                   "num7 * num8 ");
-    ASSERT_EQUALITY(num8num7,num7num8_C,                   "num8 * num7 ");
-    
-    #if defined(_BASE2_16)
-        RESULT("BINT BASE 2^16 MULTIPLICATION");
-    #elif defined(_BASE2_32)
-        RESULT("BINT BASE 2^32 MULTIPLICATION");
-    #elif defined(_BASE2_64)
-        RESULT("BINT BASE 2^64 MULTIPLICATION");
-    #endif
+    ASSERT_EQUALITY(num1num2.to_base16_string(), num1num2_C, "num1 * num2 ");
+    ASSERT_EQUALITY(num2num1.to_base16_string(), num1num2_C, "num2 * num1 ");
+    ASSERT_EQUALITY(num1num3.to_base16_string(), num1num3_C, "num1 * num3 ");
+    ASSERT_EQUALITY(num3num1.to_base16_string(), num1num3_C, "num3 * num1 ");
+    ASSERT_EQUALITY(num4num5, num4num5_C, "num4 * num5 ");
+    ASSERT_EQUALITY(num5num4, num4num5_C, "num5 * num4 ");
+    ASSERT_EQUALITY(num6_one, num6_one_C, "num6 * one  ");
+    ASSERT_EQUALITY(num1_P_NEGATIVE_num1, num1_M_NEGATIVE_num6_C, "num1*(-num6)");
+    ASSERT_EQUALITY(num1zero, apa::__BINT_ZERO, "num1 * zero ");
+    ASSERT_EQUALITY(zeronum1, apa::__BINT_ZERO, "zero * num1 ");
+    ASSERT_EQUALITY(num2zero, apa::__BINT_ZERO, "num2 * zero ");
+    ASSERT_EQUALITY(zeronum2, apa::__BINT_ZERO, "zero * num2 ");
+    ASSERT_EQUALITY(num7num8, num7num8_C, "num7 * num8 ");
+    ASSERT_EQUALITY(num8num7, num7num8_C, "num8 * num7 ");
+
+#if defined(_BASE2_16)
+    RESULT("BINT BASE 2^16 MULTIPLICATION");
+#elif defined(_BASE2_32)
+    RESULT("BINT BASE 2^32 MULTIPLICATION");
+#elif defined(_BASE2_64)
+    RESULT("BINT BASE 2^64 MULTIPLICATION");
+#endif
 }

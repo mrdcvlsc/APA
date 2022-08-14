@@ -2,14 +2,15 @@
 #include <vector>
 
 #ifndef _MAKE_LIB
-#include "../core.hpp"
+    #include "../core.hpp"
 #else
-#include <bint.hpp>
+    #include <bint.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-int main() { START_TEST;
+int main() {
+    START_TEST;
 
     // test variables
     apa::bint num1 = "0x182379807482704987138971389471980478123748657105182347086873";
@@ -33,11 +34,11 @@ int main() { START_TEST;
         "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
     // correct answers
-    std::string num1num2_C =  "abcdeffedabbdeffccfeddee501686f64826f3875e0896027836086f368122523103dd1e4f126b43662";
+    std::string num1num2_C = "abcdeffedabbdeffccfeddee501686f64826f3875e0896027836086f368122523103dd1e4f126b43662";
     std::string num2num1_C = "-abcdeffedabbdeffccfeddee501686f64826f3875e0896027836086f368122523103dd1e4f126b43662";
 
     std::string num1num3_C = "3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6";
-    apa::bint   num3num1_C ="-0x3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6";
+    apa::bint num3num1_C = "-0x3046f300e904e0930e2712e27128e33008f0246e90cae20a30468e10d0e6";
 
     apa::bint num4num5_C =
         "0xa1b2c3d4e5f60007700000000fffffffffffffffffffffffffffff000000"
@@ -73,21 +74,20 @@ int main() { START_TEST;
     apa::bint num1_P_NEGATIVE_num1 = num1 - (-num6);
 
     // checks
-    ASSERT_EQUALITY(num1num2.to_base16_string(),num1num2_C,"num1 - num2 ");
-    ASSERT_EQUALITY(num2num1.to_base16_string(),num2num1_C,"num2 - num1 ");
-    ASSERT_EQUALITY(num1num3.to_base16_string(),num1num3_C,"num1 - num3 ");
-    ASSERT_EQUALITY(num3num1,num3num1_C,                   "num3 - num1 ");
-    ASSERT_EQUALITY(num4num5,num4num5_C,                   "num4 - num5 ");
-    ASSERT_EQUALITY(num5num4,num5num4_C,                   "num5 - num4 ");
-    ASSERT_EQUALITY(num6_one,num6_one_C,                   "num6 - one  ");
-    ASSERT_EQUALITY(
-        num1_P_NEGATIVE_num1,num1_P_NEGATIVE_num6_C,       "num1-(-num6)");
+    ASSERT_EQUALITY(num1num2.to_base16_string(), num1num2_C, "num1 - num2 ");
+    ASSERT_EQUALITY(num2num1.to_base16_string(), num2num1_C, "num2 - num1 ");
+    ASSERT_EQUALITY(num1num3.to_base16_string(), num1num3_C, "num1 - num3 ");
+    ASSERT_EQUALITY(num3num1, num3num1_C, "num3 - num1 ");
+    ASSERT_EQUALITY(num4num5, num4num5_C, "num4 - num5 ");
+    ASSERT_EQUALITY(num5num4, num5num4_C, "num5 - num4 ");
+    ASSERT_EQUALITY(num6_one, num6_one_C, "num6 - one  ");
+    ASSERT_EQUALITY(num1_P_NEGATIVE_num1, num1_P_NEGATIVE_num6_C, "num1-(-num6)");
 
-    #if defined(_BASE2_16)
-        RESULT("BINT BASE 2^16 SUBTRACTION");
-    #elif defined(_BASE2_32)
-        RESULT("BINT BASE 2^32 SUBTRACTION");
-    #elif defined(_BASE2_64)
-        RESULT("BINT BASE 2^64 SUBTRACTION");
-    #endif
+#if defined(_BASE2_16)
+    RESULT("BINT BASE 2^16 SUBTRACTION");
+#elif defined(_BASE2_32)
+    RESULT("BINT BASE 2^32 SUBTRACTION");
+#elif defined(_BASE2_64)
+    RESULT("BINT BASE 2^64 SUBTRACTION");
+#endif
 }

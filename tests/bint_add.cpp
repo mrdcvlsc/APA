@@ -2,14 +2,15 @@
 #include <vector>
 
 #ifndef _MAKE_LIB
-#include "../core.hpp"
+    #include "../core.hpp"
 #else
-#include <bint.hpp>
+    #include <bint.hpp>
 #endif
 
 #include "mini-test.hpp"
 
-int main() { START_TEST;
+int main() {
+    START_TEST;
 
     // test variables
     apa::bint num1 = "0x182379807482704987138971389471980478123748657105182347086873";
@@ -62,23 +63,22 @@ int main() { START_TEST;
     apa::bint num5num4 = num5 + num4;
     apa::bint num6_one = num6 + apa::__BINT_ONE;
     apa::bint num1_P_NEGATIVE_num1 = num1 + (-num6);
-    
-    // checks
-    ASSERT_EQUALITY(num1num2.to_base16_string(),sumnum12,  "num1 + num2 ");
-    ASSERT_EQUALITY(num2num1.to_base16_string(),sumnum12,  "num2 + num1 ");
-    ASSERT_EQUALITY(num1num3,apa::__BINT_ZERO,             "num1 + num3 ");
-    ASSERT_EQUALITY(num3num1,apa::__BINT_ZERO,             "num3 + num1 ");
-    ASSERT_EQUALITY(num4num5,num4num5_C,                   "num4 + num5 ");
-    ASSERT_EQUALITY(num5num4,num4num5_C,                   "num5 + num4 ");
-    ASSERT_EQUALITY(num6_one,num6_one_C,                   "num6 + one  ");
-    ASSERT_EQUALITY(
-        num1_P_NEGATIVE_num1,num1_P_NEGATIVE_num1_C,       "num1+(-num6)");
 
-    #if defined(_BASE2_16)
-        RESULT("BINT BASE 2^16 ADDITION");
-    #elif defined(_BASE2_32)
-        RESULT("BINT BASE 2^32 ADDITION");
-    #elif defined(_BASE2_64)
-        RESULT("BINT BASE 2^64 ADDITION");
-    #endif
+    // checks
+    ASSERT_EQUALITY(num1num2.to_base16_string(), sumnum12, "num1 + num2 ");
+    ASSERT_EQUALITY(num2num1.to_base16_string(), sumnum12, "num2 + num1 ");
+    ASSERT_EQUALITY(num1num3, apa::__BINT_ZERO, "num1 + num3 ");
+    ASSERT_EQUALITY(num3num1, apa::__BINT_ZERO, "num3 + num1 ");
+    ASSERT_EQUALITY(num4num5, num4num5_C, "num4 + num5 ");
+    ASSERT_EQUALITY(num5num4, num4num5_C, "num5 + num4 ");
+    ASSERT_EQUALITY(num6_one, num6_one_C, "num6 + one  ");
+    ASSERT_EQUALITY(num1_P_NEGATIVE_num1, num1_P_NEGATIVE_num1_C, "num1+(-num6)");
+
+#if defined(_BASE2_16)
+    RESULT("BINT BASE 2^16 ADDITION");
+#elif defined(_BASE2_32)
+    RESULT("BINT BASE 2^32 ADDITION");
+#elif defined(_BASE2_64)
+    RESULT("BINT BASE 2^64 ADDITION");
+#endif
 }
