@@ -1,5 +1,7 @@
 # Quick Tutorial
 
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 In this section, I will share my knowledge about big number implementations,
 this is not a tutorial on how to use the library itself, go to [docs.md](docs.md)
 to learn how to use the library.
@@ -14,10 +16,6 @@ This library uses a **packed radix** representation to represent big numbers,
 more on that later.
 
 To understand how this work, let's look at the basics.
-
-<br>
-
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <br>
 

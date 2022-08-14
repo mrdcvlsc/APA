@@ -43,8 +43,8 @@ the ```INSTALL_PREFIX="INSTALLATION_PATH"```.
     sudo make -f static install
     ```
 
-- If you are compiling the static library with **mingw** on Windows, you need to
-specify where the **mingw** folder is located in the ```INSTALL_PREFIX```; e.g.
+- If you are compiling the static library with **MinGW** on Windows, you need to
+specify where the **MinGW** folder is located in the ```INSTALL_PREFIX```; e.g.
     ```bash
     make -f static install INSTALL_PREFIX=C:/User/Downloads/mingw
     ```
@@ -57,7 +57,7 @@ specify where the **mingw** folder is located in the ```INSTALL_PREFIX```; e.g.
     sudo make -f static uninstall
     ```
 
-    For windows uninstallation you also need to specify the path of **mingw** using
+    For windows uninstallation you also need to specify the path of **MinGW** using
     ```INSTALL_PREFIX``` like how you installed it but by using uninstall command.
 
 - If you installed the library after building it then you can just use it right away

@@ -9,42 +9,42 @@ apa::bint limb base = 64
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 186589 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 601894 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5019699 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 732736192 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23114589776 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 188089 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 595594 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5018518 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 739136981 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23134632317 ns |
 
 ## **fibonacci of (300) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [InfInt](https://github.com/sercantutar/infint) | 110392 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 133085 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 575688 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 1512735 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2984087 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 110099 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 131651 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 580114 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 1517377 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 2980851 ns |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 4641501 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 8428139 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81617300 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 724869024 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 903456614 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 4609455 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 8410876 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81286117 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 733359386 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 901142044 ns |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1700330 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 7190028 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 651806227 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1637030 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 7158017 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 647370104 ns |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients
@@ -75,17 +75,4 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
-NUMA node(s):                    1
-NUMA node0 CPU(s):               0-3
-Vulnerability Itlb multihit:     Not affected
-Vulnerability L1tf:              Not affected
-Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
-Vulnerability Meltdown:          Mitigation; PTI
-Vulnerability Mmio stale data:   Not affected
-Vulnerability Retbleed:          Not affected
-Vulnerability Spec store bypass: Not affected
-Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling
-Vulnerability Srbds:             Not affected
-Vulnerability Tsx async abort:   Not affected
 ```

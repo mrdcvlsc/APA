@@ -9,7 +9,7 @@ https://mrdcvlsc.github.io/APA
 ![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
 
 A C++ library for big integers and dynamic precision floating points (big numbers),
-This is a pure simple c/c++ implementation, no hand-written inline-assembly.
+pure c/c++ implementation, no handwritten inline-assembly.
 
 **Version 4 Status : [WIP - Work In Progress]**
 
@@ -22,11 +22,11 @@ for the latest previous working version.**
 
 ### **Links**
 
-- [**Docs**](https://mrdcvlsc.github.io/APA/docs/docs.html) - learn how to use the library.
+- [**Documentation**](https://mrdcvlsc.github.io/APA/docs/docs.html) - learn how to use the library.
 
-- [**quick-tutorial.md**](https://mrdcvlsc.github.io/APA/docs/quick-tutorial.html) - learn how this library works internally.
+- [**Quick-Tutorial**](https://mrdcvlsc.github.io/APA/docs/quick-tutorial.html) - learn how this library works internally.
 
-- [**performance comparison**](https://mrdcvlsc.github.io/APA/benchmark/comparison.html) - performance was compared with
+- [**Performance Comparison**](https://mrdcvlsc.github.io/APA/benchmark/comparison.html) - performance was compared with
 other light-weight popular C++ big integer libraries.
 
 -----
