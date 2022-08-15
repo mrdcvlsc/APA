@@ -153,8 +153,9 @@ namespace apa {
         size_t start_index = input[0] == '-';
         size_t base = 0;
 
-        // could be bin, oct, or hex.
-        if (input[start_index] == '0') {
+        if(input.size() == 1 && (input[0] >= '0' && input[0] <= '9')) {
+            base = DEC;
+        } else if (input[start_index] == '0') {
             start_index++;
             if (input[start_index] == 'b') { // check if valid binary
                 start_index++;
@@ -188,15 +189,11 @@ namespace apa {
                 if ((input[i] < '0') ^ (input[i] > '9')) {
                     throw bint_error(DEC);
                 }
-                base = DEC;
             }
+            base = DEC;
         }
 
-        if (input[0] == '-') {
-            sign = NEGATIVE;
-        } else {
-            sign = POSITIVE;
-        }
+        sign = input[0] == '-';
         number = integer(std::string(input.begin() + start_index, input.end()), base);
         number.remove_leading_zeros();
     }
@@ -319,9 +316,7 @@ namespace apa {
 
         if (lpadding) {
             left.number.bit_realloc(right.number);
-        }
-
-        if (rpadding) {
+        } else if (rpadding) {
             right.number.bit_realloc(left.number);
         }
     }
