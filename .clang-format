@@ -1,16 +1,16 @@
 ---
 BasedOnStyle: Microsoft
-# IndentWidth: 3
+# IndentWidth: 4
 
 Language: Cpp
 
-AlignAfterOpenBracket: BlockIndent
-
+# LINES
 AllowShortEnumsOnASingleLine: true
-
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: Yes
+EmptyLineAfterAccessModifier: Always
 
+# BRACE WRAPPINGS
 BraceWrapping:
     AfterControlStatement: Never
     AfterNamespace: false
@@ -23,13 +23,15 @@ BraceWrapping:
     BeforeWhile: false
 #    AfterCaseLabel: false
 
+# INDENTATIONS
+AlignAfterOpenBracket: BlockIndent
 NamespaceIndentation: All
 IndentCaseLabels: true
 IndentPPDirectives: BeforeHash
 # IndentAccessModifiers: true
-# AccessModifierOffset: 4
+AccessModifierOffset: 0
 
+# SPACES
 FixNamespaceComments: true
-
 SpaceBeforeRangeBasedForLoopColon: false
 SpaceAfterCStyleCast: true

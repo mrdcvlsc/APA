@@ -26,18 +26,21 @@ namespace apa {
     static const limb_t NEGATIVE = 1;
 
     class bint_error : public std::exception {
-      private:
+        private:
+
         unsigned int error_code;
         std::string error_message;
 
-      public:
+        public:
+
         bint_error(unsigned int error_code);
         unsigned int get_error_code() const;
         const char *what() const throw();
     };
 
     class bint {
-      private:
+        private:
+
         integer number;
 
         /// 1 if negative, 0 if positive.
@@ -61,7 +64,8 @@ namespace apa {
             const limb_t *r, size_t r_len, size_t r_index
         );
 
-      public:
+        public:
+
         // Constructors
         bint();
 
