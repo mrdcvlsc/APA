@@ -424,19 +424,15 @@ namespace apa {
     bint &bint::operator+=(const bint &op) {
         int cmp = number.compare(op.number);
         if (sign != op.sign) {
-            switch (cmp) {
-                case GREAT: {
-                    number -= op.number;
-                } break;
-                case LESS: {
-                    number = op.number - number;
-                    sign = op.sign;
-                } break;
-                default: {
-                    number.length = 1;
-                    number[0] = 0;
-                    sign = POSITIVE;
-                }
+            if(cmp == GREAT) {
+                number -= op.number;
+            } else if(cmp == LESS) {
+                number = op.number - number;
+                sign = op.sign;
+            } else {
+                number.length = 1;
+                number[0] = 0;
+                sign = POSITIVE;
             }
         } else {
             number += op.number;
@@ -458,26 +454,20 @@ namespace apa {
                 number.length = 1;
                 number[0] = 0;
             } else if (SIGN_NEGATIVE(sign)) {
-                switch (cmp) {
-                    case GREAT: {
-                        number = op.number - number;
-                        sign = POSITIVE;
-                    } break;
-                    case LESS: {
-                        number -= op.number;
-                        sign = NEGATIVE;
-                    } break;
+                if(cmp == GREAT) {
+                    number = op.number - number;
+                    sign = POSITIVE;
+                } else {
+                    number -= op.number;
+                    sign = NEGATIVE;
                 }
             } else {
-                switch (cmp) {
-                    case GREAT: {
-                        number -= op.number;
-                        sign = POSITIVE;
-                    } break;
-                    case LESS: {
-                        number = op.number - number;
-                        sign = NEGATIVE;
-                    } break;
+                if(cmp == GREAT) {
+                    number -= op.number;
+                    sign = POSITIVE;
+                } else {
+                    number = op.number - number;
+                    sign = NEGATIVE;
                 }
             }
         }
