@@ -134,7 +134,7 @@ int main() {
     rank.push(std::make_pair(BigNumberF/TEST_RUNS, "[BigNumber](https://github.com/Limeoats/BigNumber)"));
     rank.push(std::make_pair(APAF/TEST_RUNS, "[apa::bint](https://github.com/mrdcvlsc/APA)"));
 
-	std::cout << "\napa::bint limb base = " << apa::BASE_BITS << "\n\n";
+	std::cout << "\napa::bint limb base = 2<sup>" << apa::BASE_BITS << "</sup>\n\n";
 
 	std::cout << "## **Factorial of (" << FAC_LEVEL << ") - Average (less is better)**\n\n";
 	std::cout << "| Library | Nanoseconds |\n";

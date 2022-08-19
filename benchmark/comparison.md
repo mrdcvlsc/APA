@@ -3,48 +3,48 @@
 Compiler : **g++**
 
 
-apa::bint limb base = 64
+apa::bint limb base = 2<sup>64</sup>
 
 ## **Factorial of (400) - Average (less is better)**
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 188089 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 595594 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5018518 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 739136981 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23134632317 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 186058 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 596121 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5010728 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 738093658 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23166176515 ns |
 
 ## **fibonacci of (300) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [InfInt](https://github.com/sercantutar/infint) | 110099 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 131651 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 580114 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 1517377 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2980851 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 110524 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 132350 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 574439 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 1499986 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 2960326 ns |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 4609455 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 8410876 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81286117 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 733359386 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 901142044 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 4597762 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 8438209 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81500406 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 728198374 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 899993603 ns |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1637030 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 7158017 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 647370104 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1649534 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 7215341 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 671066828 ns |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients
