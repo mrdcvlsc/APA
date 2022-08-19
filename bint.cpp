@@ -153,7 +153,7 @@ namespace apa {
         size_t start_index = input[0] == '-';
         size_t base = 0;
 
-        if(input.size() == 1 && (input[0] >= '0' && input[0] <= '9')) {
+        if (input.size() == 1 && (input[0] >= '0' && input[0] <= '9')) {
             base = DEC;
         } else if (input[start_index] == '0') {
             start_index++;
@@ -254,6 +254,7 @@ namespace apa {
     }
 
     bint::~bint() {
+        this->sign = 0;
     }
 
     int bint::compare(const bint &op) const {

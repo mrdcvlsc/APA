@@ -159,6 +159,8 @@ namespace apa {
 
     integer::~integer() {
         std::free(limbs);
+        capacity = 0;
+        length = 0;
     }
 
     // Index Operator

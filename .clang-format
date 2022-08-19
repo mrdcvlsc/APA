@@ -26,6 +26,8 @@ BraceWrapping:
 NamespaceIndentation: All
 IndentCaseLabels: true
 IndentPPDirectives: BeforeHash
+# IndentAccessModifiers: true
+# AccessModifierOffset: 4
 
 FixNamespaceComments: true
 
