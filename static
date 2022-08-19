@@ -47,6 +47,9 @@ else
 endif
 
 build_compile:
+	@echo "Compiler : $(CC)"
+	@echo "OS       : $(OS)"
+	@echo "------------------------------------------"
 	@echo "creating build directory"
 	@mkdir build
 	@mkdir $(LIB_HEADER_OUT)
@@ -158,7 +161,7 @@ endif
 release: build
 	@echo "Bundling static library"
 ifeq ($(OS), Linux)
-	tar -czvf apa-v0.4.6.tar.gz build
+	tar -czvf apa-linux-release-v0.4.6.tar.gz build
 else
-	zip -r apa-v0.4.6.zip build
+	zip -r apa-windows-release-v0.4.6.zip build
 endif
