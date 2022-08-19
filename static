@@ -11,7 +11,7 @@ LIB_OUTNAME:=lib$(LIB_NAME).a
 CXXFLAGS := -Wall -Wextra
 USERFLAGS := -D_MAKE_LIB
 TEST_OPTIMIZATION := -g -Og
-HEADER_PATHS := -I./$(LIB_HEADER_OUT)
+HEADER_PATHS := -I./$(LIB_HEADER_OUT)/APA
 LIB_OPTIMIZATION := -O2
 LIB_PATHS := -L./$(LIB_OUT)
 LIBS := -l$(LIB_NAME)
@@ -26,20 +26,24 @@ SRC := tests
 SRC_FILES := $(wildcard $(SRC)/*.cpp)
 OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 
+.PHONY: build_move build_compile cleanup static_test install uninstall release
+
 build_move: build_compile
 	@echo "moving files to build folder"
 ifeq ($(OS), Linux)
 	@mv $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUTNAME) ./$(LIB_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))integer.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))config.hpp ./$(LIB_HEADER_OUT)/
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))math.hpp ./$(LIB_HEADER_OUT)/
+	@mkdir $(LIB_HEADER_OUT)/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))integer.hpp ./$(LIB_HEADER_OUT)/APA/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))bint.hpp ./$(LIB_HEADER_OUT)/APA/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))config.hpp ./$(LIB_HEADER_OUT)/APA/
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))math.hpp ./$(LIB_HEADER_OUT)/APA/
 else
 	@move "./$(LIB_OUTNAME)" "$(LIB_OUT)"
-	@copy "./integer.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./config.hpp" "$(LIB_HEADER_OUT)"
-	@copy "./math.hpp" "$(LIB_HEADER_OUT)"
+	@mkdir $(LIB_HEADER_OUT)/APA
+	@copy "./integer.hpp" "$(LIB_HEADER_OUT)"\APA
+	@copy "./bint.hpp" "$(LIB_HEADER_OUT)"\APA
+	@copy "./config.hpp" "$(LIB_HEADER_OUT)"\APA
+	@copy "./math.hpp" "$(LIB_HEADER_OUT)"\APA
 endif
 
 build_compile:
@@ -110,13 +114,13 @@ $(SRC)/%.out: $(SRC)/%.cpp
 install:
 ifeq ($(OS), Linux)
 	@mkdir $(INSTALL_PREFIX)include/APA
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/integer.hpp $(INSTALL_PREFIX)include/APA
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/bint.hpp $(INSTALL_PREFIX)include/APA
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/config.hpp $(INSTALL_PREFIX)include/APA
-	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/math.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/APA/integer.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/APA/bint.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/APA/config.hpp $(INSTALL_PREFIX)include/APA
+	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_HEADER_OUT)/APA/math.hpp $(INSTALL_PREFIX)include/APA
 	@cp $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$(LIB_OUT)/$(LIB_OUTNAME) $(INSTALL_PREFIX)lib
 	@echo "$(LIB_OUTNAME) now installed to $(INSTALL_PREFIX)lib"
-	@echo "integer.hpp config.hpp now installed to $(INSTALL_PREFIX)include"
+	@echo "headers are installed to $(INSTALL_PREFIX)include"
 else
 	@echo .
 	@echo For Mingw64 in windows, please specify your mingw64 folder path with the INSTALL_PREFIX
@@ -125,10 +129,10 @@ else
 	@echo mingw32-make -f staticlib install INSTALL_PREFIX=PATH\mingw64
 	@echo .
 	mkdir $(INSTALL_PREFIX)\include\APA
-	copy build\include\integer.hpp "$(INSTALL_PREFIX)\include\APA
-	copy build\include\bint.hpp "$(INSTALL_PREFIX)\include\APA
-	copy build\include\config.hpp "$(INSTALL_PREFIX)\include\APA
-	copy build\include\math.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\APA\integer.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\APA\bint.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\APA\config.hpp "$(INSTALL_PREFIX)\include\APA
+	copy build\include\APA\math.hpp "$(INSTALL_PREFIX)\include\APA
 	copy build\lib\$(LIB_OUTNAME) "$(INSTALL_PREFIX)\lib"
 	@echo install success
 endif
@@ -149,4 +153,12 @@ else
 	del "$(INSTALL_PREFIX)\include\APA\math.hpp"
 	rmdir $(INSTALL_PREFIX)\include\APA
 	echo uninstall success
+endif
+
+release: build
+	@echo "Bundling static library"
+ifeq ($(OS), Linux)
+	tar -czvf apa-v0.4.6.tar.gz build
+else
+	zip -r apa-v0.4.6.zip build
 endif
