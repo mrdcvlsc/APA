@@ -65,8 +65,8 @@ by including the headers.
     ```c++
     // main.cpp
     #include <iostream>
-    #include <ubint.hpp>
-    #include <bint.hpp>
+    #include <APA/bint.hpp>
+    #include <APA/math.hpp>
     int main() {
         apa::ubint num1("8800918289723498",apa::DEC);
         apa::bint  num2("-8800918289723498",apa::DEC);
