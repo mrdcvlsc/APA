@@ -6,6 +6,7 @@
 #include "BigInt.hpp"
 #include "infint/InfInt.h"
 // #include "BigNumber/bin/BigNumber/include/bignumber.h"
+#include <boost/multiprecision/cpp_int.hpp>
 #include "./../../core.hpp"
 
 const size_t TEST_RUNS = 20;
@@ -59,9 +60,7 @@ int main() {
 
 
 	// averages
-	size_t BhimIntegerF = 0, BigIntF = 0, InfIntF = 0,
-		// BigNumberF = 0,
-		APAF = 0;
+	size_t BhimIntegerF = 0, BigIntF = 0, InfIntF = 0, APAF = 0, BoostF = 0;
 
 	// answer storage
 	apa::bint
@@ -88,6 +87,11 @@ int main() {
 		// BigNumberFac = APAFac.to_base10_string(),
 		// BigNumberFib = APAFib.to_base10_string(),
 		// BigNumberAns(0);
+
+	boost::multiprecision::cpp_int
+		BoostFac(APAFac.to_base10_string()),
+		BoostFib(APAFib.to_base10_string()),
+		BoostAns;
 
 	// fibonacci - benchmarks start
 
@@ -143,12 +147,23 @@ int main() {
 		APAF += dur.count();
 	}
 
+	// Boost - cpp_int
+	std::cerr << "division - benchmarking apa::bint.\n";
+	for(size_t i=0; i<TEST_RUNS; ++i) {
+		auto start = std::chrono::high_resolution_clock::now();
+		BoostAns = BoostFac / BoostFib;
+		auto end = std::chrono::high_resolution_clock::now();
+		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		BoostF += dur.count();
+	}
+
 	//check correctness of output
 	if(
 		// cout_to_string(BhimIntegerAns) == cout_to_string(BigIntAns) &&
 		cout_to_string(BigIntAns) == cout_to_string(InfIntAns) &&
 		// cout_to_string(InfIntAns) == cout_to_string(BigNumberAns) &&
-		cout_to_string(InfIntAns) == cout_to_string(APAAns.to_base10_string())
+		cout_to_string(InfIntAns) == cout_to_string(APAAns.to_base10_string()) &&
+		cout_to_string(APAAns.to_base10_string()) == cout_to_string(BoostAns)
 	) {
 		std::cerr << "All divisions are correct\n";
 	} else {
@@ -174,6 +189,7 @@ int main() {
     rank.push(std::make_pair(InfIntF/TEST_RUNS, "[InfInt](https://github.com/sercantutar/infint)"));
     // // // rank.push(std::make_pair(BigNumberF/TEST_RUNS, "[BigNumber](https://github.com/Limeoats/BigNumber)"));
     rank.push(std::make_pair(APAF/TEST_RUNS, "[apa::bint](https://github.com/mrdcvlsc/APA)"));
+	rank.push(std::make_pair(BoostF/TEST_RUNS, "[boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision)"));
 
 	std::cout << "## Division : **fac(" << FAC_LEVEL << ") / fib(" << FIB_LEVEL << ") - Average (less is better)**\n\n";
 	std::cout << "\n";

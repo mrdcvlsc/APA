@@ -2,3 +2,6 @@ BigInt.hpp
 infint/
 BigNumber/
 BhimIntegers/
+multiprecision-*/
+*.tar.gz
+*.tar

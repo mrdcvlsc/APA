@@ -6,6 +6,7 @@
 #include "BigInt.hpp"
 #include "infint/InfInt.h"
 #include "BigNumber/bin/BigNumber/include/bignumber.h"
+#include <boost/multiprecision/cpp_int.hpp>
 #include "./../../core.hpp"
 
 const size_t TEST_RUNS = 10;
@@ -45,7 +46,7 @@ int main() {
 
 
 	// averages
-	size_t BhimIntegerF = 0, BigIntF = 0, InfIntF = 0, BigNumberF = 0, APAF = 0;
+	size_t BhimIntegerF = 0, BigIntF = 0, InfIntF = 0, BigNumberF = 0, APAF = 0, BoostF = 0;
 
 	// answer storage
 	BhimInteger AnsBhimInteger;
@@ -53,6 +54,7 @@ int main() {
 	InfInt AnsInfInt;
 	BigNumber AnsBigNumber(0);
 	apa::bint AnsAPA;
+	boost::multiprecision::cpp_int AnsBoost;
 
 	// benchmarks start
 
@@ -108,12 +110,23 @@ int main() {
 		APAF += dur.count();
 	}
 
+	// Boost - cpp_int
+	std::cerr << "fibonacci - benchmarking boost::multiprecision::cpp_int.\n";
+	for(size_t i=0; i<TEST_RUNS; ++i) {
+		auto start = std::chrono::high_resolution_clock::now();
+		AnsBoost = factorial(boost::multiprecision::cpp_int(1), FAC_LEVEL);
+		auto end = std::chrono::high_resolution_clock::now();
+		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		BoostF += dur.count();
+	}
+
 	//check correctness of output
 	if(
 		cout_to_string(AnsBhimInteger) == cout_to_string(AnsBigInt) &&
 		cout_to_string(AnsBigInt) == cout_to_string(AnsInfInt) &&
 		cout_to_string(AnsInfInt) == cout_to_string(AnsBigNumber) &&
-		cout_to_string(AnsBigNumber) == cout_to_string(AnsAPA.to_base10_string())
+		cout_to_string(AnsBigNumber) == cout_to_string(AnsAPA.to_base10_string()) &&
+		cout_to_string(AnsAPA.to_base10_string()) == cout_to_string(AnsBoost)
 	) {
 		std::cerr << "All factorials are correct\n";
 	} else {
@@ -133,6 +146,7 @@ int main() {
     rank.push(std::make_pair(InfIntF/TEST_RUNS, "[InfInt](https://github.com/sercantutar/infint)"));
     rank.push(std::make_pair(BigNumberF/TEST_RUNS, "[BigNumber](https://github.com/Limeoats/BigNumber)"));
     rank.push(std::make_pair(APAF/TEST_RUNS, "[apa::bint](https://github.com/mrdcvlsc/APA)"));
+	rank.push(std::make_pair(BoostF/TEST_RUNS, "[boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision)"));
 
 	std::cout << "\napa::bint limb base = 2<sup>" << apa::BASE_BITS << "</sup>\n\n";
 

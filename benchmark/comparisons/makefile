@@ -1,5 +1,11 @@
 CC := g++
 
+INCLUDE_PATH := -I "./multiprecision-1.79/include/"
+LIB_PATH := -L BigNumber/build
+LIBS := -l BigNumber
+DFLAGS := 
+OFLAG := -O3
+
 .PHONY: default run compile clone clean
 
 default:
@@ -28,13 +34,15 @@ run:
 
 compile: factorial.cpp fibonacci.cpp division.cpp
 	@echo "compiling benchmark comparison programs"
-	@$(CC) -O3 factorial.cpp -o factorial.out -L BigNumber/build -l BigNumber
-	@$(CC) -O3 division.cpp -o division.out -L BigNumber/build -l BigNumber
-	@$(CC) -O3 fibonacci.cpp -o fibonacciMin.out -D_MINFIB -L BigNumber/build -l BigNumber
-	@$(CC) -O3 fibonacci.cpp -o fibonacciBig.out -L BigNumber/build -l BigNumber
+	@$(CC) $(OFLAG) factorial.cpp -o factorial.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CC) $(OFLAG) division.cpp -o division.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciMin.out $(INCLUDE_PATH) -D_MINFIB $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciBig.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
 	@clear
 
 clone:
+	@wget https://github.com/boostorg/multiprecision/archive/refs/tags/v1.79.tar.gz
+	@tar -xvzf v1.79.tar.gz
 	@wget https://github.com/faheel/BigInt/releases/download/v0.5.0-dev/BigInt.hpp
 	@git clone https://github.com/sercantutar/infint.git
 	@git clone https://github.com/kothariji/BhimIntegers.git
@@ -45,4 +53,4 @@ clone:
 # 	@git clone https://github.com/rfaulkner/Big-Number.git # lack necessary operation for multiplication
 
 clean:
-	rm -rf BhimIntegers infint BigNumber BigInt.hpp *.out
+	rm -rf BhimIntegers infint BigNumber BigInt.hpp *.out v1.79.tar.gz multiprecision-1.79
