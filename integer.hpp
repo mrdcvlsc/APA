@@ -64,9 +64,9 @@ namespace apa {
     constexpr static size_t CAST_BITS = BASE_BITS * 2;
     constexpr static size_t CAST_BYTES = BASE_BYTES * 2;
 
-    const static size_t INITIAL_LIMB_CAPACITY = 2;
-    const static size_t INITIAL_LIMB_LENGTH = 1;
-    const static size_t LIMB_GROWTH = 2;
+    constexpr static size_t INITIAL_LIMB_CAPACITY = 2;
+    constexpr static size_t INITIAL_LIMB_LENGTH = 1;
+    constexpr static size_t LIMB_GROWTH = 2;
 
     constexpr static limb_t BASE_MAX = std::numeric_limits<limb_t>::max();
 

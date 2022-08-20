@@ -401,30 +401,23 @@ namespace apa {
     }
 
     integer &integer::operator-=(const integer &op) {
-        size_t ms_index = length - 1;
         limb_t carry = 0;
 
         for (size_t i = 0; i < op.length; ++i) {
-            cast_t diff_index = (cast_t) limbs[i] - carry;
-            diff_index -= op.limbs[i];
+            cast_t diff_index = (cast_t) limbs[i] - op.limbs[i] - carry;
             limbs[i] = diff_index;
-            carry = !!(diff_index >> BASE_BITS);
+            carry = (diff_index >> BASE_BITS);
+            carry &= 0x01;
         }
 
         for (size_t i = op.length; i < length; ++i) {
             cast_t diff_index = (cast_t) limbs[i] - carry;
             limbs[i] = diff_index;
-            carry = !!(diff_index >> BASE_BITS);
+            carry = (diff_index >> BASE_BITS);
+            carry &= 0x01;
         }
 
-        while (ms_index) {
-            if (limbs[ms_index]) {
-                break;
-            }
-            --ms_index;
-        }
-
-        length = ms_index + 1;
+        remove_leading_zeros();
         return *this;
     }
 
