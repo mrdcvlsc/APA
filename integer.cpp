@@ -37,10 +37,11 @@ namespace apa {
     }
 
     // constructor for conveniece
-    integer::integer(std::string text, size_t base) {
-        if (base > 1 && base < HEX) {
-            std::vector<uint8_t> output(text.size(), 0);
+    integer::integer(const std::string& text, size_t base) {
+        std::vector<uint8_t> output(text.size(), 0);
+        std::string newText;
 
+        if (base > 1 && base < HEX) {
             for (size_t i = 0; i < text.size(); ++i) {
                 uint8_t carry = text[i] - '0';
                 size_t j = text.size();
@@ -59,20 +60,23 @@ namespace apa {
             output.erase(output.begin(), output.begin() + leading_zeros);
 
             std::string stringForm(output.size(), '0');
+
             for (size_t i = 0; i < stringForm.size(); ++i) {
                 stringForm[i] = HEX_TO_CHAR[output[i]];
             }
 
-            text = stringForm;
+            newText = stringForm;
         } else if (base != HEX) {
             throw std::domain_error(
                 "integer - string contructor : supported number "
                 "base range is only from 2 to 16"
             );
+        } else {
+            newText = text;
         }
 
-        size_t blocks = text.size() / (CAST_BYTES);
-        size_t remain = text.size() % (CAST_BYTES);
+        size_t blocks = newText.size() / (CAST_BYTES);
+        size_t remain = newText.size() % (CAST_BYTES);
 
         length = blocks;
         length += !!remain;
@@ -80,8 +84,8 @@ namespace apa {
         capacity = length + LIMB_GROWTH;
         limbs = (limb_t *) std::calloc(capacity, sizeof(limb_t));
 
-        for (size_t i = 0; i < text.size(); ++i) {
-            unsigned char CharByte = CHAR_TO_HEX[(unsigned char) text[text.size() - 1 - i]];
+        for (size_t i = 0; i < newText.size(); ++i) {
+            unsigned char CharByte = CHAR_TO_HEX[(unsigned char) newText[newText.size() - 1 - i]];
             if (CharByte == 0xff)
                 break;
 
