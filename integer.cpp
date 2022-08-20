@@ -123,7 +123,7 @@ namespace apa {
     /// copy assignment.
     integer &integer::operator=(const integer &src) {
         if (this != &src) {
-            if (capacity < src.capacity) {
+            if (capacity <= src.length) {
                 limbs = (limb_t *) std::realloc(limbs, src.capacity * LIMB_BYTES);
                 capacity = src.capacity;
             }
