@@ -89,12 +89,7 @@ namespace apa {
             limbs[i / CAST_BYTES] |= CharByte * multiplier;
         }
 
-        size_t cut_length = 0;
-
-        while (!limbs[length - 1 - cut_length]) {
-            cut_length++;
-        }
-        length -= cut_length;
+        remove_leading_zeros();
     }
 
     // a read only constructor

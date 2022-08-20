@@ -8,6 +8,7 @@ OS := $(shell uname)
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
+# TESTFLAGS += -fsanitize=memory -fsanitize-memory-track-origins
 endif
 
 all_test:
