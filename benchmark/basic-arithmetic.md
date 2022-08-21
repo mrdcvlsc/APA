@@ -4,66 +4,66 @@ Average performance (nanoseconds)
 
 ### Using base 2<sup>16</sup> number system representation.
 
-- a limb size = 4419
-- b limb size = 3099
+- a limb size = 5763
+- b limb size = 4339
 
 **basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 12114 ns |
-| sub (a - b) | 14082 ns |
-| mul (a * b) | 9150184 ns |
-| div (a / b) | 241919214 ns |
+| add (a + b) | 15852 ns |
+| sub (a - b) | 18201 ns |
+| mul (a * b) | 14414907 ns |
+| div (a / b) | 366322512 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 303817 μs |
-| apa::factorial(6321) | 47398 μs |
+| apa::fibonacci(100000) | 573200 μs |
+| apa::factorial(8000) | 71964 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
-- a limb size = 2210
-- b limb size = 1550
+- a limb size = 2882
+- b limb size = 2170
 
 **basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 7475 ns |
-| sub (a - b) | 6742 ns |
-| mul (a * b) | 3026691 ns |
-| div (a / b) | 155504433 ns |
+| add (a + b) | 11509 ns |
+| sub (a - b) | 9495 ns |
+| mul (a * b) | 4828811 ns |
+| div (a / b) | 235267154 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 186748 μs |
-| apa::factorial(6321) | 29086 μs |
+| apa::fibonacci(100000) | 349971 μs |
+| apa::factorial(8000) | 43501 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
-- a limb size = 1105
-- b limb size = 775
+- a limb size = 1441
+- b limb size = 1085
 
 **basic arithmetic average**
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 7282 ns |
-| sub (a - b) | 6370 ns |
-| mul (a * b) | 1803872 ns |
-| div (a / b) | 183595461 ns |
+| add (a + b) | 9159 ns |
+| sub (a - b) | 8180 ns |
+| mul (a * b) | 2892828 ns |
+| div (a / b) | 277519382 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(71421) | 187266 μs |
-| apa::factorial(6321) | 26166 μs |
+| apa::fibonacci(100000) | 348237 μs |
+| apa::factorial(8000) | 38777 μs |
 
 
 ### System Runner

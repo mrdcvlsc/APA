@@ -9,46 +9,46 @@ apa::bint limb base = 2<sup>64</sup>
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59780 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 166445 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 602916 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5022917 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 738458147 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23146890038 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59721 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 167070 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 603272 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5057080 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 741302270 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23279299791 ns |
 
 ## **fibonacci of (300) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 33273 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 110457 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 127611 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 572610 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 1500943 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2969427 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 32931 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 112260 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 128875 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 574628 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 1523110 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 2972637 ns |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1168301 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 4543681 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 8625772 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81386002 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 733743405 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 902169933 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1170454 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 4569290 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 8754668 ns |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81369147 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 733176815 ns |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 901492574 ns |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
 | Library | Nanoseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 230756 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1605511 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 7167946 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 642269570 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 226767 ns |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1614394 ns |
+| [InfInt](https://github.com/sercantutar/infint) | 7160843 ns |
+| [BigInt](https://github.com/faheel/BigInt) | 646576466 ns |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients
