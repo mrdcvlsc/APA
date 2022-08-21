@@ -9,6 +9,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <immintrin.h>
 
 #include "config.hpp"
 

@@ -361,8 +361,6 @@ namespace apa {
     // Arithmetic Operators
 
     integer &integer::operator+=(const integer &op) {
-        limb_t carry = 0;
-
         if (capacity <= op.length + 1) {
             capacity = op.length + LIMB_GROWTH;
             limbs = (limb_t *) std::realloc(limbs, capacity * LIMB_BYTES);
@@ -374,17 +372,91 @@ namespace apa {
         }
 
         if (length <= op.length) {
-            memset(limbs + length, 0x00, ((op.length + 1) - length) * LIMB_BYTES);
+            std::memset(limbs + length, 0x00, ((op.length + 1) - length) * LIMB_BYTES);
             length = op.length + 1;
         }
 
-        for (size_t i = 0; i < op.length; ++i) {
+        char carry = 0;
+        size_t blocks = op.length / 4;
+        size_t i = 0;
+        for ( ; i < blocks; i += 4) {
+#if defined(_BASE2_64)
+            carry = _addcarry_u64(
+                _addcarry_u64(
+                    _addcarry_u64(
+                        _addcarry_u64(carry, limbs[i], op.limbs[i], (unsigned long long*) &limbs[i])
+                    , limbs[i + 1], op.limbs[i + 1], (unsigned long long*) &limbs[i + 1])
+                , limbs[i + 2], op.limbs[i + 2], (unsigned long long*) &limbs[i + 2])
+            , limbs[i + 3], op.limbs[i + 3], (unsigned long long*) &limbs[i + 3]);
+#elif defined(_BASE2_32)
+            carry = _addcarry_u32(carry, limbs[i], op.limbs[i], (unsigned int*) &limbs[i]);
+            carry = _addcarry_u32(carry, limbs[i + 1], op.limbs[i + 1], (unsigned int*) &limbs[i + 1]);
+            carry = _addcarry_u32(carry, limbs[i + 2], op.limbs[i + 2], (unsigned int*) &limbs[i + 2]);
+            carry = _addcarry_u32(carry, limbs[i + 3], op.limbs[i + 3], (unsigned int*) &limbs[i + 3]);
+#else
+            cast_t sum = (cast_t) limbs[i] + op.limbs[i] + carry;
+            limbs[i] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 1] + op.limbs[i + 1] + carry;
+            limbs[i + 1] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 2] + op.limbs[i + 2] + carry;
+            limbs[i + 2] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 3] + op.limbs[i + 3] + carry;
+            limbs[i + 3] = sum;
+            carry = sum >> BASE_BITS;
+#endif
+        }
+
+        for ( ; i < op.length; ++i) {
             cast_t sum = (cast_t) limbs[i] + op.limbs[i] + carry;
             limbs[i] = sum;
             carry = sum >> BASE_BITS;
         }
 
-        for (size_t i = op.length; i < length; ++i) {
+        blocks = (length - op.length) / 4;
+
+        for ( ; i < blocks; i += 4) {
+#if defined(_BASE2_64)
+            carry = _addcarry_u64(
+                _addcarry_u64(
+                    _addcarry_u64(
+                        _addcarry_u64(carry, limbs[i], 0, (unsigned long long*) &limbs[i])
+                    , limbs[i + 1], 0, (unsigned long long*) &limbs[i + 1])
+                , limbs[i + 2], 0, (unsigned long long*) &limbs[i + 2])
+            , limbs[i + 3], 0, (unsigned long long*) &limbs[i + 3]);
+#elif defined(_BASE2_32)
+            carry = _addcarry_u32(
+                _addcarry_u32(
+                    _addcarry_u32(
+                        _addcarry_u32(carry, limbs[i], 0, (unsigned int*) &limbs[i])
+                    , limbs[i + 1], 0, (unsigned int*) &limbs[i + 1])
+                , limbs[i + 2], 0, (unsigned int*) &limbs[i + 2])
+            , limbs[i + 3], 0, (unsigned int*) &limbs[i + 3]);
+#else
+            cast_t sum = (cast_t) limbs[i] + carry;
+            limbs[i] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 1] + carry;
+            limbs[i + 1] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 2] + carry;
+            limbs[i + 2] = sum;
+            carry = sum >> BASE_BITS;
+
+            sum = (cast_t) limbs[i + 3] + carry;
+            limbs[i + 3] = sum;
+            carry = sum >> BASE_BITS;
+#endif
+        }
+
+        for ( ; i < length; ++i) {
             cast_t sum = (cast_t) limbs[i] + carry;
             limbs[i] = sum;
             carry = sum >> BASE_BITS;
