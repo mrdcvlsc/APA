@@ -55,7 +55,7 @@ int main() {
         "8b79a8efae7dcb8f7978c";
 
     size_t hypo_cap_len = 3;
-    apa::limb_t* arr = (apa::limb_t*) std::malloc(sizeof(apa::limb_t) * hypo_cap_len);
+    apa::limb_t *arr = (apa::limb_t *) std::malloc(sizeof(apa::limb_t) * hypo_cap_len);
     arr[0] = std::numeric_limits<apa::limb_t>::max();
     arr[1] = std::numeric_limits<apa::limb_t>::max();
     arr[2] = std::numeric_limits<apa::limb_t>::max();
@@ -65,7 +65,7 @@ int main() {
     std::cout << "hypo cap = " << hypo.capacity_size() << "\n";
 
     hypo += apa::__BINT_ONE;
-    apa::bint hypo_C = { 1, 0, 0, 0 };
+    apa::bint hypo_C = {1, 0, 0, 0};
 
     // solution
     apa::bint num1num2 = num1 + num2;

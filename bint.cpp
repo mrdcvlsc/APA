@@ -424,9 +424,9 @@ namespace apa {
     bint &bint::operator+=(const bint &op) {
         int cmp = number.compare(op.number);
         if (sign != op.sign) {
-            if(cmp == GREAT) {
+            if (cmp == GREAT) {
                 number -= op.number;
-            } else if(cmp == LESS) {
+            } else if (cmp == LESS) {
                 number = op.number - number;
                 sign = op.sign;
             } else {
@@ -454,7 +454,7 @@ namespace apa {
                 number.length = 1;
                 number[0] = 0;
             } else if (SIGN_NEGATIVE(sign)) {
-                if(cmp == GREAT) {
+                if (cmp == GREAT) {
                     number = op.number - number;
                     sign = POSITIVE;
                 } else {
@@ -462,7 +462,7 @@ namespace apa {
                     sign = NEGATIVE;
                 }
             } else {
-                if(cmp == GREAT) {
+                if (cmp == GREAT) {
                     number -= op.number;
                     sign = POSITIVE;
                 } else {

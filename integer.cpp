@@ -37,7 +37,7 @@ namespace apa {
     }
 
     // constructor for conveniece
-    integer::integer(const std::string& text, size_t base) {
+    integer::integer(const std::string &text, size_t base) {
         std::vector<uint8_t> output(text.size(), 0);
         std::string newText;
 

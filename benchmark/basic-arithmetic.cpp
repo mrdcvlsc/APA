@@ -8,7 +8,7 @@
 #define FIBONACCI 100000
 
 int main() {
-    
+
     // warmup
     apa::factorial(500);
     apa::fibonacci(1000);
@@ -26,7 +26,7 @@ int main() {
     apa::bint b = apa::fibonacci(FIBONACCI);
     auto fibonacci_end = std::chrono::high_resolution_clock::now();
     size_t fibonacci_dur =
-    std::chrono::duration_cast<std::chrono::microseconds>(fibonacci_end - fibonacci_start).count();
+        std::chrono::duration_cast<std::chrono::microseconds>(fibonacci_end - fibonacci_start).count();
 
     size_t case1_total = 0, case2_total = 0, case3_total = 0, case4_total = 0;
 
@@ -82,11 +82,11 @@ int main() {
                  "**functions**\n\n"
                  "| name | microseconds |\n"
                  "| ---- | ------------ |\n"
-                 "| apa::fibonacci(" << FIBONACCI << ") | "
-              << fibonacci_dur
+                 "| apa::fibonacci("
+              << FIBONACCI << ") | " << fibonacci_dur
               << " μs |\n"
-                 "| apa::factorial(" << FACTORIALS << ") | "
-              << factorial_dur
+                 "| apa::factorial("
+              << FACTORIALS << ") | " << factorial_dur
               << " μs |\n"
                  "\n";
 
