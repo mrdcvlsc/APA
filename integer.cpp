@@ -371,10 +371,11 @@ namespace apa {
         if (length == capacity) {
             capacity = length + LIMB_GROWTH;
             limbs = (limb_t *) std::realloc(limbs, capacity * LIMB_BYTES);
+            limbs[length++] = 0;
         }
 
         if (length <= op.length) {
-            memset(limbs + length, 0x00, ((op.length + 1) - length) * LIMB_BYTES);
+            std::memset(limbs + length, 0x00, ((op.length + 1) - length) * LIMB_BYTES);
             length = op.length + 1;
         }
 

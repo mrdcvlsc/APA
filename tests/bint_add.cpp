@@ -54,6 +54,19 @@ int main() {
         "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe7dc867f8b7d8fb678ec768ec76b8e67fb87edc"
         "8b79a8efae7dcb8f7978c";
 
+    size_t hypo_cap_len = 3;
+    apa::limb_t* arr = (apa::limb_t*) std::malloc(sizeof(apa::limb_t) * hypo_cap_len);
+    arr[0] = std::numeric_limits<apa::limb_t>::max();
+    arr[1] = std::numeric_limits<apa::limb_t>::max();
+    arr[2] = std::numeric_limits<apa::limb_t>::max();
+    apa::bint hypo(arr, hypo_cap_len, hypo_cap_len, apa::POSITIVE);
+
+    std::cout << "hypo len = " << hypo.limb_size() << "\n";
+    std::cout << "hypo cap = " << hypo.capacity_size() << "\n";
+
+    hypo += apa::__BINT_ONE;
+    apa::bint hypo_C = { 1, 0, 0, 0 };
+
     // solution
     apa::bint num1num2 = num1 + num2;
     apa::bint num2num1 = num2 + num1;
@@ -73,6 +86,15 @@ int main() {
     ASSERT_EQUALITY(num5num4, num4num5_C, "num5 + num4 ");
     ASSERT_EQUALITY(num6_one, num6_one_C, "num6 + one  ");
     ASSERT_EQUALITY(num1_P_NEGATIVE_num1, num1_P_NEGATIVE_num1_C, "num1+(-num6)");
+    ASSERT_EQUALITY(hypo, hypo_C, "hypo + 1");
+
+    hypo.printHex_spaced_out();
+    hypo_C.printHex_spaced_out();
+
+    std::cout << "hypo len   = " << hypo.limb_size() << "\n";
+    std::cout << "hypo cap   = " << hypo.capacity_size() << "\n";
+    std::cout << "hypo_C len = " << hypo_C.limb_size() << "\n";
+    std::cout << "hypo_C cap = " << hypo_C.capacity_size() << "\n";
 
 #if defined(_BASE2_16)
     RESULT("BINT BASE 2^16 ADDITION");
