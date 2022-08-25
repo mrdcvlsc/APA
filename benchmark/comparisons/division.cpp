@@ -103,7 +103,7 @@ int main() {
 	// 	auto start = std::chrono::high_resolution_clock::now();
 	// 	BhimIntegerAns = BhimIntegerFac / BhimIntegerFib;
 	// 	auto end = std::chrono::high_resolution_clock::now();
-	// 	auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+	// 	auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 	// 	BhimIntegerF += dur.count();
 	// }
 	
@@ -113,7 +113,7 @@ int main() {
 		auto start = std::chrono::high_resolution_clock::now();
 		BigIntAns = BigIntFac / BigIntFib;
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigIntF += dur.count();
 	}
 
@@ -123,7 +123,7 @@ int main() {
 		auto start = std::chrono::high_resolution_clock::now();
 		InfIntAns = InfIntFac / InfIntFib;
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		InfIntF += dur.count();
 	}
 
@@ -133,7 +133,7 @@ int main() {
 	// 	auto start = std::chrono::high_resolution_clock::now();
 	// 	BigNumberAns = BigNumberFac / BigNumberFib;
 	// 	auto end = std::chrono::high_resolution_clock::now();
-	// 	auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+	// 	auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 	// 	BigNumberF += dur.count();
 	// }
 
@@ -143,7 +143,7 @@ int main() {
 		auto start = std::chrono::high_resolution_clock::now();
 		APAAns = APAFac / APAFib;
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		APAF += dur.count();
 	}
 
@@ -153,7 +153,7 @@ int main() {
 		auto start = std::chrono::high_resolution_clock::now();
 		BoostAns = BoostFac / BoostFib;
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BoostF += dur.count();
 	}
 
@@ -193,10 +193,10 @@ int main() {
 
 	std::cout << "## Division : **fac(" << FAC_LEVEL << ") / fib(" << FIB_LEVEL << ") - Average (less is better)**\n\n";
 	std::cout << "\n";
-	std::cout << "| Library | Nanoseconds |\n";
+	std::cout << "| Library | microseconds |\n";
 	std::cout << "| ------- | ----------- |\n";
 	while(!rank.empty()) {
-		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " ns |\n";
+		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " μs |\n";
         rank.pop();
     }
 

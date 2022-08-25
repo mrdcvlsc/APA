@@ -7,48 +7,48 @@ apa::bint limb base = 2<sup>64</sup>
 
 ## **Factorial of (400) - Average (less is better)**
 
-| Library | Nanoseconds |
+| Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59721 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 167070 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 603272 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5057080 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 741302270 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23279299791 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 165 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 604 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5189 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 734573 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23203853 μs |
 
 ## **fibonacci of (300) - Average (less is better)**
 
 
-| Library | Nanoseconds |
+| Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 32931 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 112260 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 128875 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 574628 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 1523110 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2972637 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 32 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 110 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 128 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 575 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 1506 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 2950 μs |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
-| Library | Nanoseconds |
+| Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1170454 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 4569290 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 8754668 ns |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81369147 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 733176815 ns |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 901492574 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1193 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 4748 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 9023 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81267 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 732769 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 900627 μs |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
-| Library | Nanoseconds |
+| Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 226767 ns |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1614394 ns |
-| [InfInt](https://github.com/sercantutar/infint) | 7160843 ns |
-| [BigInt](https://github.com/faheel/BigInt) | 646576466 ns |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 226 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1678 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 7214 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 648443 μs |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients
@@ -79,4 +79,17 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Not affected
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
 ```

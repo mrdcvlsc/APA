@@ -66,61 +66,67 @@ int main() {
 
 	// BhimInteger - https://github.com/kothariji/BhimIntegers
 	std::cerr << "fibonacci - benchmarking BhimInteger.\n";
+	BhimInteger BhimInteger0(0), BhimInteger1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBhimInteger = fibonacci(FIB_LEVEL, BhimInteger(0), BhimInteger(1));
+		AnsBhimInteger = fibonacci(FIB_LEVEL, BhimInteger0, BhimInteger1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BhimIntegerF += dur.count();
 	}
 	
 	// BigInt (release - v0.5.0) https://github.com/faheel/BigInt
 	std::cerr << "fibonacci - benchmarking BigInt.\n";
+	BigInt BigInt0(0), BigInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBigInt = fibonacci(FIB_LEVEL, BigInt(0), BigInt(1));
+		AnsBigInt = fibonacci(FIB_LEVEL, BigInt0, BigInt1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigIntF += dur.count();
 	}
 
 	// InfInt - https://github.com/sercantutar/infint
 	std::cerr << "fibonacci - benchmarking InfInt.\n";
+	InfInt InfInt0(0), InfInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsInfInt = fibonacci(FIB_LEVEL, InfInt(0), InfInt(1));
+		AnsInfInt = fibonacci(FIB_LEVEL, InfInt0, InfInt1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		InfIntF += dur.count();
 	}
 
 	// BigNumber - https://github.com/Limeoats/BigNumber
 	std::cerr << "fibonacci - benchmarking BigNumber.\n";
+	BigNumber BigNumber0(0), BigNumber1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBigNumber = fibonacci(FIB_LEVEL, BigNumber(0), BigNumber(1));
+		AnsBigNumber = fibonacci(FIB_LEVEL, BigNumber0, BigNumber1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigNumberF += dur.count();
 	}
 
 	// APA - this repo
 	std::cerr << "fibonacci - benchmarking apa::bint.\n";
+	apa::bint bint0(0), bint1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsAPA = fibonacci(FIB_LEVEL, apa::bint(0), apa::bint(1));
+		AnsAPA = fibonacci(FIB_LEVEL, bint0, bint1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		APAF += dur.count();
 	}
 
 	// Boost - cpp_int
 	std::cerr << "fibonacci - benchmarking boost::multiprecision::cpp_int.\n";
+	boost::multiprecision::cpp_int cpp_int0(0), cpp_int1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBoost = fibonacci(FIB_LEVEL, boost::multiprecision::cpp_int(0), boost::multiprecision::cpp_int(1));
+		AnsBoost = fibonacci(FIB_LEVEL, cpp_int0, cpp_int1);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BoostF += dur.count();
 	}
 
@@ -154,10 +160,10 @@ int main() {
 
 	std::cout << "## **fibonacci of (" << FIB_LEVEL << ") - Average (less is better)**\n\n";
 	std::cout << "\n";
-	std::cout << "| Library | Nanoseconds |\n";
+	std::cout << "| Library | microseconds |\n";
 	std::cout << "| ------- | ----------- |\n";
 	while(!rank.empty()) {
-		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " ns |\n";
+		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " μs |\n";
         rank.pop();
     }
 

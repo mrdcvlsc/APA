@@ -62,61 +62,67 @@ int main() {
 
 	// BhimInteger - https://github.com/kothariji/BhimIntegers
 	std::cerr << "factorial - benchmarking BhimInteger.\n";
+	BhimInteger BhimInteger1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBhimInteger = factorial(BhimInteger(1), FAC_LEVEL);
+		AnsBhimInteger = factorial(BhimInteger1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BhimIntegerF += dur.count();
 	}
 	
 	// BigInt (release - v0.5.0) https://github.com/faheel/BigInt
 	std::cerr << "factorial - benchmarking BigInt.\n";
+	BigInt BigInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBigInt = factorial(BigInt(1), FAC_LEVEL);
+		AnsBigInt = factorial(BigInt1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigIntF += dur.count();
 	}
 
 	// InfInt - https://github.com/sercantutar/infint
 	std::cerr << "factorial - benchmarking InfInt.\n";
+	InfInt InfInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsInfInt = factorial(InfInt(1), FAC_LEVEL);
+		AnsInfInt = factorial(InfInt1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		InfIntF += dur.count();
 	}
 
 	// BigNumber - https://github.com/Limeoats/BigNumber
 	std::cerr << "factorial - benchmarking BigNumber.\n";
+	BigNumber BigNumber1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBigNumber = factorial(BigNumber(1), FAC_LEVEL);
+		AnsBigNumber = factorial(BigNumber1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigNumberF += dur.count();
 	}
 
 	// APA - this repo
 	std::cerr << "factorial - benchmarking apa::bint.\n";
+	apa::bint bint1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsAPA = factorial(apa::bint(1), FAC_LEVEL);
+		AnsAPA = factorial(bint1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		APAF += dur.count();
 	}
 
 	// Boost - cpp_int
 	std::cerr << "fibonacci - benchmarking boost::multiprecision::cpp_int.\n";
+	boost::multiprecision::cpp_int cpp_int1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		AnsBoost = factorial(boost::multiprecision::cpp_int(1), FAC_LEVEL);
+		AnsBoost = factorial(cpp_int1, FAC_LEVEL);
 		auto end = std::chrono::high_resolution_clock::now();
-		auto dur = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BoostF += dur.count();
 	}
 
@@ -151,10 +157,10 @@ int main() {
 	std::cout << "\napa::bint limb base = 2<sup>" << apa::BASE_BITS << "</sup>\n\n";
 
 	std::cout << "## **Factorial of (" << FAC_LEVEL << ") - Average (less is better)**\n\n";
-	std::cout << "| Library | Nanoseconds |\n";
+	std::cout << "| Library | microseconds |\n";
 	std::cout << "| ------- | ----------- |\n";
 	while(!rank.empty()) {
-		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " ns |\n";
+		std::cout << "| " << rank.top().second << " | " << rank.top().first  << " μs |\n";
         rank.pop();
     }
 
