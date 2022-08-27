@@ -9,8 +9,13 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include "./../../core.hpp"
 
+#ifndef EXCLUDE_SLOW
 const size_t TEST_RUNS = 10;
 const size_t FAC_LEVEL = 400;
+#else
+const size_t TEST_RUNS = 5;
+const size_t FAC_LEVEL = 1000;
+#endif
 
 template<class T>
 T factorial(const T& one, size_t n) {
@@ -61,7 +66,7 @@ int main() {
 	std::cerr << "factorial - benckmark started...\n\n";
 
 	// BhimInteger - https://github.com/kothariji/BhimIntegers
-	std::cerr << "factorial - benchmarking BhimInteger.\n";
+	std::cerr << "factorial(" << FAC_LEVEL << ") - benchmarking BhimInteger.\n";
 	BhimInteger BhimInteger1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
@@ -72,7 +77,7 @@ int main() {
 	}
 	
 	// BigInt (release - v0.5.0) https://github.com/faheel/BigInt
-	std::cerr << "factorial - benchmarking BigInt.\n";
+	std::cerr << "factorial(" << FAC_LEVEL << ") - benchmarking BigInt.\n";
 	BigInt BigInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
@@ -83,7 +88,7 @@ int main() {
 	}
 
 	// InfInt - https://github.com/sercantutar/infint
-	std::cerr << "factorial - benchmarking InfInt.\n";
+	std::cerr << "factorial(" << FAC_LEVEL << ") - benchmarking InfInt.\n";
 	InfInt InfInt1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
@@ -93,8 +98,9 @@ int main() {
 		InfIntF += dur.count();
 	}
 
+	#ifndef EXCLUDE_SLOW
 	// BigNumber - https://github.com/Limeoats/BigNumber
-	std::cerr << "factorial - benchmarking BigNumber.\n";
+	std::cerr << "factorial(" << FAC_LEVEL << ") - benchmarking BigNumber.\n";
 	BigNumber BigNumber1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
@@ -103,9 +109,10 @@ int main() {
 		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		BigNumberF += dur.count();
 	}
+	#endif
 
 	// APA - this repo
-	std::cerr << "factorial - benchmarking apa::bint.\n";
+	std::cerr << "factorial(" << FAC_LEVEL << ") - benchmarking apa::bint.\n";
 	apa::bint bint1(1);
 	for(size_t i=0; i<TEST_RUNS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
@@ -128,11 +135,18 @@ int main() {
 
 	//check correctness of output
 	if(
+		#ifndef EXCLUDE_SLOW
 		cout_to_string(AnsBhimInteger) == cout_to_string(AnsBigInt) &&
 		cout_to_string(AnsBigInt) == cout_to_string(AnsInfInt) &&
 		cout_to_string(AnsInfInt) == cout_to_string(AnsBigNumber) &&
 		cout_to_string(AnsBigNumber) == cout_to_string(AnsAPA.to_base10_string()) &&
 		cout_to_string(AnsAPA.to_base10_string()) == cout_to_string(AnsBoost)
+		#else
+		cout_to_string(AnsBhimInteger) == cout_to_string(AnsBigInt) &&
+		cout_to_string(AnsBigInt) == cout_to_string(AnsInfInt) &&
+		cout_to_string(AnsInfInt) == cout_to_string(AnsAPA.to_base10_string()) &&
+		cout_to_string(AnsAPA.to_base10_string()) == cout_to_string(AnsBoost)
+		#endif
 	) {
 		std::cerr << "All factorials are correct\n";
 	} else {
@@ -150,7 +164,9 @@ int main() {
     rank.push(std::make_pair(BhimIntegerF/TEST_RUNS, "[BhimInteger](https://github.com/kothariji/BhimIntegers)"));
     rank.push(std::make_pair(BigIntF/TEST_RUNS, "[BigInt](https://github.com/faheel/BigInt)"));
     rank.push(std::make_pair(InfIntF/TEST_RUNS, "[InfInt](https://github.com/sercantutar/infint)"));
+	#ifndef EXCLUDE_SLOW
     rank.push(std::make_pair(BigNumberF/TEST_RUNS, "[BigNumber](https://github.com/Limeoats/BigNumber)"));
+	#endif
     rank.push(std::make_pair(APAF/TEST_RUNS, "[apa::bint](https://github.com/mrdcvlsc/APA)"));
 	rank.push(std::make_pair(BoostF/TEST_RUNS, "[boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision)"));
 
@@ -165,6 +181,10 @@ int main() {
     }
 
     std::cout << "\n";
+
+	#ifdef EXCLUDE_SLOW
+	std::cout << "[BigNumber](https://github.com/Limeoats/BigNumber) - not included, very slow at larger factorials\n"; 
+	#endif
 	
     return 0;
 }

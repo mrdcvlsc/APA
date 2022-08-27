@@ -1,5 +1,7 @@
 # Basic Arithmetic
 
+Compiler : clang++
+
 Average performance (nanoseconds)
 
 ### Using base 2<sup>16</sup> number system representation.
@@ -11,17 +13,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 11036 ns |
-| sub (a - b) | 12810 ns |
-| mul (a * b) | 11398374 ns |
-| div (a / b) | 515926868 ns |
+| add (a + b) | 12045 ns |
+| sub (a - b) | 13067 ns |
+| mul (a * b) | 11410275 ns |
+| div (a / b) | 516114774 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 380919 μs |
-| apa::factorial(8000) | 51928 μs |
+| apa::fibonacci(100000) | 382770 μs |
+| apa::factorial(8000) | 47929 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
@@ -32,17 +34,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 6156 ns |
-| sub (a - b) | 6958 ns |
-| mul (a * b) | 4122556 ns |
-| div (a / b) | 141716172 ns |
+| add (a + b) | 6399 ns |
+| sub (a - b) | 6973 ns |
+| mul (a * b) | 4096372 ns |
+| div (a / b) | 141832283 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 203792 μs |
-| apa::factorial(8000) | 37518 μs |
+| apa::fibonacci(100000) | 200770 μs |
+| apa::factorial(8000) | 29988 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
@@ -53,17 +55,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 4817 ns |
-| sub (a - b) | 5214 ns |
-| mul (a * b) | 2342475 ns |
-| div (a / b) | 133091442 ns |
+| add (a + b) | 5175 ns |
+| sub (a - b) | 5017 ns |
+| mul (a * b) | 2351813 ns |
+| div (a / b) | 133141440 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 149141 μs |
-| apa::factorial(8000) | 34389 μs |
+| apa::fibonacci(100000) | 145948 μs |
+| apa::factorial(8000) | 26566 μs |
 
 
 ### System Runner

@@ -487,20 +487,26 @@ namespace apa {
             return __INTEGER_ZERO;
         }
 
-        limb_t *arr = (limb_t *) std::calloc(length + op.length, sizeof(limb_t));
+        limb_t *arr = (limb_t *) std::malloc(LIMB_BYTES * (length + op.length));
         integer product(arr, length + op.length, length + op.length);
 
-        cast_t index_product;
-        limb_t carry;
+        size_t i = 0, j = 0;
+        limb_t carry = 0;
+        for (j = 0; j < length; ++j) {
+            cast_t product_index = (cast_t) limbs[j] * op.limbs[0] + carry;
+            product.limbs[j] = product_index;
+            carry = (product_index >> BASE_BITS);
+        }
+        product.limbs[length] = carry;
 
-        for (size_t i = 0; i < op.length; ++i) {
+        for (i = 1; i < op.length; ++i) {
             carry = 0;
-            for (size_t j = 0; j < length; ++j) {
-                index_product = (cast_t) limbs[j] * op.limbs[i] + product.limbs[i + j] + carry;
-                product.limbs[i + j] = index_product;
-                carry = (index_product >> BASE_BITS);
+            for (j = 0; j < length; ++j) {
+                cast_t product_index = (cast_t) limbs[j] * op.limbs[i] + product.limbs[i + j] + carry;
+                product.limbs[i + j] = product_index;
+                carry = (product_index >> BASE_BITS);
             }
-            product.limbs[i + length] += carry;
+            product.limbs[i + length] = carry;
         }
 
         product.length -= !product.limbs[product.length - 1];

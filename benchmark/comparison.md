@@ -9,13 +9,27 @@ apa::bint limb base = 2<sup>64</sup>
 
 | Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 172 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 601 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5024 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 737836 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23155147 μs |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 60 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 132 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 606 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5010 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 735529 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23154962 μs |
 
+
+apa::bint limb base = 2<sup>64</sup>
+
+## **Factorial of (1000) - Average (less is better)**
+
+| Library | microseconds |
+| ------- | ----------- |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 291 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 473 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 3624 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 35362 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 6890054 μs |
+
+[BigNumber](https://github.com/Limeoats/BigNumber) - not included, very slow at larger factorials
 ## **fibonacci of (300) - Average (less is better)**
 
 
@@ -23,32 +37,32 @@ apa::bint limb base = 2<sup>64</sup>
 | ------- | ----------- |
 | [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 32 μs |
 | [apa::bint](https://github.com/mrdcvlsc/APA) | 39 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 111 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 580 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 1495 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2962 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 110 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 577 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 1494 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 3063 μs |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
 | Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1169 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1598 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 8616 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81440 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 724703 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 901663 μs |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1168 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1596 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 8695 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 82413 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 726358 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 903340 μs |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
 | Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 227 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1669 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 7342 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 646151 μs |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 226 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1740 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 7328 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 649336 μs |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients

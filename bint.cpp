@@ -553,15 +553,25 @@ namespace apa {
         const limb_t *num2, size_t num2_len, size_t num2_index
     ) {
         if (num2_len < KARATSUBA_SIZE || num1_len < KARATSUBA_SIZE) {
-            for (size_t i = 0; i < num2_len; ++i) {
-                limb_t carry = 0;
-                for (size_t j = 0; j < num1_len; ++j) {
+            size_t i = 0, j = 0;
+            limb_t carry = 0;
+            for (j = 0; j < num1_len; ++j) {
+                cast_t product_index =
+                    (cast_t) num1[j + num1_index] * num2[num2_index] + carry;
+                out[j + out_index] = product_index;
+                carry = (product_index >> BASE_BITS);
+            }
+            out[num1_len + out_index] = carry;
+
+            for (i = 1; i < num2_len; ++i) {
+                carry = 0;
+                for (j = 0; j < num1_len; ++j) {
                     cast_t product_index =
                         (cast_t) num1[j + num1_index] * num2[i + num2_index] + out[i + j + out_index] + carry;
                     out[i + j + out_index] = product_index;
                     carry = (product_index >> BASE_BITS);
                 }
-                out[i + num1_len + out_index] += carry;
+                out[i + num1_len + out_index] = carry;
             }
             return;
         }

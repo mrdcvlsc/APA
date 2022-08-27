@@ -97,6 +97,8 @@ benchmark: karatsuba arithmetic
 karatsuba:
 	@echo "# Karatsuba Multiplication" > benchmark/karatsuba.md
 	@echo "" >> benchmark/karatsuba.md
+	@echo "Compiler : $(CC)" >> benchmark/karatsuba.md
+	@echo "" >> benchmark/karatsuba.md
 	@echo "Average performance of APA's karatsuba implementation (microseconds)" >> benchmark/karatsuba.md
 	@echo "" >> benchmark/karatsuba.md
 	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_16
@@ -115,6 +117,8 @@ karatsuba:
 
 arithmetic:
 	@echo "# Basic Arithmetic" > benchmark/basic-arithmetic.md
+	@echo "" >> benchmark/basic-arithmetic.md
+	@echo "Compiler : $(CC)" >> benchmark/basic-arithmetic.md
 	@echo "" >> benchmark/basic-arithmetic.md
 	@echo "Average performance (nanoseconds)" >> benchmark/basic-arithmetic.md
 	@echo "" >> benchmark/basic-arithmetic.md

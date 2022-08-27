@@ -21,7 +21,8 @@ run:
 	@echo "Compiler : **$(CC)**" >> ./../comparison.md
 	@echo "" >> ./../comparison.md
 	@echo "running comparison benchmarks"
-	@./factorial.out >> ./../comparison.md
+	@./factorial_all.out >> ./../comparison.md
+	@./factorial_exclude.out >> ./../comparison.md
 	@./fibonacciMin.out >> ./../comparison.md
 	@./fibonacciBig.out >> ./../comparison.md
 	@./division.out >> ./../comparison.md
@@ -34,7 +35,8 @@ run:
 
 compile: factorial.cpp fibonacci.cpp division.cpp
 	@echo "compiling benchmark comparison programs"
-	@$(CC) $(OFLAG) factorial.cpp -o factorial.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CC) $(OFLAG) factorial.cpp -o factorial_all.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CC) $(OFLAG) factorial.cpp -o factorial_exclude.out -DEXCLUDE_SLOW $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
 	@$(CC) $(OFLAG) division.cpp -o division.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
 	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciMin.out $(INCLUDE_PATH) -D_MINFIB $(LIB_PATH) $(LIBS) $(DFLAGS)
 	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciBig.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
