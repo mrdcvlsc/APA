@@ -47,7 +47,9 @@ test: $(OBJ)
 	@./$(SRC)/integer_constructor.out
 	@./$(SRC)/integer_swap.out
 	@./$(SRC)/integer_add.out
+	@./$(SRC)/integer_add_assign.out
 	@./$(SRC)/integer_sub.out
+	@./$(SRC)/integer_sub_assign.out
 	@./$(SRC)/integer_mul.out
 	@./$(SRC)/integer_bitwise_logic.out
 	@./$(SRC)/integer_relational.out
@@ -60,7 +62,9 @@ test: $(OBJ)
 	@./$(SRC)/bint_construct.out
 	@./$(SRC)/bint_logical.out
 	@./$(SRC)/bint_add.out
+	@./$(SRC)/bint_add_assign.out
 	@./$(SRC)/bint_sub.out
+	@./$(SRC)/bint_sub_assign.out
 	@./$(SRC)/bint_mul.out
 	@./$(SRC)/bint_div.out
 	@./$(SRC)/bint_bitwise_logic.out
