@@ -422,8 +422,8 @@ namespace apa {
 
     // Arithmetic Operators
     bint &bint::operator+=(const bint &op) {
-        int cmp = number.compare(op.number);
         if (sign != op.sign) {
+            int cmp = number.compare(op.number);
             if (cmp == GREAT) {
                 number -= op.number;
             } else if (cmp == LESS) {
@@ -441,15 +441,24 @@ namespace apa {
     }
 
     bint bint::operator+(const bint &op) const {
-        bint sum = *this;
-        return sum += op;
+        if (sign != op.sign) {
+            int cmp = number.compare(op.number);
+            if (cmp == GREAT) {
+                return bint(sign, number - op.number);
+            } else if (cmp == LESS) {
+                return bint(op.sign, op.number - number);
+            } else {
+                return __BINT_ZERO;
+            }
+        }
+        return bint(sign, number + op.number);
     }
 
     bint &bint::operator-=(const bint &op) {
-        int cmp = compare(op);
         if (sign != op.sign) {
             number += op.number; // correct - final
         } else {
+            int cmp = compare(op);
             if (cmp == EQUAL) {
                 number.length = 1;
                 number[0] = 0;
@@ -475,8 +484,25 @@ namespace apa {
     }
 
     bint bint::operator-(const bint &op) const {
-        bint dif = *this;
-        return dif -= op;
+        if (sign == op.sign) {
+            int cmp = compare(op);
+            if (cmp == EQUAL) {
+                return __BINT_ZERO;
+            } else if (SIGN_NEGATIVE(sign)) {
+                if (cmp == GREAT) {
+                    return bint(POSITIVE, op.number - number);
+                } else {
+                    return bint(NEGATIVE, number - op.number);
+                }
+            } else {
+                if (cmp == GREAT) {
+                    return bint(POSITIVE, number - op.number);
+                } else {
+                    return bint(NEGATIVE, op.number - number);
+                }
+            }
+        }
+        return bint(sign, number + op.number);
     }
 
     bint &bint::operator*=(const bint &op) {

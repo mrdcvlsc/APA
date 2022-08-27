@@ -6,7 +6,7 @@ Average performance of APA's karatsuba implementation (microseconds)
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 2054x2038 | 2442 μs |
+| case 1 | 2054x2038 | 2443 μs |
 | case 2 | 2054x918 | 1577 μs |
 | case 3 | 128x2038 | 491 μs |
 
@@ -14,16 +14,16 @@ Average performance of APA's karatsuba implementation (microseconds)
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 1027x1019 | 878 μs |
-| case 2 | 1027x459 | 572 μs |
+| case 1 | 1027x1019 | 879 μs |
+| case 2 | 1027x459 | 573 μs |
 | case 3 | 64x1019 | 185 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 514x510 | 503 μs |
-| case 2 | 514x230 | 322 μs |
+| case 1 | 514x510 | 502 μs |
+| case 2 | 514x230 | 323 μs |
 | case 3 | 32x510 | 80 μs |
 
 
@@ -52,17 +52,4 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
-NUMA node(s):                    1
-NUMA node0 CPU(s):               0-3
-Vulnerability Itlb multihit:     Not affected
-Vulnerability L1tf:              Not affected
-Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
-Vulnerability Meltdown:          Mitigation; PTI
-Vulnerability Mmio stale data:   Not affected
-Vulnerability Retbleed:          Not affected
-Vulnerability Spec store bypass: Not affected
-Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling
-Vulnerability Srbds:             Not affected
-Vulnerability Tsx async abort:   Not affected
 ```

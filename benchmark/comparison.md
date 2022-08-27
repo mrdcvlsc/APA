@@ -10,11 +10,11 @@ apa::bint limb base = 2<sup>64</sup>
 | Library | microseconds |
 | ------- | ----------- |
 | [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 59 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 165 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 604 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5189 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 734573 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 23203853 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 172 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 601 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 5024 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 737836 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 23155147 μs |
 
 ## **fibonacci of (300) - Average (less is better)**
 
@@ -22,33 +22,33 @@ apa::bint limb base = 2<sup>64</sup>
 | Library | microseconds |
 | ------- | ----------- |
 | [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 32 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 110 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 128 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 575 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 1506 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 2950 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 39 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 111 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 580 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 1495 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 2962 μs |
 
 ## **fibonacci of (6000) - Average (less is better)**
 
 
 | Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1193 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 4748 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 9023 μs |
-| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81267 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 732769 μs |
-| [BigNumber](https://github.com/Limeoats/BigNumber) | 900627 μs |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 1169 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1598 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 8616 μs |
+| [BhimInteger](https://github.com/kothariji/BhimIntegers) | 81440 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 724703 μs |
+| [BigNumber](https://github.com/Limeoats/BigNumber) | 901663 μs |
 
 ## Division : **fac(1537) / fib(713) - Average (less is better)**
 
 
 | Library | microseconds |
 | ------- | ----------- |
-| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 226 μs |
-| [apa::bint](https://github.com/mrdcvlsc/APA) | 1678 μs |
-| [InfInt](https://github.com/sercantutar/infint) | 7214 μs |
-| [BigInt](https://github.com/faheel/BigInt) | 648443 μs |
+| [boost::multiprecision::cpp_int](https://github.com/boostorg/multiprecision) | 227 μs |
+| [apa::bint](https://github.com/mrdcvlsc/APA) | 1669 μs |
+| [InfInt](https://github.com/sercantutar/infint) | 7342 μs |
+| [BigInt](https://github.com/faheel/BigInt) | 646151 μs |
 
 - **[BigNumber](https://github.com/Limeoats/BigNumber)** - not included, division is taking too long
 - **[BhimInteger](https://github.com/kothariji/BhimIntegers)** - not included, producing zero quotients
@@ -79,17 +79,4 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
-NUMA node(s):                    1
-NUMA node0 CPU(s):               0-3
-Vulnerability Itlb multihit:     Not affected
-Vulnerability L1tf:              Not affected
-Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
-Vulnerability Meltdown:          Mitigation; PTI
-Vulnerability Mmio stale data:   Not affected
-Vulnerability Retbleed:          Not affected
-Vulnerability Spec store bypass: Not affected
-Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling
-Vulnerability Srbds:             Not affected
-Vulnerability Tsx async abort:   Not affected
 ```

@@ -361,8 +361,6 @@ namespace apa {
     // Arithmetic Operators
 
     integer &integer::operator+=(const integer &op) {
-        limb_t carry = 0;
-
         if (capacity <= op.length + 1) {
             capacity = op.length + LIMB_GROWTH;
             limbs = (limb_t *) std::realloc(limbs, capacity * LIMB_BYTES);
@@ -379,6 +377,8 @@ namespace apa {
             length = op.length + 1;
         }
 
+        limb_t carry = 0;
+        
         for (size_t i = 0; i < op.length; ++i) {
             cast_t sum = (cast_t) limbs[i] + op.limbs[i] + carry;
             limbs[i] = sum;
@@ -396,24 +396,54 @@ namespace apa {
     }
 
     integer integer::operator+(const integer &op) const {
-        integer sum = *this;
-        return sum += op;
+        limb_t *max_limb, *min_limb;
+        size_t max_len, min_len;
+
+        if (length > op.length) {
+            max_limb = limbs;
+            max_len = length;
+            min_limb = op.limbs;
+            min_len = op.length;
+        } else {
+            max_limb = op.limbs;
+            max_len = op.length;
+            min_limb = limbs;
+            min_len = length;
+        }
+
+        limb_t *sum_array = (limb_t *) std::malloc(LIMB_BYTES * (max_len + 1));
+        limb_t carry = 0;
+        
+        for (size_t i = 0; i < min_len; ++i) {
+            cast_t sum = (cast_t) max_limb[i] + min_limb[i] + carry;
+            sum_array[i] = sum;
+            carry = sum >> BASE_BITS;
+        }
+
+        for (size_t i = min_len; i < max_len; ++i) {
+            cast_t sum = (cast_t) max_limb[i] + carry;
+            sum_array[i] = sum;
+            carry = sum >> BASE_BITS;
+        }
+
+        sum_array[max_len] = carry;
+        return integer(sum_array, max_len + 1, max_len + carry);
     }
 
     integer &integer::operator-=(const integer &op) {
         limb_t carry = 0;
 
         for (size_t i = 0; i < op.length; ++i) {
-            cast_t diff_index = (cast_t) limbs[i] - op.limbs[i] - carry;
-            limbs[i] = diff_index;
-            carry = (diff_index >> BASE_BITS);
+            cast_t dif_index = (cast_t) limbs[i] - op.limbs[i] - carry;
+            limbs[i] = dif_index;
+            carry = (dif_index >> BASE_BITS);
             carry &= 0x01;
         }
 
         for (size_t i = op.length; i < length; ++i) {
-            cast_t diff_index = (cast_t) limbs[i] - carry;
-            limbs[i] = diff_index;
-            carry = (diff_index >> BASE_BITS);
+            cast_t dif_index = (cast_t) limbs[i] - carry;
+            limbs[i] = dif_index;
+            carry = (dif_index >> BASE_BITS);
             carry &= 0x01;
         }
 
@@ -422,8 +452,28 @@ namespace apa {
     }
 
     integer integer::operator-(const integer &op) const {
-        integer dif = *this;
-        return dif -= op;
+        size_t dif_len = std::max(length, op.length);
+        limb_t *dif_array = (limb_t *) std::malloc(dif_len * LIMB_BYTES);
+
+        limb_t carry = 0;
+
+        for (size_t i = 0; i < op.length; ++i) {
+            cast_t dif_index = (cast_t) limbs[i] - op.limbs[i] - carry;
+            dif_array[i] = dif_index;
+            carry = (dif_index >> BASE_BITS);
+            carry &= 0x01;
+        }
+
+        for (size_t i = op.length; i < length; ++i) {
+            cast_t dif_index = (cast_t) limbs[i] - carry;
+            dif_array[i] = dif_index;
+            carry = (dif_index >> BASE_BITS);
+            carry &= 0x01;
+        }
+
+        integer dif_int(dif_array, dif_len, dif_len);
+        dif_int.remove_leading_zeros();
+        return dif_int;
     }
 
     integer &integer::operator*=(const integer &op) {
