@@ -567,30 +567,29 @@ namespace apa {
 
     integer integer::bit_division(const integer &op) const {
         limb_t *arr = (limb_t *) std::calloc(length, sizeof(limb_t));
-        integer quotient(arr, length, length), remainder(length, length);
-        remainder.length = 1;
-        remainder.limbs[0] = 0;
-        limb_t bit = 0, current_index, current_shift_val, onebit = 1;
-        size_t total_bits = length * BASE_BITS, ms_limb = length - 1;
+        integer quotient(arr, length, length);
 
         if (op.length == 1) {
-            for (size_t i = 0; i < total_bits; ++i) {
-                current_index = ms_limb - i / BASE_BITS;
-                current_shift_val = i % BASE_BITS;
+            cast_t remainder = 0;
+            cast_t divisor = op.limbs[0];
 
-                remainder <<= 1;
+            quotient.limbs[length - 1] = (cast_t) limbs[length - 1] / divisor;
+            remainder = (cast_t) limbs[length - 1] % divisor;
+            remainder <<= BASE_BITS;
 
-                bit = limbs[current_index] << current_shift_val;
-                bit >>= BASE_BITS_MINUS1;
-
-                remainder.limbs[0] |= bit;
-
-                if (remainder >= op) {
-                    remainder -= op;
-                    quotient.limbs[current_index] |= (onebit << (BASE_BITS_MINUS1 - current_shift_val));
-                }
+            for (size_t i = 1; i < length; ++i) {
+                remainder |= (cast_t) limbs[length - 1 - i];
+                quotient.limbs[length - 1 - i] = remainder / divisor;
+                remainder = (remainder % divisor) << BASE_BITS;
             }
         } else {
+            integer remainder(length, length);
+            remainder.length = 1;
+            remainder.limbs[0] = 0;
+
+            limb_t bit = 0, current_index, current_shift_val, onebit = 1;
+            size_t total_bits = length * BASE_BITS, ms_limb = length - 1;
+            
             for (size_t h = 0; h < total_bits; h += BASE_BITS) {
                 current_index = ms_limb - h / BASE_BITS;
                 remainder <<= BASE_BITS;
@@ -624,6 +623,23 @@ namespace apa {
     }
 
     integer integer::bit_modulo(const integer &op) const {
+        if (op.length == 1) {
+            cast_t remainder = 0;
+            cast_t divisor = op.limbs[0];
+
+            remainder = (cast_t) limbs[length - 1] % divisor;
+            remainder <<= BASE_BITS;
+
+            for (size_t i = 1; i < length; ++i) {
+                remainder |= (cast_t) limbs[length - 1 - i];
+                remainder = (remainder % divisor) << BASE_BITS;
+            }
+
+            integer final_remainder = 0;
+            final_remainder.limbs[0] = remainder >> BASE_BITS;
+            return final_remainder;
+        }
+        
         integer remainder(length, length);
         remainder.length = 1;
         remainder.limbs[0] = 0;
@@ -631,45 +647,27 @@ namespace apa {
         limb_t bit = 0, current_index, current_shift_val;
         size_t total_bits = length * BASE_BITS, ms_limb = length - 1;
 
-        if (op.length == 1) {
-            for (size_t i = 0; i < total_bits; ++i) {
-                current_index = ms_limb - i / BASE_BITS;
-                current_shift_val = i % BASE_BITS;
+        for (size_t h = 0; h < total_bits; h += BASE_BITS) {
+            current_index = ms_limb - h / BASE_BITS;
+            remainder <<= BASE_BITS;
+            remainder.limbs[0] |= limbs[current_index];
 
-                remainder <<= 1;
+            if (remainder >= op) {
+                remainder >>= BASE_BITS;
 
-                bit = limbs[current_index] << current_shift_val;
-                bit >>= BASE_BITS_MINUS1;
+                for (size_t i = 0; i < BASE_BITS; ++i) {
+                    current_index = ms_limb - (h + i) / BASE_BITS;
+                    current_shift_val = (h + i) % BASE_BITS;
 
-                remainder.limbs[0] |= bit;
+                    remainder <<= 1;
 
-                if (remainder >= op) {
-                    remainder -= op;
-                }
-            }
-        } else {
-            for (size_t h = 0; h < total_bits; h += BASE_BITS) {
-                current_index = ms_limb - h / BASE_BITS;
-                remainder <<= BASE_BITS;
-                remainder.limbs[0] |= limbs[current_index];
+                    bit = limbs[current_index] << current_shift_val;
+                    bit >>= BASE_BITS_MINUS1;
 
-                if (remainder >= op) {
-                    remainder >>= BASE_BITS;
+                    remainder.limbs[0] |= bit;
 
-                    for (size_t i = 0; i < BASE_BITS; ++i) {
-                        current_index = ms_limb - (h + i) / BASE_BITS;
-                        current_shift_val = (h + i) % BASE_BITS;
-
-                        remainder <<= 1;
-
-                        bit = limbs[current_index] << current_shift_val;
-                        bit >>= BASE_BITS_MINUS1;
-
-                        remainder.limbs[0] |= bit;
-
-                        if (remainder >= op) {
-                            remainder -= op;
-                        }
+                    if (remainder >= op) {
+                        remainder -= op;
                     }
                 }
             }
@@ -802,11 +800,11 @@ namespace apa {
 
     std::string integer::to_base10_string() const {
         std::string Base10 = "";
-        integer ten(10), quotient = *this;
+        integer quotient = *this;
         if (quotient) {
             while (quotient) {
-                integer remainder = quotient % ten;
-                quotient = quotient / ten;
+                integer remainder = quotient % __INTEGER_TEN;
+                quotient = quotient / __INTEGER_TEN;
                 Base10.push_back('0' + remainder.limbs[0]);
             }
 

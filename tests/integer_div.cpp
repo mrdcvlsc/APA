@@ -75,8 +75,8 @@ int main() {
     apa::integer dbans1 = NUM1.bit_division(NUM1);
     apa::integer dbans2 = NUM2.bit_division(NUM2);
     apa::integer dbans3 = NUM1 / NUM2;
-    // ANSQ1
 
+    // ANSQ1
     ASSERT_EQUALITY(dbans1, ONE, "1 NUM1.bit_division(NUM1)");
     ASSERT_EQUALITY(dbans2, ONE, "2 NUM2.bit_division(NUM2)");
     ASSERT_EQUALITY(NUM3.bit_division(NUM3), ONE, "3 NUM3.bit_division(NUM3)");

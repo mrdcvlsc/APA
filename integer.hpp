@@ -190,5 +190,6 @@ namespace apa {
     static const integer __INTEGER_ZERO = 0;
     static const integer __INTEGER_ONE = 1;
     static const integer __INTEGER_TWO = 2;
+    static const integer __INTEGER_TEN = 10;
 } // namespace apa
 #endif

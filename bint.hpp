@@ -193,6 +193,7 @@ namespace apa {
     static const bint __BINT_ZERO = 0;
     static const bint __BINT_ONE = 1;
     static const bint __BINT_TWO = 2;
+    static const bint __BINT_TEN = 10;
 } // namespace apa
 
 #endif

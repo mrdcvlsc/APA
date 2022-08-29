@@ -12,11 +12,11 @@ https://mrdcvlsc.github.io/APA
 A C++ library for big integers and dynamic precision floating points (big numbers),
 pure c/c++ implementation, no handwritten inline-assembly.
 
-**Version 4 Status : [WIP - Work In Progress]**
+**Version 0.4.8 Status : [WIP - Work In Progress]**
 
-This branch (**version 4**) is an ongoing rewrite of the whole library.
+This branch (**version 0.4.8**) is an ongoing rewrite of the whole library.
 
-**Visit branch [version3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) 
+**Visit branch [version 0.3.9](https://github.com/mrdcvlsc/APA/tree/version_3.9) 
 for the latest previous working version.**
 
 -----

@@ -6,8 +6,12 @@ a much faster performance can be achieved by getting the
 padding needed by the `remainder` so that it will be equal
 or near equal to the `op` divisor right away.
 
-- [ ] - optimize `bit_division` : implement the special
+- [x] - optimize `bit_division` : implement the special
 case when the divisor `op` is just one limb.
+
+- [ ] - optimize `integer operator/=` : I think it's possible that the
+**quotient** can be directly written to the `limbs` of the dividend,
+removing the need for another allocation of **temporary quotient**.
 
 - [ ] - add lcd, gcd, finding prime functions, and more math functions.
 
