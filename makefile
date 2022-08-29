@@ -4,7 +4,7 @@ TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED
 CXXFLAGS := -std=c++11 -Wall -Wextra
 
 OS := $(shell uname)
-.PHONY: test all_test benchmark karatsuba arithmetic style compare
+.PHONY: test all_test benchmark karatsuba arithmetic initandtostring style compare
 
 ifeq ($(OS), Linux)
 TESTFLAGS += -fsanitize=address
@@ -92,7 +92,7 @@ endif
 style:
 	@clang-format -i -style=file *.cpp *.hpp tests/*.hpp tests/*.cpp benchmark/*.cpp
 
-benchmark: karatsuba arithmetic
+benchmark: karatsuba arithmetic initandtostring
 
 karatsuba:
 	@echo "# Karatsuba Multiplication" > benchmark/karatsuba.md
@@ -135,6 +135,27 @@ arithmetic:
 	@echo "\`\`\`" >> benchmark/basic-arithmetic.md
 	@lscpu >> benchmark/basic-arithmetic.md
 	@echo "\`\`\`" >> benchmark/basic-arithmetic.md
+
+initandtostring:
+	@echo "# String Initialization and To Base 10 String" > benchmark/init-and-to-string.md
+	@echo "" >> benchmark/init-and-to-string.md
+	@echo "Compiler : $(CC)" >> benchmark/init-and-to-string.md
+	@echo "" >> benchmark/init-and-to-string.md
+	@echo "Accumulated performance (nanoseconds)" >> benchmark/init-and-to-string.md
+	@echo "" >> benchmark/init-and-to-string.md
+	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_16
+	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
+	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_32
+	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
+	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_64
+	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
+	@rm benchmark/init-and-to-string.out
+	@echo "" >> benchmark/init-and-to-string.md
+	@echo "### System Runner" >> benchmark/init-and-to-string.md
+	@echo "" >> benchmark/init-and-to-string.md
+	@echo "\`\`\`" >> benchmark/init-and-to-string.md
+	@lscpu >> benchmark/init-and-to-string.md
+	@echo "\`\`\`" >> benchmark/init-and-to-string.md
 
 FTSRC:=test
 

@@ -556,8 +556,7 @@ namespace apa {
             size_t i = 0, j = 0;
             limb_t carry = 0;
             for (j = 0; j < num1_len; ++j) {
-                cast_t product_index =
-                    (cast_t) num1[j + num1_index] * num2[num2_index] + carry;
+                cast_t product_index = (cast_t) num1[j + num1_index] * num2[num2_index] + carry;
                 out[j + out_index] = product_index;
                 carry = (product_index >> BASE_BITS);
             }

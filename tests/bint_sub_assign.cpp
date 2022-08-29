@@ -64,14 +64,22 @@ int main() {
         "47086872";
 
     // solution
-    apa::bint num1num2 = num1; num1num2 -= num2;
-    apa::bint num2num1 = num2; num2num1 -= num1;
-    apa::bint num1num3 = num1; num1num3 -= num3;
-    apa::bint num3num1 = num3; num3num1 -= num1;
-    apa::bint num4num5 = num4; num4num5 -= num5;
-    apa::bint num5num4 = num5; num5num4 -= num4;
-    apa::bint num6_one = num6; num6_one -= apa::__BINT_ONE;
-    apa::bint num1_P_NEGATIVE_num1 = num1; num1_P_NEGATIVE_num1 -= (-num6);
+    apa::bint num1num2 = num1;
+    num1num2 -= num2;
+    apa::bint num2num1 = num2;
+    num2num1 -= num1;
+    apa::bint num1num3 = num1;
+    num1num3 -= num3;
+    apa::bint num3num1 = num3;
+    num3num1 -= num1;
+    apa::bint num4num5 = num4;
+    num4num5 -= num5;
+    apa::bint num5num4 = num5;
+    num5num4 -= num4;
+    apa::bint num6_one = num6;
+    num6_one -= apa::__BINT_ONE;
+    apa::bint num1_P_NEGATIVE_num1 = num1;
+    num1_P_NEGATIVE_num1 -= (-num6);
 
     // checks
     ASSERT_EQUALITY(num1num2.to_base16_string(), num1num2_C, "num1 - num2 ");

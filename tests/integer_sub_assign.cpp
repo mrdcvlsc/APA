@@ -89,7 +89,7 @@ int main() {
         apa::integer og_num2 = num2;
         apa::integer og_num3 = num3;
         apa::integer og_num4 = num4;
-        
+
         ASSERT_EQUALITY((og_num1 -= dif1), num1dif1_C, "num1 - dif1");
         ASSERT_EQUALITY((og_num2 -= dif1), num2dif1_C, "num2 - dif1");
         ASSERT_EQUALITY((og_num3 -= dif1), num3dif1_C, "num3 - dif1");

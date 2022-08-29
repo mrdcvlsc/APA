@@ -378,7 +378,7 @@ namespace apa {
         }
 
         limb_t carry = 0;
-        
+
         for (size_t i = 0; i < op.length; ++i) {
             cast_t sum = (cast_t) limbs[i] + op.limbs[i] + carry;
             limbs[i] = sum;
@@ -413,7 +413,7 @@ namespace apa {
 
         limb_t *sum_array = (limb_t *) std::malloc(LIMB_BYTES * (max_len + 1));
         limb_t carry = 0;
-        
+
         for (size_t i = 0; i < min_len; ++i) {
             cast_t sum = (cast_t) max_limb[i] + min_limb[i] + carry;
             sum_array[i] = sum;
