@@ -7,6 +7,7 @@ https://mrdcvlsc.github.io/APA
 ![gcc-gnu](https://github.com/mrdcvlsc/APA/actions/workflows/gcc-gnu.yml/badge.svg)
 ![clang](https://github.com/mrdcvlsc/APA/actions/workflows/clang.yml/badge.svg)
 ![mingw32](https://github.com/mrdcvlsc/APA/actions/workflows/mingw64.yml/badge.svg)
+![](https://img.shields.io/github/languages/code-size/mrdcvlsc/APA)
 
 A C++ library for big integers and dynamic precision floating points (big numbers),
 pure c/c++ implementation, no handwritten inline-assembly.
@@ -50,8 +51,8 @@ failing will be higher).
 
 This is a C++ **A**rbitrary **P**recision **A**rithmetic library. Used to compute
 big integers and real numbers/floating point numbers. If you need to compute numbers that
-is greater than the max value of `unsigned long long int`, `uint64_t` or
-`__uint128_t` this library can do it for you.
+is greater than the max value of `long long int`, `int64_t` or
+`__int128_t` this library can do it for you.
 
 -----
 

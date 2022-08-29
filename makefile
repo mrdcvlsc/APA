@@ -135,3 +135,16 @@ arithmetic:
 	@echo "\`\`\`" >> benchmark/basic-arithmetic.md
 	@lscpu >> benchmark/basic-arithmetic.md
 	@echo "\`\`\`" >> benchmark/basic-arithmetic.md
+
+FTSRC:=test
+
+focustest:
+	@echo compiling $(FTSRC).cpp file (base2_16)...
+	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base16.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_16 -g -fsanitize=address -Wall -Wextra
+	@echo compiling $(FTSRC).cpp file (base2_32)...
+	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base32.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_32 -g -fsanitize=address -Wall -Wextra
+	@echo compiling $(FTSRC).cpp file (base2_64)...
+	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base64.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_64 -g -fsanitize=address -Wall -Wextra
+	$(SRC)/$(FTSRC)_base16.out
+	$(SRC)/$(FTSRC)_base32.out
+	$(SRC)/$(FTSRC)_base64.out
