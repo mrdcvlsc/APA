@@ -133,6 +133,7 @@ namespace apa {
         integer &bit_division_assign(const integer &op);
         integer bit_modulo(const integer &op) const;
         integer &bit_modulo_assign(const integer &op);
+        static void div_mod(integer& q, integer& r, integer& dividen, const integer& divisor);
 
         integer &operator+=(const integer &op);
         integer &operator-=(const integer &op);

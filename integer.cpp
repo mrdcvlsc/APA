@@ -736,6 +736,59 @@ namespace apa {
         return *this;
     }
 
+    void integer::div_mod(integer& q, integer& r, integer& dividen, const integer& divisor) {
+        if (divisor.length == 1) {
+            cast_t remainder = 0;
+            limb_t onelimb_divisor = divisor[0];
+        
+            remainder = dividen.limbs[dividen.length - 1] % onelimb_divisor;
+            remainder <<= BASE_BITS;
+            q.limbs[dividen.length - 1] = dividen.limbs[dividen.length - 1] / onelimb_divisor;
+
+            for (size_t i = 1; i < dividen.length; ++i) {
+                remainder |= dividen.limbs[dividen.length - 1 - i];
+                q.limbs[dividen.length - 1 - i] = remainder / onelimb_divisor;
+                remainder = (remainder % onelimb_divisor) << BASE_BITS;
+            }
+
+            r = remainder >> BASE_BITS;
+        } else {
+            integer remainder(dividen.length, dividen.length);
+            remainder.length = 1;
+            remainder.limbs[0] = 0;
+
+            limb_t bit = 0, current_index = dividen.length, onebit = 1;
+            size_t total_bits = dividen.length * BASE_BITS;
+            
+            for (size_t h = 0; h < total_bits; h += BASE_BITS) {
+                remainder <<= BASE_BITS;
+                remainder.limbs[0] = dividen.limbs[--current_index];
+                q.limbs[current_index] = 0;
+
+                if (remainder >= divisor) {
+                    limb_t r = remainder.limbs[0];
+                    remainder >>= BASE_BITS;
+
+                    for (size_t i = 0; i < BASE_BITS; ++i) {
+                        bit = (r << i);
+                        bit >>= BASE_BITS_MINUS1;
+
+                        remainder <<= 1;
+                        remainder.limbs[0] |= bit;
+
+                        if (remainder >= divisor) {
+                            remainder -= divisor;
+                            q.limbs[current_index] |= (onebit << (BASE_BITS_MINUS1 - i));
+                        }
+                    }
+                }
+            }
+
+            r = remainder;
+        }
+        q.remove_leading_zeros();
+    }
+
     // pre-fix increment/decrement
     integer &integer::operator++() {
         return *this += __INTEGER_ONE;
@@ -860,11 +913,10 @@ namespace apa {
 
     std::string integer::to_base10_string() const {
         std::string Base10 = "";
-        integer quotient = *this;
+        integer quotient = *this, remainder = 0;
         if (quotient) {
             while (quotient) {
-                integer remainder = quotient % __INTEGER_TEN;
-                quotient = quotient / __INTEGER_TEN;
+                div_mod(quotient, remainder, quotient, __INTEGER_TEN);
                 Base10.push_back('0' + remainder.limbs[0]);
             }
 
