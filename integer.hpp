@@ -130,7 +130,9 @@ namespace apa {
 
         // Arithmetic Operators
         integer bit_division(const integer &op) const;
+        integer &bit_division_assign(const integer &op);
         integer bit_modulo(const integer &op) const;
+        integer &bit_modulo_assign(const integer &op);
 
         integer &operator+=(const integer &op);
         integer &operator-=(const integer &op);

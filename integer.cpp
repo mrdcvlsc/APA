@@ -514,9 +514,27 @@ namespace apa {
     }
 
     integer &integer::operator/=(const integer &op) {
-        integer quotient = *this / op;
-        swap(quotient, *this);
-        return *this;
+        if (!op) {
+            throw std::domain_error("apa::integer - Division By Zero");
+        }
+
+        int special_case = compare(op);
+        switch (special_case) {
+            case EQUAL:
+                length = 1;
+                limbs[0] = 1;
+                return *this;
+            case LESS:
+                length = 1;
+                limbs[0] = 0;
+                return *this;
+        }
+
+        if (op.length == 1 && op.limbs[0] == 1) {
+            return *this;
+        }
+
+        return bit_division_assign(op);
     }
 
     integer integer::operator/(const integer &op) const {
@@ -540,9 +558,27 @@ namespace apa {
     }
 
     integer &integer::operator%=(const integer &op) {
-        integer remainder = *this % op;
-        swap(remainder, *this);
-        return *this;
+        if (!op) {
+            throw std::domain_error("apa::integer - Division By Zero");
+        }
+
+        int special_case = compare(op);
+        switch (special_case) {
+            case EQUAL:
+                length = 1;
+                limbs[0] = 0;
+                return *this;
+            case LESS:
+                return *this;
+        }
+
+        if (op.length == 1 && op.limbs[0] == 1) {
+            length = 1;
+            limbs[0] = 0;
+            return *this;
+        }
+
+        return bit_modulo_assign(op);
     }
 
     integer integer::operator%(const integer &op) const {
@@ -565,107 +601,139 @@ namespace apa {
         return bit_modulo(op);
     }
 
-    integer integer::bit_division(const integer &op) const {
-        limb_t *arr = (limb_t *) std::calloc(length, sizeof(limb_t));
-        integer quotient(arr, length, length);
+    void div_n_by_1(limb_t *quotient, limb_t *dividen, size_t length, limb_t divisor) {
+        cast_t remainder = 0;
+        
+        remainder = dividen[length - 1] % divisor;
+        remainder <<= BASE_BITS;
+        quotient[length - 1] = dividen[length - 1] / divisor;
 
-        if (op.length == 1) {
-            cast_t remainder = 0;
-            cast_t divisor = op.limbs[0];
+        for (size_t i = 1; i < length; ++i) {
+            remainder |= dividen[length - 1 - i];
+            quotient[length - 1 - i] = remainder / divisor;
+            remainder = (remainder % divisor) << BASE_BITS;
+        }
+    }
 
-            quotient.limbs[length - 1] = (cast_t) limbs[length - 1] / divisor;
-            remainder = (cast_t) limbs[length - 1] % divisor;
+    void div_n_by_m(limb_t *quotient, const integer& dividen, const integer& divisor) {
+        integer remainder(dividen.length, dividen.length);
+        remainder.length = 1;
+        remainder.limbs[0] = 0;
+
+        limb_t bit = 0, current_index = dividen.length, onebit = 1;
+        size_t total_bits = dividen.length * BASE_BITS;
+        
+        for (size_t h = 0; h < total_bits; h += BASE_BITS) {
             remainder <<= BASE_BITS;
+            remainder.limbs[0] = dividen.limbs[--current_index];
+            quotient[current_index] = 0;
 
-            for (size_t i = 1; i < length; ++i) {
-                remainder |= (cast_t) limbs[length - 1 - i];
-                quotient.limbs[length - 1 - i] = remainder / divisor;
-                remainder = (remainder % divisor) << BASE_BITS;
-            }
-        } else {
-            integer remainder(length, length);
-            remainder.length = 1;
-            remainder.limbs[0] = 0;
+            if (remainder >= divisor) {
+                limb_t r = remainder.limbs[0];
+                remainder >>= BASE_BITS;
 
-            limb_t bit = 0, current_index = length, onebit = 1;
-            size_t total_bits = length * BASE_BITS;
-            
-            for (size_t h = 0; h < total_bits; h += BASE_BITS) {
-                current_index--;
-                remainder <<= BASE_BITS;
-                remainder.limbs[0] |= limbs[current_index];
+                for (size_t i = 0; i < BASE_BITS; ++i) {
+                    bit = (r << i);
+                    bit >>= BASE_BITS_MINUS1;
 
-                if (remainder >= op) {
-                    remainder >>= BASE_BITS;
+                    remainder <<= 1;
+                    remainder.limbs[0] |= bit;
 
-                    for (size_t i = 0; i < BASE_BITS; ++i) {
-                        bit = (limbs[current_index] << i);
-                        bit >>= BASE_BITS_MINUS1;
-
-                        remainder <<= 1;
-                        remainder.limbs[0] |= bit;
-
-                        if (remainder >= op) {
-                            remainder -= op;
-                            quotient.limbs[current_index] |= (onebit << (BASE_BITS_MINUS1 - i));
-                        }
+                    if (remainder >= divisor) {
+                        remainder -= divisor;
+                        quotient[current_index] |= (onebit << (BASE_BITS_MINUS1 - i));
                     }
                 }
             }
+        }
+    }
+
+    integer integer::bit_division(const integer &op) const {
+        limb_t *arr = (limb_t *) std::malloc(length * LIMB_BYTES);
+        integer quotient(arr, length, length);
+
+        if (op.length == 1) {
+            div_n_by_1(quotient.limbs, limbs, length, op.limbs[0]);
+        } else {
+            div_n_by_m(quotient.limbs, *this, op);
         }
 
         quotient.remove_leading_zeros();
         return quotient;
     }
 
-    integer integer::bit_modulo(const integer &op) const {
+    integer &integer::bit_division_assign(const integer &op) {
         if (op.length == 1) {
-            cast_t remainder = 0;
-            cast_t divisor = op.limbs[0];
-
-            remainder = (cast_t) limbs[length - 1] % divisor;
-            remainder <<= BASE_BITS;
-
-            for (size_t i = 1; i < length; ++i) {
-                remainder |= (cast_t) limbs[length - 1 - i];
-                remainder = (remainder % divisor) << BASE_BITS;
-            }
-
-            integer final_remainder = 0;
-            final_remainder.limbs[0] = remainder >> BASE_BITS;
-            return final_remainder;
+            div_n_by_1(limbs, limbs, length, op.limbs[0]);
+        } else {
+            div_n_by_m(limbs, *this, op);
         }
-        
-        integer remainder(length, length);
+
+        remove_leading_zeros();
+        return *this;
+    }
+
+    limb_t mod_n_by_1(limb_t *dividen, size_t length, limb_t divisor) {
+        cast_t remainder = 0;
+
+        remainder = dividen[length - 1] % divisor;
+        remainder <<= BASE_BITS;
+
+        for (size_t i = 1; i < length; ++i) {
+            remainder |= dividen[length - 1 - i];
+            remainder = (remainder % divisor) << BASE_BITS;
+        }
+
+        return remainder >> BASE_BITS;
+    }
+
+    integer mod_n_by_m(const integer& dividen, const integer& divisor) {
+        integer remainder(dividen.length, dividen.length);
         remainder.length = 1;
         remainder.limbs[0] = 0;
 
-        limb_t bit = 0, current_index = length;
-        size_t total_bits = length * BASE_BITS;
+        limb_t bit = 0, current_index = dividen.length;
+        size_t total_bits = dividen.length * BASE_BITS;
 
         for (size_t h = 0; h < total_bits; h += BASE_BITS) {
-            current_index--;
             remainder <<= BASE_BITS;
-            remainder.limbs[0] |= limbs[current_index];
+            remainder.limbs[0] = dividen.limbs[--current_index];
 
-            if (remainder >= op) {
+            if (remainder >= divisor) {
                 remainder >>= BASE_BITS;
 
                 for (size_t i = 0; i < BASE_BITS; ++i) {
-                    bit = limbs[current_index] << i;
+                    bit = dividen.limbs[current_index] << i;
                     bit >>= BASE_BITS_MINUS1;
 
                     remainder <<= 1;
                     remainder.limbs[0] |= bit;
 
-                    if (remainder >= op) {
-                        remainder -= op;
+                    if (remainder >= divisor) {
+                        remainder -= divisor;
                     }
                 }
             }
         }
 
         return remainder;
+    }
+
+    integer integer::bit_modulo(const integer &op) const {
+        if (op.length == 1) {
+            return mod_n_by_1(limbs, length, op.limbs[0]);
+        }
+        return mod_n_by_m(*this, op);
+    }
+
+    integer &integer::bit_modulo_assign(const integer &op) {
+        if (op.length == 1) {
+            limbs[0] = mod_n_by_1(limbs, length, op.limbs[0]);
+            length = 1;
+            return *this;
+        }
+        *this = mod_n_by_m(*this, op);
+        return *this;
     }
 
     // pre-fix increment/decrement

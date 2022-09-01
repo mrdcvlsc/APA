@@ -689,8 +689,11 @@ namespace apa {
     }
 
     bint &bint::operator/=(const bint &op) {
-        bint quotient = *this / op;
-        swap(quotient, *this);
+        sign = !(sign == op.sign);
+        number /= op.number;
+        if (!number) {
+            sign = 0;
+        }
         return *this;
     }
 
@@ -703,8 +706,10 @@ namespace apa {
     }
 
     bint &bint::operator%=(const bint &op) {
-        bint remainder = *this % op;
-        swap(remainder, *this);
+        number %= op.number;
+        if (!number) {
+            sign = 0;
+        }
         return *this;
     }
 
