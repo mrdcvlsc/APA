@@ -111,21 +111,18 @@ base size (depending on the base size you choose during compilation).
 <br>
 
 ### **Supported Operators of `apa::bint`**.
-- Negation `-`
-- Arithmetic `+`, `-`,
-`*`, `/`, `%`, `+=`, `-=`,
-`*=`, `/=`, `%=`
-- Increment/Decrement
-`++`, `--` (Post-Fix and Pre-Fix)
-- Relational
-`<`, `>`, `==`, `<=`, `>=`, `!=`
-- Logical `!`, `&&`, `||`
-- Bitwise Logical `~`, `|`, `&`, `^`,
-`|=`, `&=`, `^=`
-- Bitwise Shifts `<<`, `>>`, `<<=`, `>>=`
-(only takes argument of `size_t`)
-- Standard I/O (console cin and cout) `<<`, `>>`
-(only accepts and output hex format)
+
+| Labels                             | Operators                                             |
+| ---------------------------------- | ----------------------------------------------------- |
+| Negation                           | `-`                                                   |
+| Arithmetic                         | `+`, `-`, `*`, `/`, `%`, `+=`, `-=`, `*=`, `/=`, `%=` |
+| Increment                          | `++`  (Post-Fix and Pre-Fix)                          |
+| Decrement                          | `--`  (Post-Fix and Pre-Fix)                          |
+| Relational                         | `<`, `>`, `==`, `<=`, `>=`, `!=`                      |
+| Logical                            | `!`, `&&`, `||`                                       |
+| Bitwise Logical                    | `~`, `|`, `&`, `^`, `|=`, `&=`, `^=`                  |
+| Bitwise Shifts (for `size_t` only) | `<<`, `>>`, `<<=`, `>>=`                              |
+| Standard I/O (std cin and cout)    | `<<`, `>>` (only accepts and output hex format)       |
 
 -----
 
