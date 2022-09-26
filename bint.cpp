@@ -283,7 +283,7 @@ namespace apa {
     }
 
     bool bint::operator!=(const bint &op) const {
-        return !(*this == op);
+        return (*this == op) ^ 1u;
     }
 
     bool bint::operator<=(const bint &op) const {
@@ -411,7 +411,7 @@ namespace apa {
             ++bwn.number;
         }
 
-        bwn.sign = !bwn.sign;
+        bwn.sign = bwn.sign ^ 1u;
         return bwn;
     }
 
@@ -422,7 +422,7 @@ namespace apa {
 
     // Arithmetic Operators
     bint &bint::operator+=(const bint &op) {
-        if (sign != op.sign) {
+        if (sign ^ op.sign) {
             int cmp = number.compare(op.number);
             if (cmp == GREAT) {
                 number -= op.number;
@@ -441,7 +441,7 @@ namespace apa {
     }
 
     bint bint::operator+(const bint &op) const {
-        if (sign != op.sign) {
+        if (sign ^ op.sign) {
             int cmp = number.compare(op.number);
             if (cmp == GREAT) {
                 return bint(sign, number - op.number);
@@ -455,7 +455,7 @@ namespace apa {
     }
 
     bint &bint::operator-=(const bint &op) {
-        if (sign != op.sign) {
+        if (sign ^ op.sign) {
             number += op.number; // correct - final
         } else {
             int cmp = compare(op);
@@ -512,7 +512,7 @@ namespace apa {
     }
 
     bint bint::mul_naive(const bint &op) const {
-        bint product(!(sign == op.sign), number * op.number);
+        bint product((sign == op.sign) ^ 1u, number * op.number);
         if (!product.number) {
             product.sign = 0;
         }
@@ -684,12 +684,12 @@ namespace apa {
             op.number.length, 0
         );
         product.number.remove_leading_zeros();
-        product.sign = !(sign == op.sign);
+        product.sign = (sign == op.sign) ^ 1u;
         return product;
     }
 
     bint &bint::operator/=(const bint &op) {
-        sign = !(sign == op.sign);
+        sign = (sign == op.sign) ^ 1u;
         number /= op.number;
         if (!number) {
             sign = 0;
@@ -698,7 +698,7 @@ namespace apa {
     }
 
     bint bint::operator/(const bint &op) const {
-        bint quotient(!(sign == op.sign), number / op.number);
+        bint quotient((sign == op.sign) ^ 1u, number / op.number);
         if (!quotient.number) {
             quotient.sign = 0;
         }
@@ -723,7 +723,7 @@ namespace apa {
 
     bint bint::operator-() const {
         bint negate = *this;
-        negate.sign = !negate.sign;
+        negate.sign = negate.sign ^ 1u;
         return negate;
     }
 

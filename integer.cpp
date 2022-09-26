@@ -205,7 +205,7 @@ namespace apa {
     }
 
     bool integer::operator!=(const integer &op) const {
-        return !(*this == op);
+        return (*this == op) ^ 1u;
     }
 
     bool integer::operator<=(const integer &op) const {
@@ -355,7 +355,7 @@ namespace apa {
 
     // Logical Operators
     integer::operator bool() const noexcept {
-        return !(length == 1 && !limbs[0]);
+        return (length == 1 && !limbs[0]) ^ 1u;
     }
 
     // Arithmetic Operators
@@ -483,7 +483,7 @@ namespace apa {
     }
 
     integer integer::operator*(const integer &op) const {
-        if (!(*this && op)) {
+        if ((*this && op) ^ 1u) {
             return __INTEGER_ZERO;
         }
 

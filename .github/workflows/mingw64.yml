@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile and run tests in header mode base 2^16
-      run: mingw32-make -j test BASE2_RAISED_BY=16
+      run: mingw32-make test BASE2_RAISED_BY=16
 
   mingw64-windows-tests-base2_32:
 
@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile and run tests in header mode base 2^32
-      run: mingw32-make -j test BASE2_RAISED_BY=32
+      run: mingw32-make test BASE2_RAISED_BY=32
 
   mingw64-windows-tests-base2_64:
 
@@ -32,4 +32,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile and run tests in header mode base 2^64
-      run: mingw32-make -j test BASE2_RAISED_BY=64
+      run: mingw32-make test BASE2_RAISED_BY=64
