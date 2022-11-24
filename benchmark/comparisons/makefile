@@ -16,7 +16,7 @@ default:
 	@echo "Done generating a new comparison.md file"
 
 run:
-	@echo "## **APA performance comparison with other popular lightweight C++ big intger libraries in Github**" > ./../comparison.md
+	@echo "## **APA performance comparison with other popular lightweight C++ big integer libraries in Github**" > ./../comparison.md
 	@echo "" >> ./../comparison.md
 	@echo "Compiler : **$(CC)**" >> ./../comparison.md
 	@echo "" >> ./../comparison.md

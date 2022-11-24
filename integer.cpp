@@ -1,14 +1,7 @@
 #ifndef APA_INTEGER_CPP
 #define APA_INTEGER_CPP
 
-#ifdef _MAKE_LIB
-    #include "integer.hpp"
-#endif
-
-#define DEVMODE
-#ifdef DEVMODE
-    #include "integer.hpp"
-#endif
+#include "integer.hpp"
 
 namespace apa {
     integer::integer() {

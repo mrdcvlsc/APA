@@ -5,14 +5,7 @@
 
 #include "config.hpp"
 #include "integer.hpp"
-#ifdef _MAKE_LIB
-    #include "bint.hpp"
-#endif
-
-#define DEVMODE
-#ifdef DEVMODE
-    #include "bint.hpp"
-#endif
+#include "bint.hpp"
 
 namespace apa {
     // ####################### bint exception class methods #######################

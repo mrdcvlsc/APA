@@ -40,11 +40,30 @@ APA mini documentation
     
     - **To generate a performance comparison in your own device**.
 
-        1. Download the target libraries once, using `make -C benchmark/comparisons clone` command.
-        2. Then you can compile the **performance comparisons** anytime with,
-        `make -C benchmark/comparisons compile` .
-        3. After compilation, you can run it using `make -C benchmark/comparisons run` to generate a
-        new **APA/benchmark/comparison.md** file.
-        4. To clean up all the downloaded resources, run `make -C benchmark/comparisons clean` .
+        1. _**Download**_ the target libraries. (_only once_)
+        
+            ```
+            make -C benchmark/comparisons clone
+            ```
+
+        2. _**Compile**_ the _performance comparison scripts_.
+
+            ```
+            make -C benchmark/comparisons compile
+            ```
+
+        3. _**Run**_ and _**Generate**_ performance stats markdown files.
+        
+            ```
+            make -C benchmark/comparisons run
+            ```
+
+            Output file: **APA/benchmark/comparison.md**
+
+        4. _**Clean**_ the downloaded resources.
+        
+            ```
+            make -C benchmark/comparisons clean
+            ```
 
     These benchmark commands will only work in Linux.
