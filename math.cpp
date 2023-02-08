@@ -1,14 +1,7 @@
 #ifndef APA_MATH_CPP
 #define APA_MATH_CPP
 
-#ifdef _MAKE_LIB
-    #include "math.hpp"
-#endif
-
-#define DEVMODE
-#ifdef DEVMODE
-    #include "math.hpp"
-#endif
+#include "math.hpp"
 
 namespace apa {
     template <class T>
