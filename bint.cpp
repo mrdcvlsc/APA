@@ -39,8 +39,9 @@ namespace apa {
 
     // ####################### bint class methods #######################
 
-    bint::bint(char num) {
-        sign = (num < 0);
+    bint::bint(char num)
+    :   sign(num < 0)
+    {
         if (num == std::numeric_limits<char>::min()) {
             char new_num = num + 1;
             number = integer((size_t) std::abs(new_num));
@@ -50,13 +51,14 @@ namespace apa {
         }
     }
 
-    bint::bint(unsigned char num) {
-        sign = POSITIVE;
-        number = integer((size_t) num);
-    }
+    bint::bint(unsigned char num)
+    :   sign(POSITIVE),
+        number(integer((size_t) num))
+    {}
 
-    bint::bint(short num) {
-        sign = (num < 0);
+    bint::bint(short num)
+    :   sign(num < 0)
+    {
         if (num == std::numeric_limits<short>::min()) {
             short new_num = num + 1;
             number = integer((size_t) std::abs(new_num));
@@ -66,13 +68,14 @@ namespace apa {
         }
     }
 
-    bint::bint(unsigned short num) {
-        sign = POSITIVE;
-        number = integer((size_t) num);
-    }
+    bint::bint(unsigned short num)
+    :   sign(POSITIVE),
+        number(integer((size_t) num))
+    {}
 
-    bint::bint(int num) {
-        sign = (num < 0);
+    bint::bint(int num)
+    :   sign(num < 0)
+    {
         if (num == std::numeric_limits<int>::min()) {
             int new_num = num + 1;
             number = integer((size_t) std::abs(new_num));
@@ -82,13 +85,14 @@ namespace apa {
         }
     }
 
-    bint::bint(unsigned int num) {
-        sign = POSITIVE;
-        number = integer((size_t) num);
-    }
+    bint::bint(unsigned int num)
+    :   sign(POSITIVE),
+        number(integer((size_t) num))
+    {}
 
-    bint::bint(long num) {
-        sign = (num < 0);
+    bint::bint(long num)
+    :   sign(num < 0)
+    {
         if (num == std::numeric_limits<long>::min()) {
             long new_num = num + 1;
             number = integer((size_t) std::abs(new_num));
@@ -98,13 +102,14 @@ namespace apa {
         }
     }
 
-    bint::bint(unsigned long num) {
-        sign = POSITIVE;
-        number = integer((size_t) num);
-    }
+    bint::bint(unsigned long num)
+    :   sign(POSITIVE),
+        number(integer((size_t) num))
+    {}
 
-    bint::bint(long long num) {
-        sign = (num < 0);
+    bint::bint(long long num)
+    :   sign(num < 0)
+    {
         if (num == std::numeric_limits<long long>::min()) {
             long long new_num = num + 1;
             number = integer((size_t) std::abs(new_num));
@@ -114,20 +119,20 @@ namespace apa {
         }
     }
 
-    bint::bint(unsigned long long num) {
-        sign = POSITIVE;
-        number = integer((size_t) num);
-    }
+    bint::bint(unsigned long long num)
+    :   sign(POSITIVE),
+        number(integer((size_t) num))
+    {}
 
-    bint::bint() {
-        number = integer();
-        sign = POSITIVE;
-    }
+    bint::bint()
+    :   number(integer()),
+        sign(POSITIVE)
+    {}
 
-    bint::bint(size_t capacity, size_t length, bool AllocateSpace) {
-        number = integer(capacity, length, AllocateSpace);
-        sign = POSITIVE;
-    }
+    bint::bint(size_t capacity, size_t length, bool AllocateSpace)
+    :   number(integer(capacity, length, AllocateSpace)),
+        sign(POSITIVE)
+    {}
 
     /**
      * @brief constructor for conveniece, check if the input string is a valid
@@ -191,27 +196,28 @@ namespace apa {
         number.remove_leading_zeros();
     }
 
-    bint::bint(const char *input) {
-        *this = bint(std::string(input));
-    }
+#pragma warning (might produce errors later)
+    bint::bint(const char *input)
+    :    bint(std::string(input))
+    {}
 
     // read only constuctor
-    bint::bint(limb_t *arr, size_t capacity, size_t length, limb_t sign) {
-        number = integer(arr, capacity, length);
-        this->sign = sign;
-    }
+    bint::bint(limb_t *arr, size_t capacity, size_t length, limb_t sign)
+    :   number(integer(arr, capacity, length)),
+        sign(sign)
+    {}
 
     /// copy constructor.
-    bint::bint(const bint &src) {
-        number = src.number;
-        sign = src.sign;
-    }
+    bint::bint(const bint &src)
+    :   number(src.number),
+        sign(src.sign)
+    {}
 
     /// move constructor.
-    bint::bint(bint &&src) noexcept {
-        number = std::move(src.number);
-        sign = src.sign;
-    }
+    bint::bint(bint &&src) noexcept
+    :   number(std::move(src.number)),
+        sign(src.sign)
+    {}
 
     /// copy assignment.
     bint &bint::operator=(const bint &src) {

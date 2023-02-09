@@ -4,24 +4,25 @@
 #include "integer.hpp"
 
 namespace apa {
-    integer::integer() {
-        capacity = INITIAL_LIMB_CAPACITY;
-        length = INITIAL_LIMB_LENGTH;
-        limbs = (limb_t *) std::malloc(INITIAL_LIMB_CAPACITY * LIMB_BYTES);
-    }
+    integer::integer()
+    :   capacity(INITIAL_LIMB_CAPACITY),
+        length(INITIAL_LIMB_LENGTH),
+        limbs((limb_t *) std::malloc(INITIAL_LIMB_CAPACITY * LIMB_BYTES))
+    {}
 
-    integer::integer(size_t num) {
-        capacity = sizeof(size_t) / sizeof(limb_t);
-        length = capacity;
-        limbs = (limb_t *) std::calloc(capacity, sizeof(limb_t));
+    integer::integer(size_t num)
+    :   capacity(sizeof(size_t) / sizeof(limb_t)),
+        length(capacity),
+        limbs((limb_t *) std::calloc(capacity, sizeof(limb_t)))
+    {
         std::memcpy(limbs, &num, sizeof(num));
         remove_leading_zeros();
     }
 
-    integer::integer(size_t capacity, size_t length, bool AllocateSpace) {
-        this->capacity = capacity;
-        this->length = length;
-
+    integer::integer(size_t capacity, size_t length, bool AllocateSpace)
+    :   capacity(capacity),
+        length(length)
+    {
         if (AllocateSpace) {
             limbs = (limb_t *) std::malloc(capacity * LIMB_BYTES);
         } else {
@@ -90,25 +91,27 @@ namespace apa {
     }
 
     // a read only constructor
-    integer::integer(limb_t *arr, size_t capacity, size_t length) {
-        this->capacity = capacity;
-        this->length = length;
-        this->limbs = arr;
-    }
+    integer::integer(limb_t *arr, size_t capacity, size_t length)
+    :   capacity(capacity),
+        length(length),
+        limbs(arr)
+    {}
 
     /// copy constructor.
-    integer::integer(const integer &src) {
-        capacity = src.capacity;
-        length = src.length;
-        limbs = (limb_t *) std::malloc(capacity * LIMB_BYTES);
+    integer::integer(const integer &src)
+    :   capacity(src.capacity),
+        length(src.length),
+        limbs((limb_t *) std::malloc(capacity * LIMB_BYTES))
+    {
         std::memcpy(limbs, src.limbs, length * LIMB_BYTES);
     }
 
     /// move constructor.
-    integer::integer(integer &&src) noexcept {
-        capacity = src.capacity;
-        length = src.length;
-        limbs = src.limbs;
+    integer::integer(integer &&src) noexcept
+    :   capacity(src.capacity),
+        length(src.length),
+        limbs(src.limbs)
+    {
         src.limbs = NULL;
     }
 
@@ -138,12 +141,12 @@ namespace apa {
         return *this;
     }
 
-    integer::integer(std::initializer_list<limb_t> limbs) {
-        capacity = limbs.size() + LIMB_GROWTH;
-        length = limbs.size();
-        this->limbs = (limb_t *) std::malloc(capacity * LIMB_BYTES);
+    integer::integer(std::initializer_list<limb_t> limbs)
+    :   capacity(limbs.size() + LIMB_GROWTH),
+        length(limbs.size()),
+        limbs((limb_t *) std::malloc(capacity * LIMB_BYTES))
+    {
         size_t i = 0;
-
         for (auto limb: limbs) {
             this->limbs[length - 1 - i++] = limb;
         }
@@ -905,8 +908,9 @@ namespace apa {
     }
 
     std::string integer::to_base10_string() const {
-        std::string Base10 = "";
+        std::string Base10;
         integer quotient = *this, remainder = 0;
+        Base10.reserve(quotient.length);
         if (quotient) {
             while (quotient) {
                 div_mod(quotient, remainder, quotient, __INTEGER_TEN);
