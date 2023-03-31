@@ -1,9 +1,9 @@
 BASE2_RAISED_BY=32
-CC := g++
-TESTFLAGS := -g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED_BY)
-CXXFLAGS := -std=c++11 -Wall -Wextra
+CXX:=g++
+TESTFLAGS:=-g -Og -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_$(BASE2_RAISED_BY)
+CXXFLAGS:=-std=c++11 -Wall -Wextra
 
-OS := $(shell uname)
+OS:=$(shell uname)
 .PHONY: test all_test benchmark karatsuba arithmetic initandtostring style compare
 
 ifeq ($(OS), Linux)
@@ -40,7 +40,7 @@ OBJ := $(patsubst $(SRC)/%.cpp,$(SRC)/%.out,$(SRC_FILES))
 test: $(OBJ)
 	@echo OS : $(OS)
 	@echo LIMB : Base2_$(BASE2_RAISED_BY)
-	@echo CPP_COMPILER : $(CC)
+	@echo CPP_COMPILER : $(CXX)
 	@echo "----------------------------------------------------"
 	@echo "Running Initial Tests..."
 	
@@ -79,8 +79,8 @@ test: $(OBJ)
 # -------------------------- test program compilation ---------------------------
 
 $(SRC)/%.out: $(SRC)/%.cpp
-	@echo "compiling test program - compiler : $(CC)"
-	@$(CC) $(TESTFLAGS) $(CXXFLAGS) -o $@ $<
+	@echo "compiling test program - compiler : $(CXX)"
+	@$(CXX) $(TESTFLAGS) $(CXXFLAGS) -o $@ $<
 
 clean:
 ifeq ($(OS), Linux)
@@ -99,15 +99,15 @@ benchmark: karatsuba arithmetic initandtostring
 karatsuba:
 	@echo "# Karatsuba Multiplication" > benchmark/karatsuba.md
 	@echo "" >> benchmark/karatsuba.md
-	@echo "Compiler : $(CC)" >> benchmark/karatsuba.md
+	@echo "Compiler : $(CXX)" >> benchmark/karatsuba.md
 	@echo "" >> benchmark/karatsuba.md
 	@echo "Average performance of APA's karatsuba implementation (microseconds)" >> benchmark/karatsuba.md
 	@echo "" >> benchmark/karatsuba.md
-	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_16
+	@$(CXX) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_16
 	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
-	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_32
+	@$(CXX) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_32
 	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
-	@$(CC) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_64
+	@$(CXX) benchmark/karatsuba.cpp -O3 -o benchmark/karatsuba.out -D_FORCE_BASE2_64
 	@./benchmark/karatsuba.out >> benchmark/karatsuba.md
 	@rm benchmark/karatsuba.out
 	@echo "" >> benchmark/karatsuba.md
@@ -120,15 +120,15 @@ karatsuba:
 arithmetic:
 	@echo "# Basic Arithmetic" > benchmark/basic-arithmetic.md
 	@echo "" >> benchmark/basic-arithmetic.md
-	@echo "Compiler : $(CC)" >> benchmark/basic-arithmetic.md
+	@echo "Compiler : $(CXX)" >> benchmark/basic-arithmetic.md
 	@echo "" >> benchmark/basic-arithmetic.md
 	@echo "Average performance (nanoseconds)" >> benchmark/basic-arithmetic.md
 	@echo "" >> benchmark/basic-arithmetic.md
-	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_16
+	@$(CXX) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_16
 	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
-	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_32
+	@$(CXX) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_32
 	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
-	@$(CC) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_64
+	@$(CXX) benchmark/basic-arithmetic.cpp -O3 -o benchmark/basic-arithmetic.out -D_FORCE_BASE2_64
 	@./benchmark/basic-arithmetic.out >> benchmark/basic-arithmetic.md
 	@rm benchmark/basic-arithmetic.out
 	@echo "" >> benchmark/basic-arithmetic.md
@@ -141,15 +141,15 @@ arithmetic:
 initandtostring:
 	@echo "# String Initialization and To Base 10 String" > benchmark/init-and-to-string.md
 	@echo "" >> benchmark/init-and-to-string.md
-	@echo "Compiler : $(CC)" >> benchmark/init-and-to-string.md
+	@echo "Compiler : $(CXX)" >> benchmark/init-and-to-string.md
 	@echo "" >> benchmark/init-and-to-string.md
 	@echo "Accumulated performance (nanoseconds)" >> benchmark/init-and-to-string.md
 	@echo "" >> benchmark/init-and-to-string.md
-	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_16
+	@$(CXX) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_16
 	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
-	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_32
+	@$(CXX) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_32
 	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
-	@$(CC) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_64
+	@$(CXX) benchmark/init-and-to-string.cpp -O3 -o benchmark/init-and-to-string.out -D_FORCE_BASE2_64
 	@./benchmark/init-and-to-string.out >> benchmark/init-and-to-string.md
 	@rm benchmark/init-and-to-string.out
 	@echo "" >> benchmark/init-and-to-string.md
@@ -163,13 +163,13 @@ FTSRC:=test
 
 focustest:
 	@echo compiling $(FTSRC).cpp file base2_16...
-	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base16.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_16 -g -fsanitize=address -Wall -Wextra
+	@$(CXX) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base16.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_16 -g -fsanitize=address -Wall -Wextra
 	$(SRC)/$(FTSRC)_base16.out
 	
 	@echo compiling $(FTSRC).cpp file base2_32...
-	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base32.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_32 -g -fsanitize=address -Wall -Wextra
+	@$(CXX) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base32.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_32 -g -fsanitize=address -Wall -Wextra
 	$(SRC)/$(FTSRC)_base32.out
 	
 	@echo compiling $(FTSRC).cpp file base2_64...
-	@$(CC) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base64.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_64 -g -fsanitize=address -Wall -Wextra
+	@$(CXX) $(SRC)/$(FTSRC).cpp -o $(SRC)/$(FTSRC)_base64.out -D_APA_TESTING_PHASE -D_HIDE_WARNING -D_BASE2_64 -g -fsanitize=address -Wall -Wextra
 	$(SRC)/$(FTSRC)_base64.out

@@ -119,8 +119,8 @@ base size (depending on the base size you choose during compilation).
 | Increment                          | `++`  (Post-Fix and Pre-Fix)                          |
 | Decrement                          | `--`  (Post-Fix and Pre-Fix)                          |
 | Relational                         | `<`, `>`, `==`, `<=`, `>=`, `!=`                      |
-| Logical                            | `!`, `&&`, `||`                                       |
-| Bitwise Logical                    | `~`, `|`, `&`, `^`, `|=`, `&=`, `^=`                  |
+| Logical                            | `!`, `&&`, `\|\|`                                     |
+| Bitwise Logical                    | `~`, `&`, `^`, `\|=`, `&=`, `^=`                      |
 | Bitwise Shifts (for `size_t` only) | `<<`, `>>`, `<<=`, `>>=`                              |
 | Standard I/O (std cin and cout)    | `<<`, `>>` (only accepts and output hex format)       |
 

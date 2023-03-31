@@ -1,10 +1,10 @@
-CC := g++
+CXX:=g++
 
-INCLUDE_PATH := -I "./multiprecision-1.79/include/"
-LIB_PATH := -L BigNumber/build
-LIBS := -l BigNumber
-DFLAGS := 
-OFLAG := -O3
+INCLUDE_PATH:=-I "./multiprecision-1.79/include/"
+LIB_PATH:=-L BigNumber/build
+LIBS:=-l BigNumber
+DFLAGS:= 
+OFLAG:=-O3
 
 .PHONY: default run compile clone clean
 
@@ -18,7 +18,7 @@ default:
 run:
 	@echo "## **APA performance comparison with other popular lightweight C++ big integer libraries in Github**" > ./../comparison.md
 	@echo "" >> ./../comparison.md
-	@echo "Compiler : **$(CC)**" >> ./../comparison.md
+	@echo "Compiler : **$(CXX)**" >> ./../comparison.md
 	@echo "" >> ./../comparison.md
 	@echo "running comparison benchmarks"
 	@./factorial_all.out >> ./../comparison.md
@@ -35,11 +35,11 @@ run:
 
 compile: factorial.cpp fibonacci.cpp division.cpp
 	@echo "compiling benchmark comparison programs"
-	@$(CC) $(OFLAG) factorial.cpp -o factorial_all.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
-	@$(CC) $(OFLAG) factorial.cpp -o factorial_exclude.out -DEXCLUDE_SLOW $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
-	@$(CC) $(OFLAG) division.cpp -o division.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
-	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciMin.out $(INCLUDE_PATH) -D_MINFIB $(LIB_PATH) $(LIBS) $(DFLAGS)
-	@$(CC) $(OFLAG) fibonacci.cpp -o fibonacciBig.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CXX) $(OFLAG) factorial.cpp -o factorial_all.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CXX) $(OFLAG) factorial.cpp -o factorial_exclude.out -DEXCLUDE_SLOW $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CXX) $(OFLAG) division.cpp -o division.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CXX) $(OFLAG) fibonacci.cpp -o fibonacciMin.out $(INCLUDE_PATH) -D_MINFIB $(LIB_PATH) $(LIBS) $(DFLAGS)
+	@$(CXX) $(OFLAG) fibonacci.cpp -o fibonacciBig.out $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(DFLAGS)
 	@clear
 
 clone:
