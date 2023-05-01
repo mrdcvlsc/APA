@@ -52,8 +52,7 @@ namespace apa {
     }
 
     bint::bint(unsigned char num)
-    :   sign(POSITIVE),
-        number(integer((size_t) num))
+    :   number(integer((size_t) num)), sign(POSITIVE)
     {}
 
     bint::bint(short num)
@@ -69,8 +68,7 @@ namespace apa {
     }
 
     bint::bint(unsigned short num)
-    :   sign(POSITIVE),
-        number(integer((size_t) num))
+    :   number(integer((size_t) num)), sign(POSITIVE)
     {}
 
     bint::bint(int num)
@@ -86,8 +84,7 @@ namespace apa {
     }
 
     bint::bint(unsigned int num)
-    :   sign(POSITIVE),
-        number(integer((size_t) num))
+    :   number(integer((size_t) num)), sign(POSITIVE)
     {}
 
     bint::bint(long num)
@@ -103,8 +100,7 @@ namespace apa {
     }
 
     bint::bint(unsigned long num)
-    :   sign(POSITIVE),
-        number(integer((size_t) num))
+    :   number(integer((size_t) num)), sign(POSITIVE)
     {}
 
     bint::bint(long long num)
@@ -120,8 +116,7 @@ namespace apa {
     }
 
     bint::bint(unsigned long long num)
-    :   sign(POSITIVE),
-        number(integer((size_t) num))
+    :   number(integer((size_t) num)), sign(POSITIVE)
     {}
 
     bint::bint()
@@ -196,7 +191,7 @@ namespace apa {
         number.remove_leading_zeros();
     }
 
-#pragma warning (might produce errors later)
+// #pragma warning (might produce errors later)
     bint::bint(const char *input)
     :    bint(std::string(input))
     {}
