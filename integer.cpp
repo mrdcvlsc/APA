@@ -810,9 +810,10 @@ namespace apa {
     // Shift Operators
     integer &integer::operator<<=(size_t bits) {
         if (*this && bits) {
-            cast_t old_msl;
-            size_t limb_shifts = bits / BASE_BITS, bit_shifts = bits % BASE_BITS, new_length = length + limb_shifts + 1,
-                   zero_limbs = new_length - length - 1;
+            size_t limb_shifts = bits / BASE_BITS;
+            size_t bit_shifts = bits % BASE_BITS;
+            size_t new_length = length + limb_shifts + 1;
+            size_t zero_limbs = new_length - length - 1;
 
             if (new_length > capacity) {
                 capacity = new_length + LIMB_GROWTH;
@@ -822,10 +823,10 @@ namespace apa {
             limbs[new_length - 1] = 0;
 
             for (size_t i = 0; i < length; ++i) {
-                old_msl = limbs[length - 1 - i];
-                old_msl <<= bit_shifts;
-                limbs[new_length - 1 - i] |= old_msl >> BASE_BITS;
-                limbs[new_length - 2 - i] = old_msl;
+                cast_t temp_shift = limbs[length - 1 - i];
+                temp_shift <<= bit_shifts;
+                limbs[new_length - 1 - i] |= temp_shift >> BASE_BITS;
+                limbs[new_length - 2 - i] = temp_shift;
             }
 
             if (zero_limbs) {
@@ -853,9 +854,10 @@ namespace apa {
 
                 // looped shifts
                 for (size_t i = 1; i < new_length; ++i) {
-                    limb_t bit_catch = ((bit_shifts) ? (limbs[i + limb_shifts] << (BASE_BITS - bit_shifts)) : 0);
-                    limbs[i] = limbs[i + limb_shifts] >> bit_shifts;
-                    limbs[i - 1] |= bit_catch;
+                    cast_t temp_shift = limbs[i + limb_shifts];
+                    temp_shift = (temp_shift << BASE_BITS) >> bit_shifts;
+                    limbs[i - 1] |= temp_shift;
+                    limbs[i] = temp_shift >> BASE_BITS;
                 }
 
                 length = new_length;
