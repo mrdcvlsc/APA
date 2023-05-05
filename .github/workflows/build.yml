@@ -23,16 +23,16 @@ jobs:
       run: echo no builds yet for clang
 
     - name: build and compile the static library.
-      run: make -f static CC=clang++
+      run: make -f static CXX=clang++
 
     - name: run the tests for the static library.
-      run: make -f static static_test CC=clang++
+      run: make -f static static_test CXX=clang++
 
     - name: clean test executables
       run: make clean
 
     - name: install the static library.
-      run: sudo make -f static install CC=clang++
+      run: sudo make -f static install CXX=clang++
 
     - name: compile the static sample program for the library.
       run: clang++ build.cpp -o build.out -lapa -fsanitize=address
