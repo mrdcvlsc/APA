@@ -1,6 +1,8 @@
 #ifndef APA_CONFIG_HPP
 #define APA_CONFIG_HPP
 
+#include <cstdint>
+
 #ifndef _APA_TESTING_PHASE
     #if defined(_FORCE_BASE2_64)
         #define _BASE2_64
