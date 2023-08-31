@@ -8,25 +8,25 @@ Average performance of APA's karatsuba implementation (microseconds)
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 2054x2038 | 2476 μs |
-| case 2 | 2054x918 | 1601 μs |
-| case 3 | 128x2038 | 497 μs |
+| case 1 | 2054x2038 | 2568 μs |
+| case 2 | 2054x918 | 1647 μs |
+| case 3 | 128x2038 | 513 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 1027x1019 | 869 μs |
-| case 2 | 1027x459 | 566 μs |
-| case 3 | 64x1019 | 186 μs |
+| case 1 | 1027x1019 | 886 μs |
+| case 2 | 1027x459 | 576 μs |
+| case 3 | 64x1019 | 190 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
 | cases | limb dimension | microseconds |
 | ----- | ----------- | -------------------- |
-| case 1 | 514x510 | 515 μs |
-| case 2 | 514x230 | 330 μs |
-| case 3 | 32x510 | 81 μs |
+| case 1 | 514x510 | 526 μs |
+| case 2 | 514x230 | 340 μs |
+| case 3 | 32x510 | 83 μs |
 
 
 ### System Runner
@@ -54,4 +54,17 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Unknown: No mitigations
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
 ```

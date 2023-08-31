@@ -1,17 +1,28 @@
 #ifndef APA_INTEGER_CPP
 #define APA_INTEGER_CPP
 
+#include <cstddef>
+#include <type_traits>
 #include "integer.hpp"
 
+template <typename T1, typename T2>
+struct get_initial_capacity {
+    private:
+    static constexpr size_t partitions = sizeof(T1) / sizeof(T2);
+
+    public:
+    static constexpr size_t value = partitions ? partitions : 1;
+};
+
 namespace apa {
-    integer::integer()
+    integer::integer() noexcept
     :   capacity(INITIAL_LIMB_CAPACITY),
         length(INITIAL_LIMB_LENGTH),
         limbs((limb_t *) std::malloc(INITIAL_LIMB_CAPACITY * LIMB_BYTES))
     {}
 
-    integer::integer(size_t num)
-    :   capacity(sizeof(size_t) / sizeof(limb_t)),
+    integer::integer(size_t num) noexcept
+    :   capacity(get_initial_capacity<size_t, limb_t>::value),
         length(capacity),
         limbs((limb_t *) std::calloc(capacity, sizeof(limb_t)))
     {
@@ -91,7 +102,7 @@ namespace apa {
     }
 
     // a read only constructor
-    integer::integer(limb_t *arr, size_t capacity, size_t length)
+    integer::integer(limb_t *arr, size_t capacity, size_t length) noexcept
     :   capacity(capacity),
         length(length),
         limbs(arr)
@@ -159,16 +170,16 @@ namespace apa {
     }
 
     // Index Operator
-    limb_t &integer::operator[](size_t i) {
+    limb_t &integer::operator[](size_t i) noexcept {
         return limbs[i];
     }
 
-    limb_t &integer::operator[](size_t i) const {
+    limb_t &integer::operator[](size_t i) const noexcept {
         return limbs[i];
     }
 
     /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
-    int integer::compare(const integer &op) const {
+    int integer::compare(const integer &op) const noexcept {
         if (length < op.length) {
             return LESS;
         } else if (length > op.length) {
@@ -188,33 +199,33 @@ namespace apa {
 
     // Logical Operators
 
-    bool integer::operator<(const integer &op) const {
+    bool integer::operator<(const integer &op) const noexcept {
         return compare(op) == LESS;
     }
 
-    bool integer::operator>(const integer &op) const {
+    bool integer::operator>(const integer &op) const noexcept {
         return compare(op) == GREAT;
     }
 
-    bool integer::operator==(const integer &op) const {
+    bool integer::operator==(const integer &op) const noexcept {
         return compare(op) == EQUAL;
     }
 
-    bool integer::operator!=(const integer &op) const {
+    bool integer::operator!=(const integer &op) const noexcept {
         return (*this == op) ^ 1u;
     }
 
-    bool integer::operator<=(const integer &op) const {
+    bool integer::operator<=(const integer &op) const noexcept {
         return compare(op) <= EQUAL;
     }
 
-    bool integer::operator>=(const integer &op) const {
+    bool integer::operator>=(const integer &op) const noexcept {
         return compare(op) >= EQUAL;
     }
 
     // Bit-Wise Logical Operators
 
-    void integer::bit_realloc(const integer &op) {
+    void integer::bit_realloc(const integer &op) noexcept {
         size_t zero_set = length * LIMB_BYTES;
         capacity = op.capacity;
         limbs = (limb_t *) std::realloc(limbs, capacity * LIMB_BYTES);
@@ -222,7 +233,7 @@ namespace apa {
         length = op.length;
     }
 
-    void integer::remove_leading_zeros() {
+    void integer::remove_leading_zeros() noexcept {
         for (size_t i = 0; i < length; ++i) {
             if (limbs[length - 1 - i]) {
                 length -= i;
@@ -232,7 +243,7 @@ namespace apa {
         length = 1;
     }
 
-    void integer::bit_and(const integer &op) {
+    void integer::bit_and(const integer &op) noexcept {
         for (size_t i = 0; i < op.length; ++i) {
             limbs[i] &= op.limbs[i];
         }
@@ -242,7 +253,7 @@ namespace apa {
         }
     }
 
-    integer &integer::operator&=(const integer &op) {
+    integer &integer::operator&=(const integer &op) noexcept {
         if (length < op.length) {
             bit_realloc(op);
         }
@@ -252,12 +263,12 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator&(const integer &op) const {
+    integer integer::operator&(const integer &op) const noexcept {
         integer bitwise_and = *this;
         return bitwise_and &= op;
     }
 
-    void integer::bit_or(const integer &op) {
+    void integer::bit_or(const integer &op) noexcept {
         for (size_t i = 0; i < op.length; ++i) {
             limbs[i] |= op.limbs[i];
         }
@@ -267,7 +278,7 @@ namespace apa {
         }
     }
 
-    integer &integer::operator|=(const integer &op) {
+    integer &integer::operator|=(const integer &op) noexcept {
         if (length < op.length) {
             bit_realloc(op);
         }
@@ -277,12 +288,12 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator|(const integer &op) const {
+    integer integer::operator|(const integer &op) const noexcept {
         integer bitwise_and = *this;
         return bitwise_and |= op;
     }
 
-    void integer::bit_xor(const integer &op) {
+    void integer::bit_xor(const integer &op) noexcept {
         for (size_t i = 0; i < op.length; ++i) {
             limbs[i] ^= op.limbs[i];
         }
@@ -292,7 +303,7 @@ namespace apa {
         }
     }
 
-    integer &integer::operator^=(const integer &op) {
+    integer &integer::operator^=(const integer &op) noexcept {
         if (length < op.length) {
             bit_realloc(op);
         }
@@ -302,13 +313,13 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator^(const integer &op) const {
+    integer integer::operator^(const integer &op) const noexcept {
         integer bitwise_and = *this;
         bitwise_and ^= op;
         return bitwise_and;
     }
 
-    integer integer::operator~() const {
+    integer integer::operator~() const noexcept {
         // ------------------------------------------------------
         // flip all the bits of the limbs except the most significant.
         integer bwn(length, length);
@@ -331,7 +342,7 @@ namespace apa {
         return bwn;
     }
 
-    void integer::bit_flip(size_t padding) {
+    void integer::bit_flip(size_t padding) noexcept {
         size_t prev_length = length;
         length += padding;
 
@@ -356,7 +367,7 @@ namespace apa {
 
     // Arithmetic Operators
 
-    integer &integer::operator+=(const integer &op) {
+    integer &integer::operator+=(const integer &op) noexcept {
         if (capacity <= op.length + 1) {
             capacity = op.length + LIMB_GROWTH;
             limbs = (limb_t *) std::realloc(limbs, capacity * LIMB_BYTES);
@@ -391,7 +402,7 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator+(const integer &op) const {
+    integer integer::operator+(const integer &op) const noexcept {
         limb_t *max_limb, *min_limb;
         size_t max_len, min_len;
 
@@ -426,7 +437,7 @@ namespace apa {
         return integer(sum_array, max_len + 1, max_len + carry);
     }
 
-    integer &integer::operator-=(const integer &op) {
+    integer &integer::operator-=(const integer &op) noexcept {
         limb_t carry = 0;
 
         for (size_t i = 0; i < op.length; ++i) {
@@ -447,7 +458,7 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator-(const integer &op) const {
+    integer integer::operator-(const integer &op) const noexcept {
         size_t dif_len = std::max(length, op.length);
         limb_t *dif_array = (limb_t *) std::malloc(dif_len * LIMB_BYTES);
 
@@ -472,13 +483,13 @@ namespace apa {
         return dif_int;
     }
 
-    integer &integer::operator*=(const integer &op) {
+    integer &integer::operator*=(const integer &op) noexcept {
         integer product = *this * op;
         swap(product, *this);
         return *this;
     }
 
-    integer integer::operator*(const integer &op) const {
+    integer integer::operator*(const integer &op) const noexcept {
         if ((*this && op) ^ 1u) {
             return __INTEGER_ZERO;
         }
@@ -786,29 +797,29 @@ namespace apa {
     }
 
     // pre-fix increment/decrement
-    integer &integer::operator++() {
+    integer &integer::operator++() noexcept {
         return *this += __INTEGER_ONE;
     }
 
-    integer &integer::operator--() {
+    integer &integer::operator--() noexcept {
         return *this -= __INTEGER_ONE;
     }
 
     // post-fix increment/decrement
-    integer integer::operator++(int) {
+    integer integer::operator++(int) noexcept {
         integer prev = *this;
         ++*this;
         return prev;
     }
 
-    integer integer::operator--(int) {
+    integer integer::operator--(int) noexcept {
         integer prev = *this;
         --*this;
         return prev;
     }
 
     // Shift Operators
-    integer &integer::operator<<=(size_t bits) {
+    integer &integer::operator<<=(size_t bits) noexcept {
         if (*this && bits) {
             size_t limb_shifts = bits / BASE_BITS;
             size_t bit_shifts = bits % BASE_BITS;
@@ -839,7 +850,7 @@ namespace apa {
         return *this;
     }
 
-    integer &integer::operator>>=(size_t bits) {
+    integer &integer::operator>>=(size_t bits) noexcept {
         if (*this && bits) {
             size_t limb_shifts = bits / BASE_BITS;
             if (limb_shifts >= length) {
@@ -867,12 +878,12 @@ namespace apa {
         return *this;
     }
 
-    integer integer::operator<<(size_t bits) const {
+    integer integer::operator<<(size_t bits) const noexcept {
         integer shifted = *this;
         return shifted <<= bits;
     }
 
-    integer integer::operator>>(size_t bits) const {
+    integer integer::operator>>(size_t bits) const noexcept {
         integer shifted = *this;
         return shifted >>= bits;
     }
@@ -940,7 +951,7 @@ namespace apa {
 
     // Methods
 
-    size_t integer::byte_size() const {
+    size_t integer::byte_size() const noexcept {
         limb_t ms_limb = limbs[length - 1];
         size_t cnt = 0;
         while (ms_limb) {
@@ -950,7 +961,7 @@ namespace apa {
         return (length - 1) * BASE_BYTES + cnt;
     }
 
-    size_t integer::bit_size() const {
+    size_t integer::bit_size() const noexcept {
         limb_t ms_limb = limbs[length - 1];
         size_t cnt = 0;
         while (ms_limb) {

@@ -13,17 +13,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 12283 ns |
-| sub (a - b) | 13182 ns |
-| mul (a * b) | 11518904 ns |
-| div (a / b) | 516012770 ns |
+| add (a + b) | 13914 ns |
+| sub (a - b) | 13636 ns |
+| mul (a * b) | 11628073 ns |
+| div (a / b) | 513872131 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 381786 μs |
-| apa::factorial(8000) | 40508 μs |
+| apa::fibonacci(100000) | 383423 μs |
+| apa::factorial(8000) | 41217 μs |
 
 ### Using base 2<sup>32</sup> number system representation.
 
@@ -34,17 +34,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 6103 ns |
-| sub (a - b) | 6965 ns |
-| mul (a * b) | 4095016 ns |
-| div (a / b) | 141583071 ns |
+| add (a + b) | 9179 ns |
+| sub (a - b) | 7526 ns |
+| mul (a * b) | 4156197 ns |
+| div (a / b) | 139675255 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 200316 μs |
-| apa::factorial(8000) | 22356 μs |
+| apa::fibonacci(100000) | 207113 μs |
+| apa::factorial(8000) | 22189 μs |
 
 ### Using base 2<sup>64</sup> number system representation.
 
@@ -55,17 +55,17 @@ Average performance (nanoseconds)
 
 | cases | nanoseconds |
 | ----- | ----------- |
-| add (a + b) | 4855 ns |
-| sub (a - b) | 4964 ns |
-| mul (a * b) | 2354460 ns |
-| div (a / b) | 132928017 ns |
+| add (a + b) | 7491 ns |
+| sub (a - b) | 5491 ns |
+| mul (a * b) | 2380097 ns |
+| div (a / b) | 131256932 ns |
 
 **functions**
 
 | name | microseconds |
 | ---- | ------------ |
-| apa::fibonacci(100000) | 144724 μs |
-| apa::factorial(8000) | 21992 μs |
+| apa::fibonacci(100000) | 147303 μs |
+| apa::factorial(8000) | 24505 μs |
 
 
 ### System Runner
@@ -93,4 +93,17 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Unknown: No mitigations
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
 ```

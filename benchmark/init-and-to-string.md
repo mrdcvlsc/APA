@@ -10,11 +10,11 @@ string's size use to initialize = 5500
 
 | cases | microseconds |
 | ----- | ----------- |
-| base 2 initialization | 86834 |
-| base 8 initialization | 86954 |
-| base 10 initialization | 86406 |
-| base 16 initialization | 215 |
-| to_base10_string() | 68663 |
+| base 2 initialization | 87110 |
+| base 8 initialization | 86790 |
+| base 10 initialization | 86924 |
+| base 16 initialization | 216 |
+| to_base10_string() | 66206 |
 
 the to_base10_string() benchmark is from a 1375 limbs size big integer
 
@@ -24,11 +24,11 @@ string's size use to initialize = 5500
 
 | cases | microseconds |
 | ----- | ----------- |
-| base 2 initialization | 86325 |
-| base 8 initialization | 86178 |
-| base 10 initialization | 86193 |
-| base 16 initialization | 229 |
-| to_base10_string() | 54334 |
+| base 2 initialization | 87367 |
+| base 8 initialization | 86987 |
+| base 10 initialization | 87043 |
+| base 16 initialization | 230 |
+| to_base10_string() | 54462 |
 
 the to_base10_string() benchmark is from a 688 limbs size big integer
 
@@ -38,11 +38,11 @@ string's size use to initialize = 5500
 
 | cases | microseconds |
 | ----- | ----------- |
-| base 2 initialization | 86952 |
-| base 8 initialization | 86978 |
-| base 10 initialization | 87033 |
-| base 16 initialization | 229 |
-| to_base10_string() | 77497 |
+| base 2 initialization | 86801 |
+| base 8 initialization | 86778 |
+| base 10 initialization | 86534 |
+| base 16 initialization | 230 |
+| to_base10_string() | 77640 |
 
 the to_base10_string() benchmark is from a 344 limbs size big integer
 
@@ -72,4 +72,17 @@ Virtualization:                  VT-x
 L1d cache:                       96 KiB (4 instances)
 L1i cache:                       128 KiB (4 instances)
 L2 cache:                        2 MiB (2 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Unknown: No mitigations
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
 ```

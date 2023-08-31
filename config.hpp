@@ -2,6 +2,7 @@
 #define APA_CONFIG_HPP
 
 #include <cstdint>
+#include <stddef.h>
 
 #ifndef _APA_TESTING_PHASE
     #if defined(_FORCE_BASE2_64)

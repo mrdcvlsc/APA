@@ -77,12 +77,12 @@ namespace apa {
         limb_t *limbs;
 
         // Constructors
-        integer();
-        integer(size_t num);
+        integer() noexcept;
+        integer(size_t num) noexcept;
         integer(const std::string &text, size_t base = 10);
         integer(std::initializer_list<limb_t> limbs);
         integer(size_t capacity, size_t length, bool AllocateSpace = true);
-        integer(limb_t *arr, size_t capacity, size_t length);
+        integer(limb_t *arr, size_t capacity, size_t length) noexcept;
 
         // integer Constructors.
         integer(const integer &src);     // copy.
@@ -95,36 +95,36 @@ namespace apa {
         ~integer();
 
         // Index Operator
-        limb_t &operator[](size_t i);
-        limb_t &operator[](size_t i) const;
+        limb_t &operator[](size_t i) noexcept;
+        limb_t &operator[](size_t i) const noexcept;
 
         /// @return returns; -1 : if less than, 0 : if equal, 1 : if greater than.
-        int compare(const integer &with) const;
+        int compare(const integer &with) const noexcept;
 
         // Relational Operators
-        bool operator<(const integer &op) const;
-        bool operator>(const integer &op) const;
-        bool operator==(const integer &op) const;
-        bool operator!=(const integer &op) const;
-        bool operator<=(const integer &op) const;
-        bool operator>=(const integer &op) const;
+        bool operator<(const integer &op) const noexcept;
+        bool operator>(const integer &op) const noexcept;
+        bool operator==(const integer &op) const noexcept;
+        bool operator!=(const integer &op) const noexcept;
+        bool operator<=(const integer &op) const noexcept;
+        bool operator>=(const integer &op) const noexcept;
 
         // Bit-Wise Logical Operators
-        integer &operator&=(const integer &op);
-        integer &operator|=(const integer &op);
-        integer &operator^=(const integer &op);
-        integer operator&(const integer &op) const;
-        integer operator|(const integer &op) const;
-        integer operator^(const integer &op) const;
-        integer operator~() const;
+        integer &operator&=(const integer &op) noexcept;
+        integer &operator|=(const integer &op) noexcept;
+        integer &operator^=(const integer &op) noexcept;
+        integer operator&(const integer &op) const noexcept;
+        integer operator|(const integer &op) const noexcept;
+        integer operator^(const integer &op) const noexcept;
+        integer operator~() const noexcept;
 
-        void bit_realloc(const integer &op);
-        void remove_leading_zeros();
+        void bit_realloc(const integer &op) noexcept;
+        void remove_leading_zeros() noexcept ;
 
-        void bit_flip(size_t padding = 0);
-        void bit_and(const integer &op);
-        void bit_or(const integer &op);
-        void bit_xor(const integer &op);
+        void bit_flip(size_t padding = 0) noexcept;
+        void bit_and(const integer &op) noexcept;
+        void bit_or(const integer &op) noexcept;
+        void bit_xor(const integer &op) noexcept;
 
         // Logical Operators
         explicit operator bool() const noexcept;
@@ -136,30 +136,30 @@ namespace apa {
         integer &bit_modulo_assign(const integer &op);
         static void div_mod(integer& q, integer& r, integer& dividen, const integer& divisor);
 
-        integer &operator+=(const integer &op);
-        integer &operator-=(const integer &op);
-        integer &operator*=(const integer &op);
+        integer &operator+=(const integer &op) noexcept;
+        integer &operator-=(const integer &op) noexcept;
+        integer &operator*=(const integer &op) noexcept;
         integer &operator/=(const integer &op);
         integer &operator%=(const integer &op);
-        integer operator+(const integer &op) const;
-        integer operator-(const integer &op) const;
-        integer operator*(const integer &op) const;
+        integer operator+(const integer &op) const noexcept;
+        integer operator-(const integer &op) const noexcept;
+        integer operator*(const integer &op) const noexcept;
         integer operator/(const integer &op) const;
         integer operator%(const integer &op) const;
 
         // pre-fix increment/decrement
-        integer &operator++();
-        integer &operator--();
+        integer &operator++() noexcept;
+        integer &operator--() noexcept;
 
         // post-fix increment/decrement
-        integer operator++(int);
-        integer operator--(int);
+        integer operator++(int) noexcept;
+        integer operator--(int) noexcept;
 
         // Shift Operators
-        integer &operator<<=(size_t bits);
-        integer &operator>>=(size_t bits);
-        integer operator<<(size_t bits) const;
-        integer operator>>(size_t bits) const;
+        integer &operator<<=(size_t bits) noexcept;
+        integer &operator>>=(size_t bits) noexcept;
+        integer operator<<(size_t bits) const noexcept;
+        integer operator>>(size_t bits) const noexcept;
         // for left shift (<<) with parameter integer type use the formula : x*2^k
         // for right shift (>>) with parameter integer type use the formula : x/2^k
 
@@ -178,8 +178,8 @@ namespace apa {
         std::string to_base16_string() const;
 
         // Methods
-        size_t byte_size() const;
-        size_t bit_size() const;
+        size_t byte_size() const noexcept;
+        size_t bit_size() const noexcept;
         limb_t *detach();
     };
 
