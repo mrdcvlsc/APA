@@ -63,6 +63,14 @@ output of python's modulo.
 
     $$remainder = a - b \lfloor a/b\rfloor$$
 
+    To achieve a python similar modulo result in C++ we can use this operation instead:
+  
+    ```c++
+    template<typename T>
+    constexpr T mod(T num, T mod) {
+        return ((num % mod) + mod) % mod;
+    }
+    ```
 -----
 
 [**Go Back to Docs**](./docs.md)
